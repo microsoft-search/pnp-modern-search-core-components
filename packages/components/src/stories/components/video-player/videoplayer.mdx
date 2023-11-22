@@ -1,0 +1,49 @@
+{ /* video-player.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import * as VideoPlayerStories from './video-player.stories';
+
+<Meta of={VideoPlayerStories} name="Usage"/>
+
+## Basic usage
+
+|  Require authentication | **Yes** |
+| ----------------------- | ------ |
+
+This component allows you to play a video hosted in Microsoft SharePoint through Microsoft Stream. 
+
+### Get video link from SharePoint
+
+The `video-url` parameter corresponds to the sharing link of the video hosted in a SharePoint library.
+To get it, you need to:
+
+1. From the library, open the video in SharePoint.
+2. Click on **"Copy link"** in the top menu.
+3. Copy the value and paste it in the `video-url` parameter of the component.
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-video-player
+        video-url='https://yourtenant.sharepoint.com/:v:/r/sites/contoso/Shared%20Documents/myvideo.webm?csf=1&web=1&e=3OCUl1'
+        >
+    </pnp-video-player>
+  `}
+/>
+
+## Parameters
+
+| Property | Description | Example  |
+| -------- | ----------- | -------- | 
+| `title` | Title of the video for ARIA screen readers | `My video`
+| `video-url` | Sharering link URL of the video from Microsoft SharePoint | ```https://yourtenant.sharepoint.com/:v:/r/sites/contoso/Shared%20Documents/myvideo.webm?csf=1&web=1&e=3OCUl1```
+| `thumbnail-url` | Thumbnail URl to use. Only used when `lazy-loading` is set to true. If `video-url` is set, this thumbnail will be used instead of the automatic one. | 
+| `width` |  Width of the player. If not set, follow width of the parent.  | `800px` or `100%`
+| `height` | Height of the player. If not set, follow height of the parent.  | `500px` or `100%`
+| `height` | Height of the player. If not set, follow height of the parent.  | `500px` or `100%`
+| `autoplay` | Flag indicating if the video should start automatically. Enabled by default if `lazy-loading` set to true. Attention: this feature can be blocked by default on browers for the website so you need to allow it. | 
+| `allowfullscreen` | Allows fullscreen on the video | 
+| `preview-url` | The video preview URL to use in the iframe. This URL must be accessible by the current user. Usually, you fill this url when already fetched from Graph outside of the component. | <div>```https://yourtenant.sharepoint.com/sites/GlobalPublishingSharepoint/_layouts/15/embed.aspx?uniqueId=5759635f-5152-49c5-b8e3-2cf58376c50d&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQ...```</div>
+| `lazy-loading` | If set to `true`, the component won't load the underyling iframe until a click on a fake play button is performed by the user + the video thumbnail from `thumbnail-url` will be displayed. When clicked, the iframe is loaded and the video launches in autoplay mode. |

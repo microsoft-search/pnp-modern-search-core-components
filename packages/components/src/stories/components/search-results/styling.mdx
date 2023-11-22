@@ -1,0 +1,145 @@
+{ /* styling.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import * as SearchResultsStylingStories from './styling.stories';
+
+<Meta of={SearchResultsStylingStories} name="Usage - Styling"/>
+
+## [Provide custom templates](?path=/docs/components-search-search-results--custom-items-template-story)
+
+The search results component supports different templates to allow you to customize the experience according to your requirements.
+Because components are built over the [Microsoft Graph Toolkit](https://learn.microsoft.com/en-us/graph/toolkit/overview) library, you can use the same templating techniques as described in the official [documentation](https://learn.microsoft.com/en-ca/graph/toolkit/customize-components/templates).
+
+To use a custom template, simply use the `<template>` directive inside the content of the component:
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results 
+      query-text="*"
+      entity-types="listItem"
+      fields="title,created,path"
+      page-size="5"
+    >
+        <template data-type="items">
+            <div data-for='item in items'>
+                <!-- Template content here using [[item.<prop>]] binding syntax -->
+            </div>
+        </template>
+    </pnp-search-results>
+  `}
+/>
+
+Where valid `data-type` attribute values are:
+- **items** to customize results display.
+- **shimmers** to customize display when results are loading
+
+> By default the binding syntax fo componetns is `[[<expr>]]` and you can use regular Javascript here.
+
+### Template: result items
+
+This template is used **after results are loaded**:
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results ...>
+        <template data-type="items">
+            <div data-for='item in items'>
+                <div class="pb-8">
+                    <div class="flex space-x-2 mb-2">
+                        <div class="font-bold">[[item.resource.fields.title]]</div>
+                        <div class="h-6">By [[item.resource.fields.createdBy]]</div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </pnp-search-results>
+  `}
+/>
+
+The available properties are the ones from the [Microsoft Search Graph API response](https://learn.microsoft.com/en-us/graph/api/resources/searchhit?view=graph-rest-1.0).
+
+> For convenience, items field are also flatten meaning you can use `item.<fieldName>` instead of `item.resource.fields.<fieldName>` or `item.resource.properties.<fieldName>`.
+
+### Template: shimmers
+
+This template is used **before results are loaded**. By default the search component does not display any shimmers.
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results ...>
+        <template data-type="shimmers">
+            <div data-for='i in items'>
+                <div class="animate-shimmer pb-8">
+                    <div class="flex space-x-2 mb-2 ">
+                        <div class="w-6 h-6 rounded bg-slate-200"></div>
+                        <div class="w-96 h-6 rounded bg-slate-200"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </pnp-search-results>
+  `}
+/>
+
+> **Use cuystom styles for templates**
+>
+> Because templates are essensitally web component slots, they are not embedded into components and can be styled like any other HTML element on the page.
+> For instance, you can use [TailwindCSS](https://tailwindcss.com/) to style your results/shimmers quickly:
+>
+> <Source
+>    dark
+>    language="html"
+>    code={`<script src="https://cdn.tailwindcss.com"></script>`}
+> />
+
+## [Use custom header](?path=/story/components-search-search-results--custom-header-template-story)
+
+Using the `see-all-link` and/or `comp-title`, you customize the header of your component:
+
+<Source
+    dark
+    language="html"
+    code={dedent`
+        <pnp-search-results 
+            query-text="*" 
+            entity-types="listItem" 
+            fields="name,title,created,createdBy,filetype,lastModifiedTime,modifiedBy,path,hitHighlightedSummary,SPSiteURL,SiteTitle" 
+            page-size="5" 
+            see-all-link="https://microsoft.com" 
+            comp-title="My Results">
+        </pnp-search-results>
+    `}
+/>
+
+> The `see-all-link` supports the `{searchTerms}` token. For instance you can use it like this to redirect to an other page using the current query keyword entered by an user `https://mysite?k={searchTerms}`. This search term can come from a connected search box or a default query string parameter.
+
+## [Pagination settings](?path=/docs/components-search-search-results--paging-template-story)
+
+You can also set pagination for the component:
+
+<Source
+    dark
+    language="html"
+    code={dedent`
+        <pnp-search-results
+            query-text="*" 
+            entity-types="listItem" 
+            fields="name,title,created,createdBy,filetype,lastModifiedTime,modifiedBy,path,hitHighlightedSummary,SPSiteURL,SiteTitle" 
+            page-size="5" 
+            pages-number="3"
+            show-paging
+        >
+        </pnp-search-results>
+    `}
+/>
+
+> If your request returns more than **2000** pages, you'll see a _"Too many pages"_ message. This is to avoid any empty pages due a Microsoft Search API limitation.

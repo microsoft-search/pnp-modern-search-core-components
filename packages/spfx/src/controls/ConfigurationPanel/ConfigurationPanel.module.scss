@@ -1,0 +1,25 @@
+
+.fieldContainer {
+    padding: 8px;
+}
+
+.itemContainer {
+    display: flex;
+    justify-content: space-between;
+    //width: 100%;
+    padding-left: 4px;
+} 
+
+.footerContainer {
+    padding-left: 24px;
+    display: flex;
+    justify-content: flex-end;
+
+    .buttonContainer {
+        display: flex;
+
+        button~button {
+            margin-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.placeholderContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 72px;
+    }
+
+    p {
+        font-size: large;
+    }
+}

@@ -1,0 +1,57 @@
+{ /* searchbox.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import * as SearchboxStories from './searchbox.stories';
+
+<Meta of={SearchboxStories} name="Usage"/>
+
+The search box allows users to enter free text search queries connected to search results components.
+
+## [Basic usage](/?path=/story/components-search-search-box--basic-usage-story)
+
+|  Require authentication | **No** |
+| ----------------------- | ------ |
+
+The basic usage of this component is to connect it to one or multiple search results components using the `search-input-id` property on `pnp-search-results`.
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-input 
+        id="edfdea93-23c9-4ba6-94d9-a848a1384104" 
+        placeholder="Enter a keyword..." 
+        default-query-string-parameter="q"
+    >
+    </pnp-search-input>
+    <pnp-search-results 
+      query-text="*"
+      page-size="1"
+      search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+    >
+    </pnp-search-results>
+  `}
+/>
+
+## [Redirect ot URL](/?path=/docs/components-search-search-box--redirect-url-story)
+
+The search box also supports the redirection to an arbitrary URL. It means you could combine two search box using a query string parameter. 
+The first sending the keyword and the second one using the value as its default value:
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-input
+        id="edfdea93-23c9-4ba6-94d9-a848a1384104" 
+        placeholder="Enter a keyword..." 
+        search-in-new-page="true" 
+        search-page-url="http://localhost:6006/?path=/story/components-search-search-box--basic-usage-story" 
+        query-behavior="queryparameter" 
+        query-parameter="q" 
+        open-behavior="newTab">
+    </pnp-search-input>
+  `}
+/>

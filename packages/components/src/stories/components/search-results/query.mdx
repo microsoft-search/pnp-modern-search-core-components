@@ -1,0 +1,84 @@
+{ /* query.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import * as SearchQueryStories from './query.stories';
+
+<Meta of={SearchQueryStories} name="Usage - Query" />
+
+## Authentication
+
+|  Require authentication | **Yes** |
+| ----------------------- | ------ |
+
+**Notes about authentication**
+> - The `pnp-search-results` component requires a provider to be registered on the page with a signed user to be able to get results. The provider can be any from the [Microsoft Graph Toolkit providers](https://learn.microsoft.com/en-ca/graph/toolkit/providers/providers).
+> - The correct Microsoft Graph scopes (i.e permissions) should be granted in the Azure AD application according the entity types you are querying. See [Microsoft Graph documentation for all needed scopes](https://learn.microsoft.com/en-us/graph/api/resources/search-api-overview?view=graph-rest-1.0&preserve-view=true#scope-search-based-on-entity-types). 
+
+## Basic usage
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results 
+      query-text="*"
+      entity-types="listItem"
+      fields="title,created,path"
+      page-size="5"
+    >
+    </pnp-search-results>
+  `}
+/>
+
+If no template is provided as a slot, a default one will be used based on default properties. We strongly encourage you to use your own template.
+
+- File type family
+
+## Advanced query
+
+If you are more familiar with Microsoft you can use the following properties to build more advanced queries:
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results 
+      use-beta
+      query-text="*"
+      query-template="{searchTerms} FileType:pdf"
+      entity-types="listItem"
+      fields="title,created,path"
+      page-size="5"
+      default-query-string-parameter="q"
+      sort-properties='[{"sortField":"LastModifiedTime","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Date de modification","default":"Last modified"}}]'
+    >
+    </pnp-search-results>
+  `}
+/>
+
+## Use result types
+
+The Microsoft Search [result types feature](https://learn.microsoft.com/en-us/microsoftsearch/manage-result-types) allows to standardize the results UI across all search experiences in the Microsoft 365 ecosytem and our applications. 
+The display is defined as JSON through [adaptive cards](https://adaptivecards.io/) and registered directly in the Microsoft Search Portal.
+
+> As of today (01/03/2023) result types are only usable with **external conenctors** (i.e. external data sources) so it means you need to specify the entity type `externalItem` and a connection ID (`connections`) to use this feature.
+> When using result types, you need to specifiy the correct fields used by the adaptive card in the `fields` attribute. 
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-results 
+      query-text="*"
+      entity-types="listItem"
+      fields="title,created,path"
+      page-size="5"
+      enable-result-types
+      connections="profilesprd"
+    >
+    </pnp-search-results>
+  `}
+/>

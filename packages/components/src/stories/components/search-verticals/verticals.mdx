@@ -1,0 +1,52 @@
+{ /* verticals.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import * as SearchVerticalsStories from './verticals.stories';
+
+<Meta of={SearchVerticalsStories} name="Usage"/>
+
+## [Basic usage](?path=/story/components-search-search-verticals--basic-usage-story)
+
+The search verticals component allows to conditionally render search results components according to a selected vertical (i.e tab). 
+It is a simple way to build a complete search center including multiple sources on the same page and optimize the UI and performances.
+
+In connected search results, you must specifiy the `verticals-keys` attribute indicating for which tab the component should be displayed.
+
+> For performances purpose, when switching tab, the HTTP requests for previous tab matched components are automatically cancelled.
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-verticals
+        id="0fa619a7-442a-4255-8fca-f3ce36a01518" 
+        settings='[{"key":"tab1","tabName":{"default":"Tab 1","fr-fr":"Onglet 1"}},{"key":"tab2","tabName":"Tab 2"}]'>
+    </pnp-search-verticals>
+    
+    <pnp-search-results
+        query-text="*"
+        page-size="1"
+        comp-title="Displayed on tab 1"
+        search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+        verticals-keys="tab1"
+    >
+    </pnp-search-results>
+    
+    <pnp-search-results
+        query-text="*"
+        page-size="1"
+        comp-title="Displayed on tab 2"
+        search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+        verticals-keys="tab2"
+    >
+    </pnp-search-results>
+  `}
+/>
+
+The following configuration properties are available for a vertical (i.e. `settings` object):
+
+| Property | Description | Example  |
+| -------- | ----------- | -------- | 
+| `key` |Unique key for the vertical. This value will be used by connected components to determine visibility. | `tab1`
+| `tabName` | The vertical name to display in the UI. Can be a simple string or a localized string | `Tab 1` or `{ "default": "Tab 1", "fr-fr": "Onglet 1" }`
