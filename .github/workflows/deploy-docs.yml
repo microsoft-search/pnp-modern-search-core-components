@@ -1,0 +1,73 @@
+name: Deploy Modern Search Core Components - Storybook
+env:
+    ENV_AzDeployAppId: ${{ secrets.ENV_AzDeployAppId }}
+    ENV_AzDeployAppCertificateValue: ${{ secrets.ENV_AzDeployAppCertificateValue }}
+    ENV_AzDeployTenantId: ${{ secrets.ENV_AzDeployTenantId }}
+    ENV_AzDeploySubcriptionId: ${{ secrets.ENV_AzDeploySubcriptionId }}
+    ENV_AzResourceGroupName: ${{ secrets.ENV_AzResourceGroupName }}
+    ENV_AzStorageAccountName: ${{ secrets.ENV_AzStorageAccountName }}
+    ENV_AzBlobContainerName: ${{ secrets.ENV_AzBlobContainerName }}
+    ENV_AzBlobContainerWebName: ${{ secrets.ENV_AzBlobContainerWebName }}
+    
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+      - develop
+jobs:
+
+  version:  
+      runs-on: ubuntu-latest
+      outputs: 
+          majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
+          semver: ${{ steps.setoutputs.outputs.semver }}
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+              ref: develop
+
+        - name: Install GitVersion
+          uses: gittools/actions/gitversion/setup@v0.9.7
+          with:
+            versionSpec: '5.x'
+
+        - name: Determine Version
+          id:   gitversion
+          uses: gittools/actions/gitversion/execute@v0.9.7
+
+        - name: Set outputs
+          id: setoutputs
+          run: |
+            echo "::set-output name=majorMinorPatch::$GITVERSION_MAJORMINORPATCH"
+            echo "::set-output name=semver::$GITVERSION_SEMVER"
+
+  deploy-storybook:
+      runs-on: ubuntu-latest
+      defaults:
+          run:
+              working-directory: ./deploy
+      needs: version
+      steps:
+
+          - name: Install Bicep
+            shell: sh
+            run: |
+              apk add --update curl
+              curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-musl-x64
+              chmod +x ./bicep
+              mv ./bicep /usr/local/bin/bicep
+          
+          - name: Install Azure PowerShell modules
+            shell: pwsh
+            run: |
+              Install-Module Az.Accounts -RequiredVersion 2.7.3 -Force
+              Install-Module Az.Resources -RequiredVersion 5.4.0 -Force
+              Install-Module Az.Storage -RequiredVersion 5.2.0 -Force
+
+          - name: Run PowerShell delployment
+            shell: pwsh
+            run: |
+              ./deploy-docs.ps1 -CI LOCAL -Version ${{ needs.build.outputs.semver }}
+
