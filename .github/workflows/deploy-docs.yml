@@ -22,6 +22,7 @@ jobs:
       outputs: 
           majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
           semver: ${{ steps.setoutputs.outputs.semver }}
+      
       steps:
 
         - uses: actions/setup-node@v3
@@ -51,6 +52,8 @@ jobs:
   deploy-storybook:
       runs-on: ubuntu-latest
       needs: version
+      env:
+        VERSION: ${{ needs.version.outputs.semver }}
       steps:
 
           - name: Checkout
@@ -96,8 +99,6 @@ jobs:
 
           - name: Run PowerShell delployment
             shell: pwsh
-            env:
-              VERSION: ${{ needs.build.outputs.semver }}
             run: |
               ./deploy/deploy-docs.ps1 -Env CI -Version $VERSION
 
