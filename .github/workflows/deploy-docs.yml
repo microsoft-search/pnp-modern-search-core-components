@@ -100,5 +100,5 @@ jobs:
           - name: Run PowerShell delployment
             shell: pwsh
             run: |
-              ./deploy/deploy-docs.ps1 -Env CI -Version $VERSION
+              ./deploy/deploy-docs.ps1 -Env CI -Version "$env:VERSION"
 
