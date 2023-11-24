@@ -1,0 +1,9 @@
+/** Define CSS variables overrides here **/ 
+body { 
+    --pnpsearch-colorPrimary: #0078d4;
+    --pnpsearch-colorPrimaryHover: #0078d4;
+    --pnpsearch-textColor: #1E252B;
+    --pnpsearch-colorBackgroundDarkPrimary: #3b3b3b;
+    --pnpsearch-textColorDark: #FFF;
+    --pnpsearch-fontFamilyPrimary: "Segoe UI";
+}

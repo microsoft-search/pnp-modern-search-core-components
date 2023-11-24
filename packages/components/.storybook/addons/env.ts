@@ -3,5 +3,4 @@
 export const CLIENTID = "";
 export const TENANT_ID = ""
 export const DOMAIN_HINT = "";
-export const PROFILES_SOURCE_ID = ""
 export const DIST_HOST_URL = ""

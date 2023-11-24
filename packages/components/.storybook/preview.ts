@@ -1,6 +1,7 @@
 import type {Preview} from '@storybook/web-components';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 
+import "./styles.css";
 /*
  * Initializes MSW
  * See https://github.com/mswjs/msw-storybook-addon#configuring-msw

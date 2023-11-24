@@ -304,7 +304,7 @@ export class SearchResultsComponent extends BaseComponent {
                         }
 
                         return html`
-                            <div id=${item.hitId} data-ref="item">
+                            <div id=${item.hitId} data-ref="item" class="font-primary">
                                 ${renderResult}
                                 ${i < this.data.items.length-1 ? html`<fast-divider class="border-t-[1px]"></fast-divider>`: nothing}
                             </div>
