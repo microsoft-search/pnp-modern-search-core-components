@@ -80,10 +80,6 @@ $storageAccount = Get-AzStorageAccount -ResourceGroupName $ENV_AzResourceGroupNa
 $ctx = $storageAccount.Context
 Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument "index.html"
 
-$Properties = @{
-    "ContentType" = "text/javascript"
-} 
-
 $storybookDistFolder = Join-Path -Path $PSScriptRoot -ChildPath "../packages/components/storybook-static/"
 $mswJsFile = Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath "../packages/components/src/stories/public/mockServiceWorker.js")
 
@@ -92,7 +88,7 @@ Set-AzStorageBlobContent `
         -File $mswJsFile `
         -Container $ENV_AzBlobContainerWebName `
         -Blob $mswJsFile.Name`
-        -Properties $Properties `
+        -Properties @{"ContentType" = "text/javascript"} `
         -Context $storageAccount.Context `
         -Force
 
@@ -101,6 +97,10 @@ $files | ForEach-Object {
 
     $file = $_
     Write-Verbose "Uploading $($_.Name) to '$ENV_AzBlobContainerWebName' blob container..."
+
+    $Properties = @{
+        "ContentType" = "text/javascript"
+    }
 
     # Determine MIME type
     switch ($file.Extension) {
