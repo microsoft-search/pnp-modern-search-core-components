@@ -50,9 +50,6 @@ jobs:
 
   deploy-storybook:
       runs-on: ubuntu-latest
-      defaults:
-          run:
-              working-directory: deploy
       needs: version
       steps:
 
@@ -73,10 +70,34 @@ jobs:
               Install-Module Az.Resources -RequiredVersion 5.4.0 -Force
               Install-Module Az.Storage -RequiredVersion 5.2.0 -Force
 
+          - uses: pnpm/action-setup@v2
+            with:
+              version: 8
+              run_install: false
+
+          - name: Get pnpm store directory
+            shell: bash
+            run: |
+              echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+          - uses: actions/cache@v3
+            name: Setup pnpm cache
+            with:
+              path: ${{ env.STORE_PATH }}
+              key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+              restore-keys: |
+                ${{ runner.os }}-pnpm-store-
+
+          - name: Install dependencies
+            run: pnpm install
+        
+          - name: Build Storybook
+            run: npx lerna run docs:build --scope=@pnp/modern-search-core
+
           - name: Run PowerShell delployment
             shell: pwsh
             env:
               VERSION: ${{ needs.build.outputs.semver }}
             run: |
-              ./deploy-docs.ps1 -Env CI -Version $VERSION
+              ./deploy/deploy-docs.ps1 -Env CI -Version $VERSION
 
