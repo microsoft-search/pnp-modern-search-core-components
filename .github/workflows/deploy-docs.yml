@@ -76,5 +76,5 @@ jobs:
           - name: Run PowerShell delployment
             shell: pwsh
             run: |
-              ./deploy-docs.ps1 -CI LOCAL -Version ${{ needs.build.outputs.semver }}
+              ./deploy-docs.ps1 -Env CI -Version ${{ needs.build.outputs.semver }}
 
