@@ -85,7 +85,7 @@ $Properties = @{
 } 
 
 $storybookDistFolder = Join-Path -Path $PSScriptRoot -ChildPath "../packages/components/storybook-static/"
-$mswJsFile = Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath "../packages/components/src/stories/assets/mockServiceWorker.js")
+$mswJsFile = Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath "../packages/components/src/stories/public/mockServiceWorker.js")
 
 # > Copy MSW service worker at root to enable mocks
 Set-AzStorageBlobContent `

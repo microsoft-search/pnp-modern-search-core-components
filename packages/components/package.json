@@ -148,6 +148,6 @@
   },
   "customElements": "custom-elements.json",
   "msw": {
-    "workerDirectory": "public"
+    "workerDirectory": "packages\\components\\src\\stories\\assets"
   }
 }

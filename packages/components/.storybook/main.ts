@@ -25,7 +25,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['../src/stories/assets'],
+  staticDirs: ['../src/stories/assets','../src/stories/public'],
   webpackFinal:  (config, options) => { 
     options.cache.set = (key: string, value: any, ttl?: number) => { return Promise.resolve({path: ""}) };
     config?.module?.rules?.push(
