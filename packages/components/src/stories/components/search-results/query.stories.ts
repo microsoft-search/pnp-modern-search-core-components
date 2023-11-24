@@ -3,7 +3,6 @@ import { html } from "lit";
 import { ComponentElements } from "../../../../src/common/Constants";
 import { withAuth } from "../../../../.storybook/addons/authAddon";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { PROFILES_SOURCE_ID } from "../../../../.storybook/addons/env";
 import { EntityType } from "@microsoft/microsoft-graph-types";
 import { rest } from "msw";
 
