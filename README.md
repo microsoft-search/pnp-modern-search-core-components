@@ -8,7 +8,7 @@
 
 The goal is to provide reusable components based on Microsoft Search and Microsoft Graph in general that can be used transversally in an organization.
 
-> Despite we provide a SharePoint WebParts implementation over these components, this **is not a new version, nor a replacement** of the [PnP Modern Search WebParts](https://githuWb.com/microsoft-search/pnp-modern-search). The main difference is they can be used outside SharePoint to leverage Microsoft Graph and Microsoft Search.
+> Despite we provide a SharePoint WebParts implementation over these components, this **is not a new version, nor a replacement** of the [PnP Modern Search WebParts](https://github.com/microsoft-search/pnp-modern-search). The main difference is they can be used outside SharePoint to leverage Microsoft Graph and Microsoft Search.
 
 ## What are they and why should I use them?
 
@@ -30,10 +30,10 @@ The following components are included in the bundle:
 
 ##  How I get started?
 
-To get started, simply follow the [guide](https://microsoft-search.github.io/np-modern-search-core-components/development/getting_started/)!
+To get started, simply follow the [guide](https://microsoft-search.github.io/pnp-modern-search-core-components/development/getting_started/)!
 
 ## Playground
 
 You can also get an overview of components using the [playground](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/introduction-getting-started--docs)
 
-Thank you to all [Ubisoft members who participate to this project](./thanks.md)!
+Thank you to all [Ubisoft members who participate to this project](https://microsoft-search.github.io/pnp-modern-search-core-components/thanks/)!

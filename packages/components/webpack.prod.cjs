@@ -9,13 +9,13 @@ module.exports = merge(common, {
     hints: false
   },
   plugins: [
-    new CompressionPlugin({
+    /*new CompressionPlugin({
       algorithm: "gzip",
       filename: "[path][base]",
       minRatio: Infinity,
       exclude: /.map$/,
       deleteOriginalAssets: "keep-source-map",
       test: /\.js(\?.*)?$/i,
-    })
+    })*/
   ]
 });
