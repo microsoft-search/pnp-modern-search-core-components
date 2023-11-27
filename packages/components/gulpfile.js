@@ -15,7 +15,7 @@ const setVersion = (version) => {
 
 gulp.task("set-version", async () => {
 
-    const versionArg = process.argv.indexOf("--version");
+    const versionArg = process.argv.indexOf("--semver");
     const version = process.argv[versionArg+1];
 
     setVersion(version);
