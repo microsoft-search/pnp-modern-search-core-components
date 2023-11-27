@@ -26,7 +26,7 @@
 1. Open the project root folder in Visual Studio Code.
 1. From the _'Terminal'_ window, run the following command:
 
-    `npx lerna run serve --scope=@pnp/modern-search-core`
+    `npx lerna run serve --scope=pnp-modern-search-core`
 
     This will bundle the solution and serve it from a local server on adresss [http://localhost:8080/index.html](http://localhost:8080/index.html):
 
@@ -51,7 +51,7 @@
     !["Test selection"](../assets/test_selection.png)
 
     !!! notice
-        To run all tests (ex: before a commit), run `npx lerna run test --scope=@pnp/modern-search-core`:
+        To run all tests (ex: before a commit), run `npx lerna run test --scope=pnp-modern-search-core`:
         !["Run all tests"](../assets/run_all_tests.png)
 
 1. Launch the **"Debug tests Edge"** VSCode configuration and choose the test you want to debug:
@@ -70,7 +70,7 @@ We use Storybook to demo components in different scenarios:
 
 To run Storybook locally run the following command:
 
-`npx lerna run docs:watch --scope=@pnp/modern-search-core`   
+`npx lerna run docs:watch --scope=pnp-modern-search-core`   
 
 !!! notice
     All stories are read from the `packages/components/src/stories` folder.
@@ -82,7 +82,7 @@ To run Storybook locally run the following command:
 1. Open the project root folder in Visual Studio Code.
 1. From the 'Terminal', run the following command:
 
-    `npx lerna run serve --scope=@pnp/modern-search-core-spfx`
+    `npx lerna run serve --scope=pnp-modern-search-core-spfx`
 
 1. You can also go directly to ``packages/spfx` and run `npm run serve`.
 1. Open the **Hosted workbench** debug configuration and add WebParts from Local category:

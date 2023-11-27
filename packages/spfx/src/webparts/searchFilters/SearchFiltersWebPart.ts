@@ -10,9 +10,9 @@ import { ISearchFiltersProps } from './components/ISearchFiltersProps';
 import { BaseWebPart } from '../../common/BaseWebPart';
 import { IDynamicDataCallables, IDynamicDataPropertyDefinition } from '@microsoft/sp-dynamic-data';
 import { ComponentType } from '../../common/ComponentType';
-import { FilterSortDirection, FilterSortType } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
-import { BuiltinFilterTemplates } from '@pnp/modern-search-core/dist/es6/models/common/BuiltinTemplate';
-import { FilterConditionOperator } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilter';
+import { FilterSortDirection, FilterSortType } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
+import { BuiltinFilterTemplates } from 'pnp-modern-search-core/dist/es6/models/common/BuiltinTemplate';
+import { FilterConditionOperator } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilter';
 import { DynamicProperty } from '@microsoft/sp-component-base';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
 import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
@@ -21,7 +21,7 @@ import { IPropertyFieldMultiSelectProps, PropertyFieldMultiSelect } from '@pnp/s
 import { ISearchFiltersWebPartProps } from './ISearchFiltersWebPartProps';
 import { PropertyPaneFiltersConfiguration } from '../../propertyPane/PropertyPaneFiltersConfiguration/PropertyPaneFiltersConfiguration';
 import { ISearchVerticalSourceData } from '../../models/dynamicData/ISearchVerticalSourceData';
-import { IDataVerticalConfiguration } from '@pnp/modern-search-core/dist/es6/models/common/IDataVerticalConfiguration';
+import { IDataVerticalConfiguration } from 'pnp-modern-search-core/dist/es6/models/common/IDataVerticalConfiguration';
 import { ILayoutDefinition, LayoutType } from '../../models/common/ILayoutDefinition';
 import { AvailableLayouts, BuiltinLayoutsKeys } from '../../layouts/AvailableLayouts';
 

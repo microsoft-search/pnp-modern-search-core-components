@@ -1,5 +1,5 @@
 import { ServiceScope } from "@microsoft/sp-core-library";
-import { ILocalizedString } from "@pnp/modern-search-core/dist/es6/models/common/ILocalizedString";
+import { ILocalizedString } from "pnp-modern-search-core/dist/es6/models/common/ILocalizedString";
 
 export interface ILocalizedFieldProps {
 

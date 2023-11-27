@@ -1,5 +1,5 @@
-import { ISortFieldConfiguration } from "@pnp/modern-search-core/dist/es6/models/common/ISortFieldConfiguration";
-import { EntityType } from "@pnp/modern-search-core/dist/es6/models/search/IMicrosoftSearchRequest";
+import { ISortFieldConfiguration } from "pnp-modern-search-core/dist/es6/models/common/ISortFieldConfiguration";
+import { EntityType } from "pnp-modern-search-core/dist/es6/models/search/IMicrosoftSearchRequest";
 
 export interface ISearchResultsComponentProps {
     defaultQueryText: string;

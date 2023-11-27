@@ -7,8 +7,8 @@ import * as webPartStrings from 'SearchVerticalsWebPartStrings';
 import SearchVerticals from './components/SearchVerticals';
 import { ISearchVerticalsProps } from './components/ISearchVerticalsProps';
 import { ISearchVerticalsWebPartProps } from './ISearchVerticalsWebPartProps';
-import { IDataVerticalConfiguration } from '@pnp/modern-search-core/dist/es6/models/common/IDataVerticalConfiguration';
-import { PageOpenBehavior } from '@pnp/modern-search-core/dist/es6/helpers/UrlHelper';
+import { IDataVerticalConfiguration } from 'pnp-modern-search-core/dist/es6/models/common/IDataVerticalConfiguration';
+import { PageOpenBehavior } from 'pnp-modern-search-core/dist/es6/helpers/UrlHelper';
 import { ConfigurationFieldType, IConfigurationTabField } from '../../controls/ConfigurationPanel/IConfigurationTabField';
 import { isEmpty, isEqual } from '@microsoft/sp-lodash-subset';
 import { IChoiceGroupProps, ITextFieldProps, IToggleProps } from 'office-ui-fabric-react';
@@ -23,7 +23,7 @@ import { ISearchVerticalSourceData } from '../../models/dynamicData/ISearchVerti
 import { DisplayMode } from '@microsoft/sp-core-library';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
 import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
-import { LocalizedStringHelper } from '@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper';
+import { LocalizedStringHelper } from 'pnp-modern-search-core/dist/es6/helpers/LocalizedStringHelper';
 import { PropertyPaneFormDataCollection } from '../../propertyPane/PropertyPaneFormDataCollection/PropertyPaneFormDataCollection';
 import { ILayoutDefinition } from '../../models/common/ILayoutDefinition';
 //#endregion

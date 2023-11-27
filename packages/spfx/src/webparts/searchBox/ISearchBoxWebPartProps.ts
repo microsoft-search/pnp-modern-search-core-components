@@ -1,4 +1,4 @@
-import { QueryPathBehavior, PageOpenBehavior } from "@pnp/modern-search-core/dist/es6/helpers/UrlHelper";
+import { QueryPathBehavior, PageOpenBehavior } from "pnp-modern-search-core/dist/es6/helpers/UrlHelper";
 import { IBaseWebPartProps } from "../../models/common/IBaseWebPartProps";
 
 export interface ISearchBoxWebPartProps extends IBaseWebPartProps {

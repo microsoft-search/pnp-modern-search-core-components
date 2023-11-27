@@ -5,8 +5,8 @@ import { IDropdownOption, TextField } from "office-ui-fabric-react";
 import styles from "./LocalizedTextField.module.scss"
 import { Guid } from "@microsoft/sp-core-library";
 import { TranslationField } from "./components/TranslationField";
-import { ILocalizedString } from "@pnp/modern-search-core/dist/es6/models/common/ILocalizedString";
-import { LocalizedStringHelper } from "@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper";
+import { ILocalizedString } from "pnp-modern-search-core/dist/es6/models/common/ILocalizedString";
+import { LocalizedStringHelper } from "pnp-modern-search-core/dist/es6/helpers/LocalizedStringHelper";
 import { ILocalizationService } from "../../services/localizationService/ILocalizationService";
 import { LocalizationService } from "../../services/localizationService/LocalizationService";
 import { PageContext } from "@microsoft/sp-page-context";

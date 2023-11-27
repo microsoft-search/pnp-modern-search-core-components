@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ISearchBoxProps } from './ISearchBoxProps';
 import { wrapWc } from 'wc-react';
-import { SearchInputComponent } from '@pnp/modern-search-core';
+import { SearchInputComponent } from 'pnp-modern-search-core';
 
 const SearchInputWebComponent = wrapWc<SearchInputComponent>('pnp-search-input');
 

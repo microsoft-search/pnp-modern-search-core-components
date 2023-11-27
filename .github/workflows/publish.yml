@@ -1,4 +1,4 @@
-name: Publish Modern Search Core Components library
+name: Deploy Modern Search Core Components - NPM Publish
 
 on:
   push:
@@ -83,6 +83,9 @@ jobs:
       - name: Version package
         run: pnpm version $VERSION --no-git-tag-version
   
+      - name: Bunde
+        run: pnpm run bundle:prod
+
       - name: Build
         run: pnpm run build
 

@@ -36,15 +36,15 @@ Include the following script in your HTML page:
 
 ### Via npm package
 
-The npm package `@pnp/modern-search-core` is available in npm to be used in you application
+The npm package `pnp-modern-search-core` is available in npm to be used in you application
 
 ### Installation
 
-`npm i --save @pnp/modern-search-core`
+`npm i --save pnp-modern-search-core`
 
 ### Side effects
 
-The `@pnp/modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
+The `pnp-modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
 
 ### Usage
 
@@ -52,7 +52,7 @@ The `@pnp/modern-search-core` package is side effect free, expect for the entryp
 Most of the time, you'll just need to use the pre-defined custom element registration.
 
 ```typescript
-import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
+import "pnp-modern-search-core/dist/es6/exports/define/pnp-search-results";
 ...
 <pnp-search-results
     id="edfdea93-23c9-4ba6-94d9-a848a1384104"
@@ -62,7 +62,7 @@ import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
 #### Scoped
 When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts:
 
-`import { PnPSearchResultsComponent} from "@pnp/modern-search-core";`
+`import { PnPSearchResultsComponent} from "pnp-modern-search-core";`
 
 ```typescript
 

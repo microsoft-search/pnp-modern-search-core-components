@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ISearchVerticalsProps } from './ISearchVerticalsProps';
 import { wrapWc } from 'wc-react';
-import { SearchVerticalsComponent } from '@pnp/modern-search-core';
-import { EventConstants } from "@pnp/modern-search-core/dist/es6/common/Constants";
-import { ISearchVerticalEventData } from "@pnp/modern-search-core/dist/es6/models/events/ISearchVerticalEventData";
+import { SearchVerticalsComponent } from 'pnp-modern-search-core';
+import { EventConstants } from "pnp-modern-search-core/dist/es6/common/Constants";
+import { ISearchVerticalEventData } from "pnp-modern-search-core/dist/es6/models/events/ISearchVerticalEventData";
 
 const SearchVerticalsWebComponent = wrapWc<SearchVerticalsComponent>('pnp-search-verticals');
 

@@ -1,4 +1,4 @@
-import { IDataVerticalConfiguration } from "@pnp/modern-search-core/dist/es6/models/common/IDataVerticalConfiguration";
+import { IDataVerticalConfiguration } from "pnp-modern-search-core/dist/es6/models/common/IDataVerticalConfiguration";
 import { IBaseWebComponentWrapperProps } from "../../../models/common/IBaseWebComponentWrapper";
 
 export interface ISearchVerticalsProps extends IBaseWebComponentWrapperProps {

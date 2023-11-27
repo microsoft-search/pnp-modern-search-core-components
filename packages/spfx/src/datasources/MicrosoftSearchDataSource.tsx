@@ -5,7 +5,7 @@ import * as sourceStrings from 'MicrosoftSearchDataSourceStrings';
 import { DynamicProperty } from "@microsoft/sp-component-base";
 import { intersection, isEmpty, isEqual } from "@microsoft/sp-lodash-subset";
 import { ServiceScope } from "@microsoft/sp-core-library";
-import { EntityType, IQueryAlterationOptions } from "@pnp/modern-search-core/dist/es6/models/search/IMicrosoftSearchRequest";
+import { EntityType, IQueryAlterationOptions } from "pnp-modern-search-core/dist/es6/models/search/IMicrosoftSearchRequest";
 import IDynamicDataService from "../services/dynamicDataService/IDynamicDataService";
 import { DynamicDataService } from "../services/dynamicDataService/DynamicDataService";
 import { ComponentType } from "../common/ComponentType";
@@ -13,7 +13,7 @@ import { ConfigurationFieldType, IConfigurationTabField } from "../controls/Conf
 import { PropertyPaneCombobox } from "../propertyPane/PropertyPaneCombobox/PropertyPaneCombobox";
 import { PropertyPaneFormDataCollection } from "../propertyPane/PropertyPaneFormDataCollection/PropertyPaneFormDataCollection";
 import { PropertyPaneNonReactiveTextField } from "../propertyPane/PropertyPaneNonReactiveTextField/PropertyPaneNonReactiveTextField";
-import { ISortFieldConfiguration, SortFieldDirection } from "@pnp/modern-search-core/dist/es6/models/common/ISortFieldConfiguration";
+import { ISortFieldConfiguration, SortFieldDirection } from "pnp-modern-search-core/dist/es6/models/common/ISortFieldConfiguration";
 import * as React from "react";
 import { ConfigurationPanel } from "../controls/ConfigurationPanel/ConfigurationPanel";
 import { IConfigurationTab } from "../controls/ConfigurationPanel/IConfigurationTab";
