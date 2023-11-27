@@ -117,8 +117,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build
+        run: |
+          npx lerna run build --scope pnp-modern-search-core
+
       - name: Build + bundle SPFx
         run: |
+          cd ./packages/spfx
           gulp update-version --value $MAJORMINORPATCH
           gulp update-package-name --name pnp-modern-search-core-spfx-$SEMVER
           gulp bundle --ship
