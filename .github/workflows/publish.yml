@@ -226,7 +226,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build_dist
-          path: ${{ github.workspace }}/**/dist
+          path: ${{ github.workspace }}/packages/components/dist
 
   publish_components:
     runs-on: ubuntu-latest
