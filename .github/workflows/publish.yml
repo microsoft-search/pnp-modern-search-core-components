@@ -79,6 +79,95 @@ jobs:
       - name: Tests
         run: pnpm run test
 
+
+  build_spfx:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/spfx
+    env:
+      SEMVER: ${{ needs.version.outputs.semver }}
+      MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
+    needs: [version, tests]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build + bundle SPFx
+        run: |
+          gulp update-version --value $MAJORMINORPATCH
+          gulp update-package-name --name pnp-modern-search-core-spfx-$SEMVER
+          gulp bundle --ship
+          gulp package-solution --ship
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pnp-modern-search-core-spfx-$SEMVER
+          path: ${{ github.workspace }}/**/*.sppkg
+
+  release_spfx:
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
+    needs: [version,build_spfx]
+    defaults:
+      run:
+        working-directory: ./packages/spfx
+    env:
+      SEMVER: ${{ needs.version.outputs.semver }}
+      MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
+    steps:
+      
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: pnp-modern-search-core-spfx-$SEMVER
+    
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          name: PnP Modern Search Core WebParts - $SEMVER
+          artifacts: ${{ github.workspace }}/**/*.sppkg
+          bodyFile: ".github/workflows/release-template.md"
+          draft: true
+          generateReleaseNotes: true
+          allowUpdates: true
+          replacesArtifacts: true
+          prerelease: ${{ startsWith(github.ref_name, 'release') }}
+          tag: $MAJORMINORPATCH
+          commit: ${{ github.ref_name }}
+          
   publish:
 
     runs-on: ubuntu-latest
