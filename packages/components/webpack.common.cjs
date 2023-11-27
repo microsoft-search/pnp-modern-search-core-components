@@ -45,14 +45,14 @@ module.exports = {
   },
   output: {
     chunkFilename: "[name].bundle.js",
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist/dist"),
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist/bundle"),
     publicPath: "auto", // Ensure the bundle chunks will be resovled correctly if served from a CDN
     clean: true
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist/dist'),
+      directory: path.join(__dirname, 'dist/bundle'),
       watch: true,
     },
     compress: true,

@@ -93,6 +93,9 @@ jobs:
 
           - name: Install dependencies
             run: pnpm install
+
+          - name: Run pre-requisites tasks
+            run: gulp set-version
         
           - name: Build Storybook
             run: npx lerna run docs:build --scope=pnp-modern-search-core

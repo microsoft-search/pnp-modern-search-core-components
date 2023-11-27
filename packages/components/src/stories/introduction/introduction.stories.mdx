@@ -1,6 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
 import { PACKAGE_VERSION } from "../../../src/utils/version";
-import { DIST_HOST_URL } from "../../../.storybook/addons/env";
 import m365logo from "../assets/m365_logo.png";
 
 <Meta title="Introduction / Getting started" />
@@ -29,7 +28,7 @@ Include the following script in your HTML page:
 <Source
     dark
     language="html"
-    code={`<script src="${DIST_HOST_URL}/${PACKAGE_VERSION}/bundle.js"></script>`}
+    code={`<script src="https://www.unpkg.com/pnp-modern-search-core@${PACKAGE_VERSION}/dist/bundle/main.js"></script>`}
 />
 
 > Components are registered automatically on the page when the package is imported.
