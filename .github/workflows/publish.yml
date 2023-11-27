@@ -82,9 +82,6 @@ jobs:
 
   build_spfx:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./packages/spfx
     env:
       SEMVER: ${{ needs.version.outputs.semver }}
       MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
@@ -98,10 +95,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: build_dist
 
       - uses: pnpm/action-setup@v2
         with:
