@@ -1,5 +1,5 @@
 {
-  "name": "pnp-modern-search-core",
+  "name": "@pnp/modern-search-core",
   "private": false,
   "version": "0.1.0",
   "description": "PnP Modern Search - Core Components",
