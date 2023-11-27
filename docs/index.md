@@ -31,3 +31,7 @@ The following components are included in the bundle:
 To get started, simply follow the [guide](./development//getting_started.md)!
 
 Thank you to all [Ubisoft members who participate to this project](./thanks.md)!
+
+## Want to see them in action?
+
+You can play with components in the [playground](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/introduction-getting-started--docs)

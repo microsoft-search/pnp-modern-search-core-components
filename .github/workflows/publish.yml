@@ -1,0 +1,92 @@
+name: Publish Modern Search Core Components library
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+      - develop
+jobs:
+
+  version:  
+    runs-on: ubuntu-latest
+    outputs: 
+        majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
+        semver: ${{ steps.setoutputs.outputs.semver }}
+    
+    steps:
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0
+
+      - name: Set outputs
+        id: setoutputs
+        run: |
+          echo "majorMinorPatch=$GITVERSION_MAJORMINORPATCH" >> "$GITHUB_OUTPUT"
+          echo "semver=$GITVERSION_SEMVER" >> "$GITHUB_OUTPUT"
+
+  publish:
+
+    runs-on: ubuntu-latest
+    needs: version
+    defaults:
+      run:
+        working-directory: ./packages/components
+    env:
+      VERSION: ${{ needs.version.outputs.semver }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Version package
+        run: pnpm version $VERSION --no-git-tag-version
+  
+      - name: Build
+        run: pnpm run build
+
+      - name: Publish
+        run: pnpm publish --no-git-checks --force
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

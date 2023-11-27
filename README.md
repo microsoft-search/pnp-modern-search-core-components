@@ -35,6 +35,6 @@ To get started, simply follow the [guide](https://microsoft-search.github.io/np-
 
 ## Playground
 
-You can also get an overview of components using the [playground](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html)
+You can also get an overview of components using the [playground](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/introduction-getting-started--docs)
 
 Thank you to all [Ubisoft members who participate to this project](./thanks.md)!

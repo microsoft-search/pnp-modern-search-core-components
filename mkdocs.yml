@@ -14,7 +14,6 @@ nav:
         - Deployment: development/concepts/deployment.md
         - Technologies used: development/concepts/solution.md
         - Localization: development/concepts/localization.md
-  - Playground: playground.md
 
 # Configuration
 theme:
