@@ -97,6 +97,7 @@ jobs:
           - name: Run pre-requisites tasks
             run: |
               pnpm i -g gulp
+              cd ./packages/components
               gulp set-version
         
           - name: Build Storybook
