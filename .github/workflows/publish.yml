@@ -100,6 +100,8 @@ jobs:
           node-version: '16'
 
       - uses: actions/download-artifact@v3
+        with:
+          name: build_dist
 
       - uses: pnpm/action-setup@v2
         with:
@@ -223,7 +225,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ github.workspace }}/**/dist/*
+          name: build_dist
+          path: ${{ github.workspace }}/**/dist
 
   publish_components:
     runs-on: ubuntu-latest
@@ -245,6 +248,8 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/download-artifact@v3
+        with:
+          name: build_dist
 
       - name: Publish
         run: npm publish 
