@@ -53,6 +53,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -83,13 +84,13 @@ jobs:
       - name: Version package
         run: pnpm version $VERSION --no-git-tag-version
   
-      - name: Bunde
+      - name: Bundle
         run: pnpm run bundle:prod
 
       - name: Build
         run: pnpm run build
 
       - name: Publish
-        run: pnpm publish --no-git-checks --force
+        run: npm publish 
         env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
