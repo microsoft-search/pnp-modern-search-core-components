@@ -9,9 +9,14 @@ const versionFile = `
 export const PACKAGE_VERSION = "[VERSION]";
 `;
 
-const setVersion = () => {
-    const pkg = require("./package.json");
-    fs.writeFileSync("./src/utils/version.ts", versionFile.replace("[VERSION]", pkg.version));
+const setVersion = (version) => {
+    fs.writeFileSync("./src/utils/version.ts", versionFile.replace("[VERSION]", version));
 };
 
-gulp.task("set-version", async () => setVersion());
+gulp.task("set-version", async () => {
+
+    const versionArg = process.argv.indexOf("--version");
+    const version = process.argv[versionArg+1];
+
+    setVersion(version);
+});

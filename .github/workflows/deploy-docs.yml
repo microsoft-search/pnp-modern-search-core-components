@@ -98,7 +98,7 @@ jobs:
             run: |
               pnpm i -g gulp
               cd ./packages/components
-              gulp set-version
+              gulp set-version --version $VERSION
         
           - name: Build Storybook
             run: npx lerna run docs:build --scope=pnp-modern-search-core

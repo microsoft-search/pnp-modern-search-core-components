@@ -22,12 +22,11 @@ The following components are included in the bundle:
 
 | Component | HTML tag | Purpose |
 | --------- | -------- | ------- |
-| [Search results]() | `<pnp-search-results>` | Display results from Microsoft Search index according to configured parameters. |
-| [Search filters]() | `<pnp-search-filters>` | Display filters from a connected search results components |
-| [Search box]() | `<pnp-search-input>` | Allow users to enter free text search keywords.
-| [Search verticals]() | `<pnp-search-verticals>`  | Displays tabs to search by verticals |
-| [Video player]() | `<pnp-video-player>`  | Play video from SharePoint (outside of SharePoint domain) |
-
+| [Search results](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-results--usage-query) | `<pnp-search-results>` | Display results from Microsoft Search index according to configured parameters. |
+| [Search filters](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-filters--usage) | `<pnp-search-filters>` | Display filters from a connected search results components |
+| [Search box](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-box--usage) | `<pnp-search-input>` | Allow users to enter free text search keywords.
+| [Search verticals](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-verticals--usage) | `<pnp-search-verticals>`  | Displays tabs to search by verticals |
+| [Video player](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-misc-video-player--usage) | `<pnp-video-player>`  | Play video from SharePoint (outside of SharePoint domain) |
 
 ##  How I get started?
 
