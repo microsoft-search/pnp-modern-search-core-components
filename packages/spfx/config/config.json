@@ -37,13 +37,13 @@
   },
   "externals": {},
   "localizedResources": {
-    "SearchResultsWebPartStrings": "lib/webparts/SearchResults/loc/{locale}.js",
-    "SearchBoxWebPartStrings": "lib/webparts/SearchBox/loc/{locale}.js",
+    "SearchResultsWebPartStrings": "lib/webparts/searchResults/loc/{locale}.js",
+    "SearchBoxWebPartStrings": "lib/webparts/searchBox/loc/{locale}.js",
     "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
     "CommonStrings": "lib/loc/{locale}.js",
-    "SearchFiltersWebPartStrings": "lib/webparts/SearchFilters/loc/{locale}.js",
+    "SearchFiltersWebPartStrings": "lib/webparts/searchFilters/loc/{locale}.js",
     "MicrosoftSearchDataSourceStrings": "lib/datasources/loc/{locale}.js",
-    "SearchVerticalsWebPartStrings": "lib/webparts/SearchVerticals/loc/{locale}.js"
+    "SearchVerticalsWebPartStrings": "lib/webparts/searchVerticals/loc/{locale}.js"
   }
 }
