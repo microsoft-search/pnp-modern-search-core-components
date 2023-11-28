@@ -1,4 +1,4 @@
-name: Deploy Modern Search Core Components - NPM Publish
+name: Publish components
 
 on:
   push:
@@ -122,8 +122,8 @@ jobs:
           npx lerna run build --scope pnp-modern-search-core
 
       - name: Build + bundle SPFx
+        working-directory: ./packages/spfx
         run: |
-          cd ./packages/spfx
           gulp update-version --value $MAJORMINORPATCH
           gulp update-package-name --name pnp-modern-search-core-spfx-$SEMVER
           gulp bundle --ship
