@@ -35,6 +35,6 @@
         ]
     },
     "paths": {
-        "zippedPackage": "solution/pnp.core.webparts.search.sppkg"
+        "zippedPackage": "solution/pnp.webparts.search.core.sppkg"
     }
 }
