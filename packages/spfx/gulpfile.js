@@ -131,7 +131,7 @@ gulp.task('update-version', async () => {
         const pkgVersion = `${semver.major(newVersionNumber)}.${semver.minor(newVersionNumber)}.${semver.patch(newVersionNumber)}.0`;
         pkgSolution.solution.version = pkgVersion;
         log.info('New package-solution.json version:\t' + pkgVersion);
-        fs.writeFile(pkgSolutionFilePath, JSON.stringify(pkgSolution, null, 4), (error) => {});  
+        fs.writeFileSync(pkgSolutionFilePath, JSON.stringify(pkgSolution, null, 4), (error) => {});  
       });
 
       // Updated version in Web Part manifests
@@ -144,7 +144,7 @@ gulp.task('update-version', async () => {
           const wpVersion = `${semver.major(newVersionNumber)}.${semver.minor(newVersionNumber)}.${semver.patch(newVersionNumber)}`;
           manifest.version = wpVersion;
           log.info('New manifestFile version:\t' + wpVersion);
-          fs.writeFile(manifestFile, JSON.stringify(manifest, null, 4), (error) => { });  
+          fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 4), (error) => { });  
         });
       });
   } else {
