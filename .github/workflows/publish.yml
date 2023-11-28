@@ -124,8 +124,7 @@ jobs:
       - name: Build + bundle SPFx
         working-directory: ./packages/spfx
         run: |
-          gulp update-version --value $MAJORMINORPATCH
-          gulp update-package-name --name pnp-modern-search-core-spfx-$SEMVER
+
           gulp bundle --ship
           gulp package-solution --ship
 
