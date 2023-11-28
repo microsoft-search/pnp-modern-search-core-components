@@ -29,8 +29,8 @@
     "pnp-core-search-verticals-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/SearchVerticals/SearchVerticalsWebPart.js",
-          "manifest": "./src/webparts/SearchVerticals/SearchVerticalsWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/searchVerticals/SearchVerticalsWebPart.js",
+          "manifest": "./src/webparts/searchVerticals/SearchVerticalsWebPart.manifest.json"
         }
       ]
     }
