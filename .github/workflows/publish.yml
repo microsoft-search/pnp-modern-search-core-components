@@ -255,6 +255,7 @@ jobs:
         env:
           CURRENT_VERSION: ${{ steps.package-version.outputs.currentVersion }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-        if: ${{ $CURRENT_VERSION != needs.version.outputs.semver }}
-        run: npm publish
+        if: $CURRENT_VERSION != ${{ needs.version.outputs.semver }}
+        run: npm publish 
+
          
