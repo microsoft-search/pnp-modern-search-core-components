@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PnP Modern Search Core Components</title>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            keyframes: {
+              shimmer: {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: .5 },
+              }
+            },
+            animation: {
+              'shimmer': 'shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+
+      /** Define CSS variables overrides here **/ 
+      body { 
+        --pnpsearch-colorPrimary: #0078d4;
+        --pnpsearch-colorPrimaryHover: #0078d4;
+        --pnpsearch-textColor: #1E252B;
+        --pnpsearch-colorBackgroundDarkPrimary: #3b3b3b;
+        --pnpsearch-textColorDark: #FFF;
+        --pnpsearch-fontFamilyPrimary: "Segoe UI";
+      }
+      </style>
+
+  </head>
+  <body>
+
+    <!-- To turn on dark mode
+        <body style="background-color: #3b3b3b;" class="dark">
+    -->
+
+    <mgt-pnp-msal2-provider 
+        client-id="971daacd-e649-46ea-bc61-7a1a8b33a97b"
+        authority="https://login.microsoftonline.com/d7e957c6-c0d2-4ee3-88d5-bf5c0a56268b"
+
+    ></mgt-pnp-msal2-provider>
+   
+    <mgt-pnp-file view="image"></mgt-pnp-file>
+    <div class="border-b-light500 border-b bg-[#F3F5F6] px-2.5">
+
+        <div class="max-w-7xl ml-auto mr-auto flex justify-between pt-2 items-center">
+            <div class="flex space-x-2 items-center">
+                <img src="http://localhost:8080/assets/logo.svg" class="w-8"/>
+                <span class="font-bold">PnP Modern Search - Core Components</span>
+            </div>
+
+            <div><mgt-pnp-login class="" login-view="avatar"></mgt-pnp-login></div>
+            
+        </div>
+
+        <!-- Searchbox -->
+        <div class="max-w-7xl ml-auto mr-auto mb-8 flex justify-between items-center py-4">
+        
+                <pnp-search-input
+                    class="max-w-[619px] w-full"
+                    id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+                    default-query-string-parameter="k"
+                >
+                </pnp-search-input>
+    
+                <pnp-language-provider id="pnpLanguage" locale="en-us" show-picker>
+                </pnp-language-provider>
+        </div>
+
+    </div>
+                
+    <div class="px-2.5">
+        <div class="max-w-7xl ml-auto mr-auto mb-8">
+
+            <pnp-search-verticals   id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+                            settings='[{"key":"all","tabName":{"default":"All","fr-fr":"Tout le contenu","ro-ro":"Toate"},"tabValue":"","isLink":false,"linkUrl":null,"openBehavior":0},{"key":"videos","tabName":{"default":"Videos","fr-fr":"Vidéos"},"tabValue":"","isLink":false,"linkUrl":null,"openBehavior":0}]'>
+            </pnp-search-verticals>
+
+            <pnp-search-filters id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                                search-results-ids="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6,5eb44412-c8e2-4358-9cbd-705b3120b566"
+                                operator="and"
+                                settings='[{"filterName":"DisplayAuthor","displayName":{"fr-fr":"Créé par","default":"Created by"},"template":"checkbox","showCount":true,"operator":"or","isMulti":true,"type":"refiner","sortBy":"byCount","sortDirection":"descending","maxBuckets":10000,"sortIdx":10},{"filterName":"FileType","displayName":{"fr-fr":"Type de fichier","ro-ro":"Tip fișier","default":"File Type"},"template":"checkbox","showCount":true,"operator":"or","isMulti":true,"type":"refiner","sortBy":"byCount","sortDirection":"descending","maxBuckets":10000,"sortIdx":11,"aggregations":[{"aggregationName":{"fr-fr":"Document Word","default":"Word document"},"matchingValues":["docx","doc","docm"],"aggregationValue":"or(\"docx\",\"doc\",\"docm\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/docx.svg"},{"aggregationName":{"fr-fr":"Modèle de fichier Word","default":"Word template"},"matchingValues":["dot","dotx","dotm"],"aggregationValue":"or(\"dot\",\"dotx\",\"dotm\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/dotx.svg"},{"aggregationName":{"fr-fr":"Fichier texte","default":"Text file"},"matchingValues":["txt","rtf"],"aggregationValue":"or(\"txt\",\"rtf\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/txt.svg"},{"aggregationName":{"fr-fr":"Document Excel","default":"Excel document"},"matchingValues":["xlsx","xls","xlsm","xlsb","xlx","xml","csv"],"aggregationValue":"or(\"xlsx\",\"xls\",\"xlsm\",\"csv\",\"xlsb\",\"xlx\",\"xml\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/xlsx.svg"},{"aggregationName":{"fr-fr":"Modèle de fichier Excel","default":"Excel template"},"matchingValues":["xltm","xlt","xltx"],"aggregationValue":"or(\"xltm\",\"xlt\",\"xltx\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/xltx.svg"},{"aggregationName":{"fr-fr":"Document PowerPoint","default":"PowerPoint document"},"matchingValues":["pptx","ppt","pptm","pps","ppsm","ppsx"],"aggregationValue":"or(\"pptx\",\"ppt\",\"pptm\",\"pps\",\"ppsm\",\"ppsx\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/pptx.svg"},{"aggregationName":{"fr-fr":"Modèle de fichier PowerPoint","default":"PowerPoint template"},"matchingValues":["potx","potm","pot"],"aggregationValue":"or(\"potx\",\"potm\",\"pot\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/potx.svg"},{"aggregationName":{"fr-fr":"Page web","default":"Web page"},"matchingValues":["aspx","html"],"aggregationValue":"or(\"aspx\",\"html\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/html.svg"},{"aggregationName":{"fr-fr":"Archive compressée","default":"Compressed archive"},"matchingValues":["zip","7z","rar"],"aggregationValue":"or(\"zip\",\"7z\",\"rar\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/zip.svg"},{"aggregationName":"PDF","matchingValues":["pdf"],"aggregationValue":"pdf","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/pdf.svg"},{"aggregationName":{"fr-fr":"Document Visio","default":"Visio document"},"matchingValues":["vsdx","vsd","vsdm"],"aggregationValue":"or(\"vsdx\",\"vsd\",\"vsdm\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/vsdx.svg"},{"aggregationName":{"fr-fr":"Document OneNote","default":"OneNote document"},"matchingValues":["one"],"aggregationValue":"one","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/one.svg"},{"aggregationName":{"fr-fr":"Vidéos","default":"Video"},"matchingValues":["mp4","flv","ogg","webm","wmv","avi"],"aggregationValue":"or(\"mp4\",\"flv\",\"ogg\",\"webm\",\"wmv\",\"avi\")","aggregationValueIconUrl":"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/video.svg"}]},{"filterName":"LastModifiedTime","displayName":{"fr-fr":"Date de modification","ro-ro":"Ora ultima modificată","default":"Last modified date"},"template":"date","showCount":true,"operator":"and","isMulti":false,"type":"refiner","sortBy":"byCount","sortDirection":"descending","maxBuckets":10000,"sortIdx":12}]'
+            >               
+            </pnp-search-filters>
+
+            <!-- All: Bookmarks -->
+            <pnp-search-results id="cd4d7dec-ad1b-4246-b85a-94fd03667adb"
+                no-loading
+                entity-types="bookmark"
+                fields="displayName,description,webUrl"
+                query-text="*"
+                page-size="10"
+                pages-number="4"
+                search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+                search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+                verticals-keys="all"
+            >
+            </pnp-search-results>
+
+            <!-- All: All results -->
+            <pnp-search-results id="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"
+                                entity-types="driveItem"
+                                query-text="*"
+                                enable-debug
+                                query-template='{searchTerms} -ParentLink:PreservationHoldLibrary (FileType:doc OR FileType:docx OR FileType:docm OR FileType:dot OR FileType:dotx OR FileType:dotm OR FileType:txt OR FileType:rtf OR FileType:aspx OR FileType:xls OR FileType:xlsx OR FileType:xlsm OR FileType:xlsb OR FileType:xlx OR FileType:xlt OR FileType:xltx OR FileType:xltm OR FileType:xml OR FileType:csv OR FileType:ppt OR FileType:pptx OR FileType:pptm OR FileType:pps OR FileType:ppsm OR FileType:ppsx OR FileType:pot OR FileType:potx OR FileType:potm OR FileType:pdf OR FileType:zip OR FileType:vsd OR FileType:vsdx OR FileType:vsdm OR FileType:html OR FileType:7z OR FileType:rar OR FileType:one OR FileType:mp4 OR FileType:avi OR FileType:flv OR FileType:wmv)'
+                                fields="name,title,weburl,created,createdBy,filetype,lastModifiedTime,lastModifiedDateTime,lastModifiedBy,modifiedBy,path,hitHighlightedProperties,hitHighlightedSummary,SPSiteURL,SiteTitle,defaultEncodingURL,parentLink,serverRedirectedURL,filename,previewUrl,thumbnailUrl,NormSiteID,NormUniqueID,NormListID"                                          
+                                show-paging
+                                enable-suggestion
+                                sort-properties='[{"sortField":"Created","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Créé le","default":"Created"}}]'
+                                page-size="10"
+                                pages-number="4"
+                                search-filters-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                                search-sort-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                                search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+                                search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+                                verticals-keys="all">
+
+            <template data-type="shimmers">
+
+                <!-- Displayed only on first load -->
+                <div data-for='i in items'>
+
+                    <div class="animate-shimmer pb-8">
+                        <div class="flex space-x-2 mb-2 ">
+                            <div class="w-6 h-6 rounded bg-slate-200"></div>
+                            <div class="w-96 h-6 rounded bg-slate-200"></div>
+                        </div>
+                        <div class="flex space-x-2 mb-2">
+                            <div class="w-16 h-3 rounded bg-slate-200"></div>
+                            <div class="w-16 h-3 rounded bg-slate-200"></div>
+                            <div class="w-16 h-3 rounded bg-slate-200"></div>
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2 ">
+                            <div class="w-full h-3 rounded bg-slate-200"></div>
+                            <div class="w-96 h-3 rounded bg-slate-200"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </template>
+
+            </pnp-search-results>
+
+            <!-- "Videos" tab -->
+            <pnp-search-results id="5eb44412-c8e2-4358-9cbd-705b3120b566"
+                entity-types="listItem"
+                fields="thumbnailUrl,previewUrl,UniqueID,name,title,weburl,NormSiteID,NormListID,NormUniqueID,SPSiteUrl,mssearchsitename,created,createdBy,filetype,lastModifiedTime,modifiedBy,path,hitHighlightedProperties,hitHighlightedSummary,SPSiteURL,SiteTitle,defaultEncodingURL,parentLink,filename,MSSearchSource,MSSearchSiteName,MSSearchSiteUrl,MSSearchFileType,MSSearchLastModifiedTime,MSSearchCreated,MSSearchModifiedBy"
+                query-text="*"
+                query-template="{searchTerms} FileType:mp4 OR FileType:avi OR FileType:flv OR FileType:wmv OR FileType:webm OR FileType:ogg"
+                page-size="10"
+                pages-number="4"
+                show-paging
+                sort-properties='[{"sortField":"LastModifiedTime","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Date de modification","default":"Last modified"}}]'
+                search-filters-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+                search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+                search-sort-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                verticals-keys="videos"
+                >
+
+                <template data-type="items">
+                    <div data-for='item in items'>
+                        <div class="pb-8" style="min-height: 150px;">
+                            <pnp-adaptive-card  
+                                url="http://localhost:8080/assets/cards/video_item.json"
+                                context="{{ item }}"
+                                fallback-img-url=""                                                         
+                            >
+                            </pnp-adaptive-card>
+                        </div>
+                    </div>
+                </template>
+
+                <template data-type="shimmers">
+
+                    <!-- Displayed only on first load -->
+                    <div data-for='i in items'>
+
+                        <div class="animate-shimmer p-4">
+                            <div class="flex space-x-2 mb-2 ">
+
+                                <div class="w-[279px] h-[178px] rounded-lg bg-slate-200"></div>
+                                <div>
+
+                                    <div class="flex space-x-2 mb-2 ">
+                                        <div class="w-6 h-6 rounded bg-slate-200"></div>
+                                        <div class="w-96 h-6 rounded bg-slate-200"></div>
+                                    </div>
+                                    <div class="flex space-x-2 mb-2">
+                                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                                    </div>
+                                    <div class="flex flex-col mb-4 space-y-2 ">
+                                        <div class="w-full h-3 rounded bg-slate-200"></div>
+                                        <div class="w-96 h-3 rounded bg-slate-200"></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </template>
+
+            </pnp-search-results>
+        </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,73 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Hosted workbench",
+        "type": "msedge",
+        "request": "launch",
+        "url": "https://yourtenant.sharepoint.com/sites/DevBuild/_layouts/15/workbench.aspx",
+        "webRoot": "${workspaceRoot}",
+        "sourceMaps": true,
+        "sourceMapPathOverrides": {
+          "webpack:///../../components/src/*": "${webRoot}/src/*",
+          "webpack:///../../../components/src/*": "${webRoot}/src/*",
+          "webpack:///../../../../components/src/*": "${webRoot}/src/*",
+          "webpack:///../../../../../components/src/*": "${webRoot}/src/*"
+        },
+        "runtimeArgs": [
+          "--remote-debugging-port=9222",
+          "-incognito"
+        ]
+      },
+      {
+        "name": "Local debug (Edge)",
+        "request": "launch",
+        "type": "msedge",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceRoot}",
+        "sourceMaps": true
+      },
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Local debug (Chrome)",
+        "url": "http://localhost:8080/index.html",
+        "webRoot": "${workspaceRoot}",
+        "sourceMaps": true,
+        "sourceMapPathOverrides": {
+          "webpack:///./src/*": "${webRoot}/src/*",
+          "webpack:///../../src/*": "${webRoot}/src/*",
+          "webpack:///../../../src/*": "${webRoot}/src/*",
+          "webpack:///../../../../src/*": "${webRoot}/src/*"
+        },
+        "outFiles": [
+          "${workspaceFolder}/**/*.js",
+          "!**/node_modules/**"
+        ]
+      },
+      {
+        "name": "Tests debug (Edge)",
+        "request": "launch",
+        "type": "msedge",
+        "url": "http://localhost:8000/",
+        "webRoot": "${workspaceRoot}",
+        "sourceMaps": true
+      },
+      {
+        // Requires the extension Debugger for Chrome: https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
+        "type": "chrome",
+        "request": "launch",
+        "name": "Storybook Debug",
+        "breakOnLoad": true,
+        "url": "http://localhost:6006/",
+        "sourceMaps": true,
+        "webRoot": "${workspaceFolder}",
+        "sourceMapPathOverrides": {
+          "webpack:///*": "${webRoot}/*",
+          "webpack:///./*": "${webRoot}/*",
+          "webpack:///src/*": "${webRoot}/*",
+          "webpack:///./~/*": "${webRoot}/node_modules/*"
+        }
+      }
+    ]
+  }

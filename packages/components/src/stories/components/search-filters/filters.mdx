@@ -1,0 +1,102 @@
+{ /* filters.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import AggregationsImg  from "../../assets/aggregations.png";
+import * as SearchFiltersStories from './filters.stories';
+
+<Meta of={SearchFiltersStories} name="Usage"/>
+
+## [Basic usage](/?path=/story/components-search-search-filters--basic-filters-story)
+
+|  Require authentication | **No** |
+| ----------------------- | ------ |
+
+The search filters component is intended to be use with **one or more** search results components on the same page.
+It is a **two-ways** connection with the `<pnp-search-results/>` usings id proeprties:
+- On the `<pnp-search-results/>` component, specify an `id` and the id of the connected **search filters** in the `search-filters-id` attribute.
+- On the `<pnp-search-filters/>` component, specify and `id` and the id of the connected **search results** in the `search-results-ids` attribute.
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={dedent`
+    <pnp-search-filters
+        id="99d3e914-2c8e-4f42-897e-53bb4d960e94" 
+        operator="and" 
+        search-results-ids="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"
+        settings='[{"filterName":"FileType","template":"checkbox","displayName":"FileType","showCount":true,"operator":"or","isMulti":false,"sortBy":"byName","sortDirection":"descending","maxBuckets":50,"rangeDefinition":null,"sortIdx":1},{"filterName":"ModifiedBy","template":"checkbox","displayName":"LastModifiedTime","showCount":true,"operator":"or","isMulti":false,"sortBy":"byCount","sortDirection":"descending","maxBuckets":50,"rangeDefinition":null,"sortIdx":2}]'>
+    </pnp-search-filters>
+    
+    <pnp-search-results 
+        id="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"   
+        query-text="*"
+        entity-types="listItem"
+        fields="title,created,path"
+        page-size="5"
+        search-filters-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+        search-sort-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+        sort-properties='[{"sortField":"LastModifiedTime","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Date de modification","default":"Last modified"}}]'
+    >
+    </pnp-search-results>
+  `}
+/>
+
+The configuration consists of an array of filter configuration objects passed to the `settings` property. Filter configuration properties are:
+
+| Property | Description | Example  |
+| -------- | ----------- | -------- | 
+| `filterName` | The internal filter name (ex: corresponding either to data source field name or refinable search managed property in the case of SharePoint) | `LastModifiedTime`
+| `displayName` | The filter name to display in the UI. Can be a simple string or a localized string | `File type` or `{ "default": "File Type", "fr-fr": "Type de fichier" }`
+| `template` | The template to use to show filters. | `checkbox` or `date` 
+| `showCount` |  Specifies if the filter should show values count or not. | `true` or `false`
+| `operator` | The operator to use between filter values. | `and` or `or`
+| `isMulti` | Indicates if the filter allows multi values. | `true` or `false`
+| `sortBy` | If the filter should be sorted by name or by count. | `byCount` or `byName`
+| `sortDirection` | The filter values sort direction (ascending/descending) | `ascending` or `descending`
+| `sortIdx` | The order of this filter in the filter UI. | `1`
+| `maxBuckets` | Maximum number of values to fetch.  **May have an impact over performances**. | Default is `50`, maximum is `10000`
+| `aggregations` | Aggregations to use for filter values. For instance, regroup multiple file extensions under only one single type. |  See below.
+
+
+## [Use aggregations](?path=/docs/components-search-search-filters--aggregations-story)
+
+Aggregations are useful to group multiple filter values to an unique one with a predefined value. We use for instance to aggregate multiple file extensions to a single file type family (Ex: Word documents).
+
+!["Aggregations example"](./aggregations.png)
+
+To use aggegations, pass the following properties to the `aggregations` filter configuration property:
+
+<Source
+  language='json'
+  dark
+  format={false}
+  code={dedent`
+    {
+        ...Other filter properties
+        aggregations: [
+            {
+            "aggregationName":{
+                "fr-fr":"Document Word",
+                "ro-ro":"document Word",
+                "default":"Word document"
+            },
+            "matchingValues":[
+                "docx",
+                "doc",
+                "docm"
+            ],
+            "aggregationValue":"or(\"docx\",\"doc\",\"docm\")",
+            "aggregationValueIconUrl":"http://localhost:8000/assets/icons/word.svg"
+            }
+        ]
+    }
+  `}
+/>
+
+| Property | Description | Example  |
+| -------- | ----------- | -------- | 
+| `aggregationName` | Name of the aggregation as seen by users. Can be a localized string. | `Word document` or `{ "default": "Word document", "fr-fr": "Document Word" }`
+| `matchingValues` | The matching filter values to aggregate | "docx" or "doc" for a file extension.
+| `aggregationValue` | The filter value to use when selected. You can use [KQL](https://learn.microsoft.com/en-us/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference) or [FQL](https://learn.microsoft.com/en-us/sharepoint/dev/general-development/fast-query-language-fql-syntax-reference) expressions here. | `or(\"docx\",\"doc\",\"docm\")`
+| `aggregationValueIconUrl` | The icon URL to display near the aggregation name | `http://localhost:8000/assets/icons/word.svg`

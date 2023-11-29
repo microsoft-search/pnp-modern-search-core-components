@@ -1,0 +1,259 @@
+name: Publish components
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+      - develop
+jobs:
+
+  version:  
+    runs-on: ubuntu-latest
+    outputs: 
+        majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
+        semver: ${{ steps.setoutputs.outputs.semver }}
+    
+    steps:
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0
+
+      - name: Set outputs
+        id: setoutputs
+        run: |
+          echo "majorMinorPatch=$GITVERSION_MAJORMINORPATCH" >> "$GITHUB_OUTPUT"
+          echo "semver=$GITVERSION_SEMVER" >> "$GITHUB_OUTPUT"
+
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/components
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Tests
+        run: pnpm run test
+
+
+  build_spfx:
+    runs-on: ubuntu-latest
+    env:
+      SEMVER: ${{ needs.version.outputs.semver }}
+      MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
+    needs: [version, build_components]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: |
+          npx lerna run build --scope pnp-modern-search-core
+
+      - name: Build + bundle SPFx
+        working-directory: ./packages/spfx
+        run: |
+          gulp update-version --value $MAJORMINORPATCH
+          gulp bundle --ship
+          gulp package-solution --ship
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pnp-modern-search-core-spfx-$SEMVER
+          path: ${{ github.workspace }}/**/*.sppkg
+
+  release_spfx:
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
+    needs: [version,build_spfx]
+    defaults:
+      run:
+        working-directory: ./packages/spfx
+    steps:
+      
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: pnp-modern-search-core-spfx-$SEMVER
+    
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          name: PnP Modern Search Core WebParts - ${{ needs.version.outputs.semver }}
+          artifacts: ${{ github.workspace }}/**/*.sppkg
+          bodyFile: ".github/workflows/release-template.md"
+          draft: true
+          generateReleaseNotes: true
+          allowUpdates: true
+          replacesArtifacts: true
+          prerelease: ${{ startsWith(github.ref_name, 'release') }}
+          tag: ${{ needs.version.outputs.majorMinorPatch }}
+          commit: ${{ github.ref_name }}
+          
+  build_components:
+
+    runs-on: ubuntu-latest
+    needs: [version, tests]
+    defaults:
+      run:
+        working-directory: ./packages/components
+    env:
+      VERSION: ${{ needs.version.outputs.semver }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Version package
+        run: pnpm version $VERSION --no-git-tag-version
+  
+      - name: Bundle
+        run: pnpm run bundle:prod
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build_dist
+          path: ${{ github.workspace }}/packages/components/dist
+
+  publish_components:
+    runs-on: ubuntu-latest
+    needs: [version,build_components]
+    defaults:
+      run:
+        working-directory: ./packages/components
+    env:
+      VERSION: ${{ needs.version.outputs.semver }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: get-npm-version
+        id: package-version
+        run: echo "currentVersion=$(npm view pnp-modern-search-core dist-tags.latest)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: build_dist
+
+      - name: Publish
+        env:
+          CURRENT_VERSION: ${{ steps.package-version.outputs.currentVersion }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        if: $CURRENT_VERSION != ${{ needs.version.outputs.semver }}
+        run: npm publish 
+
+         

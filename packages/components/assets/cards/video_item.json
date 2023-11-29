@@ -1,0 +1,158 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "fallback": "drop",
+                    "items": [     
+                        {
+                            "type": "TextBlock",
+                            "text": "<pnp-video-player lazy-loading thumbnail-url='${thumbnailUrl}' preview-url='${previewUrl}' height='178px'></pnp-video-player>"
+                            
+                        }           
+                    ],
+                    "width": "279px",
+                    "$when": "${and(not(empty(thumbnailUrl)),not(empty(previewUrl)))}"
+                },
+                {
+                    "type": "Column",
+                    "spacing": "large",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "id": "${hitId}",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "24px",
+                                    "verticalContentAlignment": "center",
+                                    "spacing": "none",
+                                    "bleed": true,
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "horizontalAlignment": "left",
+                                            "url": "https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/video.svg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [{
+                                        "type": "TextBlock",
+                                        "spacing": "small",
+                                        "fontType": "default",
+                                        "weight": "bolder",
+                                        "text": "[${if(equals(filefamily, 'webpage'), title, if(filename, if(greater(lastIndexOf(filename,'.'),-1),substring(filename, 0, lastIndexOf(filename,'.')),filename), name))}](<${if(previewUrl,previewUrl,defaultEncodingURL)}>)",
+                                        "size": "medium"
+                                    }]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "ColumnSet",
+                            "spacing": "medium",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "verticalContentAlignment": "center",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "${formatDateTime(LastModifiedTime,'dd/MM/yyyy')}",
+                                            "color": "light"							
+                                        }
+                                    ],
+                                    "width": "auto"
+                                },	
+                                {
+                                    "type": "Column",
+                                    "verticalContentAlignment": "center",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "horizontalAlignment": "center",
+                                            "text": "•",
+                                            "color": "light"							
+                                        }
+                                    ],
+                                    "width": "10px",
+                                    "spacing": "none"
+                                },					
+                                {
+                                    "type": "Column",
+                                    "verticalContentAlignment": "center",
+                                    "items": [
+                                        {
+
+                                            "type": "TextBlock",
+                                            "text": " By **${modifiedBy}**",
+                                            "size": "medium",
+                                            "maxLines": 1,
+                                            "color": "light"
+                                        }
+                                    ],
+                                    "width": "auto",
+                                    "spacing": "none"
+                                },
+                                {
+                                    "type": "Column",
+                                    "verticalContentAlignment": "center",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "horizontalAlignment": "center",
+                                            "text": "•",
+                                            "color": "light"							
+                                        }
+                                    ],
+                                    "width": "10px",
+                                    "spacing": "none"
+                                },					
+                                {
+                                    "type": "Column",
+                                    "verticalContentAlignment": "center",
+                                    "items": [
+                                        {
+                                            "type": "Container",
+                                            "items": [
+                                                {										
+                                                    "type": "TextBlock",
+                                                    "text": "[${siteTitle}](<${spSiteUrl}>)",
+                                                    "size": "small",
+                                                    "maxLines": 1,
+                                                    "color": "light"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "width": "auto",
+                                    "bleed": false,
+                                    "spacing": "none",
+                                    "$when": "${not(empty(siteTitle))}"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TextBlock",
+                            "spacing": "default",
+                            "text": "${summary}",
+                            "size": "medium",
+                            "fontType": "monospace",
+                            "wrap": true,
+                            "$when": "${not(empty(summary))}"
+                        }
+                    ],
+                    "width": "stretch"
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.3"
+}

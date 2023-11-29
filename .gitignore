@@ -1,0 +1,11 @@
+deploy/variables.local.ps1
+*.cer
+*.pfx
+*.log
+node_modules/
+deploy/tests/*.xml
+storybook-static/
+components/.storybook/**/env.ts
+app/
+.pnpm-store/
+.npmrc

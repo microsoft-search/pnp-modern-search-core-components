@@ -1,0 +1,10 @@
+node_modules/*
+docs/*
+lib/*
+docs-src/*
+rollup-config.js
+custom-elements.json
+web-dev-server.config.js
+tailwind.config.js
+postcss.config.js
+webpack.config.cjs

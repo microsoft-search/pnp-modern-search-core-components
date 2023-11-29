@@ -1,0 +1,10 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^7.1.1"
+  },
+  "msw": {
+    "workerDirectory": "packages\\components\\src\\stories\\public"
+  }
+}

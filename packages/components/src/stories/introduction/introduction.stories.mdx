@@ -1,0 +1,80 @@
+import { Meta, Source } from '@storybook/blocks';
+import { PACKAGE_VERSION } from "../../../src/utils/version";
+import m365logo from "../assets/m365_logo.png";
+
+<Meta title="Introduction / Getting started" />
+
+# PnP Modern Search - Core components
+
+<img width="162px" src={m365logo}/>
+
+## What's included?
+
+The following components are included in the bundle:
+
+| Component                                                                         | HTML tag                      | Purpose                                                                         |
+|-----------------------------------------------------------------------------------|-------------------------------|---------------------------------------------------------------------------------|
+| [Search results](?path=/docs/components-search-search-results--usage-query)       | `<pnp-search-results>`    | Display results from Microsoft Search index according to configured parameters. |   
+| [Search filters](?path=/docs/components-search-search-filters--usage)             | `<pnp-filters>`    | Display filters from a connected search results components                      | 
+| [Search box](?path=/docs/components-search-search-box--usage)                     | `<pnp-search-input>`      | Allow users to enter free text search keywords.                                 |
+| [Search verticals](?path=/docs/components-search-search-verticals--usage)         | `<pnp-search-verticals>`  | Displays tabs to search by verticals                                            |
+
+## Usage
+
+### Via script
+
+Include the following script in your HTML page: 
+
+<Source
+    dark
+    language="html"
+    code={`<script src="https://www.unpkg.com/pnp-modern-search-core@${PACKAGE_VERSION}/dist/bundle/main.js"></script>`}
+/>
+
+> Components are registered automatically on the page when the package is imported.
+
+### Via npm package
+
+The npm package `pnp-modern-search-core` is available in npm to be used in you application
+
+### Installation
+
+`npm i --save pnp-modern-search-core`
+
+### Side effects
+
+The `pnp-modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
+
+### Usage
+
+#### Defined
+Most of the time, you'll just need to use the pre-defined custom element registration.
+
+```typescript
+import "pnp-modern-search-core/dist/es6/exports/define/pnp-search-results";
+...
+<pnp-search-results
+    id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+/>
+```
+
+#### Scoped
+When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts:
+
+`import { PnPSearchResultsComponent} from "pnp-modern-search-core";`
+
+```typescript
+
+// Use the PnPSearchResultsComponent with the scoped element mixin (https://open-wc.org/docs/development/scoped-elements/) 
+// or
+// define your component with SearchResultsComponent
+if (!customElements.get("myapp-search-results")) {
+    customElements.define("myapp-search-results", PnPSearchResultsComponent)
+}
+...
+<myapp-search-results
+    id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+/>
+```
+
+Will register the PnPSearchResultsComponent component under the name myapp-search-results in the custom element registry.

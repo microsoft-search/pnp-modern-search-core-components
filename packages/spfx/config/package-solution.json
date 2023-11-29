@@ -1,0 +1,40 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+    "solution": {
+        "name": "PnP Modern Search Core - Search Web Parts",
+        "id": "9aad2c6c-dd90-4fae-9e62-8aeae8969c9a",
+        "version": "1.0.0.0",
+        "includeClientSideAssets": true,
+        "skipFeatureDeployment": true,
+        "isDomainIsolated": false,
+        "developer": {
+            "name": "Franck Cornu",
+            "websiteUrl": "",
+            "privacyUrl": "",
+            "termsOfUseUrl": "",
+            "mpnId": ""
+        },
+        "metadata": {
+            "shortDescription": {
+                "default": "PnP Modern Search Core Web Parts"
+            },
+            "longDescription": {
+                "default": "PnP Modern Search Core Web Parts"
+            },
+            "screenshotPaths": [],
+            "videoUrl": "",
+            "categories": []
+        },
+        "features": [
+            {
+                "title": "PnP Modern Search Core - Search Web Parts",
+                "description": "The feature that activates elements of the pnp-core-search-components solution.",
+                "id": "88bafa4c-d368-4945-91f5-c573b6aa19ba",
+                "version": "1.0.0.0"
+            }
+        ]
+    },
+    "paths": {
+        "zippedPackage": "solution/pnp.webparts.search.core.sppkg"
+    }
+}
