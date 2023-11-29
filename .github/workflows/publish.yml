@@ -243,16 +243,14 @@ jobs:
 
       - name: get-npm-version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-        with:
-          path: pnp-modern-search-core
+        run: echo "currentVersion=npm view pnp-modern-search-core dist-tags.latest" >> "$GITHUB_OUTPUT"
 
       - uses: actions/download-artifact@v3
         with:
           name: build_dist
 
       - name: Publish
-        if: ${{ steps.package-version.outputs.current-version != needs.version.outputs.semver }}
+        if: ${{ steps.package-version.outputs.currentVersion != needs.version.outputs.semver }}
         run: npm publish 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
