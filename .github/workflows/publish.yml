@@ -245,7 +245,7 @@ jobs:
         id: package-version
         run: |
           latest=npm view pnp-modern-search-core dist-tags.latest
-          echo "currentVersion=latest" >> "$GITHUB_OUTPUT"
+          echo "currentVersion=$latest" >> "$GITHUB_OUTPUT"
 
       - uses: actions/download-artifact@v3
         with:
