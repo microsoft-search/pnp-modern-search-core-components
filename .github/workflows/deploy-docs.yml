@@ -1,4 +1,4 @@
-name: Deploy Modern Search Core Components - Storybook
+name: Deploy documentation
 env:
     ENV_AzDeployAppId: ${{ secrets.ENV_AzDeployAppId }}
     ENV_AzDeployAppCertificateValue: ${{ secrets.ENV_AzDeployAppCertificateValue }}

@@ -18,7 +18,7 @@ export class LanguageProvider {
 
                 // Load locale file dynamically
                 const localizedResources = await import(
-                    /* webpackChunkName: "pnp-modern-search-core-[request]" */
+                    /* webpackChunkName: "pnp-modern-search-core-languages" */
                     /* webpackExports: ["strings"] */
                     /* webpackMode: "lazy-once" */
                     `../../loc/strings.${locale}`

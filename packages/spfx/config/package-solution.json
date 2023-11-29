@@ -3,7 +3,7 @@
     "solution": {
         "name": "PnP Modern Search Core - Search Web Parts",
         "id": "9aad2c6c-dd90-4fae-9e62-8aeae8969c9a",
-        "version": "0.0.1.0",
+        "version": "1.0.0.0",
         "includeClientSideAssets": true,
         "skipFeatureDeployment": true,
         "isDomainIsolated": false,
@@ -35,6 +35,6 @@
         ]
     },
     "paths": {
-        "zippedPackage": "solution/pnp.core.webparts.search.sppkg"
+        "zippedPackage": "solution/pnp.webparts.search.core.sppkg"
     }
 }
