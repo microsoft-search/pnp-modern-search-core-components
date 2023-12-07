@@ -9,7 +9,7 @@ import { IPropertyPaneFiltersConfigurationInternalProps } from './IPropertyPaneF
 import { FilterSortDirection, FilterSortType, IDataFilterAggregation, IDataFilterConfiguration } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
 import { BuiltinFilterTemplates } from 'pnp-modern-search-core/dist/es6/models/common/BuiltinTemplate';
 import { FilterConditionOperator } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilter';
-import { ITextFieldProps, IChoiceGroupOptionProps, IToggleProps, ISliderProps, IDropdownProps } from 'office-ui-fabric-react';
+import { ITextFieldProps, IChoiceGroupOptionProps, IToggleProps, ISliderProps, IDropdownProps, MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import { isEmpty, isEqual } from '@microsoft/sp-lodash-subset';
 import { LocalizedStringHelper } from 'pnp-modern-search-core/dist/es6/helpers/LocalizedStringHelper';
 import { ILocalizedString } from 'pnp-modern-search-core/dist/es6/models/common/ILocalizedString';
@@ -233,7 +233,18 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                         formConfiguration: [
                                             {
                                                 type: ConfigurationFieldType.TextField,
-                                                targetProperty: null
+                                                targetProperty: null,
+                                                props: {
+                                                    onRenderDescription: (props: ITextFieldProps): JSX.Element => {
+                                                        if (/^\/.+\/$/gi.test(props.defaultValue)) {
+                                                            return  <MessageBar messageBarType={MessageBarType.warning} isMultiline={false} styles={{ root: { marginTop: 5 }}}>
+                                                                        Regular expression
+                                                                    </MessageBar>
+                                                        }
+
+                                                        return null;
+                                                      }
+                                                } as ITextFieldProps
                                             }
                                         ],
                                         newRowDefaultObject: () => "",

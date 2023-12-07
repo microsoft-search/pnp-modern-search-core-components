@@ -110,7 +110,7 @@ export class CheckboxFilterComponent extends BaseFilterComponent {
 
                     <div class="flex justify-between items-center px-6 py-3 min-h-[48px]">
 
-                        <div class="opacity-75"><label>${selectedValues.length} ${this.strings.selections}</label></div>
+                        <div class="opacity-75"><label>${this.filteredValues.length} ${this.strings.selections}</label></div>
                         ${this.selectedValues.length > 0 || this.submittedFilterValues.length > 0 ? 
                             html`<fast-button appearance="stealth" data-ref="reset" type="reset"  @click=${() => this.clearSelectedValues()}>
 

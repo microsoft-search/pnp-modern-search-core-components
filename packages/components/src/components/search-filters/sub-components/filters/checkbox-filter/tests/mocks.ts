@@ -96,4 +96,20 @@ export const aggregatedFilterConfiguration = {
         }
     ]
 };
+
+export const aggregatedFilterConfigurationWithRegex = {
+  ...baseFilterConfiguration,
+  aggregations: [
+      {
+        "aggregationName":{
+            "default":"Word and PowerPoint documents",
+        },
+        "matchingValues":[
+            "/^(docx|docm|doc|pptx)$/",
+        ],
+        "aggregationValue":"or(\"docx\",\"doc\",\"docm\",\"pptx\")",
+        "aggregationValueIconUrl":""
+      }
+  ]
+};
 //#endregion
