@@ -2,18 +2,9 @@
 
 > These components have been initially made by [Ubisoft](https://www.ubisoft.com/) as part of their Microsoft Search implementation. They've been adapted are given to the community for free. A big thanks to them! Sharing is caring.
 
-<div style="display:flex;align-items:center;justify-content:space-between">
-    
-   <img alt="PnP Logo" style="max-width: 200px;" src="./docs/assets/pnp.svg"/>
-
-   <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/ubisoft_stacked_logo_white.png">
-      <source media="(prefers-color-scheme: light)" srcset="./docs/assets/ubisoft_stacked_logo_black.png">
-      <img alt="Ubisoft Logo" style="max-width: 200px;" src="./docs/assets/ubisoft_stacked_logo_black.png"/>
-   </picture>
-
-</div>
-
+<p align="center">
+   <img alt="PnP Logo" style="max-width: 200px;" src="./docs/assets/pnp.svg"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="./docs/assets/ubisoft_stacked_logo_white.png"><source media="(prefers-color-scheme: light)" srcset="./docs/assets/ubisoft_stacked_logo_black.png"><img alt="Ubisoft Logo" style="max-width: 200px;" src="./docs/assets/ubisoft_stacked_logo_black.png"/></picture>
+</p>
 
 The goal is to provide reusable components based on Microsoft Search and Microsoft Graph in general that can be used transversally in an organization.
 
