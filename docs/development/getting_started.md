@@ -12,6 +12,12 @@
 - [MkDocs](https://www.mkdocs.org/user-guide/installation/)
 - [Node.js]() v16.19.1 or higher
 
+
+### Create Azure AD application
+
+
+
+
 ### Get the solution locally
 
 1. Clone the repository from [GitHub](https://github.com/microsoft-search/pnp-modern-search-core-components)

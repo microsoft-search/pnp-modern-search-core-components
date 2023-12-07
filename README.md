@@ -2,9 +2,10 @@
 
 > These components have been initially made by [Ubisoft](https://www.ubisoft.com/) as part of their Microsoft Search implementation. They've been adapted are given to the community for free. A big thanks to them! Sharing is caring.
 
-<p align="center">
-   <img src="./docs/assets/ubisoft_logo.png"/>
-</p>
+<div style="display:flex;align-items:center">
+   <img style="max-width: 100%;" src="./docs/assets/pnp.svg"/>
+   <img style="max-width: 100%;" src="./docs/assets/ubisoft.svg"/>
+</div>
 
 The goal is to provide reusable components based on Microsoft Search and Microsoft Graph in general that can be used transversally in an organization.
 
@@ -15,6 +16,10 @@ The goal is to provide reusable components based on Microsoft Search and Microso
 These components are regular [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) built on top of [Microsoft Graph Toolkit](https://learn.microsoft.com/en-us/graph/toolkit/overview) and [Lit elements](https://lit.dev/docs/).
 
 They allow to consume Microsoft Search results in any web application, outside of SharePoint, for instance, to build custom search experiences.
+
+<p align="center">
+   <img src="./docs/assets/components.png"/>
+</p>
 
 ## What components are included?
 
