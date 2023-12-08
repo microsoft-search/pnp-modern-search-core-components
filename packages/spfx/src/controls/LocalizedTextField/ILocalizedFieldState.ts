@@ -1,4 +1,4 @@
-import { ILocalizedString } from "pnp-modern-search-core/dist/es6/models/common/ILocalizedString";
+import { ILocalizedString } from "@pnp/modern-search-core/dist/es6/models/common/ILocalizedString";
 import { ITranslation } from "./components/ITranslation";
 
 export interface ILocalizedFieldState {

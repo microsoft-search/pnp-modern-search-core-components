@@ -351,6 +351,9 @@ importers:
       '@monaco-editor/react':
         specifier: ^4.5.1
         version: 4.5.1(monaco-editor@0.41.0)(react-dom@17.0.1)(react@17.0.1)
+      '@pnp/modern-search-core':
+        specifier: workspace:*
+        version: link:../components
       '@pnp/spfx-controls-react':
         specifier: 3.15.0
         version: 3.15.0(@babel/core@7.23.0)(@microsoft/microsoft-graph-client@1.7.2-spfx)(@types/react-dom@17.0.17)(@types/react@17.0.45)(scheduler@0.20.2)
@@ -372,9 +375,6 @@ importers:
       office-ui-fabric-react:
         specifier: ^7.199.1
         version: 7.204.0(@types/react-dom@17.0.17)(@types/react@17.0.45)(react-dom@17.0.1)(react@17.0.1)
-      pnp-modern-search-core:
-        specifier: workspace:*
-        version: link:../components
       react:
         specifier: 17.0.1
         version: 17.0.1

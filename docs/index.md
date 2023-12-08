@@ -28,7 +28,7 @@ The following components are included in the bundle:
 
 ##  How I get started?
 
-To get started, simply follow the [guide](./development//getting_started.md)!
+To get started, simply follow the [guide](./development/getting_started.md)!
 
 Thank you to all [Ubisoft members who participate to this project](./thanks.md)!
 

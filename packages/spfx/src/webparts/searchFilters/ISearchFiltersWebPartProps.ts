@@ -1,5 +1,5 @@
-import { FilterConditionOperator } from "pnp-modern-search-core/dist/es6/models/common/IDataFilter";
-import { IDataFilterConfiguration } from "pnp-modern-search-core/dist/es6/models/common/IDataFilterConfiguration";
+import { FilterConditionOperator } from "@pnp/modern-search-core/dist/es6/models/common/IDataFilter";
+import { IDataFilterConfiguration } from "@pnp/modern-search-core/dist/es6/models/common/IDataFilterConfiguration";
 import { IBaseWebPartProps } from "../../models/common/IBaseWebPartProps";
 
 export interface ISearchFiltersWebPartProps extends IBaseWebPartProps {

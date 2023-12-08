@@ -16,7 +16,7 @@ import { ISearchBoxProps } from './components/ISearchBoxProps';
 import { IDynamicDataCallables, IDynamicDataPropertyDefinition } from '@microsoft/sp-dynamic-data';
 import { BaseWebPart } from '../../common/BaseWebPart';
 import { ComponentType } from '../../common/ComponentType';
-import { PageOpenBehavior, QueryPathBehavior } from 'pnp-modern-search-core/dist/es6/helpers/UrlHelper';
+import { PageOpenBehavior, QueryPathBehavior } from '@pnp/modern-search-core/dist/es6/helpers/UrlHelper';
 import { ISearchBoxWebPartProps } from './ISearchBoxWebPartProps';
 import { ILayoutDefinition } from '../../models/common/ILayoutDefinition';
 //#endregion

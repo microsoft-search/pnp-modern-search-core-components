@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { ISearchResultsProps } from './ISearchResultsProps';
-import { SearchResultsComponent } from 'pnp-modern-search-core';
+import { SearchResultsComponent } from '@pnp/modern-search-core';
 import { isEqual } from '@microsoft/sp-lodash-subset';
-import { ObjectHelper } from 'pnp-modern-search-core/dist/es6/helpers/ObjectHelper';
+import { ObjectHelper } from '@pnp/modern-search-core/dist/es6/helpers/ObjectHelper';
 import { ISearchResultsState } from './ISearchResultsState';
-import { ISearchResultsEventData } from 'pnp-modern-search-core/dist/es6/models/events/ISearchResultsEventData';
+import { ISearchResultsEventData } from '@pnp/modern-search-core/dist/es6/models/events/ISearchResultsEventData';
 import { wrapWc } from 'wc-react';
 import parse from 'html-react-parser';
 import { SlotType } from '../../../models/common/ILayoutSlot';
-import { EventConstants } from 'pnp-modern-search-core/dist/es6/common/Constants';
+import { EventConstants } from '@pnp/modern-search-core/dist/es6/common/Constants';
 
 const SearchResultsWebComponent = wrapWc<SearchResultsComponent>('pnp-search-results');
 

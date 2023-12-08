@@ -15,7 +15,7 @@ import {
   LocalizationHelper,
   AdaptiveCardComponent,
   VideoPlayerComponent
-} from 'pnp-modern-search-core';
+} from '@pnp/modern-search-core';
 import {
   IPropertyPaneField, 
   PropertyPaneChoiceGroup, 
@@ -25,7 +25,7 @@ import { ILocalizationService } from '../services/localizationService/ILocalizat
 import { LocalizationService } from '../services/localizationService/LocalizationService';
 import PnPTelemetry from '@pnp/telemetry-js';
 import { ComponentType } from './ComponentType';
-import { ComponentElements, ThemePublicCSSVariables } from 'pnp-modern-search-core/dist/es6/common/Constants';
+import { ComponentElements, ThemePublicCSSVariables } from '@pnp/modern-search-core/dist/es6/common/Constants';
 import { ConfigurationFieldType, IConfigurationTabField } from '../controls/ConfigurationPanel/IConfigurationTabField';
 import { IConfigurationTab } from '../controls/ConfigurationPanel/IConfigurationTab';
 import { ColorPicker, IColor, getColorFromString } from '@fluentui/react';

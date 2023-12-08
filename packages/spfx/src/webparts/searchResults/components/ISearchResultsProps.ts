@@ -1,5 +1,5 @@
 import { ITemplateContext } from "../../../models/common/ITemplateContext";
-import { ISearchResultsEventData } from "pnp-modern-search-core/dist/es6/models/events/ISearchResultsEventData";
+import { ISearchResultsEventData } from "@pnp/modern-search-core/dist/es6/models/events/ISearchResultsEventData";
 import { ISearchResultsComponentProps } from "./ISearchResultComponentProps";
 import { ILayoutSlot } from "../../../models/common/ILayoutSlot";
 import { IBaseWebComponentWrapperProps } from "../../../models/common/IBaseWebComponentWrapper";
