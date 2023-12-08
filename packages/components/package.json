@@ -1,6 +1,5 @@
 {
   "name": "@pnp/modern-search-core",
-  "private": false,
   "version": "0.1.0",
   "description": "PnP Modern Search - Core Components",
   "main": "dist/es6/exports/index.js",
@@ -47,7 +46,24 @@
     "lit"
   ],
   "author": "Ubisoft",
-  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft-search/pnp-modern-search-core-components"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft-search/pnp-modern-search-core-components/issues"
+  },
+  "homepage": "https://microsoft-search.github.io/pnp-modern-search-core-components/",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "FranckyC",
+      "email": "franck.cornu@ubisoft.com"
+    }
+  ],
+  "contributors": [
+    "Cornu, Franck <franck.cornu@outlook.com>"
+  ],
   "dependencies": {
     "@azure/msal-browser": "2.33.0",
     "@fluentui/web-components": "^2.5.12",
