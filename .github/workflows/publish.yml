@@ -39,7 +39,6 @@ jobs:
         run: |
           echo "majorMinorPatch=$GITVERSION_MAJORMINORPATCH" >> "$GITHUB_OUTPUT"
           echo "semver=$GITVERSION_SEMVER" >> "$GITHUB_OUTPUT"
-
   tests:
     runs-on: ubuntu-latest
     defaults:
@@ -255,14 +254,13 @@ jobs:
         env:
           CURRENT_VERSION: ${{ steps.package-version.outputs.currentVersion }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          CURRENT_BRANCH: ${{ github.ref }}
         if: $CURRENT_VERSION != ${{ needs.version.outputs.semver }}
         run: |
-          if [ "$CURRENT_BRANCH" == "refs/heads/develop" ]
+          if [ "$GITHUB_REF" == "refs/heads/develop" ]
           then
             npm publish --access=public --tag alpha
           else
-            if [[ "$CURRENT_BRANCH" == *"refs/heads/release"* ]]
+            if [[ "$GITHUB_REF" == *"refs/heads/release"* ]]
             then
               npm publish --access=public --tag beta
             else

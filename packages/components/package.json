@@ -89,8 +89,7 @@
     "jspath": "0.4.0",
     "lit": "^2.7.5",
     "lodash-es": "4.17.21",
-    "markdown-it": "13.0.1",
-    "playwright": "^1.36.2"
+    "markdown-it": "13.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.22.7",
