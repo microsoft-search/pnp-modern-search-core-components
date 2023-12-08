@@ -3,7 +3,7 @@
 > These components have been initially made by [Ubisoft](https://www.ubisoft.com/) as part of their Microsoft Search implementation. They've been adapted are given to the community for free. A big thanks to them! Sharing is caring.
 
 <p align="center">
-   <img alt="PnP Logo"src="../../docs/assets/pnp.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="../../docs/assets/ubisoft_stacked_logo_white.png"><source media="(prefers-color-scheme: light)" srcset="../../docs/assets/ubisoft_stacked_logo_black.png"><img alt="Ubisoft Logo" src="../../docs/assets/ubisoft_stacked_logo_black.png"/></picture>
+   <img alt="PnP Logo"src="https://github.com/microsoft-search/pnp-modern-search-core-components/raw/main/docs/assets/pnp.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/microsoft-search/pnp-modern-search-core-components/main/docs/assets/ubisoft_stacked_logo_white.png"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/microsoft-search/pnp-modern-search-core-components/main/docs/assets/ubisoft_stacked_logo_black.png"><img alt="Ubisoft Logo" src="https://raw.githubusercontent.com/microsoft-search/pnp-modern-search-core-components/main/docs/assets/ubisoft_stacked_logo_black.png"/></picture>
 </p>
 
 The goal is to provide reusable components based on Microsoft Search and Microsoft Graph in general that can be used transversally in an organization.
@@ -17,7 +17,7 @@ These components are regular [web components](https://developer.mozilla.org/en-U
 They allow to consume Microsoft Search results in any web application, outside of SharePoint, for instance, to build custom search experiences.
 
 <p align="center">
-   <img src="../../docs/assets/components.png"/>
+   <img src="https://github.com/microsoft-search/pnp-modern-search-core-components/raw/main/docs/assets/components.png"/>
 </p>
 
 ## What components are included?

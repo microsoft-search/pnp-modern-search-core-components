@@ -223,6 +223,9 @@ jobs:
           path: |
             ${{ github.workspace }}/packages/components
             !${{ github.workspace }}/**/node_modules
+            !${{ github.workspace }}/**/src
+            !${{ github.workspace }}/**/dev
+            !${{ github.workspace }}/**/assets
             !${{ github.workspace }}/**/.pnpm-store
             !${{ github.workspace }}/**/.vscode
             !${{ github.workspace }}/**/.storybook
