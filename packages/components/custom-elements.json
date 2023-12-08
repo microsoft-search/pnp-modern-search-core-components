@@ -93,6 +93,214 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/loc/strings.default.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "SearchResultsStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    seeAllLink: \"See all\",\r\n    results: \"results\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "PaginationStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    nextBtn: \"Next\",\r\n    previousBtn: \"Previous\",\r\n    tooManyPages: \"Too many pages!\",\r\n    screenTipContent: `It seems your search returned a lot of pages!\r\nTry to narrow down your scope by specifying more precise keywords🙏`\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "FilterDateStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    anyTime: \"Any time\",\r\n    today: \"Today\",\r\n    past24: \"Past 24 hours\",\r\n    pastWeek: \"Past week\",\r\n    pastMonth: \"Past month\",\r\n    past3Months: \"Past 3 months\",\r\n    pastYear: \"Past year\",\r\n    olderThanAYear: \"Older than a year\",\r\n    reset: \"Reset\",\r\n    from: \"From\",\r\n    to: \"To\",\r\n    applyDates: \"Apply dates\",\r\n    selections: \"selection(s)\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "FilterCheckboxStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    reset: \"Reset\",\r\n    searchPlaceholder: \"Search for values...\",\r\n    apply: \"Apply\",\r\n    cancel: \"Cancel\",\r\n    selections: \"selection(s)\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "SearchFiltersStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    resetAllFilters: \"Reset filters\",\r\n    noFilters: \"No filter to display\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "SearchSortStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    sortedByRelevance: \"Sorted by relevance\",\r\n    sortDefault:\"Relevance\",\r\n    sortAscending: \"Sort ascending\",\r\n    sortDescending: \"Sort descending\",\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "SearchInputStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    searchPlaceholder: \"Search for values...\",\r\n    clearSearch: \"Clear searchbox\",\r\n    previousSearches: \"Previous searches\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "LanguageProviderStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "SearchInfosStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    searchQueryResultText: (keywords) : string => `Here's what we found for \"${keywords}\"`,\r\n    resultCountText: (count): string  => `Found ${count} results you have permissions to see.`,\r\n    notFoundSuggestions: (keywords) => html`\r\n                    <h2 class=\"font-primary text-3xl mb-4\">Your search for \"${keywords}\" did not match any content.</h2>\r\n                    <p>Some suggestions:</p>\r\n                    <ul class=\"list-disc pl-8\">\r\n                        <li>Make sure all words are spelled correctly</li>\r\n                        <li>Try entering different keywords, more general keywords or less keywords</li>\r\n                        <li>Maybe what you were looking for is not in the scope of the Enterprise Search? Check all the sources we index in our <a href=\"https://goto..org/SearchFAQ\" target=\"_blank\" class=\"text-primary font-bold hover:underline\">FAQ page</a>.</li>\r\n                        <li>... Or ask for help by submitting a <a href=\"https://goto..org/SearchSOS\" target=\"_blank\" class=\"text-primary font-bold hover:underline\">SOS ticket</a> and our colleagues will try their best to help you.</li>\r\n                    </ul>\r\n    `,\r\n    didYouMean: (handlerFunction, updatedQueryString) => html`\r\n        <p>Did you mean: \"<a href=\"#\" @click=${handlerFunction}>${unsafeHTML(updatedQueryString)}\"?</a></p> \r\n    `\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "ErrorMessageStrings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n    errorMessage: \"Error\"\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "strings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ \r\n    language: \"en-us\",\r\n    _components: {\r\n        [ComponentElements.SearchResultsComponent]: {...SearchResultsStrings},\r\n        [ComponentElements.PaginationComponent]: {...PaginationStrings},\r\n        [ComponentElements.DateFilterComponent]: {...FilterDateStrings},\r\n        [ComponentElements.CheckboxFilterComponent]: {...FilterCheckboxStrings},\r\n        [ComponentElements.SearchFiltersComponent]: {...SearchFiltersStrings},\r\n        [ComponentElements.SearchInputComponent]: {...SearchInputStrings},\r\n        [ComponentElements.LanguageProviderComponent]: {...LanguageProviderStrings},\r\n        [ComponentElements.SearchInfosComponent]: {...SearchInfosStrings},\r\n        [ComponentElements.ErrorMessageComponent]: {...ErrorMessageStrings},\r\n        [ComponentElements.SearchSortComponent]: {...SearchSortStrings}\r\n    }\r\n}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchResultsStrings",
+          "declaration": {
+            "name": "SearchResultsStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "PaginationStrings",
+          "declaration": {
+            "name": "PaginationStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FilterDateStrings",
+          "declaration": {
+            "name": "FilterDateStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FilterCheckboxStrings",
+          "declaration": {
+            "name": "FilterCheckboxStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchFiltersStrings",
+          "declaration": {
+            "name": "SearchFiltersStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchSortStrings",
+          "declaration": {
+            "name": "SearchSortStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchInputStrings",
+          "declaration": {
+            "name": "SearchInputStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LanguageProviderStrings",
+          "declaration": {
+            "name": "LanguageProviderStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchInfosStrings",
+          "declaration": {
+            "name": "SearchInfosStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ErrorMessageStrings",
+          "declaration": {
+            "name": "ErrorMessageStrings",
+            "module": "src/loc/strings.default.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "strings",
+          "declaration": {
+            "name": "strings",
+            "module": "src/loc/strings.default.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/loc/strings.fr-fr.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "strings",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ \r\n    language: \"fr-fr\",\r\n    _components: {\r\n        \"pnp-search-results\": {\r\n            seeAllLink: \"Voir tout\",\r\n            results: \"résultats\"\r\n        },\r\n        \"pnp-pagination\": {\r\n            nextBtn: \"Suivant\",\r\n            previousBtn: \"Précédent\",\r\n            tooManyPages: \"Trop de pages!\",\r\n            screenTipContent: `Il semble que ta recherche ait retourné beaucoup trop de pages!\r\nEssaye de restreindre le périmètre de ta recherche en utilisant des mots-clés plus précis🙏\r\n            `\r\n        },\r\n        \"pnp-filter-date\": {\r\n            anyTime: \"N'importe quand\",\r\n            today: \"Aujourd'hui\",\r\n            past24: \"Dernières 24h\",\r\n            pastWeek: \"Semaine dernière\",\r\n            pastMonth: \"Mois dernier\",\r\n            past3Months: \"Derniers 3 mois\",\r\n            pastYear: \"Année dernière\",\r\n            olderThanAYear: \"Au delà d'un an\",\r\n            reset: \"Réinitialiser\",\r\n            from: \"À partir du\",\r\n            to: \"Au\",\r\n            applyDates: \"Appliquer\",\r\n            selections: \"sélection(s)\"\r\n        },\r\n        \"pnp-filter-checkbox\": {\r\n            reset: \"Réinitialiser\",\r\n            searchPlaceholder: \"Rechercher une valeur...\",\r\n            apply: \"Appliquer\",\r\n            cancel: \"Annuler\",\r\n            selections: \"sélection(s)\"\r\n        },\r\n        \"pnp-search-filters\": {\r\n            resetAllFilters: \"Réinitialiser les filtres\",\r\n            noFilters: \"Aucun filtre à afficher\"\r\n        },\r\n        \"pnp-search-input\": {\r\n            searchPlaceholder: \"Rechercher un mot clé...\",\r\n            clearSearch: \"Réinitialiser la boîte de recherche\",\r\n            previousSearches: \"Recherche(s) précédente(s)\"\r\n        },\r\n        \"pnp-search-infos\": {\r\n            searchQueryResultText: (keywords) : string => `Voici ce que nous avons trouvé pour \"${keywords}\"`,\r\n            resultCountText: (count): string  => `${count} résultats trouvés auxquels vous avez accès.`,\r\n            notFoundSuggestions: (keywords) => html`\r\n                        <h2 class=\"font-primary text-3xl mb-4\">Votre recherche pour \"${keywords}\" n'a retourné aucun résultat.</h2>\r\n                        <p>Quelques suggestions:</p>\r\n                        <ul class=\"list-disc pl-8\">\r\n                            <li>Vérifiez que l'orthographe est correcte.</li>\r\n                            <li>Essayer de spécifier d'autres mots clés.</li>\r\n                        </ul>\r\n            `,\r\n            didYouMean: (handlerFunction, updatedQueryString) => html`\r\n                <p>Vouliez-vous dire: \"<a href=\"#\" @click=${handlerFunction}>${unsafeHTML(updatedQueryString)}\"?</a></p> \r\n            `\r\n        },\r\n        \"pnp-error-message\": {\r\n            errorMessage:\"Erreur\"\r\n        },\r\n        \"pnp-search-sort\":{\r\n            sortedByRelevance: \"Trier par pertinence\",\r\n            sortDefault:\"Pertinence\",\r\n            sortAscending: \"Tri ascendant\",\r\n            sortDescending: \"Tri descendant\",\r\n        }\r\n    }\r\n}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "strings",
+          "declaration": {
+            "name": "strings",
+            "module": "src/loc/strings.fr-fr.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/BaseComponent.ts",
       "declarations": [
         {
@@ -450,109 +658,6 @@
           "declaration": {
             "name": "BaseComponent",
             "module": "src/components/BaseComponent.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/index.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SearchResultsComponent",
-          "declaration": {
-            "name": "SearchResultsComponent",
-            "module": "\"../components/search-results/SearchResultsComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SearchInputComponent",
-          "declaration": {
-            "name": "SearchInputComponent",
-            "module": "\"../components/search-input/SearchInputComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SearchVerticalsComponent",
-          "declaration": {
-            "name": "SearchVerticalsComponent",
-            "module": "\"../components/search-verticals/SearchVerticalsComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SearchFiltersComponent",
-          "declaration": {
-            "name": "SearchFiltersComponent",
-            "module": "\"../components/search-filters/SearchFiltersComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "LanguageProvider",
-          "declaration": {
-            "name": "LanguageProvider",
-            "module": "\"../components/language-provider/LanguageProvider\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "AdaptiveCardComponent",
-          "declaration": {
-            "name": "AdaptiveCardComponent",
-            "module": "\"../components/adaptive-card/AdaptiveCardComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "VideoPlayerComponent",
-          "declaration": {
-            "name": "VideoPlayerComponent",
-            "module": "\"../components/video-player/VideoPlayerComponent\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"@microsoft/mgt-sharepoint-provider\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"@microsoft/mgt-element/dist/es6/utils/TemplateHelper\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"@microsoft/mgt-element/dist/es6/providers/IProvider\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"@microsoft/mgt-element/dist/es6/providers/Providers\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"@microsoft/mgt-element/dist/es6/utils/LocalizationHelper\""
           }
         }
       ]
@@ -1461,208 +1566,103 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/loc/strings.default.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "SearchResultsStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    seeAllLink: \"See all\",\r\n    results: \"results\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "PaginationStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    nextBtn: \"Next\",\r\n    previousBtn: \"Previous\",\r\n    tooManyPages: \"Too many pages!\",\r\n    screenTipContent: `It seems your search returned a lot of pages!\r\nTry to narrow down your scope by specifying more precise keywords🙏`\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "FilterDateStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    anyTime: \"Any time\",\r\n    today: \"Today\",\r\n    past24: \"Past 24 hours\",\r\n    pastWeek: \"Past week\",\r\n    pastMonth: \"Past month\",\r\n    past3Months: \"Past 3 months\",\r\n    pastYear: \"Past year\",\r\n    olderThanAYear: \"Older than a year\",\r\n    reset: \"Reset\",\r\n    from: \"From\",\r\n    to: \"To\",\r\n    applyDates: \"Apply dates\",\r\n    selections: \"selection(s)\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "FilterCheckboxStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    reset: \"Reset\",\r\n    searchPlaceholder: \"Search for values...\",\r\n    apply: \"Apply\",\r\n    cancel: \"Cancel\",\r\n    selections: \"selection(s)\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "SearchFiltersStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    resetAllFilters: \"Reset filters\",\r\n    noFilters: \"No filter to display\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "SearchSortStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    sortedByRelevance: \"Sorted by relevance\",\r\n    sortDefault:\"Relevance\",\r\n    sortAscending: \"Sort ascending\",\r\n    sortDescending: \"Sort descending\",\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "SearchInputStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    searchPlaceholder: \"Search for values...\",\r\n    clearSearch: \"Clear searchbox\",\r\n    previousSearches: \"Previous searches\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "LanguageProviderStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        },
-        {
-          "kind": "variable",
-          "name": "SearchInfosStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    searchQueryResultText: (keywords) : string => `Here's what we found for \"${keywords}\"`,\r\n    resultCountText: (count): string  => `Found ${count} results you have permissions to see.`,\r\n    notFoundSuggestions: (keywords) => html`\r\n                    <h2 class=\"font-primary text-3xl mb-4\">Your search for \"${keywords}\" did not match any content.</h2>\r\n                    <p>Some suggestions:</p>\r\n                    <ul class=\"list-disc pl-8\">\r\n                        <li>Make sure all words are spelled correctly</li>\r\n                        <li>Try entering different keywords, more general keywords or less keywords</li>\r\n                        <li>Maybe what you were looking for is not in the scope of the Enterprise Search? Check all the sources we index in our <a href=\"https://goto..org/SearchFAQ\" target=\"_blank\" class=\"text-primary font-bold hover:underline\">FAQ page</a>.</li>\r\n                        <li>... Or ask for help by submitting a <a href=\"https://goto..org/SearchSOS\" target=\"_blank\" class=\"text-primary font-bold hover:underline\">SOS ticket</a> and our colleagues will try their best to help you.</li>\r\n                    </ul>\r\n    `,\r\n    didYouMean: (handlerFunction, updatedQueryString) => html`\r\n        <p>Did you mean: \"<a href=\"#\" @click=${handlerFunction}>${unsafeHTML(updatedQueryString)}\"?</a></p> \r\n    `\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "ErrorMessageStrings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\r\n    errorMessage: \"Error\"\r\n}"
-        },
-        {
-          "kind": "variable",
-          "name": "strings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ \r\n    language: \"en-us\",\r\n    _components: {\r\n        [ComponentElements.SearchResultsComponent]: {...SearchResultsStrings},\r\n        [ComponentElements.PaginationComponent]: {...PaginationStrings},\r\n        [ComponentElements.DateFilterComponent]: {...FilterDateStrings},\r\n        [ComponentElements.CheckboxFilterComponent]: {...FilterCheckboxStrings},\r\n        [ComponentElements.SearchFiltersComponent]: {...SearchFiltersStrings},\r\n        [ComponentElements.SearchInputComponent]: {...SearchInputStrings},\r\n        [ComponentElements.LanguageProviderComponent]: {...LanguageProviderStrings},\r\n        [ComponentElements.SearchInfosComponent]: {...SearchInfosStrings},\r\n        [ComponentElements.ErrorMessageComponent]: {...ErrorMessageStrings},\r\n        [ComponentElements.SearchSortComponent]: {...SearchSortStrings}\r\n    }\r\n}"
-        }
-      ],
+      "path": "src/exports/index.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
-          "name": "SearchResultsStrings",
+          "name": "SearchResultsComponent",
           "declaration": {
-            "name": "SearchResultsStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "SearchResultsComponent",
+            "module": "\"../components/search-results/SearchResultsComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "PaginationStrings",
+          "name": "SearchInputComponent",
           "declaration": {
-            "name": "PaginationStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "SearchInputComponent",
+            "module": "\"../components/search-input/SearchInputComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "FilterDateStrings",
+          "name": "SearchVerticalsComponent",
           "declaration": {
-            "name": "FilterDateStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "SearchVerticalsComponent",
+            "module": "\"../components/search-verticals/SearchVerticalsComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "FilterCheckboxStrings",
+          "name": "SearchFiltersComponent",
           "declaration": {
-            "name": "FilterCheckboxStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "SearchFiltersComponent",
+            "module": "\"../components/search-filters/SearchFiltersComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "SearchFiltersStrings",
+          "name": "LanguageProvider",
           "declaration": {
-            "name": "SearchFiltersStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "LanguageProvider",
+            "module": "\"../components/language-provider/LanguageProvider\""
           }
         },
         {
           "kind": "js",
-          "name": "SearchSortStrings",
+          "name": "AdaptiveCardComponent",
           "declaration": {
-            "name": "SearchSortStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "AdaptiveCardComponent",
+            "module": "\"../components/adaptive-card/AdaptiveCardComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "SearchInputStrings",
+          "name": "VideoPlayerComponent",
           "declaration": {
-            "name": "SearchInputStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "VideoPlayerComponent",
+            "module": "\"../components/video-player/VideoPlayerComponent\""
           }
         },
         {
           "kind": "js",
-          "name": "LanguageProviderStrings",
+          "name": "*",
           "declaration": {
-            "name": "LanguageProviderStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "*",
+            "package": "\"@microsoft/mgt-sharepoint-provider\""
           }
         },
         {
           "kind": "js",
-          "name": "SearchInfosStrings",
+          "name": "*",
           "declaration": {
-            "name": "SearchInfosStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "*",
+            "package": "\"@microsoft/mgt-element/dist/es6/utils/TemplateHelper\""
           }
         },
         {
           "kind": "js",
-          "name": "ErrorMessageStrings",
+          "name": "*",
           "declaration": {
-            "name": "ErrorMessageStrings",
-            "module": "src/loc/strings.default.ts"
+            "name": "*",
+            "package": "\"@microsoft/mgt-element/dist/es6/providers/IProvider\""
           }
         },
         {
           "kind": "js",
-          "name": "strings",
+          "name": "*",
           "declaration": {
-            "name": "strings",
-            "module": "src/loc/strings.default.ts"
+            "name": "*",
+            "package": "\"@microsoft/mgt-element/dist/es6/providers/Providers\""
           }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/loc/strings.fr-fr.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "strings",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ \r\n    language: \"fr-fr\",\r\n    _components: {\r\n        \"pnp-search-results\": {\r\n            seeAllLink: \"Voir tout\",\r\n            results: \"résultats\"\r\n        },\r\n        \"pnp-pagination\": {\r\n            nextBtn: \"Suivant\",\r\n            previousBtn: \"Précédent\",\r\n            tooManyPages: \"Trop de pages!\",\r\n            screenTipContent: `Il semble que ta recherche ait retourné beaucoup trop de pages!\r\nEssaye de restreindre le périmètre de ta recherche en utilisant des mots-clés plus précis🙏\r\n            `\r\n        },\r\n        \"pnp-filter-date\": {\r\n            anyTime: \"N'importe quand\",\r\n            today: \"Aujourd'hui\",\r\n            past24: \"Dernières 24h\",\r\n            pastWeek: \"Semaine dernière\",\r\n            pastMonth: \"Mois dernier\",\r\n            past3Months: \"Derniers 3 mois\",\r\n            pastYear: \"Année dernière\",\r\n            olderThanAYear: \"Au delà d'un an\",\r\n            reset: \"Réinitialiser\",\r\n            from: \"À partir du\",\r\n            to: \"Au\",\r\n            applyDates: \"Appliquer\",\r\n            selections: \"sélection(s)\"\r\n        },\r\n        \"pnp-filter-checkbox\": {\r\n            reset: \"Réinitialiser\",\r\n            searchPlaceholder: \"Rechercher une valeur...\",\r\n            apply: \"Appliquer\",\r\n            cancel: \"Annuler\",\r\n            selections: \"sélection(s)\"\r\n        },\r\n        \"pnp-search-filters\": {\r\n            resetAllFilters: \"Réinitialiser les filtres\",\r\n            noFilters: \"Aucun filtre à afficher\"\r\n        },\r\n        \"pnp-search-input\": {\r\n            searchPlaceholder: \"Rechercher un mot clé...\",\r\n            clearSearch: \"Réinitialiser la boîte de recherche\",\r\n            previousSearches: \"Recherche(s) précédente(s)\"\r\n        },\r\n        \"pnp-search-infos\": {\r\n            searchQueryResultText: (keywords) : string => `Voici ce que nous avons trouvé pour \"${keywords}\"`,\r\n            resultCountText: (count): string  => `${count} résultats trouvés auxquels vous avez accès.`,\r\n            notFoundSuggestions: (keywords) => html`\r\n                        <h2 class=\"font-primary text-3xl mb-4\">Votre recherche pour \"${keywords}\" n'a retourné aucun résultat.</h2>\r\n                        <p>Quelques suggestions:</p>\r\n                        <ul class=\"list-disc pl-8\">\r\n                            <li>Vérifiez que l'orthographe est correcte.</li>\r\n                            <li>Essayer de spécifier d'autres mots clés.</li>\r\n                        </ul>\r\n            `,\r\n            didYouMean: (handlerFunction, updatedQueryString) => html`\r\n                <p>Vouliez-vous dire: \"<a href=\"#\" @click=${handlerFunction}>${unsafeHTML(updatedQueryString)}\"?</a></p> \r\n            `\r\n        },\r\n        \"pnp-error-message\": {\r\n            errorMessage:\"Erreur\"\r\n        },\r\n        \"pnp-search-sort\":{\r\n            sortedByRelevance: \"Trier par pertinence\",\r\n            sortDefault:\"Pertinence\",\r\n            sortAscending: \"Tri ascendant\",\r\n            sortDescending: \"Tri descendant\",\r\n        }\r\n    }\r\n}"
-        }
-      ],
-      "exports": [
+        },
         {
           "kind": "js",
-          "name": "strings",
+          "name": "*",
           "declaration": {
-            "name": "strings",
-            "module": "src/loc/strings.fr-fr.ts"
+            "name": "*",
+            "package": "\"@microsoft/mgt-element/dist/es6/utils/LocalizationHelper\""
           }
         }
       ]
@@ -2271,470 +2271,6 @@
           "declaration": {
             "name": "AdaptiveCardComponent",
             "module": "src/components/adaptive-card/AdaptiveCardComponent.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/monaco-editor/MonacoEditorComponent.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MonacoEditorComponent",
-          "members": [
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "IDataSourceData"
-              },
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "editor",
-              "type": {
-                "text": "editor.IStandaloneCodeEditor"
-              },
-              "default": "null"
-            },
-            {
-              "kind": "method",
-              "name": "createEditor",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "theme",
-              "attribute": "theme",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "enableDebugMode",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable the debug to explore data from context",
-              "attribute": "enable-debug",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "renderedOnce",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flag indicating if data have been rendered at least once",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "showDebugData",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isInitialized",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
-              "attribute": "initialized",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_eventHanlders",
-              "type": {
-                "text": "Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>"
-              },
-              "privacy": "public",
-              "default": "new Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>()",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "componentError",
-              "type": {
-                "text": "Error"
-              },
-              "privacy": "public",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "static": true,
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "themeStyles",
-              "static": true,
-              "description": "Returns styles from theme (i.e. define CSS variables)",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderDebugMode",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderDebugData",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "data",
-                  "type": {
-                    "text": "any"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "toggleDebugData",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "bindComponents",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": "Promise<void>"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "bindings",
-                  "type": {
-                    "text": "IComponentBinding[]"
-                  },
-                  "description": "the bindings to perform"
-                }
-              ],
-              "description": "Binds all connected to the current one by listening all required events.\r\nThe method will wait for the component to be present on the page after a predefined timeout (default 5000ms)",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "unbindComponents",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "bindings",
-                  "type": {
-                    "text": "IComponentBinding[]"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getTheme",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "Get CSS variables values for the component predefined variables",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getLocalizedString",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "string",
-                  "type": {
-                    "text": "ILocalizedString | string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setFASTColors",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "hasPropertyUpdated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "PropertyValueMap<any>"
-                  }
-                },
-                {
-                  "name": "propertyName",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "fireCustomEvent",
-              "return": {
-                "type": {
-                  "text": "*"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "eventName",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "detail",
-                  "optional": true,
-                  "type": {
-                    "text": "*"
-                  }
-                },
-                {
-                  "name": "bubbles",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                },
-                {
-                  "name": "cancelable",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                },
-                {
-                  "name": "composed",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ],
-              "description": "Override of default method to support 'composed' flag",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "timeoutPromise",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "promise",
-                  "type": {
-                    "text": "Promise<unknown>"
-                  },
-                  "description": "the promise to timeout"
-                },
-                {
-                  "name": "timeout",
-                  "type": {
-                    "text": "number"
-                  },
-                  "description": "the timeout delay"
-                },
-                {
-                  "name": "exception",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "the exception raised if any error occures"
-                }
-              ],
-              "description": "Allows a promise to be timeout \r\nhttps://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "waitForElement",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "binding",
-                  "type": {
-                    "text": "IComponentBinding"
-                  },
-                  "description": "the binding detail"
-                },
-                {
-                  "name": "timeout",
-                  "optional": true,
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Waits for a component to be present on the page and initialized to perform event binding",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "value",
-              "type": {
-                "text": "IDataSourceData"
-              },
-              "fieldName": "value"
-            },
-            {
-              "name": "theme",
-              "fieldName": "theme",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "name": "enable-debug",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable the debug to explore data from context",
-              "fieldName": "enableDebugMode",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
-              "fieldName": "isInitialized",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "BaseComponent",
-            "module": "/src/components/BaseComponent"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MonacoEditorComponent",
-          "declaration": {
-            "name": "MonacoEditorComponent",
-            "module": "src/components/monaco-editor/MonacoEditorComponent.ts"
           }
         }
       ]
@@ -4732,60 +4268,33 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/search-infos/SearchInfosComponents.ts",
+      "path": "src/components/monaco-editor/MonacoEditorComponent.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "SearchInfosComponents",
+          "name": "MonacoEditorComponent",
           "members": [
             {
               "kind": "field",
-              "name": "searchResultsComponentIds",
+              "name": "value",
               "type": {
-                "text": "string[]"
+                "text": "IDataSourceData"
               },
-              "default": "[]",
-              "attribute": "search-results-ids"
+              "attribute": "value"
             },
             {
               "kind": "field",
-              "name": "searchInputComponentId",
+              "name": "editor",
               "type": {
-                "text": "string"
+                "text": "editor.IStandaloneCodeEditor"
               },
-              "description": "The search input component ID if connected to a search input",
-              "attribute": "search-input-id"
-            },
-            {
-              "kind": "field",
-              "name": "searchResultsEventData",
-              "type": {
-                "text": "ISearchResultsEventData"
-              },
-              "default": "{\r\n        availableFilters: [],\r\n        resultsCount: undefined,\r\n        submittedQueryText: undefined\r\n    }"
-            },
-            {
-              "kind": "field",
-              "name": "strings",
-              "type": {
-                "text": "{ [x: string]: any ; }"
-              },
-              "privacy": "protected",
-              "readonly": true
+              "default": "null"
             },
             {
               "kind": "method",
-              "name": "handleSearchResultsInfos",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "CustomEvent<ISearchResultsEventData>"
-                  }
-                }
-              ]
+              "name": "createEditor",
+              "privacy": "private"
             },
             {
               "kind": "field",
@@ -5163,20 +4672,11 @@
           ],
           "attributes": [
             {
-              "name": "search-results-ids",
+              "name": "value",
               "type": {
-                "text": "string[]"
+                "text": "IDataSourceData"
               },
-              "default": "[]",
-              "fieldName": "searchResultsComponentIds"
-            },
-            {
-              "name": "search-input-id",
-              "type": {
-                "text": "string"
-              },
-              "description": "The search input component ID if connected to a search input",
-              "fieldName": "searchInputComponentId"
+              "fieldName": "value"
             },
             {
               "name": "theme",
@@ -5222,10 +4722,10 @@
       "exports": [
         {
           "kind": "js",
-          "name": "SearchInfosComponents",
+          "name": "MonacoEditorComponent",
           "declaration": {
-            "name": "SearchInfosComponents",
-            "module": "src/components/search-infos/SearchInfosComponents.ts"
+            "name": "MonacoEditorComponent",
+            "module": "src/components/monaco-editor/MonacoEditorComponent.ts"
           }
         }
       ]
@@ -6713,6 +6213,506 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/search-infos/SearchInfosComponents.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchInfosComponents",
+          "members": [
+            {
+              "kind": "field",
+              "name": "searchResultsComponentIds",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "attribute": "search-results-ids"
+            },
+            {
+              "kind": "field",
+              "name": "searchInputComponentId",
+              "type": {
+                "text": "string"
+              },
+              "description": "The search input component ID if connected to a search input",
+              "attribute": "search-input-id"
+            },
+            {
+              "kind": "field",
+              "name": "searchResultsEventData",
+              "type": {
+                "text": "ISearchResultsEventData"
+              },
+              "default": "{\r\n        availableFilters: [],\r\n        resultsCount: undefined,\r\n        submittedQueryText: undefined\r\n    }"
+            },
+            {
+              "kind": "field",
+              "name": "strings",
+              "type": {
+                "text": "{ [x: string]: any ; }"
+              },
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "handleSearchResultsInfos",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "CustomEvent<ISearchResultsEventData>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "theme",
+              "attribute": "theme",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "enableDebugMode",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable the debug to explore data from context",
+              "attribute": "enable-debug",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "renderedOnce",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flag indicating if data have been rendered at least once",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showDebugData",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isInitialized",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
+              "attribute": "initialized",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_eventHanlders",
+              "type": {
+                "text": "Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>"
+              },
+              "privacy": "public",
+              "default": "new Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>()",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "componentError",
+              "type": {
+                "text": "Error"
+              },
+              "privacy": "public",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "static": true,
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "themeStyles",
+              "static": true,
+              "description": "Returns styles from theme (i.e. define CSS variables)",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderDebugMode",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderDebugData",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "data",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggleDebugData",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "bindComponents",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "bindings",
+                  "type": {
+                    "text": "IComponentBinding[]"
+                  },
+                  "description": "the bindings to perform"
+                }
+              ],
+              "description": "Binds all connected to the current one by listening all required events.\r\nThe method will wait for the component to be present on the page after a predefined timeout (default 5000ms)",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "unbindComponents",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "bindings",
+                  "type": {
+                    "text": "IComponentBinding[]"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "Get CSS variables values for the component predefined variables",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getLocalizedString",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "string",
+                  "type": {
+                    "text": "ILocalizedString | string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setFASTColors",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "hasPropertyUpdated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "PropertyValueMap<any>"
+                  }
+                },
+                {
+                  "name": "propertyName",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "fireCustomEvent",
+              "return": {
+                "type": {
+                  "text": "*"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "eventName",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "detail",
+                  "optional": true,
+                  "type": {
+                    "text": "*"
+                  }
+                },
+                {
+                  "name": "bubbles",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "cancelable",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "composed",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ],
+              "description": "Override of default method to support 'composed' flag",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "timeoutPromise",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "promise",
+                  "type": {
+                    "text": "Promise<unknown>"
+                  },
+                  "description": "the promise to timeout"
+                },
+                {
+                  "name": "timeout",
+                  "type": {
+                    "text": "number"
+                  },
+                  "description": "the timeout delay"
+                },
+                {
+                  "name": "exception",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "the exception raised if any error occures"
+                }
+              ],
+              "description": "Allows a promise to be timeout \r\nhttps://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "waitForElement",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "binding",
+                  "type": {
+                    "text": "IComponentBinding"
+                  },
+                  "description": "the binding detail"
+                },
+                {
+                  "name": "timeout",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Waits for a component to be present on the page and initialized to perform event binding",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "search-results-ids",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "fieldName": "searchResultsComponentIds"
+            },
+            {
+              "name": "search-input-id",
+              "type": {
+                "text": "string"
+              },
+              "description": "The search input component ID if connected to a search input",
+              "fieldName": "searchInputComponentId"
+            },
+            {
+              "name": "theme",
+              "fieldName": "theme",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "name": "enable-debug",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable the debug to explore data from context",
+              "fieldName": "enableDebugMode",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "name": "initialized",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
+              "fieldName": "isInitialized",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "BaseComponent",
+            "module": "/src/components/BaseComponent"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchInfosComponents",
+          "declaration": {
+            "name": "SearchInfosComponents",
+            "module": "src/components/search-infos/SearchInfosComponents.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/search-verticals/SearchVerticalsComponent.ts",
       "declarations": [
         {
@@ -7967,188 +7967,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/exports/define/pnp-adaptive-card.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "AdaptiveCardComponent",
-            "module": "/src/components/adaptive-card/AdaptiveCardComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-checkbox-filter.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "CheckboxFilterComponent",
-            "module": "/src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-date-filter.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "DateFilterComponent",
-            "module": "/src/components/search-filters/sub-components/filters/date-filter/DateFilterComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-error-message.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "ErrorMessageComponent",
-            "module": "/src/components/search-results/sub-components/error-message/ErrorMessageComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-language-provider.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "LanguageProviderComponent",
-            "module": "/src/components/language-provider/LanguageProviderComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-pagination.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "PaginationComponent",
-            "module": "/src/components/search-results/sub-components/pagination/PaginationComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-filters.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchFiltersComponent",
-            "module": "/src/components/search-filters/SearchFiltersComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-infos.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchInfosComponents",
-            "module": "/src/components/search-infos/SearchInfosComponents"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-input.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchInputComponent",
-            "module": "/src/components/search-input/SearchInputComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-results.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchResultsComponent",
-            "module": "/src/components/search-results/SearchResultsComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-sort.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchSortComponent",
-            "module": "/src/components/search-filters/sub-components/search-sort/SearchSortComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-search-verticals.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "SearchVerticalsComponent",
-            "module": "/src/components/search-verticals/SearchVerticalsComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/exports/define/pnp-video-player.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "VideoPlayerComponent",
-            "module": "/src/components/video-player/VideoPlayerComponent"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/models/common/BuiltinTemplate.ts",
       "declarations": [],
       "exports": []
@@ -8329,6 +8147,188 @@
       "path": "src/models/search/IResultTemplates.ts",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-adaptive-card.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "AdaptiveCardComponent",
+            "module": "/src/components/adaptive-card/AdaptiveCardComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-checkbox-filter.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "CheckboxFilterComponent",
+            "module": "/src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-date-filter.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "DateFilterComponent",
+            "module": "/src/components/search-filters/sub-components/filters/date-filter/DateFilterComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-error-message.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "ErrorMessageComponent",
+            "module": "/src/components/search-results/sub-components/error-message/ErrorMessageComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-language-provider.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "LanguageProviderComponent",
+            "module": "/src/components/language-provider/LanguageProviderComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-pagination.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "PaginationComponent",
+            "module": "/src/components/search-results/sub-components/pagination/PaginationComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-filters.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchFiltersComponent",
+            "module": "/src/components/search-filters/SearchFiltersComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-infos.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchInfosComponents",
+            "module": "/src/components/search-infos/SearchInfosComponents"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-input.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchInputComponent",
+            "module": "/src/components/search-input/SearchInputComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-results.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchResultsComponent",
+            "module": "/src/components/search-results/SearchResultsComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-sort.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchSortComponent",
+            "module": "/src/components/search-filters/sub-components/search-sort/SearchSortComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-search-verticals.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "SearchVerticalsComponent",
+            "module": "/src/components/search-verticals/SearchVerticalsComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/exports/define/pnp-video-player.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "VideoPlayerComponent",
+            "module": "/src/components/video-player/VideoPlayerComponent"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
@@ -11826,859 +11826,24 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent.ts",
+      "path": "src/components/search-filters/sub-components/search-sort/tests/mocks.ts",
       "declarations": [
         {
-          "kind": "class",
-          "description": "",
-          "name": "CheckboxFilterComponent",
-          "members": [
-            {
-              "kind": "field",
-              "name": "searchKeyword",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "filteredValues",
-              "type": {
-                "text": "IDataFilterResultValue[]"
-              },
-              "default": "[]",
-              "description": "List of filtered values"
-            },
-            {
-              "kind": "field",
-              "name": "startOffset",
-              "type": {
-                "text": "number"
-              },
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "pageSize",
-              "type": {
-                "text": "number"
-              },
-              "description": "Number of items to be displayed in the menu. Limit this number to increase performances",
-              "default": "50"
-            },
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "static": true,
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderFilterContent",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              },
-              "description": "The filter content to be implemented by concrete classes",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "strings",
-              "type": {
-                "text": "{ [x: string]: string; }"
-              },
-              "privacy": "protected",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "filterValues",
-              "privacy": "public",
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "sortBySelectedValues",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "filters",
-                  "type": {
-                    "text": "IDataFilterResultValue[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "highlightMatches",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "clearSearchKeywords",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "onScroll",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "getFilterAggregation",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "IDataFilterAggregation"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "name",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "filter",
-              "type": {
-                "text": "IDataFilterResult"
-              },
-              "description": "Filter information to display",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "filterConfiguration",
-              "type": {
-                "text": "IDataFilterConfiguration"
-              },
-              "description": "Filter confguration",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Flag indicating if the filter should be disabled",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "onFilterUpdated",
-              "type": {
-                "text": "(filterName: string, filterValue: IDataFilterValue, selected: boolean) => void"
-              },
-              "description": "Callback function when a filter is selected",
-              "attribute": "onFilterUpdated",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "onApplyFilters",
-              "type": {
-                "text": "(filterName: string) => void"
-              },
-              "description": "Callback function when filters are submitted",
-              "attribute": "onApplyFilters",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isExpanded",
-              "type": {
-                "text": "boolean"
-              },
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selectedValues",
-              "type": {
-                "text": "IDataFilterValue[]"
-              },
-              "default": "[]",
-              "description": "The current selected values in the component",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "submittedFilterValues",
-              "type": {
-                "text": "IDataFilterValue[]"
-              },
-              "privacy": "public",
-              "description": "The submitted filter values",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "localizedFilterName",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "protected",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "canApplyValues",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "protected",
-              "description": "Flag indicating if the selected values can be applied as filters",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "resetSelectedValues",
-              "privacy": "protected",
-              "description": "Reset all selected values for the current filter in the UI.\r\nCan be called from parent components",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "clearSelectedValues",
-              "privacy": "public",
-              "parameters": [
-                {
-                  "name": "preventApply",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  },
-                  "description": "Set true if you want to prevent new values to be submitted for that filter"
-                }
-              ],
-              "description": "Clear all selected values in the UI and submit empty filters to connected components",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "onItemUpdated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "filterValue",
-                  "type": {
-                    "text": "IDataFilterValue"
-                  }
-                },
-                {
-                  "name": "selected",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isSelectedValue",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "applyFilters",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "processAggregations",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "values",
-                  "type": {
-                    "text": "IDataFilterResultValue[]"
-                  },
-                  "description": "the original filter values received from the results"
-                }
-              ],
-              "description": "Process manual filter aggregations according to matched values from configuration",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "closeMenu",
-              "privacy": "public",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "toggleMenu",
-              "privacy": "public",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "blurMenu",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "theme",
-              "attribute": "theme",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "enableDebugMode",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable the debug to explore data from context",
-              "attribute": "enable-debug",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "renderedOnce",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flag indicating if data have been rendered at least once",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "showDebugData",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isInitialized",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
-              "attribute": "initialized",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_eventHanlders",
-              "type": {
-                "text": "Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>"
-              },
-              "privacy": "public",
-              "default": "new Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>()",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "componentError",
-              "type": {
-                "text": "Error"
-              },
-              "privacy": "public",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "themeStyles",
-              "static": true,
-              "description": "Returns styles from theme (i.e. define CSS variables)",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderDebugMode",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderDebugData",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "data",
-                  "type": {
-                    "text": "any"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "toggleDebugData",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "bindComponents",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": "Promise<void>"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "bindings",
-                  "type": {
-                    "text": "IComponentBinding[]"
-                  },
-                  "description": "the bindings to perform"
-                }
-              ],
-              "description": "Binds all connected to the current one by listening all required events.\r\nThe method will wait for the component to be present on the page after a predefined timeout (default 5000ms)",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "unbindComponents",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "bindings",
-                  "type": {
-                    "text": "IComponentBinding[]"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getTheme",
-              "privacy": "protected",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "Get CSS variables values for the component predefined variables",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getLocalizedString",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "string",
-                  "type": {
-                    "text": "ILocalizedString | string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setFASTColors",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "hasPropertyUpdated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "PropertyValueMap<any>"
-                  }
-                },
-                {
-                  "name": "propertyName",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "fireCustomEvent",
-              "return": {
-                "type": {
-                  "text": "*"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "eventName",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "detail",
-                  "optional": true,
-                  "type": {
-                    "text": "*"
-                  }
-                },
-                {
-                  "name": "bubbles",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                },
-                {
-                  "name": "cancelable",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                },
-                {
-                  "name": "composed",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ],
-              "description": "Override of default method to support 'composed' flag",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "timeoutPromise",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "promise",
-                  "type": {
-                    "text": "Promise<unknown>"
-                  },
-                  "description": "the promise to timeout"
-                },
-                {
-                  "name": "timeout",
-                  "type": {
-                    "text": "number"
-                  },
-                  "description": "the timeout delay"
-                },
-                {
-                  "name": "exception",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "the exception raised if any error occures"
-                }
-              ],
-              "description": "Allows a promise to be timeout \r\nhttps://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "waitForElement",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "binding",
-                  "type": {
-                    "text": "IComponentBinding"
-                  },
-                  "description": "the binding detail"
-                },
-                {
-                  "name": "timeout",
-                  "optional": true,
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Waits for a component to be present on the page and initialized to perform event binding",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "BaseFilterComponent",
-            "module": "/src/components/search-filters/sub-components/filters/BaseFilterComponent"
+          "kind": "variable",
+          "name": "sortFieldsConfiguration",
+          "type": {
+            "text": "ISortFieldConfiguration[]"
           },
-          "attributes": [
-            {
-              "name": "onFilterUpdated",
-              "type": {
-                "text": "(filterName: string, filterValue: IDataFilterValue, selected: boolean) => void"
-              },
-              "description": "Callback function when a filter is selected",
-              "fieldName": "onFilterUpdated",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "name": "onApplyFilters",
-              "type": {
-                "text": "(filterName: string) => void"
-              },
-              "description": "Callback function when filters are submitted",
-              "fieldName": "onApplyFilters",
-              "inheritedFrom": {
-                "name": "BaseFilterComponent",
-                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
-              }
-            },
-            {
-              "name": "theme",
-              "fieldName": "theme",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "name": "enable-debug",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable the debug to explore data from context",
-              "fieldName": "enableDebugMode",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            },
-            {
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
-              "fieldName": "isInitialized",
-              "inheritedFrom": {
-                "name": "BaseComponent",
-                "module": "src/components/BaseComponent.ts"
-              }
-            }
-          ]
+          "default": "[\r\n    {\r\n      \"sortField\": \"LastModifiedTime\",\r\n      \"sortDirection\": SortFieldDirection.Descending,\r\n      \"isDefaultSort\": false,\r\n      \"isUserSort\": true,\r\n      \"sortFieldDisplayName\": {\r\n        \"fr-fr\": \"Date de modification\",\r\n        \"default\": \"Last modified\"\r\n      }\r\n    },  \r\n    {\r\n      \"sortField\": \"Created\",\r\n      \"sortDirection\": SortFieldDirection.Ascending,\r\n      \"isDefaultSort\": true,\r\n      \"isUserSort\": true,\r\n      \"sortFieldDisplayName\": {\r\n        \"fr-fr\": \"Date de création\",\r\n        \"default\": \"Created\"\r\n      }\r\n    }\r\n]"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "CheckboxFilterComponent",
+          "name": "sortFieldsConfiguration",
           "declaration": {
-            "name": "CheckboxFilterComponent",
-            "module": "src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent.ts"
+            "name": "sortFieldsConfiguration",
+            "module": "src/components/search-filters/sub-components/search-sort/tests/mocks.ts"
           }
         }
       ]
@@ -13628,24 +12793,859 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/search-filters/sub-components/search-sort/tests/mocks.ts",
+      "path": "src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent.ts",
       "declarations": [
         {
-          "kind": "variable",
-          "name": "sortFieldsConfiguration",
-          "type": {
-            "text": "ISortFieldConfiguration[]"
+          "kind": "class",
+          "description": "",
+          "name": "CheckboxFilterComponent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "searchKeyword",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "filteredValues",
+              "type": {
+                "text": "IDataFilterResultValue[]"
+              },
+              "default": "[]",
+              "description": "List of filtered values"
+            },
+            {
+              "kind": "field",
+              "name": "startOffset",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "pageSize",
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of items to be displayed in the menu. Limit this number to increase performances",
+              "default": "50"
+            },
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "static": true,
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFilterContent",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "description": "The filter content to be implemented by concrete classes",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "strings",
+              "type": {
+                "text": "{ [x: string]: string; }"
+              },
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "filterValues",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "sortBySelectedValues",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "filters",
+                  "type": {
+                    "text": "IDataFilterResultValue[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "highlightMatches",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "clearSearchKeywords",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onScroll",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "getFilterAggregation",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "IDataFilterAggregation"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "name",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "filter",
+              "type": {
+                "text": "IDataFilterResult"
+              },
+              "description": "Filter information to display",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "filterConfiguration",
+              "type": {
+                "text": "IDataFilterConfiguration"
+              },
+              "description": "Filter confguration",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Flag indicating if the filter should be disabled",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "onFilterUpdated",
+              "type": {
+                "text": "(filterName: string, filterValue: IDataFilterValue, selected: boolean) => void"
+              },
+              "description": "Callback function when a filter is selected",
+              "attribute": "onFilterUpdated",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "onApplyFilters",
+              "type": {
+                "text": "(filterName: string) => void"
+              },
+              "description": "Callback function when filters are submitted",
+              "attribute": "onApplyFilters",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isExpanded",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selectedValues",
+              "type": {
+                "text": "IDataFilterValue[]"
+              },
+              "default": "[]",
+              "description": "The current selected values in the component",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "submittedFilterValues",
+              "type": {
+                "text": "IDataFilterValue[]"
+              },
+              "privacy": "public",
+              "description": "The submitted filter values",
+              "default": "[]",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "localizedFilterName",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canApplyValues",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "protected",
+              "description": "Flag indicating if the selected values can be applied as filters",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "resetSelectedValues",
+              "privacy": "protected",
+              "description": "Reset all selected values for the current filter in the UI.\r\nCan be called from parent components",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "clearSelectedValues",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "preventApply",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  },
+                  "description": "Set true if you want to prevent new values to be submitted for that filter"
+                }
+              ],
+              "description": "Clear all selected values in the UI and submit empty filters to connected components",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onItemUpdated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "filterValue",
+                  "type": {
+                    "text": "IDataFilterValue"
+                  }
+                },
+                {
+                  "name": "selected",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isSelectedValue",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "applyFilters",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "processAggregations",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "values",
+                  "type": {
+                    "text": "IDataFilterResultValue[]"
+                  },
+                  "description": "the original filter values received from the results"
+                }
+              ],
+              "description": "Process manual filter aggregations according to matched values from configuration",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "closeMenu",
+              "privacy": "public",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggleMenu",
+              "privacy": "public",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "blurMenu",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "theme",
+              "attribute": "theme",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "enableDebugMode",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable the debug to explore data from context",
+              "attribute": "enable-debug",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "renderedOnce",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flag indicating if data have been rendered at least once",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showDebugData",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isInitialized",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
+              "attribute": "initialized",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_eventHanlders",
+              "type": {
+                "text": "Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>"
+              },
+              "privacy": "public",
+              "default": "new Map<string, {component: HTMLElement, event: string, handler: EventHandler<any>}>()",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "componentError",
+              "type": {
+                "text": "Error"
+              },
+              "privacy": "public",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "themeStyles",
+              "static": true,
+              "description": "Returns styles from theme (i.e. define CSS variables)",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderDebugMode",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderDebugData",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "data",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggleDebugData",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "bindComponents",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "bindings",
+                  "type": {
+                    "text": "IComponentBinding[]"
+                  },
+                  "description": "the bindings to perform"
+                }
+              ],
+              "description": "Binds all connected to the current one by listening all required events.\r\nThe method will wait for the component to be present on the page after a predefined timeout (default 5000ms)",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "unbindComponents",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "bindings",
+                  "type": {
+                    "text": "IComponentBinding[]"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "Get CSS variables values for the component predefined variables",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getLocalizedString",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "string",
+                  "type": {
+                    "text": "ILocalizedString | string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setFASTColors",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "hasPropertyUpdated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "PropertyValueMap<any>"
+                  }
+                },
+                {
+                  "name": "propertyName",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "fireCustomEvent",
+              "return": {
+                "type": {
+                  "text": "*"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "eventName",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "detail",
+                  "optional": true,
+                  "type": {
+                    "text": "*"
+                  }
+                },
+                {
+                  "name": "bubbles",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "cancelable",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "composed",
+                  "default": "false",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ],
+              "description": "Override of default method to support 'composed' flag",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "timeoutPromise",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "promise",
+                  "type": {
+                    "text": "Promise<unknown>"
+                  },
+                  "description": "the promise to timeout"
+                },
+                {
+                  "name": "timeout",
+                  "type": {
+                    "text": "number"
+                  },
+                  "description": "the timeout delay"
+                },
+                {
+                  "name": "exception",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "the exception raised if any error occures"
+                }
+              ],
+              "description": "Allows a promise to be timeout \r\nhttps://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "waitForElement",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "binding",
+                  "type": {
+                    "text": "IComponentBinding"
+                  },
+                  "description": "the binding detail"
+                },
+                {
+                  "name": "timeout",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Waits for a component to be present on the page and initialized to perform event binding",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "BaseFilterComponent",
+            "module": "/src/components/search-filters/sub-components/filters/BaseFilterComponent"
           },
-          "default": "[\r\n    {\r\n      \"sortField\": \"LastModifiedTime\",\r\n      \"sortDirection\": SortFieldDirection.Descending,\r\n      \"isDefaultSort\": false,\r\n      \"isUserSort\": true,\r\n      \"sortFieldDisplayName\": {\r\n        \"fr-fr\": \"Date de modification\",\r\n        \"default\": \"Last modified\"\r\n      }\r\n    },  \r\n    {\r\n      \"sortField\": \"Created\",\r\n      \"sortDirection\": SortFieldDirection.Ascending,\r\n      \"isDefaultSort\": true,\r\n      \"isUserSort\": true,\r\n      \"sortFieldDisplayName\": {\r\n        \"fr-fr\": \"Date de création\",\r\n        \"default\": \"Created\"\r\n      }\r\n    }\r\n]"
+          "attributes": [
+            {
+              "name": "onFilterUpdated",
+              "type": {
+                "text": "(filterName: string, filterValue: IDataFilterValue, selected: boolean) => void"
+              },
+              "description": "Callback function when a filter is selected",
+              "fieldName": "onFilterUpdated",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "name": "onApplyFilters",
+              "type": {
+                "text": "(filterName: string) => void"
+              },
+              "description": "Callback function when filters are submitted",
+              "fieldName": "onApplyFilters",
+              "inheritedFrom": {
+                "name": "BaseFilterComponent",
+                "module": "src/components/search-filters/sub-components/filters/BaseFilterComponent.ts"
+              }
+            },
+            {
+              "name": "theme",
+              "fieldName": "theme",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "name": "enable-debug",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable the debug to explore data from context",
+              "fieldName": "enableDebugMode",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            },
+            {
+              "name": "initialized",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Property indicating the component has finished its initialization squence, for instance setting default values than can be read from other component\r\nThis property is set as reflected attribute to be able to trigger a mutation for consumer components",
+              "fieldName": "isInitialized",
+              "inheritedFrom": {
+                "name": "BaseComponent",
+                "module": "src/components/BaseComponent.ts"
+              }
+            }
+          ]
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "sortFieldsConfiguration",
+          "name": "CheckboxFilterComponent",
           "declaration": {
-            "name": "sortFieldsConfiguration",
-            "module": "src/components/search-filters/sub-components/search-sort/tests/mocks.ts"
+            "name": "CheckboxFilterComponent",
+            "module": "src/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent.ts"
           }
         }
       ]
@@ -13685,6 +13685,14 @@
             "text": "object"
           },
           "default": "{\r\n    ...baseFilterConfiguration,\r\n    aggregations: [\r\n        {\r\n          \"aggregationName\":{\r\n              \"default\":\"Word document\",\r\n              \"fr-fr\":\"Document Word\",\r\n              \"ro-ro\":\"document Word\"\r\n          },\r\n          \"matchingValues\":[\r\n              \"docx\",\r\n              \"doc\",\r\n              \"docm\"\r\n          ],\r\n          \"aggregationValue\":\"or(\\\"docx\\\",\\\"doc\\\",\\\"docm\\\")\",\r\n          \"aggregationValueIconUrl\":\"https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/docx.svg\"\r\n        }\r\n    ]\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "aggregatedFilterConfigurationWithRegex",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\r\n  ...baseFilterConfiguration,\r\n  aggregations: [\r\n      {\r\n        \"aggregationName\":{\r\n            \"default\":\"Word and PowerPoint documents\",\r\n        },\r\n        \"matchingValues\":[\r\n            \"/^(docx|docm|doc|pptx)$/\",\r\n        ],\r\n        \"aggregationValue\":\"or(\\\"docx\\\",\\\"doc\\\",\\\"docm\\\",\\\"pptx\\\")\",\r\n        \"aggregationValueIconUrl\":\"\"\r\n      }\r\n  ]\r\n}"
         }
       ],
       "exports": [
@@ -13717,6 +13725,14 @@
           "name": "aggregatedFilterConfiguration",
           "declaration": {
             "name": "aggregatedFilterConfiguration",
+            "module": "src/components/search-filters/sub-components/filters/checkbox-filter/tests/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "aggregatedFilterConfigurationWithRegex",
+          "declaration": {
+            "name": "aggregatedFilterConfigurationWithRegex",
             "module": "src/components/search-filters/sub-components/filters/checkbox-filter/tests/mocks.ts"
           }
         }

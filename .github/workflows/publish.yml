@@ -130,7 +130,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: pnp-modern-search-core-spfx-$SEMVER
+          name: pnp-modern-search-core-spfx
           path: ${{ github.workspace }}/**/*.sppkg
 
   release_spfx:
@@ -149,7 +149,7 @@ jobs:
       
       - uses: actions/download-artifact@v3
         with:
-          name: pnp-modern-search-core-spfx-$SEMVER
+          name: pnp-modern-search-core-spfx
     
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
