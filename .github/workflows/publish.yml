@@ -119,7 +119,7 @@ jobs:
 
       - name: Build
         run: |
-          npx lerna run build --scope pnp-modern-search-core
+          npx lerna run build --scope @pnp/modern-search-core
 
       - name: Build + bundle SPFx
         working-directory: ./packages/spfx
