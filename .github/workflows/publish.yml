@@ -255,8 +255,21 @@ jobs:
         env:
           CURRENT_VERSION: ${{ steps.package-version.outputs.currentVersion }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          CURRENT_BRANCH: ${{ github.ref }}
         if: $CURRENT_VERSION != ${{ needs.version.outputs.semver }}
         run: |
-          npm publish --access=public
+          if [ "$CURRENT_BRANCH" == "refs/heads/develop" ]
+          then
+            npm publish --access=public --tag alpha
+          else
+            if [[ "$CURRENT_BRANCH" == *"refs/heads/release"* ]]
+            then
+              npm publish --access=public --tag beta
+            else
+              npm publish --access=public
+            fi
+          fi
+
+          
 
          
