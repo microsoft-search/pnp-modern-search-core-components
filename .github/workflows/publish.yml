@@ -220,7 +220,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build_dist
-          path: ${{ github.workspace }}/packages/components
+          path: |
+            ${{ github.workspace }}/packages/components
+            !${{ github.workspace }}/**/node_modules
+            !${{ github.workspace }}/**/.pnpm-store
+            !${{ github.workspace }}/**/.vscode
+            !${{ github.workspace }}/**/.storybook
 
   publish_components:
     runs-on: ubuntu-latest
