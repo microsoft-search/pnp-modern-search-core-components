@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ISearchFiltersProps } from './ISearchFiltersProps';
-import { SearchFiltersComponent } from 'pnp-modern-search-core';
+import { SearchFiltersComponent } from '@pnp/modern-search-core';
 import { wrapWc } from 'wc-react';
 import parse, {  } from 'html-react-parser';
 import { isEqual } from '@microsoft/sp-lodash-subset';
 import { Guid } from '@microsoft/sp-core-library';
-import { ComponentElements } from 'pnp-modern-search-core/dist/es6/common/Constants';
-import { CheckboxFilterComponent } from 'pnp-modern-search-core/dist/es6/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent';
+import { ComponentElements } from '@pnp/modern-search-core/dist/es6/common/Constants';
+import { CheckboxFilterComponent } from '@pnp/modern-search-core/dist/es6/components/search-filters/sub-components/filters/checkbox-filter/CheckboxFilterComponent';
 
 const SearchFiltersWebComponent = wrapWc<SearchFiltersComponent>('pnp-search-filters');
 

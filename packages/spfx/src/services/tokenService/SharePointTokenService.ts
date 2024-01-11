@@ -4,9 +4,9 @@
 import { ServiceKey, ServiceScope, Log } from "@microsoft/sp-core-library";
 import { PageContext } from '@microsoft/sp-page-context';
 import { SPHttpClient } from '@microsoft/sp-http';
-import { DateHelper } from 'pnp-modern-search-core/dist/es6/helpers/DateHelper';
+import { DateHelper } from '@pnp/modern-search-core/dist/es6/helpers/DateHelper';
 import { Constants } from "../../common/Constants";
-import { ObjectHelper } from 'pnp-modern-search-core/dist/es6/helpers/ObjectHelper';
+import { ObjectHelper } from '@pnp/modern-search-core/dist/es6/helpers/ObjectHelper';
 import { isEmpty, uniq } from "@microsoft/sp-lodash-subset";
 import { IProfileProperties, ISharePointTokenService } from "./ISharePointTokenService";
 

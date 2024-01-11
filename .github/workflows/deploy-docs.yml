@@ -101,7 +101,7 @@ jobs:
               gulp set-version --semver $VERSION
         
           - name: Build Storybook
-            run: npx lerna run docs:build --scope=pnp-modern-search-core
+            run: npx lerna run docs:build --scope=@pnp/modern-search-core
 
           - name: Run PowerShell deployment
             shell: pwsh

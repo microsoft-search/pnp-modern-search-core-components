@@ -19,7 +19,7 @@ All script parameters are managed trhough a PowerShell script with the following
 
 To deploy from your local machine:
 
-1. From the solution root folder, run `npx lerna run bundle:prod --scope=pnp-modern-search-core`. This will bundle the components in production mode.
+1. From the solution root folder, run `npx lerna run bundle:prod --scope=@pnp/modern-search-core`. This will bundle the components in production mode.
 1. From the `/deploy` folder run the `deploy.ps1` script:
 
     `.\deploy.ps1 -Manual -Environement LOCAL -Version 0.0.0`
@@ -47,7 +47,7 @@ To deploy the Storybook documentation, follow these steps:
 
 1. From the solution root folder, run:
     
-    `npx lerna run docs:build --scope=pnp-modern-search-core`
+    `npx lerna run docs:build --scope=@pnp/modern-search-core`
 
 1. From the `/deploy` folder run the `deploy.ps1` script:
 

@@ -5,7 +5,7 @@ import { fixture, assert, html, expect, elementUpdated, defineCE, unsafeStatic }
 import { CheckboxFilterComponent } from "../CheckboxFilterComponent";
 import { strings as stringsFr } from "../../../../../../loc/strings.fr-fr";
 import { strings as stringsEn } from "../../../../../../loc/strings.default";
-import { aggregatedFilterConfiguration, aggregatedFilterResults, baseFilterConfiguration, basefilterResults } from "./mocks";
+import { aggregatedFilterConfiguration, aggregatedFilterConfigurationWithRegex, aggregatedFilterResults, baseFilterConfiguration, basefilterResults } from "./mocks";
 import sinon from "sinon";
 
 //#region Spies
@@ -128,6 +128,32 @@ describe("pnp-checkbox-filter ", () => {
 
         // Should have the correct img URL
         assert.equal(getFilterItemIconByName("Word document", el)?.src, "https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/48/docx.svg");
+      });
+
+      it ("should support filter value aggregations using regular expressions", async () => {
+        
+        const el: CheckboxFilterComponent = await fixture(
+          html`
+            <${tagBaseCheckboxFilter}
+              .filter=${aggregatedFilterResults}
+              .filterConfiguration=${aggregatedFilterConfigurationWithRegex}
+              .onFilterUpdated=${() => {return;}} 
+              .onApplyFilters=${onApplyFiltersSpy}
+            >
+            </${tagBaseCheckboxFilter}>
+        `);
+
+        const aggregatedValue = getFilterItemValueByName("Word and PowerPoint documents", el);               
+        // One aggregated value 
+        assert.equal(getMenuItems(el)?.length, 1);
+        assert.isNotNull(aggregatedValue);
+
+        // Filter value should correctly aggregated
+        assert.equal(aggregatedValue?.getAttribute("data-ref-count"), "225");
+        assert.equal(aggregatedValue?.getAttribute("data-ref-value"), "or(\"docx\",\"doc\",\"docm\",\"pptx\")");
+
+        // Should have the "Word document aggregation in the UI
+        expect(getFilterItemValueByName("Word and PowerPoint documents", el)?.innerText).to.contains("Word and PowerPoint documents");
       });
 
       after(async () => {

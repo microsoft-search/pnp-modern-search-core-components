@@ -1,8 +1,8 @@
 import * as React from "react";
 import { IFormBuilderProps } from "./IFormBuilderProps";
 import { IFormBuilderState } from "./IFormBuilderState";
-import { ObjectHelper } from "pnp-modern-search-core/dist/es6/helpers/ObjectHelper";
-import { ILocalizedString } from "pnp-modern-search-core/dist/es6/models/common/ILocalizedString";
+import { ObjectHelper } from "@pnp/modern-search-core/dist/es6/helpers/ObjectHelper";
+import { ILocalizedString } from "@pnp/modern-search-core/dist/es6/models/common/ILocalizedString";
 import { TextField, Dropdown, Toggle, ChoiceGroup, Slider, Stack, IDropdown } from "office-ui-fabric-react";
 import { ConfigurationFieldType, IConfigurationTabField } from "../ConfigurationPanel/IConfigurationTabField";
 import { LocalizedField } from "../LocalizedTextField/LocalizedField";

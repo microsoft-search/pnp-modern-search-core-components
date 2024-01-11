@@ -6,13 +6,13 @@ import * as ReactDom from 'react-dom';
 import * as React from 'react';
 import { IPropertyPaneFiltersConfigurationProps } from './IPropertyPaneFiltersConfigurationProps';
 import { IPropertyPaneFiltersConfigurationInternalProps } from './IPropertyPaneFiltersConfigurationInternalProps';
-import { FilterSortDirection, FilterSortType, IDataFilterAggregation, IDataFilterConfiguration } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
-import { BuiltinFilterTemplates } from 'pnp-modern-search-core/dist/es6/models/common/BuiltinTemplate';
-import { FilterConditionOperator } from 'pnp-modern-search-core/dist/es6/models/common/IDataFilter';
-import { ITextFieldProps, IChoiceGroupOptionProps, IToggleProps, ISliderProps, IDropdownProps } from 'office-ui-fabric-react';
+import { FilterSortDirection, FilterSortType, IDataFilterAggregation, IDataFilterConfiguration } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
+import { BuiltinFilterTemplates } from '@pnp/modern-search-core/dist/es6/models/common/BuiltinTemplate';
+import { FilterConditionOperator } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilter';
+import { ITextFieldProps, IChoiceGroupOptionProps, IToggleProps, ISliderProps, IDropdownProps, MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import { isEmpty, isEqual } from '@microsoft/sp-lodash-subset';
-import { LocalizedStringHelper } from 'pnp-modern-search-core/dist/es6/helpers/LocalizedStringHelper';
-import { ILocalizedString } from 'pnp-modern-search-core/dist/es6/models/common/ILocalizedString';
+import { LocalizedStringHelper } from '@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper';
+import { ILocalizedString } from '@pnp/modern-search-core/dist/es6/models/common/ILocalizedString';
 import { ConfigurationPanel } from '../../controls/ConfigurationPanel/ConfigurationPanel';
 import { IConfigurationTab } from '../../controls/ConfigurationPanel/IConfigurationTab';
 import { IConfigurationTabField, ConfigurationFieldType } from '../../controls/ConfigurationPanel/IConfigurationTabField';
@@ -233,7 +233,18 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                         formConfiguration: [
                                             {
                                                 type: ConfigurationFieldType.TextField,
-                                                targetProperty: null
+                                                targetProperty: null,
+                                                props: {
+                                                    onRenderDescription: (props: ITextFieldProps): JSX.Element => {
+                                                        if (/^\/.+\/$/gi.test(props.defaultValue)) {
+                                                            return  <MessageBar messageBarType={MessageBarType.warning} isMultiline={false} styles={{ root: { marginTop: 5 }}}>
+                                                                        Regular expression
+                                                                    </MessageBar>
+                                                        }
+
+                                                        return null;
+                                                      }
+                                                } as ITextFieldProps
                                             }
                                         ],
                                         newRowDefaultObject: () => "",

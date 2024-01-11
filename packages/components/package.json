@@ -1,7 +1,6 @@
 {
-  "name": "pnp-modern-search-core",
-  "private": false,
-  "version": "0.1.0",
+  "name": "@pnp/modern-search-core",
+  "version": "8.0.0",
   "description": "PnP Modern Search - Core Components",
   "main": "dist/es6/exports/index.js",
   "files": [
@@ -47,7 +46,24 @@
     "lit"
   ],
   "author": "Ubisoft",
-  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft-search/pnp-modern-search-core-components"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft-search/pnp-modern-search-core-components/issues"
+  },
+  "homepage": "https://microsoft-search.github.io/pnp-modern-search-core-components/",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "FranckyC",
+      "email": "franck.cornu@ubisoft.com"
+    }
+  ],
+  "contributors": [
+    "Cornu, Franck <franck.cornu@outlook.com>"
+  ],
   "dependencies": {
     "@azure/msal-browser": "2.33.0",
     "@fluentui/web-components": "^2.5.12",
@@ -73,8 +89,7 @@
     "jspath": "0.4.0",
     "lit": "^2.7.5",
     "lodash-es": "4.17.21",
-    "markdown-it": "13.0.1",
-    "playwright": "^1.36.2"
+    "markdown-it": "13.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.22.7",
@@ -128,6 +143,8 @@
     "postcss-loader": "7.0.1",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "7.8.3",
+    "puppeteer": "^20.0.0",
+    "puppeteer-core": "^20.0.0",
     "prettier": "2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",

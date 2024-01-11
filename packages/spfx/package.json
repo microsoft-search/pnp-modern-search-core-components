@@ -1,5 +1,5 @@
 {
-  "name": "pnp-modern-search-core-spfx",
+  "name": "@pnp/modern-search-core-spfx",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -32,7 +32,7 @@
     "@monaco-editor/react": "^4.5.1",
     "@pnp/spfx-controls-react": "3.15.0",
     "@pnp/spfx-property-controls": "3.1.0",
-    "pnp-modern-search-core": "workspace:*",
+    "@pnp/modern-search-core": "workspace:*",
     "@pnp/telemetry-js": "2.0.0",
     "dompurify": "3.0.5",
     "html-react-parser": "4.2.1",

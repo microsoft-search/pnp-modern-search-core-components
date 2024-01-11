@@ -270,16 +270,31 @@ export abstract class BaseFilterComponent extends BaseComponent {
 
         if (this.filterConfiguration.aggregations) {
 
+            const matchValue = (matchingValue: string, filterValue: string): boolean => {
+
+                if (/^\/.+\/$/gi.test(matchingValue)) {
+                   // Matching value interpreted as regular expression
+                   return new RegExp(matchingValue.slice(1, -1), "gi").test(filterValue);
+               } else {
+                   // Matching value interpreted as normal string
+                   return new RegExp(`${filterValue}`,"gi").test(matchingValue);
+               }
+            };
+
             this.filterConfiguration.aggregations.forEach(aggregation => {
 
                 // Get all matching values 
                 const matchingValues = filteredValues.filter(value => {
-                    return aggregation.matchingValues.indexOf(value.name) > -1;
+                    return aggregation.matchingValues.some(v => {
+                        return matchValue(v, value.name);        
+                    });
                 });
 
                 // Remove all values matching the aggregation
                 filteredValues = filteredValues.filter(value => {
-                    return aggregation.matchingValues.indexOf(value.name) === -1;
+                    return !aggregation.matchingValues.some(v => {
+                        return matchValue(v, value.name);      
+                    });
                 });
 
                 if (matchingValues.length > 0) {

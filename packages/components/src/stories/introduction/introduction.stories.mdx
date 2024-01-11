@@ -28,22 +28,22 @@ Include the following script in your HTML page:
 <Source
     dark
     language="html"
-    code={`<script src="https://www.unpkg.com/pnp-modern-search-core@${PACKAGE_VERSION}/dist/bundle/main.js"></script>`}
+    code={`<script src="https://www.unpkg.com/@pnp/modern-search-core@${PACKAGE_VERSION}/dist/bundle/main.js"></script>`}
 />
 
 > Components are registered automatically on the page when the package is imported.
 
 ### Via npm package
 
-The npm package `pnp-modern-search-core` is available in npm to be used in you application
+The npm package `@pnp/modern-search-core` is available in npm to be used in you application
 
 ### Installation
 
-`npm i --save pnp-modern-search-core`
+`npm i --save @pnp/modern-search-core`
 
 ### Side effects
 
-The `pnp-modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
+The `@pnp/modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
 
 ### Usage
 
@@ -51,7 +51,7 @@ The `pnp-modern-search-core` package is side effect free, expect for the entrypo
 Most of the time, you'll just need to use the pre-defined custom element registration.
 
 ```typescript
-import "pnp-modern-search-core/dist/es6/exports/define/pnp-search-results";
+import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
 ...
 <pnp-search-results
     id="edfdea93-23c9-4ba6-94d9-a848a1384104"
@@ -61,7 +61,7 @@ import "pnp-modern-search-core/dist/es6/exports/define/pnp-search-results";
 #### Scoped
 When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts:
 
-`import { PnPSearchResultsComponent} from "pnp-modern-search-core";`
+`import { PnPSearchResultsComponent} from "@pnp/modern-search-core";`
 
 ```typescript
 
