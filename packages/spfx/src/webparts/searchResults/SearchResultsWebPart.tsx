@@ -27,8 +27,8 @@ import { ILayoutDefinition, LayoutType } from '../../models/common/ILayoutDefini
 import { AvailableLayouts, BuiltinLayoutsKeys } from '../../layouts/AvailableLayouts';
 import { ITemplateContext } from '../../models/common/ITemplateContext';
 import { ISearchVerticalSourceData } from '../../models/dynamicData/ISearchVerticalSourceData';
-import { PropertyFieldMultiSelect } from '@pnp/spfx-property-controls';
 import { LocalizedStringHelper } from '@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper';
+import { PropertyFieldMultiSelect } from '@pnp/spfx-property-controls';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import { DynamicPropertyHelper } from '../../helpers/DynamicPropertyHelper';
 import { EntityType } from '@pnp/modern-search-core/dist/es6/models/search/IMicrosoftSearchRequest';
@@ -302,9 +302,9 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
 
         this.propertyPaneFiltersConnectionField = await this.getVerticalsConnectionField();
 
-        this.context.propertyPane.refresh();
-
         await super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
+
+        this.context.propertyPane.refresh();
 
         //#endregion
     }
@@ -493,6 +493,7 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
 
     private getTemplateContext(): ITemplateContext {
         return {
+            layoutProperties: {...this.properties.layoutProperties},
             slots: LayoutHelper.convertTemplateSlotsToHashtable(this.properties.layoutProperties.slots)
         };
     }

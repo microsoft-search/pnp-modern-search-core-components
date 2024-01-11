@@ -55,6 +55,19 @@ export class LayoutHelper {
                     break;
                 }
 
+                
+                // Results Tiles
+                case BuiltinLayoutsKeys.ResultsTiles: {
+
+                    const { ResultsTilesLayout } = await import(
+                        /* webpackChunkName: 'pnp-modern-search-core-results-tiles-layout' */
+                        '../layouts/results/tiles/ResultsTilesLayout'
+                    );
+
+                    serviceKey = ServiceKey.create<ILayout>('ModernSearchCoreResultsTilesLayout', ResultsTilesLayout);
+                    break;
+                }
+
                 // Filters Default
                 case BuiltinLayoutsKeys.FiltersDefault: {
 
@@ -76,6 +89,30 @@ export class LayoutHelper {
                     );
 
                     serviceKey = ServiceKey.create<ILayout>('ModernSearchCoreFiltersCustomLayout', FiltersCustomLayout);
+                    break;
+                }
+
+                // Verticals Default
+                case BuiltinLayoutsKeys.VerticalsDefault: {
+
+                    const { VerticalsDefaultLayout } = await import(
+                        /* webpackChunkName: 'pnp-modern-search-core-verticals-default-layout' */
+                        '../layouts/verticals/default/VerticalsDefaultLayout'
+                    );
+
+                    serviceKey = ServiceKey.create<ILayout>('ModernSearchCoreVerticalsDefaultLayout', VerticalsDefaultLayout);
+                    break;
+                }
+
+                // Verticals Custom
+                case BuiltinLayoutsKeys.VerticalsCustom: {
+
+                    const { VerticalsCustomLayout } = await import(
+                        /* webpackChunkName: 'pnp-modern-search-core-verticals-custom-layout' */
+                        '../layouts/verticals/custom/VerticalsCustomLayout'
+                    );
+
+                    serviceKey = ServiceKey.create<ILayout>('ModernSearchCoreVerticalsCustomLayout', VerticalsCustomLayout);
                     break;
                 }
             }

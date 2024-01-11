@@ -97,6 +97,6 @@ To use aggegations, pass the following properties to the `aggregations` filter c
 | Property | Description | Example  |
 | -------- | ----------- | -------- | 
 | `aggregationName` | Name of the aggregation as seen by users. Can be a localized string. | `Word document` or `{ "default": "Word document", "fr-fr": "Document Word" }`
-| `matchingValues` | The matching filter values to aggregate | "docx" or "doc" for a file extension.
+| `matchingValues` | The matching filter values to aggregate. It supports regular expression using the format `/your_expression/` | "docx" or "doc" for a file extension as strings or `/^Parent:+$/` to match filter values beginning with the string `Parent:`.
 | `aggregationValue` | The filter value to use when selected. You can use [KQL](https://learn.microsoft.com/en-us/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference) or [FQL](https://learn.microsoft.com/en-us/sharepoint/dev/general-development/fast-query-language-fql-syntax-reference) expressions here. | `or(\"docx\",\"doc\",\"docm\")`
 | `aggregationValueIconUrl` | The icon URL to display near the aggregation name | `http://localhost:8000/assets/icons/word.svg`

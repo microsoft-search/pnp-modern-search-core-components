@@ -25,7 +25,8 @@ import { IPlaceholderProps } from '@pnp/spfx-controls-react';
 import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
 import { LocalizedStringHelper } from '@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper';
 import { PropertyPaneFormDataCollection } from '../../propertyPane/PropertyPaneFormDataCollection/PropertyPaneFormDataCollection';
-import { ILayoutDefinition } from '../../models/common/ILayoutDefinition';
+import { ILayoutDefinition, LayoutType } from '../../models/common/ILayoutDefinition';
+import { AvailableLayouts, BuiltinLayoutsKeys } from '../../layouts/AvailableLayouts';
 //#endregion
 
 const getErrorMessage = (value: string): string => {
@@ -34,7 +35,10 @@ const getErrorMessage = (value: string): string => {
 
 export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticalsWebPartProps> implements IDynamicDataCallables {
   
-  protected availableLayoutDefinitions: ILayoutDefinition[] = [];
+  /**
+   * The available layout definitions (not instanciated)
+   */
+  protected availableLayoutDefinitions: ILayoutDefinition[] = AvailableLayouts.BuiltinLayouts.filter(layout => { return layout.type === LayoutType.Verticals; });
 
   //#region Class attributes
 
@@ -80,217 +84,237 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
   //#endregion
 
     //#region WebPart lifecycle methods
-
-  /**
-   * Initializes required Web Part properties
-   */
-  private initializeProperties(): void {
-    this.properties.verticalConfiguration = this.properties.verticalConfiguration ? this.properties.verticalConfiguration : [];
-  }
-
-  protected async onInit(): Promise<void> {
-
-    await super.onInit();
     
-    this.initializeProperties();
+    protected get isRenderAsync(): boolean {
+      return true;
+    } 
 
-    this.context.dynamicDataSourceManager.initializeSource(this);
-  }
-
-  public render(): void {
-
-    let renderRootElement: JSX.Element;
-    
-    if (this.properties.verticalConfiguration.length > 0) {
-
-      const element: React.ReactElement<ISearchVerticalsProps> = React.createElement(
-        SearchVerticals,
-        {
-          verticalConfiguration: this.properties.verticalConfiguration,
-          id: this.getComponentId(ComponentType.SearchVerticals),
-          theme: this._themeVariant.isInverted ? "dark" : "",
-          onVerticalSelected: (selectedVerticalKey) => {
-            this.currentSelectedVerticalKey = selectedVerticalKey;
-            this.context.dynamicDataSourceManager.notifySourceChanged();
-          }
-        } as ISearchVerticalsProps
-      );
-
-     renderRootElement = element;
-
-   } else {
-
-     if (this.displayMode === DisplayMode.Edit) {
-
-       const placeholder: React.ReactElement<IPlaceholderProps> = React.createElement(
-           this._placeholderComponent,
-           {
-               iconName: "",
-               iconText: webPartStrings.General.PlaceHolder.IconText,
-               description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
-               buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
-               onConfigure: () => { this.context.propertyPane.open(); }
-           }
-       );
- 
-       renderRootElement = placeholder;
+    /**
+     * Initializes required Web Part properties
+     */
+    private initializeProperties(): void {
+      this.properties.verticalConfiguration = this.properties.verticalConfiguration ? this.properties.verticalConfiguration : [];
+      this.properties.selectedLayoutKey = this.properties.selectedLayoutKey ? this.properties.selectedLayoutKey : BuiltinLayoutsKeys.VerticalsDefault;
     }
-   }
 
-   ReactDom.render(renderRootElement, this.domElement);
-  }
+    protected async onInit(): Promise<void> {
 
-  protected onDispose(): void {
-    ReactDom.unmountComponentAtNode(this.domElement);
-  }
+      await super.onInit();
+      
+      this.initializeProperties();
 
-  public override async onPropertyPaneFieldChanged(propertyPath: string, oldValue: unknown, newValue: unknown): Promise<void> {
-    await super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
-  }
+      this.context.dynamicDataSourceManager.initializeSource(this);
+    }
+
+    public async render(): Promise<void> {
+
+      await super.initTemplate();
+
+      return this.renderCompleted();        
+    }
+
+    public renderCompleted(): void {
+
+      let renderRootElement: JSX.Element;
+      
+      if (this.properties.verticalConfiguration.length > 0) {
+
+        const element: React.ReactElement<ISearchVerticalsProps> = React.createElement(
+          SearchVerticals,
+          {
+            verticalConfiguration: this.properties.verticalConfiguration,
+            id: this.getComponentId(ComponentType.SearchVerticals),
+            theme: this._themeVariant.isInverted ? "dark" : "",
+            templateContent: this.templateContentToDisplay,
+            enableDebugMode: this.properties.enableDebugMode,
+            onVerticalSelected: (selectedVerticalKey) => {
+              this.currentSelectedVerticalKey = selectedVerticalKey;
+              this.context.dynamicDataSourceManager.notifySourceChanged();
+            }
+          } as ISearchVerticalsProps
+        );
+
+      renderRootElement = element;
+
+    } else {
+
+      if (this.displayMode === DisplayMode.Edit) {
+
+        const placeholder: React.ReactElement<IPlaceholderProps> = React.createElement(
+            this._placeholderComponent,
+            {
+                iconName: "",
+                iconText: webPartStrings.General.PlaceHolder.IconText,
+                description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
+                buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
+                onConfigure: () => { this.context.propertyPane.open(); }
+            }
+        );
+  
+        renderRootElement = placeholder;
+      }
+    }
+
+    ReactDom.render(renderRootElement, this.domElement);
+    }
+
+    protected onDispose(): void {
+      ReactDom.unmountComponentAtNode(this.domElement);
+    }
+
+    public override async onPropertyPaneFieldChanged(propertyPath: string, oldValue: unknown, newValue: unknown): Promise<void> {
+      await super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
+    }
 
   //#endregion
 
     //#region Property Pane methods
 
-  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
 
-    const newVerticalConfiguration: IDataVerticalConfiguration = {
-      isLink: false,
-      key: "",
-      linkUrl: "",
-      openBehavior: PageOpenBehavior.NewTab,
-      tabName: "",
-      tabValue: ""
-    };
-
-    const verticalTabsConfiguration: IConfigurationTab[] = [
-      {
-        name: "General",
-        fields: [
-          {
-            type: ConfigurationFieldType.LocalizedField,
-            props: {
-                serviceScope: this.context.serviceScope,
-                label: "Vertical name",
-                onGetErrorMessage: getErrorMessage,
-                required: true,
-            } as Partial<ILocalizedFieldProps>,
-            targetProperty: "tabName" 
-          },
-          {
-            type: ConfigurationFieldType.TextField,
-            props: {
-                label: "Vertical key",
-                required: true,
-                onGetErrorMessage: getErrorMessage,
-            } as Partial<ITextFieldProps>,
-            targetProperty: "key" 
-        },
-          {
-            type: ConfigurationFieldType.TextField,
-            props: {
-                label: "Vertical value",
-            } as Partial<ITextFieldProps>,
-            targetProperty: "tabValue",
-          },
-          {
-            type: ConfigurationFieldType.Toggle,
-            props: {
-                label: "Is link",
-            } as Partial<IToggleProps>,
-            targetProperty: "isLink"
-          },
-          {
-            type: ConfigurationFieldType.TextField,
-            props: {
-                label: "Link url",
-            } as Partial<ITextFieldProps>,
-            targetProperty: "linkUrl",
-            isVisible: (dataObject: IDataVerticalConfiguration) => {
-              return dataObject.isLink;
-            }
-          },
-          {
-            type: ConfigurationFieldType.ChoiceGroup,
-            props: {
-                label: "Open behavior",
-                options: [{key: PageOpenBehavior.NewTab, text: "New tab"},{key: PageOpenBehavior.Self, text: PageOpenBehavior.Self}]
-            } as Partial<IChoiceGroupProps>,
-            isVisible: (dataObject: IDataVerticalConfiguration) => {
-              return dataObject.isLink;
-            },
-            targetProperty: "openBehavior" 
-          }
-        ]
-    },
-    ];
-
-    const mainFormFields: IConfigurationTabField[] = [
-      {
-          type: ConfigurationFieldType.Custom,
-          targetProperty: null,
-          onCustomRender: (field, defaultValue, onUpdate) => {
-
-              this._lastCreatedConfigurationPanelRef = React.createRef<ConfigurationPanel<IDataVerticalConfiguration>>();
-
-              return  <ConfigurationPanel<IDataVerticalConfiguration>
-                          ref={this._lastCreatedConfigurationPanelRef}
-                          configurationTabs={verticalTabsConfiguration}
-                          renderRowTitle={(vertical: IDataVerticalConfiguration) => { return LocalizedStringHelper.getDefaultValue(vertical.tabName) }}
-                          onFormSave={(formData) => { onUpdate(field, formData)}}
-                          dataObject={defaultValue}
-                          renderPanelTitle={() => "Add new filter"}
-                          onFormDismissed={(configuration: IDataVerticalConfiguration) => {
-                              if (isEqual(configuration, newVerticalConfiguration)) {
-                                  // Remove row as no item has been saved
-                                  this._itemRepeaterRef.current.deleteItemRow(this._lastRowId)
-                              }
-                          }}
-                      />;
-          }
-      }
-    ];
-
-    return {
-      pages: [
+      const newVerticalConfiguration: IDataVerticalConfiguration = {
+        isLink: false,
+        key: "",
+        linkUrl: "",
+        openBehavior: PageOpenBehavior.NewTab,
+        tabName: "",
+        tabValue: ""
+      };
+  
+      const verticalTabsConfiguration: IConfigurationTab[] = [
         {
-          groups: [
+          name: "General",
+          fields: [
             {
-              groupName: webPartStrings.PropertyPane.SettingsPage.VerticalSettingsGroupName,
-              groupFields: [
-                new PropertyPaneFormDataCollection<IDataVerticalConfiguration>('verticalConfiguration', {
-                  label: "Verticals",
-                  itemRepeaterProps: {
-                      innerRef: this._itemRepeaterRef,
-                      addButtonLabel: "Add new vertical",    
-                      enableDragDrop: true
-                  },
-                  items: this.properties.verticalConfiguration,
-                  newRowDefaultObject: () => newVerticalConfiguration,
-                  formConfiguration: mainFormFields,
-                  onRowAdded: (rowId: string) => {
-                      // Save the row id to be able to delete it afterwards
-                      this._lastRowId = rowId;
-                      // Get the last created row (empty at this point) and open the panel
-                      this._lastCreatedConfigurationPanelRef.current.togglePanel();
-                  },
-                  onRowsOrderChanged: (value: IDataVerticalConfiguration[]) => {                        
-                      this.properties.verticalConfiguration = value;
-                      this.render()
-                  }
-                })
-              ]
+              type: ConfigurationFieldType.LocalizedField,
+              props: {
+                  serviceScope: this.context.serviceScope,
+                  label: "Vertical name",
+                  onGetErrorMessage: getErrorMessage,
+                  required: true,
+              } as Partial<ILocalizedFieldProps>,
+              targetProperty: "tabName" 
+            },
+            {
+              type: ConfigurationFieldType.TextField,
+              props: {
+                  label: "Vertical key",
+                  required: true,
+                  onGetErrorMessage: getErrorMessage,
+              } as Partial<ITextFieldProps>,
+              targetProperty: "key" 
+          },
+            {
+              type: ConfigurationFieldType.TextField,
+              props: {
+                  label: "Vertical value",
+              } as Partial<ITextFieldProps>,
+              targetProperty: "tabValue",
+            },
+            {
+              type: ConfigurationFieldType.Toggle,
+              props: {
+                  label: "Is link",
+              } as Partial<IToggleProps>,
+              targetProperty: "isLink"
+            },
+            {
+              type: ConfigurationFieldType.TextField,
+              props: {
+                  label: "Link url",
+              } as Partial<ITextFieldProps>,
+              targetProperty: "linkUrl",
+              isVisible: (dataObject: IDataVerticalConfiguration) => {
+                return dataObject.isLink;
+              }
+            },
+            {
+              type: ConfigurationFieldType.ChoiceGroup,
+              props: {
+                  label: "Open behavior",
+                  options: [{key: PageOpenBehavior.NewTab, text: "New tab"},{key: PageOpenBehavior.Self, text: PageOpenBehavior.Self}]
+              } as Partial<IChoiceGroupProps>,
+              isVisible: (dataObject: IDataVerticalConfiguration) => {
+                return dataObject.isLink;
+              },
+              targetProperty: "openBehavior" 
             }
           ]
-        },
-        // Common page
+      },
+      ];
+  
+      const mainFormFields: IConfigurationTabField[] = [
         {
-          displayGroupsAsAccordion: true,
-          groups: [this.getThemePageGroup()]
+            type: ConfigurationFieldType.Custom,
+            targetProperty: null,
+            onCustomRender: (field, defaultValue, onUpdate) => {
+  
+                this._lastCreatedConfigurationPanelRef = React.createRef<ConfigurationPanel<IDataVerticalConfiguration>>();
+  
+                return  <ConfigurationPanel<IDataVerticalConfiguration>
+                            ref={this._lastCreatedConfigurationPanelRef}
+                            configurationTabs={verticalTabsConfiguration}
+                            renderRowTitle={(vertical: IDataVerticalConfiguration) => { return LocalizedStringHelper.getDefaultValue(vertical.tabName) }}
+                            onFormSave={(formData) => { onUpdate(field, formData)}}
+                            dataObject={defaultValue}
+                            renderPanelTitle={() => "Add new filter"}
+                            onFormDismissed={(configuration: IDataVerticalConfiguration) => {
+                                if (isEqual(configuration, newVerticalConfiguration)) {
+                                    // Remove row as no item has been saved
+                                    this._itemRepeaterRef.current.deleteItemRow(this._lastRowId)
+                                }
+                            }}
+                        />;
+            }
         }
-      ]
-    };
-  }
+      ];
+  
+      return {
+        pages: [
+          {
+            groups: [
+              {
+                groupName: webPartStrings.PropertyPane.SettingsPage.VerticalSettingsGroupName,
+                groupFields: [
+                  new PropertyPaneFormDataCollection<IDataVerticalConfiguration>('verticalConfiguration', {
+                    label: "Verticals",
+                    itemRepeaterProps: {
+                        innerRef: this._itemRepeaterRef,
+                        addButtonLabel: "Add new vertical",    
+                        enableDragDrop: true
+                    },
+                    items: this.properties.verticalConfiguration,
+                    newRowDefaultObject: () => newVerticalConfiguration,
+                    formConfiguration: mainFormFields,
+                    onRowAdded: (rowId: string) => {
+                        // Save the row id to be able to delete it afterwards
+                        this._lastRowId = rowId;
+                        // Get the last created row (empty at this point) and open the panel
+                        this._lastCreatedConfigurationPanelRef.current.togglePanel();
+                    },
+                    onRowsOrderChanged: (value: IDataVerticalConfiguration[]) => {                        
+                        this.properties.verticalConfiguration = value;
+                        this.renderCompleted()
+                    }
+                  })
+                ]
+              }
+            ]
+          },
+          // Templating page
+          {
+            displayGroupsAsAccordion: true,
+            groups: [this.getTemplateOptionsGroup()]
+  
+          },
+          // Common page
+          {
+            displayGroupsAsAccordion: true,
+            groups: [this.getThemePageGroup()]
+          }
+        ]
+      };
+    }
 
   //#endregion
 

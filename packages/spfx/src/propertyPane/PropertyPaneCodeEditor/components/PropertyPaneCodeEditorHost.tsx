@@ -3,7 +3,6 @@ import { IPropertyPaneCodeEditorHostProps } from "./IPropertyPaneCodeEditorHostP
 import { Editor, loader } from "@monaco-editor/react/dist/index.js";
 import { DefaultButton, IconButton, Label, Panel, PanelType, PrimaryButton, Stack, TextField } from "office-ui-fabric-react";
 import { IPropertyPaneCodeEditorHostState } from "./IPropertyPaneCodeEditorHostState";
-import styles from "../../../controls/ConfigurationPanel/ConfigurationPanel.module.scss";
 import { isEqual } from "@microsoft/sp-lodash-subset";
 
 export class PropertyPaneCodeEditorHost extends React.Component<IPropertyPaneCodeEditorHostProps, IPropertyPaneCodeEditorHostState> {
@@ -26,8 +25,8 @@ export class PropertyPaneCodeEditorHost extends React.Component<IPropertyPaneCod
 
     public render(): React.ReactNode {
 
-        const renderFooter =    <div className={styles.footerContainer}>
-                                    <div className={styles.buttonContainer}>
+        const renderFooter =    <div className="flex pl-6 justify-end">
+                                    <div className="flex space-x-2">
                                         <PrimaryButton 
                                             onClick={() => {
                                                 this.props.onValueChange(this.state.value);

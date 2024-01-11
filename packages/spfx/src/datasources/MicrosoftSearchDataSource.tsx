@@ -672,11 +672,19 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
             "filetype",
             "defaultEncodingURL",
             "lastModifiedTime",
+            "lastModifiedDateTime",
             "modifiedBy",
             "path",
             "hitHighlightedSummary",
             "SPSiteURL",
-            "SiteTitle"
+            "SiteTitle",
+            "thumbnailUrl",
+            "normSiteID",
+            "normUniqueID",
+            "normListID",
+            "lastModifiedBy",
+            "displayName",
+            "description"
         ];
         this._selectedFieldsOptions = this.properties.selectedFields.map(field => { return {key: field, text: field, selected: true}});
         

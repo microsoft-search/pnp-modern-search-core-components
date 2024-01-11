@@ -208,6 +208,9 @@ jobs:
 
       - name: Version package
         run: pnpm version $VERSION --no-git-tag-version
+
+      - name: TailwindCSS
+        run: pnpm run tailwindcss
   
       - name: Bundle
         run: pnpm run bundle:prod

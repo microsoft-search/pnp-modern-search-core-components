@@ -5,11 +5,6 @@ import { IBaseWebComponentWrapperProps } from "../../../models/common/IBaseWebCo
 export interface ISearchFiltersProps extends IBaseWebComponentWrapperProps {
 
     /**
-     * Enables the debug mode on component
-     */
-    enableDebugMode: boolean;
-    
-    /**
      * The default logical operator to use between filters
      */
     operator: FilterConditionOperator; 
@@ -28,10 +23,5 @@ export interface ISearchFiltersProps extends IBaseWebComponentWrapperProps {
      * The filters configuration
      */
     filtersConfiguration: IDataFilterConfiguration[];
-
-    /**
-     * The web HTML template content
-     */
-    templateContent: string;
 }
 

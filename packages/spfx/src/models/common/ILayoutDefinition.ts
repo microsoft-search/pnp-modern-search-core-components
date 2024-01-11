@@ -42,7 +42,8 @@ export interface ILayoutDefinition {
 
 export enum LayoutType {
     Results = "ResultsLayout",
-    Filters = "FiltersLayout"
+    Filters = "FiltersLayout",
+    Verticals = "VerticalsLayout"
 }
 
 export enum LayoutRenderType {

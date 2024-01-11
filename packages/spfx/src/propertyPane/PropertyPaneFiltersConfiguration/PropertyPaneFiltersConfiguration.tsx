@@ -72,7 +72,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
             filterName: "",
             displayName: "",
             isMulti: false,
-            maxBuckets: 50,
+            maxBuckets: 100,
             operator: FilterConditionOperator.AND,
             showCount: false,
             sortBy: FilterSortType.ByCount,
@@ -193,7 +193,9 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.Slider,
                         props: {
-                            label: "Number of values"
+                            label: "Number of values",
+                            max: 500,
+                            min: 10
                         } as Partial<ISliderProps>,
                         targetProperty: "maxBuckets"
                     }
@@ -277,7 +279,90 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                         } as Partial<IFormDataCollectionProps<IDataFilterAggregation>>
                     }
                 ]
-            }  
+            } ,
+            {
+                name: "Settings",
+                fields: [
+                    {
+                        type: ConfigurationFieldType.TextField,
+                        targetProperty: "min",
+                        props: {        
+                            label: "Minimum value",
+                            description: "The mininum value that can be selected on the slider"
+                        } as Partial<ITextFieldProps>
+                    },
+                    {
+                        type: ConfigurationFieldType.TextField,
+                        targetProperty: "max",
+                        props: {        
+                            label: "Maximum value",
+                            description: "The maximum value that can be selected on the slider"
+                        } as Partial<ITextFieldProps>
+                    },
+                    {
+                        type: ConfigurationFieldType.TextField,
+                        targetProperty: "defaultMin",
+                        props: {        
+                            label: "Default minimum value",
+                            description: "The default mininum value selected on the slider"
+                        } as Partial<ITextFieldProps>
+                    },
+                    {
+                        type: ConfigurationFieldType.TextField,
+                        targetProperty: "defaultMax",
+                        props: {        
+                            label: "Default maximum value",
+                            description: "The default maximum value selected on the slider"
+                        } as Partial<ITextFieldProps>
+                    },
+                    {
+                        type: ConfigurationFieldType.RepeatedItem,
+                        targetProperty: "customMarkers",
+                        props: {
+                            validateOnLoad: true,
+                            label: "Markers",
+                            itemRepeaterProps: {
+                                addButtonLabel: "Add new marker",
+                                removeButtonLabel:"Remove marker",
+                                removeButtonPlacement: IconPlacement.Bottom,
+                                separator: true
+                            } as IItemRepeaterSharedProps<IDataFilterAggregation>,
+                            formConfiguration: [
+                                {
+                                    type: ConfigurationFieldType.TextField,
+                                    targetProperty: "label",
+                                    props: {        
+                                        label: "Label",
+                                        description: "Label to display on the marker. Can be null"
+                                    } as Partial<ITextFieldProps>
+                                },
+                                {
+                                    type: ConfigurationFieldType.TextField,
+                                    targetProperty: "value",
+                                    props: {        
+                                        label: "Value",
+                                        description: "Value of the marker. Should falls between min and max values"
+                                    } as Partial<ITextFieldProps>
+                                },
+                                {
+                                    type: ConfigurationFieldType.TextField,
+                                    targetProperty: "size",
+                                    props: {        
+                                        label: "Size",
+                                        description: "Label size in px"
+                                    } as Partial<ITextFieldProps>
+                                }
+                            ],
+                            newRowDefaultObject: () => { return {
+                                aggregationName: "",
+                                aggregationValue: "",
+                                matchingValues: [],
+                                aggregationValueIconUrl: ""
+                            }}
+                        } as Partial<IFormDataCollectionProps<IDataFilterAggregation>>
+                    }
+                ]
+            }
         ];
 
         // Add visibility section if connected to a vertical

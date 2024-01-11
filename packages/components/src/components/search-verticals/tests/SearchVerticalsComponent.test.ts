@@ -83,6 +83,40 @@ describe("pnp-search-verticals", async () => {
     });
   });
 
+  it("should support vertical template", async () => {
+
+    const el: SearchVerticalsComponent = await fixture(
+      html`
+        <pnp-search-verticals settings=${JSON.stringify(baseVerticalSettings)}>
+          <template data-type="verticals">
+            <div  data-ref="vertical-tab-{{vertical.key}}"
+                  data-for="vertical in verticals" 
+                  data-props="{{@click: onTemplateVerticalSelected}}">
+                    <div data-ref="vertical-name-{{vertical.key}}">
+                        {{vertical.displayName}}
+                    </div>
+
+                    <div data-ref="vertical-selected" data-if="vertical.key === selectedVerticalKey">
+                        {{vertical.key}}
+                    </div>
+            </div>               
+          </template>
+        </pnp-search-verticals>
+      `
+    );
+
+    assert.equal(el?.querySelectorAll<HTMLDivElement>("div[data-ref^='vertical-tab']").length, 2);  
+    assert.equal(el?.querySelector<HTMLDivElement>("div[data-ref='vertical-name-tab1']")?.innerText, "Tab 1");  
+    assert.equal(el?.querySelector<HTMLDivElement>("div[data-ref='vertical-selected']")?.innerText, "tab1");  
+
+    el?.querySelector<HTMLDivElement>("div[data-ref='vertical-tab-tab2']")?.click();
+    await el.requestUpdate();
+    await elementUpdated(el);
+
+    assert.equal(el?.querySelector<HTMLDivElement>("div[data-ref='vertical-selected']")?.innerText, "tab2"); 
+    assert.equal(el?.selectedVerticalKey, "tab2");
+  });
+
   describe("default query string parameter", async () => {
 
 

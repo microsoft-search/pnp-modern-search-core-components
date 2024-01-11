@@ -2,6 +2,7 @@ import { PageOpenBehavior } from "../../helpers/UrlHelper";
 import { ILocalizedString } from "./ILocalizedString";
 
 export interface IDataVerticalConfiguration {
+
     /**
      * Unique key for the vertical
      */
@@ -31,4 +32,9 @@ export interface IDataVerticalConfiguration {
      * The link open behavior
      */
     openBehavior: PageOpenBehavior;
+    
+    /**
+     * The tab resolved display name when tabName is a localized string 
+     */
+    displayName?: string;
 }

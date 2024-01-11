@@ -18,11 +18,6 @@ export interface ISearchResultsProps extends ISearchResultsComponentProps, IBase
     currentUICultureName: string;
 
     /**
-     * The web HTML template content
-     */
-    templateContent: string;
-
-    /**
      * The context to pass to web component
      */
     templateContext: ITemplateContext;

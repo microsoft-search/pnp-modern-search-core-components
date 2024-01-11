@@ -104,7 +104,7 @@ export class CheckboxFilterComponent extends BaseFilterComponent {
         
                 <div class="sticky top-0 flex flex-col space-y-2 bg-white dark:bg-primaryBackgroundColorDark dark:text-textColorDark"> 
                     <div class="border-b px-6 py-3 space-y-2">                  
-                        <label class="text-base">${this.filter.values.length} ${filterName}</label>
+                        <label class="text-base">${this.filteredValues.length} ${filterName}</label>
                         ${renderSearchBox}                        
                     </div>
 

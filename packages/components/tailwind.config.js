@@ -51,6 +51,7 @@ module.exports = {
     }
   },
   plugins: [
-    require("@tailwindcss/forms")
-  ], // To be able to style inputs
+    require("@tailwindcss/forms"),
+    require('@tailwindcss/line-clamp')
+  ],
 };

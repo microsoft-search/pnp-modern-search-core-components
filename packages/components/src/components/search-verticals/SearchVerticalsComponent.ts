@@ -10,6 +10,7 @@ import { IDataVertical } from "../../models/common/IDataVertical";
 import { LocalizedStringHelper } from "../../helpers/LocalizedStringHelper";
 import { ComponentEventType } from "../../models/events/EventType";
 import { EventConstants } from "../../common/Constants";
+import { MonacoEditorComponent } from "../monaco-editor/MonacoEditorComponent";
 
 export class SearchVerticalsComponent extends BaseComponent {
 
@@ -49,12 +50,15 @@ export class SearchVerticalsComponent extends BaseComponent {
 
         super();
         this.onVerticalSelected = this.onVerticalSelected.bind(this);
-
+        this.onTemplateVerticalSelected = this.onTemplateVerticalSelected.bind(this);
     }
 
     public override render() {
 
-        return html`
+        
+        let renderContent = null;
+
+        renderContent = html`
             <div class=${`px-2.5 ${this.theme}`}>
                 <div class="max-w-7xl ml-auto mr-auto mb-8">
                     <fast-tabs activeid=${this.selectedVerticalKey} class="dark:bg-primaryBackgroundColorDark ">
@@ -81,12 +85,42 @@ export class SearchVerticalsComponent extends BaseComponent {
                 </div>
             </div>
         `;
+
+        if (this.hasTemplate("verticals")) {
+
+            // Set localized names for verticals sto they can be used in templates as well
+            const templateVerticals = this.verticals.map( v=> {
+                v.displayName = this.getLocalizedString(v.tabName);
+                return v;
+            });
+
+            renderContent = this.renderTemplate("verticals", { verticals: templateVerticals, selectedVerticalKey: this.selectedVertical?.key });                                 
+        }
+
+        if (this.showDebugData && this.enableDebugMode) {
+            renderContent = this.renderDebugData(this.verticals);
+        }
+
+        return html`
+            <div class=${`px-2.5 ${this.theme}`}>
+                <div class="max-w-7xl ml-auto mr-auto mb-8">
+                    ${this.enableDebugMode ? this.renderDebugMode(): null}
+                    ${renderContent}
+                </div>
+            </div>
+        `;
     }
 
     public override async connectedCallback(): Promise<void> {
 
        this.handleQueryStringChange();
        this.initializeDefaultValue();
+
+        // Register custom template events
+        this.templateContext = {
+            ...super.templateContext,
+            onTemplateVerticalSelected: this.onTemplateVerticalSelected
+        };
 
         return super.connectedCallback();
     }
@@ -189,6 +223,16 @@ export class SearchVerticalsComponent extends BaseComponent {
                 this.selectVertical(verticalKeyParam);
             };
         }
+    }
+
+    /**
+     * Handler for 'verticals' tempalte whe na vertical is selcted
+     * @param e the HTML event
+     * @param context the context of current vertical
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private onTemplateVerticalSelected(e: Event, context: any) {
+        this.onVerticalSelected(context.vertical);
     }
 
     private toDataVertical(verticalKey: string): IDataVertical {
