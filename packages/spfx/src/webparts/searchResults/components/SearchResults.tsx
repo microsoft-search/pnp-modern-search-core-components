@@ -21,6 +21,7 @@ export default class SearchResults extends React.Component<ISearchResultsProps, 
     super(props);
 
     this.handleResultsFetched = this.handleResultsFetched.bind(this);
+    this.handleTemplateRendered = this.handleTemplateRendered.bind(this)
   }
 
   public render(): React.ReactElement<ISearchResultsProps> {
@@ -65,6 +66,9 @@ export default class SearchResults extends React.Component<ISearchResultsProps, 
     this.initTemplateContext();
 
     this.componentRef.current.addEventListener(EventConstants.SEARCH_RESULTS_EVENT, this.handleResultsFetched);
+
+    // https://learn.microsoft.com/en-us/graph/toolkit/customize-components/templates#template-rendered-event
+    this.componentRef.current.addEventListener("templateRendered", this.handleTemplateRendered);
   }
 
   public async componentDidUpdate(prevProps: Readonly<ISearchResultsProps>): Promise<void> {
@@ -118,5 +122,13 @@ export default class SearchResults extends React.Component<ISearchResultsProps, 
 
   private handleResultsFetched(data: CustomEvent<ISearchResultsEventData>): void {
     this.props.onResultsFetched(data.detail);
+  }
+
+  private handleTemplateRendered(e: Event): void {
+
+    // Convert inner text content to HTML
+    this.componentRef.current.querySelectorAll("[data-html]").forEach(el => {
+      el.innerHTML = el.textContent;
+    });
   }
 }

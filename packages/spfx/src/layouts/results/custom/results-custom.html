@@ -2,7 +2,7 @@
     <div data-for='item in items'>
         <div>Title: {{ slot("Title",item) }}</div>
         <div>Path: {{ slot("Path",item) }}</div>
-        <div>Summary:{{ slot("Summary",item) }}</div>
+        <div data-html>Summary:{{ slot("Summary",item) }}</div>
         <div>FileType: {{ slot("FileType",item) }}</div>
     </div>
 </template>

@@ -17,7 +17,7 @@
                         </div>
                         <div data-if='slot("Subtitle",item)' class="">{{ slot("Subtitle",item) }}</div>
                         <div data-if='slot("Summary",item)' class="p-2 h-full">
-                            <p class="line-clamp-4">{{ slot("Summary",item, true) }}</p>
+                            <p data-html class="line-clamp-4">{{ slot("Summary",item) }}</p>
                         </div>
                         <div data-if='slot("Tags",item)' class="break-words">{{ slot("Tags",item) }}</div>
                 </div>                
