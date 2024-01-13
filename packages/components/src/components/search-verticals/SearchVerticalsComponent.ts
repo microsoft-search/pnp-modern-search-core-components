@@ -39,6 +39,12 @@ export class SearchVerticalsComponent extends BaseComponent {
     @state()
     selectedVertical: IDataVertical;
 
+    static override get scopedElements() { 
+        return {
+            "pnp-monaco-editor": MonacoEditorComponent,
+        }; 
+    }
+
     static override get styles() {
         return [
             BaseComponent.themeStyles, // Allow component to use them CSS variables from design. The component is a first level component so it is OK to define theme variables here

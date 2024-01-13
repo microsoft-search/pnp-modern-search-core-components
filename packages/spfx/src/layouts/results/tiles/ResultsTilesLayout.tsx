@@ -32,7 +32,7 @@ export class ResultsTilesLayout extends BaseLayout<IResultsTilesLayoutProperties
         this._defaultSlots =  [
             {
                 slotName: BuiltinTemplateSlots.Title,
-                slotValue: 'resource.fields.title',
+                slotValue: 'title',
                 slotType: SlotType.DynamicField,
                 disabled: true
             },
@@ -56,7 +56,7 @@ export class ResultsTilesLayout extends BaseLayout<IResultsTilesLayoutProperties
             },
             {
                 slotName: BuiltinTemplateSlots.FileType,
-                slotValue: 'resource.fields.filetype',
+                slotValue: 'filetype',
                 slotType: SlotType.DynamicField,
                 disabled: true
             },

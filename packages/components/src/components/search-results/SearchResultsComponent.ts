@@ -660,6 +660,11 @@ export class SearchResultsComponent extends BaseComponent {
                 element.replaceWith(newElement);
             }
 
+            // Convert inner text content to HTML
+            element.querySelectorAll("[data-html]").forEach(el => {
+                el.innerHTML = el.textContent;
+            });
+
             // Set the theme for user defined templates
             element.setAttribute("class", this.theme);
         });
