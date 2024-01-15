@@ -32,7 +32,7 @@ export enum WellKnownSearchProperties {
 export const sanitizeSummary = (summary: string) => {
     // Special case with HitHighlightedSummary field
     // eslint-disable-next-line no-useless-escape
-    return summary.replace(/<c0\>/g, `<span style='color:var(${ThemeInternalCSSVariables.colorPrimary});font-weight:600'>`).replace(/<\/c0\>/g, "</span>").replace(/<ddd\/>/g, "&#8230;");
+    return summary?.replace(/<c0\>/g, `<span style='color:var(${ThemeInternalCSSVariables.colorPrimary});font-weight:600'>`).replace(/<\/c0\>/g, "</span>").replace(/<ddd\/>/g, "&#8230;");
 };
 
 export class SearchResultsHelper {

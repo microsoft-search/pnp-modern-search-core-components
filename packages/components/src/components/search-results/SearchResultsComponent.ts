@@ -1180,6 +1180,7 @@ export class SearchResultsComponent extends BaseComponent {
                 this.tokenService.setTokenValue(BuiltinTokenNames.searchTerms, searchKeywords);
 
                 this.searchQuery.requests[0].query.queryString = searchKeywords;
+                this.searchQuery.requests[0].query.queryTemplate = this.tokenService.resolveTokens(this.queryTemplate);
 
                 this.resetFilters();
                 this.resetPagination();

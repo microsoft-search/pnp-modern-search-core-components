@@ -141,7 +141,7 @@ export abstract class BaseFilterComponent extends BaseComponent {
                     </fast-button>
                    
                     <fast-anchored-region                             
-                        class=${`${this.isExpanded ? "visible " : "invisible"} z-10`}
+                        class=${`${this.isExpanded ? "visible " : "invisible"} z-10 border-style: solid`}
                         .anchorElement=${this.renderRoot.querySelector("[id='filter-anchor'")}
                         @mousedown=${(e: Event) => {
                             e.preventDefault();

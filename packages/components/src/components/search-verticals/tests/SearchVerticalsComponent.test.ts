@@ -29,7 +29,7 @@ describe("pnp-search-verticals", async () => {
       window.history.pushState({path:newUrl}, "", newUrl);
 
       LocalizationHelper.strings = stringsEn;
-     el.requestUpdate();
+      el.requestUpdate();
       await elementUpdated(el);
     });
 
@@ -110,7 +110,7 @@ describe("pnp-search-verticals", async () => {
     assert.equal(el?.querySelector<HTMLDivElement>("div[data-ref='vertical-selected']")?.innerText, "tab1");  
 
     el?.querySelector<HTMLDivElement>("div[data-ref='vertical-tab-tab2']")?.click();
-    await el.requestUpdate();
+    el.requestUpdate();
     await elementUpdated(el);
 
     assert.equal(el?.querySelector<HTMLDivElement>("div[data-ref='vertical-selected']")?.innerText, "tab2"); 

@@ -190,7 +190,7 @@ describe("pnp-search-filters", () => {
     assert.isNotNull(getDebugBarBtn(el));
     getDebugBarBtn(el)?.click();
 
-    await el.requestUpdate();
+    el.requestUpdate();
     await elementUpdated(el);
 
     assert.isNotNull(getMonacoEditor(el));
