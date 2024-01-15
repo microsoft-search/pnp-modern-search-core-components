@@ -5,7 +5,7 @@ import { property, state } from "lit/decorators.js";
 import { ErrorTypes, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
 import { IComponentBinding } from "../models/common/IComponentBinding";
 import { IThemeDefinition } from "../models/common/IThemeDefinition";
-import { isEqual, isObjectLike } from "lodash-es";
+import { isEmpty, isEqual, isObjectLike } from "lodash-es";
 import { ILocalizedString } from "../models/common/ILocalizedString";
 import { ScopedElementsMixin } from "@open-wc/scoped-elements";
 import "@open-wc/dedupe-mixin";
@@ -283,12 +283,14 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
     }
 
     private setFASTColors() {
-        
+      
         const theme = this.getTheme();
 
         if (theme.isDarkMode) {
+            const primaryBackgroundColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.primaryBackgroundColorDark);
+            
             baseLayerLuminance.setValueFor(this,StandardLuminance.DarkMode);
-            neutralFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.primaryBackgroundColorDark))));
+            neutralFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(primaryBackgroundColor) ? parseColorHexRGB(primaryBackgroundColor) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark)));
             neutralFillStealthRest.setValueFor(this, neutralFillRest);
             neutralFillStealthRestFluent.setValueFor(this, neutralFillRest);
         } else {
@@ -298,15 +300,14 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
         }
 
         const primaryColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.colorPrimary);
-        let defaultColor = primaryColor;
-        if (!primaryColor) {
-            defaultColor = ThemeDefaultCSSVariablesValues.defaultColorPrimary;
+        const defaultPrimaryColor: string = !isEmpty(primaryColor) ? primaryColor : ThemeDefaultCSSVariablesValues.defaultColorPrimary.toString();
+        
+        if (parseColorHexRGB(defaultPrimaryColor)) {
+            accentFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultPrimaryColor)));
+            accentFillHover.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultPrimaryColor)));
+            accentForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultPrimaryColor)));
+            accentFillActive.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultPrimaryColor)));
         }
-
-        accentFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultColor)));
-        accentFillHover.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultColor)));
-        accentForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultColor)));
-        accentFillActive.setValueFor(this, SwatchRGB.from(parseColorHexRGB(defaultColor)));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -14,9 +14,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-        gridTemplateColumns: {
-          "searchResult": "32px 2fr 0fr"
-        },
         fontFamily: {
           primary: ["var(--pnpsearch-internal-fontFamilyPrimary)","'Segoe  UI'", "'Arial, sans-serif'"],
           sans: ["var(--pnpsearch-internal-fontFamilySecondary)", "Roboto", ...defaultTheme.fontFamily.sans]
