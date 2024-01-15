@@ -124,6 +124,8 @@ jobs:
         working-directory: ./packages/spfx
         run: |
           gulp update-version --value $MAJORMINORPATCH
+          name: TailwindCSS
+          pnpm run tailwindcss
           gulp bundle --ship
           gulp package-solution --ship
 
@@ -209,9 +211,6 @@ jobs:
       - name: Version package
         run: pnpm version $VERSION --no-git-tag-version
 
-      - name: TailwindCSS
-        run: pnpm run tailwindcss
-  
       - name: Bundle
         run: pnpm run bundle:prod
 
