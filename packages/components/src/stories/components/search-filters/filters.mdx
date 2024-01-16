@@ -67,32 +67,28 @@ Aggregations are useful to group multiple filter values to an unique one with a 
 
 To use aggegations, pass the following properties to the `aggregations` filter configuration property:
 
-<Source
-  language='json'
-  dark
-  format={false}
-  code={dedent`
-    {
-        ...Other filter properties
-        aggregations: [
-            {
-            "aggregationName":{
-                "fr-fr":"Document Word",
-                "ro-ro":"document Word",
-                "default":"Word document"
-            },
-            "matchingValues":[
-                "docx",
-                "doc",
-                "docm"
-            ],
-            "aggregationValue":"or(\"docx\",\"doc\",\"docm\")",
-            "aggregationValueIconUrl":"http://localhost:8000/assets/icons/word.svg"
-            }
-        ]
-    }
-  `}
-/>
+```json
+{
+    ...Other filter properties
+    aggregations: [
+          {
+          "aggregationName":{
+              "fr-fr":"Document Word",
+              "ro-ro":"document Word",
+              "default":"Word document"
+          },
+          "matchingValues":[
+              "docx",
+              "doc",
+              "docm"
+          ],
+          "aggregationValue":"or(\"docx\",\"doc\",\"docm\")",
+          "aggregationValueIconUrl":"http://localhost:8000/assets/icons/word.svg"
+        }
+    ]
+    ...
+}
+```
 
 | Property | Description | Example  |
 | -------- | ----------- | -------- | 

@@ -395,7 +395,7 @@ export class SearchResultsComponent extends BaseComponent {
               </div>
               <div class="flex mt-1 mb-1 ml-0 mr-0pt-[3px] space-x-1">
                 <div>
-                    ${resource?.lastModifiedBy?.user?.displayName ? `${strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
+                    ${resource?.lastModifiedBy?.user?.displayName ? `${this.strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
                 </div>
                 <div>
                     ${ resource.lastModifiedDateTime ?
@@ -496,7 +496,7 @@ export class SearchResultsComponent extends BaseComponent {
             </div>
             <div class="flex mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark pt-[3px] space-x-1">
                 <div>
-                    ${resource?.lastModifiedBy?.user?.displayName ? `${strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
+                    ${resource?.lastModifiedBy?.user?.displayName ? `${this.strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
                 </div>
                 <div>
                     ${ resource.lastModifiedDateTime ?
@@ -941,7 +941,7 @@ export class SearchResultsComponent extends BaseComponent {
         ];
     }
 
-    protected override get strings() {
+    protected override get strings(): { [x: string]: string; } {
         return strings;
     }
 

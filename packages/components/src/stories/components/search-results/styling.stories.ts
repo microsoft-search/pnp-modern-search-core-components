@@ -31,6 +31,7 @@ const CustomItemsTemplate = (args) => {
             entity-types=${args["entity-types"]} 
             fields=${args.fields.join(",")} 
             page-size=${args["page-size"]}
+            theme=${args["theme"]}
         >
         <template data-type="items">
 
@@ -76,6 +77,7 @@ const CustomHeaderTemplate = (args) => {
                 see-all-link=${args["see-all-link"]}
                 comp-title=${args["comp-title"]}
                 ?show-count=${args["show-count"]}
+                theme=${args["theme"]}
             >
             </pnp-search-results>
         `;
@@ -94,6 +96,7 @@ const PagingTemplate = (args) => {
                 page-size=${args["page-size"]}
                 pages-number=${args["pages-number"]}
                 ?show-paging=${args["show-paging"]}
+                theme=${args["theme"]}
             >
             </pnp-search-results>
         `;

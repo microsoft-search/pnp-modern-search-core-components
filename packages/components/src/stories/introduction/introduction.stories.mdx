@@ -1,23 +1,28 @@
 import { Meta, Source } from '@storybook/blocks';
 import { PACKAGE_VERSION } from "../../../src/utils/version";
-import m365logo from "../assets/m365_logo.png";
+import pnpLogo from "../assets/pnp.png";
+import ubisoftLogo from "../assets/ubisoft_stacked_logo_black.png";
 
 <Meta title="Introduction / Getting started" />
 
 # PnP Modern Search - Core components
 
-<img width="162px" src={m365logo}/>
+<div style={{display: 'flex', justifyContent: 'center', height: '150px'}}>
+    <img alt="PnP Logo"src={pnpLogo}/>
+    <img alt="Ubisoft Logo" src={ubisoftLogo}/>
+</div>
 
 ## What's included?
 
 The following components are included in the bundle:
 
-| Component                                                                         | HTML tag                      | Purpose                                                                         |
-|-----------------------------------------------------------------------------------|-------------------------------|---------------------------------------------------------------------------------|
-| [Search results](?path=/docs/components-search-search-results--usage-query)       | `<pnp-search-results>`    | Display results from Microsoft Search index according to configured parameters. |   
-| [Search filters](?path=/docs/components-search-search-filters--usage)             | `<pnp-filters>`    | Display filters from a connected search results components                      | 
-| [Search box](?path=/docs/components-search-search-box--usage)                     | `<pnp-search-input>`      | Allow users to enter free text search keywords.                                 |
-| [Search verticals](?path=/docs/components-search-search-verticals--usage)         | `<pnp-search-verticals>`  | Displays tabs to search by verticals                                            |
+| Component | HTML tag | Purpose |
+| --------- | -------- | ------- |
+| [Search results](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-results--usage-query) | `<pnp-search-results>` | Display results from Microsoft Search index according to configured parameters. |
+| [Search filters](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-filters--usage) | `<pnp-search-filters>` | Display filters from a connected search results components |
+| [Search box](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-box--usage) | `<pnp-search-input>` | Allow users to enter free text search keywords.
+| [Search verticals](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-search-search-verticals--usage) | `<pnp-search-verticals>`  | Displays tabs to search by verticals |
+| [Video player](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/components-misc-video-player--usage) | `<pnp-video-player>`  | Play video from SharePoint (outside of SharePoint domain) |
 
 ## Usage
 
@@ -32,10 +37,11 @@ Include the following script in your HTML page:
 />
 
 > Components are registered automatically on the page when the package is imported.
+> Use [versions numbers](https://www.npmjs.com/package/@pnp/modern-search-core?activeTab=versions) from `npm`.
 
 ### Via npm package
 
-The npm package `@pnp/modern-search-core` is available in npm to be used in you application
+The npm package [`@pnp/modern-search-core`](https://www.npmjs.com/package/@pnp/modern-search-core) is available in npm to be used in you application
 
 ### Installation
 
@@ -43,7 +49,7 @@ The npm package `@pnp/modern-search-core` is available in npm to be used in you 
 
 ### Side effects
 
-The `@pnp/modern-search-core` package is side effect free, expect for the entrypoints located under _define/_ folder;
+The [`@pnp/modern-search-core`](https://www.npmjs.com/package/@pnp/modern-search-core) package is side effect free, except for the entrypoints located under _define/_ folder;
 
 ### Usage
 
@@ -59,22 +65,46 @@ import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
 ```
 
 #### Scoped
-When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts:
+When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts
 
-`import { PnPSearchResultsComponent} from "@pnp/modern-search-core";`
+**Manually defined element**
+
+```typescript
+import { SearchResultsComponent} from "@pnp/modern-search-core";
+
+// Define your component manually with SearchResultsComponent
+if (!customElements.get("myapp-search-results")) {
+    customElements.define("myapp-search-results", SearchResultsComponent)
+}
+...
+<myapp-search-results />
+```
+
+**[Scoped element mixin](https://open-wc.org/docs/development/scoped-elements/) in your own web component** 
 
 ```typescript
 
-// Use the PnPSearchResultsComponent with the scoped element mixin (https://open-wc.org/docs/development/scoped-elements/) 
-// or
-// define your component with SearchResultsComponent
-if (!customElements.get("myapp-search-results")) {
-    customElements.define("myapp-search-results", PnPSearchResultsComponent)
-}
-...
-<myapp-search-results
-    id="edfdea93-23c9-4ba6-94d9-a848a1384104"
-/>
-```
+//
+import { SearchResultsComponent} from "@pnp/modern-search-core";
+import { ScopedElementsMixin } from "@open-wc/scoped-elements";
 
-Will register the PnPSearchResultsComponent component under the name myapp-search-results in the custom element registry.
+export class MyComponent extends ScopedElementsMixin(LitElement) {
+
+    ...
+
+    static get scopedElements() { 
+        return {
+            "myapp-search-results": SearchResultsComponent
+        }; 
+    }
+    ...
+
+    public render() {
+        ...
+
+        return html`<myapp-search-results />`;
+    }
+    ...
+}
+
+```
