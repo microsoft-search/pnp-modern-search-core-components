@@ -18,7 +18,7 @@ nav:
 # Configuration
 theme:
   name: material
-  logo: assets/logo.svg
+  logo: assets/pnp.png
   icon:
     repo: fontawesome/brands/github
 
@@ -45,11 +45,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-  - markdown_include.include:
-          base_path: docs
-
-extra_javascript:
-  - fix-trailing-slash.js
 
 # Plugins
 plugins:

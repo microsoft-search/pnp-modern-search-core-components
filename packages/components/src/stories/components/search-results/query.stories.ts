@@ -55,6 +55,7 @@ const AdvancedQueryTemplate = (args) => {
               fields=${args.fields.join(",")} 
               page-size=${args["page-size"]}
               sort-properties=${JSON.stringify(args["sort-properties"])}
+              theme=${args["theme"]}
             >
             </pnp-search-results>
   `;
