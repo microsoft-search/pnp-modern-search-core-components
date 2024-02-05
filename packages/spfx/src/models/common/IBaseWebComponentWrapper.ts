@@ -9,4 +9,14 @@ export interface IBaseWebComponentWrapperProps {
      * Theme to use for the component
      */
     theme: string;
+
+    /**
+     * Enables the debug mode on component
+     */
+    enableDebugMode: boolean;
+
+    /**
+     * The web HTML template content
+     */
+    templateContent?: string;
 }

@@ -112,7 +112,7 @@ describe("pnp-search-sort", () => {
             `);
 
             getSortFieldOption(el, "Relevance")?.click();
-           el.requestUpdate();
+            el.requestUpdate();
             await elementUpdated(el);
 
             assert.isEmpty(onSort.getCall(0).args[0]); // Should be an empty array

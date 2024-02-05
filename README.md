@@ -2,6 +2,12 @@
 
 > These components have been initially made by [Ubisoft](https://www.ubisoft.com/) as part of their Microsoft Search implementation. They've been adapted are given to the community for free. A big thanks to them! Sharing is caring.
 
+   <p align="center">
+      The complete use case can be downloaded here
+      <a href="https://microsoft-search.github.io/pnp-modern-search-core-components/assets/ubisoft_microsoft-search-implementation_use_case.pdf" target="_blank"><img src="./docs/assets/read_btn.svg"/></a>
+   </p>
+
+
 <p align="center">
    <img alt="PnP Logo"src="./docs/assets/pnp.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="./docs/assets/ubisoft_stacked_logo_white.png"><source media="(prefers-color-scheme: light)" srcset="./docs/assets/ubisoft_stacked_logo_black.png"><img alt="Ubisoft Logo" src="./docs/assets/ubisoft_stacked_logo_black.png"/></picture>
 </p>

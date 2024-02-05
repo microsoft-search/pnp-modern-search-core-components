@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ITranslationFieldState } from "./ITranslationFieldState";
 import { ComboBox, IComboBox, IComboBoxOption, TextField } from "office-ui-fabric-react";
-import styles from "../LocalizedTextField.module.scss";
 import { ITranslationFieldProps } from "./ITranslationFieldProps";
 
 //#region Fluent UI styles 
@@ -47,7 +46,7 @@ export class TranslationField extends React.Component<ITranslationFieldProps, IT
     
     public render(): React.ReactNode {
 
-        return  <div className={styles.translationContainer}>
+        return  <div className="flex">
                     <ComboBox
                         defaultSelectedKey={this.props.defaultValue ? this.props.defaultValue.locale : null}
                         options={this.props.supportedLocales} 

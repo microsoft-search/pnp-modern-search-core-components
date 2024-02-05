@@ -68,6 +68,15 @@ declare interface ICommonStrings {
       },
       Custom: {
         Name: string;
+      },
+      ResultsTiles: {
+        ContainerWidthOptionsFieldLabel: string;
+        ContainerWidthFieldLabel: string;
+        SmallWidth: string;
+        MediumWidth: string;
+        LargeWidth: string;
+        ExtraLargeWidth: string;
+        ExtraExtraLargeWidth: string;
       }
   }
 }

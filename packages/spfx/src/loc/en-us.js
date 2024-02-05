@@ -69,6 +69,15 @@ define([], function() {
             },
             Custom: {
                 Name: "Custom"
+            },
+            ResultsTiles: {
+                ContainerWidthOptionsFieldLabel: "WebPart widths",
+                ContainerWidthFieldLabel: "WebPart container width",
+                SmallWidth: "Small (Less than	384px)",
+                MediumWidth: "Medium (from 384px to 448px)",
+                LargeWidth:  "Large (from 448px to 512px)",
+                ExtraLargeWidth: "Extra Large (from 512px to 576px)",
+                ExtraExtraLargeWidth: "Extra Extra Large (more than 576px)",
             }
         }
     }

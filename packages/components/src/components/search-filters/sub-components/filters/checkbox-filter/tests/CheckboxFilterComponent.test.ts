@@ -212,7 +212,7 @@ describe("pnp-checkbox-filter ", () => {
           item.click();
         });
 
-       el.requestUpdate();
+        el.requestUpdate();
         await elementUpdated(el);
 
         assert.isNotNull(getResetButton(el));
@@ -222,7 +222,7 @@ describe("pnp-checkbox-filter ", () => {
         onApplyFiltersSpy.resetHistory();
 
         // Needed to be able to click on the "apply" button (disabled otherwise)
-       el.requestUpdate();
+        el.requestUpdate();
         await elementUpdated(el);
 
         // Apply filters

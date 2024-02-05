@@ -18,7 +18,6 @@ export interface ISearchResultsComponentProps {
     searchVerticalsComponentId: string;
     selectedVerticalKeys: string[];
     useBetaEndpoint: boolean;
-    enableDebugMode: boolean;
     showCount: boolean;
     sortFieldsConfiguration: ISortFieldConfiguration[];
 }

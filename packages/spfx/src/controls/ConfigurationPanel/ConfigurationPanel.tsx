@@ -2,7 +2,6 @@ import * as React from "react";
 import { IConfigurationPanelProps } from "./IConfigurationPanelProps";
 import { IConfigurationPanelState } from "./IConfigurationPanelState";
 import { DefaultButton, IconButton, Label, Panel, Pivot, PivotItem, PrimaryButton } from "office-ui-fabric-react";
-import styles from "./ConfigurationPanel.module.scss";
 import { FormBuilder } from "../FormBuilder/FormBuilder";
 import { cloneDeep, isEqual } from "@microsoft/sp-lodash-subset";
 import { IConfigurationTab } from "./IConfigurationTab";
@@ -37,8 +36,8 @@ export class ConfigurationPanel<T> extends React.Component<IConfigurationPanelPr
 
     public render(): React.ReactNode {
 
-        const renderFooter =    <div className={styles.footerContainer}>
-                                    <div className={styles.buttonContainer}>
+        const renderFooter =    <div className="flex pl-6 justify-end">
+                                    <div className="flex space-x-2">
                                         <PrimaryButton 
                                             onClick={() => {
                                                 this.setState({
@@ -56,19 +55,20 @@ export class ConfigurationPanel<T> extends React.Component<IConfigurationPanelPr
                                 </div>;
 
         
-        const renderTabs = this.props.configurationTabs.map((tab, i) => {
+        const renderTabs = this.props.configurationTabs.filter(tab => !tab.isVisible || (tab.isVisible && this.state.currentformData && tab.isVisible(this.state.currentformData))).map((tab, i) => {
             
             return  <PivotItem
                         key={tab.name}
                         headerText={tab.name}                    
                     >
-                        <div className={styles.fieldContainer} >
+                        <div className="p-2" >
                             <FormBuilder 
                                 key={i}
                                 dataObject={this.state.currentformData}
                                 fields={tab.fields}
                                 onFormValuesUpdated={(formData: T, errors: Map<string,string>) => {
                                     this.onFormValuesUpdated(tab, formData, errors);
+                                    this.forceUpdate();
                                 }}
                             />
                         </div>
@@ -76,7 +76,7 @@ export class ConfigurationPanel<T> extends React.Component<IConfigurationPanelPr
         });
 
         return  <>
-                    <div className={styles.itemContainer}>
+                    <div className="flex justify-between pl-1">
                         <Label>{this.state.title}</Label>
                         <IconButton iconProps={{ iconName: 'Edit' }} onClick={this.togglePanel}/>
                     </div>

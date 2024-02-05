@@ -2,7 +2,6 @@ import * as React from "react";
 import { ILocalizedFieldProps } from "./ILocalizedFieldProps";
 import { ILocalizedFieldState } from "./ILocalizedFieldState";
 import { IDropdownOption, TextField } from "office-ui-fabric-react";
-import styles from "./LocalizedTextField.module.scss"
 import { Guid } from "@microsoft/sp-core-library";
 import { TranslationField } from "./components/TranslationField";
 import { ILocalizedString } from "@pnp/modern-search-core/dist/es6/models/common/ILocalizedString";
@@ -116,7 +115,7 @@ export class LocalizedField extends React.Component<ILocalizedFieldProps, ILocal
                                 />;
 
         const renderControl =   <div>
-                                    <div className={styles.fieldContainer}>
+                                    <div className="flex w-full">
                                         <TextField
                                             onGetErrorMessage={this.props.onGetErrorMessage}
                                             required={this.props.required}
@@ -137,7 +136,7 @@ export class LocalizedField extends React.Component<ILocalizedFieldProps, ILocal
                                             onChange={this.onDefaultTranslationUpdated}                                        
                                         />
                                     </div>
-                                    <div className={styles.languagesContainer}>
+                                    <div className="mt-3">
                                         {renderLanguages}
                                     </div>
                                 </div>;

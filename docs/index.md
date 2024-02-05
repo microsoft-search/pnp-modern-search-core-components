@@ -3,7 +3,13 @@
 !!! information
     These components have been initially made by [Ubisoft](https://www.ubisoft.com/) as part of their Microsoft Search implementation. They've been adapted are given to the community for free. A big thanks to them! Sharing is caring.
 
-    !["Ubisoft"](./assets//ubisoft_logo.png){: .center .logo }
+    !["Ubisoft"](./assets/ubisoft_stacked_logo_black.png){: .center .logo}
+
+    <p align="center">
+      The complete use case can be downloaded here
+      <a href="./assets/ubisoft_microsoft-search-implementation_use_case.pdf" target="_blank"><img src="./assets/read_btn.svg"/></a>
+   </p> 
+
 
 The goal is to provide reusable components based on Microsoft Search and Microsoft Graph in general that can be used transversally in an organization.
 

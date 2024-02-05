@@ -6,7 +6,8 @@ export const strings = {
     _components: {
         "pnp-search-results": {
             seeAllLink: "Voir tout",
-            results: "résultats"
+            results: "résultats",
+            modifiedBy: "Modifié par"
         },
         "pnp-pagination": {
             nextBtn: "Suivant",

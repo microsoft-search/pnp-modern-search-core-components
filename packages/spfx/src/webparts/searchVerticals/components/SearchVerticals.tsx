@@ -2,8 +2,11 @@ import * as React from 'react';
 import { ISearchVerticalsProps } from './ISearchVerticalsProps';
 import { wrapWc } from 'wc-react';
 import { SearchVerticalsComponent } from '@pnp/modern-search-core';
-import { EventConstants } from "@pnp/modern-search-core/dist/es6/common/Constants";
+import { ComponentElements, EventConstants } from "@pnp/modern-search-core/dist/es6/common/Constants";
 import { ISearchVerticalEventData } from "@pnp/modern-search-core/dist/es6/models/events/ISearchVerticalEventData";
+import parse, {  } from 'html-react-parser';
+import { isEqual } from '@microsoft/sp-lodash-subset';
+import { Guid } from '@microsoft/sp-core-library';
 
 const SearchVerticalsWebComponent = wrapWc<SearchVerticalsComponent>('pnp-search-verticals');
 
@@ -19,13 +22,35 @@ export default class SearchVerticals extends React.Component<ISearchVerticalsPro
 
   public render(): React.ReactElement<ISearchVerticalsProps> {
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    const TemplateContent = () => {
+      return (this.props.templateContent ? parse(this.props.templateContent) : null) as JSX.Element;
+    };
+
     return  <SearchVerticalsWebComponent
               ref={this.componentRef}
               key={this.props.id}
               id={this.props.id}
               verticals={this.props.verticalConfiguration}
-              theme={this.props.theme}
-            />;
+              enableDebugMode={this.props.enableDebugMode ? true : null}
+              theme={this.props.theme}              
+            >
+              <TemplateContent/>
+            </SearchVerticalsWebComponent>;
+  }
+
+  public componentDidUpdate(prevProps: Readonly<ISearchVerticalsProps>): void {
+    
+    if (!isEqual(prevProps.templateContent, this.props.templateContent)) {
+
+      // Forces a tempalte re-render by faking an update to the template context
+      // TODO: Find a better way to do that at component level
+      // https://github.com/microsoftgraph/microsoft-graph-toolkit/blob/d27ffa723d36fa39533a4e705965ba656a71b82a/packages/mgt-element/src/components/templatedComponent.ts#L141C35-L141C46
+      this.componentRef.current.templateContext = {...this.componentRef.current.templateContext, random: Guid.newGuid() }
+       this.componentRef.current.shadowRoot.querySelectorAll(ComponentElements.CheckboxFilterComponent).forEach((e: SearchVerticalsComponent) => {
+        e.templateContext = {...e.templateContext, random: Guid.newGuid()};
+      });
+    }
   }
 
   public componentDidMount(): void {

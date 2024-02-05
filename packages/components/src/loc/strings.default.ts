@@ -4,7 +4,8 @@ import { ComponentElements } from "../common/Constants";
 
 export const SearchResultsStrings = {
     seeAllLink: "See all",
-    results: "results"
+    results: "results",
+    modifiedBy: "Modified by"
 };
 
 export const PaginationStrings = {

@@ -44,6 +44,7 @@ import { ILayout } from '../models/common/ILayout';
 import IDynamicDataService from '../services/dynamicDataService/IDynamicDataService';
 import { DynamicDataService } from '../services/dynamicDataService/DynamicDataService';
 import IFileService from '../services/fileService/IFileService';
+import '../styles/dist/tailwind.css';
 
 //#region Default colors
 
@@ -520,10 +521,11 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
     protected async initDomPurify(): Promise<void> {
 
       if (this.properties.selectedLayoutKey === BuiltinLayoutsKeys.ResultsCustom || 
-          this.properties.selectedLayoutKey === BuiltinLayoutsKeys.FiltersCustom) {
+          this.properties.selectedLayoutKey === BuiltinLayoutsKeys.FiltersCustom || 
+          this.properties.selectedLayoutKey === BuiltinLayoutsKeys.VerticalsCustom ) {
           
           const DOMPurify = await import(
-              /* webpackChunkName: '-modern-search-core-dompurify' */
+              /* webpackChunkName: 'pnp-modern-search-core-dompurify' */
               'dompurify'
           );
 
@@ -531,7 +533,7 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
 
           this._domPurify.setConfig({
               CUSTOM_ELEMENT_HANDLING: {
-                  tagNameCheck: /^-/,
+                  tagNameCheck: /^pnp-/,
                   attributeNameCheck: () => true,
                   allowCustomizedBuiltInElements: true, 
               },
@@ -544,34 +546,35 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
 
     protected async initTemplate(): Promise<void> {
 
-        // Gets the template content according to the selected key
-        const selectedLayoutTemplateContent = this.availableLayoutDefinitions.filter(layout => { return layout.key === this.properties.selectedLayoutKey; })[0].templateContent;
-        let externalTemplateContent;
+      // Gets the template content according to the selected key
+      const selectedLayoutTemplateContent = this.availableLayoutDefinitions.filter(layout => { return layout.key === this.properties.selectedLayoutKey; })[0].templateContent;
+      let externalTemplateContent;
 
-        if (this.properties.selectedLayoutKey === BuiltinLayoutsKeys.ResultsCustom ||
-            this.properties.selectedLayoutKey === BuiltinLayoutsKeys.FiltersCustom) {
-            
-            if (!this._domPurify) {
-                await this.initDomPurify();
-            }
+      if (this.properties.selectedLayoutKey === BuiltinLayoutsKeys.ResultsCustom ||
+          this.properties.selectedLayoutKey === BuiltinLayoutsKeys.FiltersCustom ||
+          this.properties.selectedLayoutKey === BuiltinLayoutsKeys.VerticalsCustom) {
+          
+          if (!this._domPurify) {
+              await this.initDomPurify();
+          }
 
-            if (this.properties.externalTemplateFilePickerResult) {
+          if (this.properties.externalTemplateFilePickerResult) {
 
-                if (!this.externalTemplateContent) {
-                    externalTemplateContent = await this.fileService.downloadFileContent(this.properties.externalTemplateFilePickerResult);
-                } else {
-                    externalTemplateContent = this.externalTemplateContent;
-                }
+              if (!this.externalTemplateContent) {
+                  externalTemplateContent = await this.fileService.downloadFileContent(this.properties.externalTemplateFilePickerResult);
+              } else {
+                  externalTemplateContent = this.externalTemplateContent;
+              }
 
-                this.templateContentToDisplay = this.sanitizeTemplate(externalTemplateContent)
+              this.templateContentToDisplay = this.sanitizeTemplate(externalTemplateContent)
 
-            } else {
-                this.templateContentToDisplay = this.properties.inlineTemplateContent ? this.sanitizeTemplate(this.properties.inlineTemplateContent) : selectedLayoutTemplateContent;
-            }
+          } else {
+              this.templateContentToDisplay = this.properties.inlineTemplateContent ? this.sanitizeTemplate(this.properties.inlineTemplateContent) : selectedLayoutTemplateContent;
+          }
 
-        } else {
-            this.templateContentToDisplay = selectedLayoutTemplateContent;
-        }
+      } else {
+          this.templateContentToDisplay = selectedLayoutTemplateContent;
+      }
     }
 
     private sanitizeTemplate(templateContent: string): string {

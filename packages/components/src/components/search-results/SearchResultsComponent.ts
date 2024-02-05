@@ -382,37 +382,35 @@ export class SearchResultsComponent extends BaseComponent {
     private renderDriveItem(result: SearchHit) {
         const resource = result.resource as SearchResource;
         return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult grid-auto-columns-1/2">
             <div class="h-7 w-7">
               <mgt-pnp-file
                 .fileDetails=${result.resource}
                 view="image">
               </mgt-pnp-file>
             </div>
-            <div>
-              <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
+            <div class="dark:text-textColorDark">
+              <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
                 <a href="${resource.webUrl}?Web=1" target="_blank">${decodeURIComponent(trimFileExtension(resource.name))}</a>
               </div>
-              <div class="inline-flex mt-1 mb-1 ml-0 mr-0">
+              <div class="flex mt-1 mb-1 ml-0 mr-0pt-[3px] space-x-1">
                 <div>
-                  <!--<mgt-pnp-person
-                    person-query={"resource.lastModifiedBy.user.email"}
-                    view="oneLine"
-                    person-card="hover"
-                    show-presence="true">
-                  </mgt-pnp-person>-->
+                    ${resource?.lastModifiedBy?.user?.displayName ? `${this.strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
                 </div>
-                <div class="pt-[3px] dark:text-textColorDark">
-                    &nbsp; ${this.dayJs().to(this.dayJs(resource.lastModifiedDateTime))}
+                <div>
+                    ${ resource.lastModifiedDateTime ?
+                        this.dayJs().to(this.dayJs(resource.lastModifiedDateTime)): 
+                        null
+                    }
                 </div>
               </div>
-              <div class="mt-1 mb-1 ml-0 mr-0" .innerHTML="${sanitizeSummary(result.summary)}"></div>
+              <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4" .innerHTML="${sanitizeSummary(result.summary)}"></div>
             </div>
             ${
               result[SearchResponseEnhancedFields.ThumbnailUrl] &&
               html`
                <div>
-                    <a href="${resource.webUrl}" target="_blank"><img class="h-[72px] max-w-[126px] w-[126px] object-cover" alt="${trimFileExtension(
+                    <a href="${resource.webUrl}" target="_blank"><img class="rounded-xl h-[72px] max-w-[126px] w-[126px] object-cover" alt="${trimFileExtension(
                     resource.name || getNameFromUrl(resource.webUrl)
                     )}" src="${result[SearchResponseEnhancedFields.ThumbnailUrl] || ""}" /></a>
                 </div>`
@@ -420,208 +418,209 @@ export class SearchResultsComponent extends BaseComponent {
     
           </div>
         `;
-      }
-    
-      /**
-       * Renders a site entity
-       *
-       * @param result
-       * @returns
-       */
-      private renderSite(result: SearchHit) {
+    }
+
+    /**
+     * Renders a site entity
+     *
+     * @param result
+     * @returns
+     */
+    private renderSite(result: SearchHit) {
         const resource = result.resource as SearchResource;
         return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+            <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult ">
             <div class="h-7 w-7 text-textColor">
-              ${this.getResourceIcon(resource)}
+                ${this.getResourceIcon(resource)}
             </div>
-            <div>
-              <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
+            <div class="dark:text-textColorDark">
+                <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
                 <a href="${resource.webUrl}" target="_blank">${resource.displayName}</a>
-              </div>
-              <div>
-                <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
-                  <a class="" href="${resource.webUrl}" target="_blank">${resource.webUrl}</a>
                 </div>
-              </div>
-              <div class="mt-1 mb-1 ml-0 mr-0" .innerHTML="${sanitizeSummary(result.summary)}"></div>
-            </div>
-          </div>
-        `;
-      }
-    
-      /**
-       * Renders a list entity
-       *
-       * @param result
-       * @returns
-       */
-      private renderList(result: SearchHit) {
-        const resource = result.resource as SearchResource;
-        return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
-          <div class="h-7 w-7">
-              <mgt-pnp-file
-                .fileDetails="${result.resource}"
-                view="image">
-              </mgt-pnp-file>
-            </div>
-            <div>
-                <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
-                    <a href="${resource.webUrl}?Web=1" target="_blank">
-                        ${trimFileExtension(resource.name || getNameFromUrl(resource.webUrl))}
-                    </a>
-                </div>
-                <div class="mt-1 mb-1 ml-0 mr-0" .innerHTML="${sanitizeSummary(result.summary)}"></div>
-            </div>
-          </div>
-        `;
-      }
-    
-      /**
-       * Renders a listItem entity
-       *
-       * @param result
-       * @returns
-       */
-      private renderListItem(result: SearchHit) {
-        const resource = result.resource as SearchResource;
-        return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
-            <div class="h-7 w-7 text-textColor">
-              ${resource.webUrl?.endsWith(".aspx") ? getSvg(SvgIcon.News) : getSvg(SvgIcon.FileOuter)}
-            </div>
-            <div>
-              <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
-                ${ resource.webUrl ? decodeURIComponent(trimFileExtension(resource.name || getNameFromUrl(resource.webUrl))) : nothing }
-              </div>
-              <div class="inline-flex mt-1 mb-1 ml-0 mr-0">
                 <div>
-                  <!--<mgt-pnp-person
-                    person-query="resource.lastModifiedBy.user.email"
-                    view="oneLine"
-                    person-card="hover"
-                    show-presence="true">
-                  </mgt-pnp-person>-->
+                <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
+                    <a class="" href="${resource.webUrl}" target="_blank">${resource.webUrl}</a>
                 </div>
-                <div class="pt-[3px] dark:text-textColorDark">
-                    &nbsp; ${this.dayJs().to(this.dayJs(resource.lastModifiedDateTime))}
                 </div>
-              </div>
-              <div class="mt-1 mb-1 ml-0 mr-0" .innerHTML="${sanitizeSummary(result.summary)}"></div>
+                <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4" .innerHTML="${sanitizeSummary(result.summary)}"></div>
+            </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Renders a list entity
+     *
+     * @param result
+     * @returns
+     */
+    private renderList(result: SearchHit) {
+        const resource = result.resource as SearchResource;
+        return html`
+            <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+            <div class="h-7 w-7">
+                <mgt-pnp-file
+                    .fileDetails="${result.resource}"
+                    view="image"
+                >
+                </mgt-pnp-file>
+            </div>
+                <div class="dark:text-textColorDark">
+                    <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
+                        <a href="${resource.webUrl}?Web=1" target="_blank">
+                            ${trimFileExtension(resource.name || getNameFromUrl(resource.webUrl))}
+                        </a>
+                    </div>
+                    <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4" .innerHTML="${sanitizeSummary(result.summary)}"></div>
+                </div>
+            </div>
+    `;
+    }
+
+    /**
+     * Renders a listItem entity
+     *
+     * @param result
+     * @returns
+     */
+    private renderListItem(result: SearchHit) {
+        const resource = result.resource as SearchResource;
+        return html`
+            <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+                <div class="h-7 w-7 text-textColor">
+                    ${resource.webUrl?.endsWith(".aspx") ? getSvg(SvgIcon.News) : getSvg(SvgIcon.FileOuter)}
+                </div>
+            <div>
+            <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
+                ${ resource.webUrl ? decodeURIComponent(trimFileExtension(resource.name || getNameFromUrl(resource.webUrl))) : nothing }
+            </div>
+            <div class="flex mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark pt-[3px] space-x-1">
+                <div>
+                    ${resource?.lastModifiedBy?.user?.displayName ? `${this.strings.modifiedBy} ${resource?.lastModifiedBy?.user?.displayName}` : null }
+                </div>
+                <div>
+                    ${ resource.lastModifiedDateTime ?
+                        this.dayJs().to(this.dayJs(resource.lastModifiedDateTime)): 
+                        null
+                    }
+                </div>
+            </div>
+                <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4" .innerHTML="${sanitizeSummary(result.summary)}"></div>
             </div>
             ${
-              result[SearchResponseEnhancedFields.ThumbnailUrl] &&
-              html`
-               <div>
-                    <a href="${resource.webUrl}" target="_blank"><img class="h-[72px] max-w-[126px] w-[126px] object-cover" alt="${trimFileExtension(
-                    resource.name || getNameFromUrl(resource.webUrl)
-                    )}" src="${result[SearchResponseEnhancedFields.ThumbnailUrl] || ""}" /></a>
-                </div>`
+                result[SearchResponseEnhancedFields.ThumbnailUrl] &&
+                html`
+                    <div>
+                        <a href="${resource.webUrl}" target="_blank"><img class="rounded-xl h-[72px] max-w-[126px] w-[126px] object-cover" alt="${trimFileExtension(
+                        resource.name || getNameFromUrl(resource.webUrl)
+                        )}" src="${result[SearchResponseEnhancedFields.ThumbnailUrl] || ""}" /></a>
+                    </div>
+                `
             }
-          </div>
-        `;
-      }
-    
-      /**
-       * Renders a person entity
-       *
-       * @param result
-       * @returns
-       */
-      private renderPerson(result: SearchHit) {
-        const resource = result.resource as SearchResource;
-        return html`
-          <div class="search-result">
-            <!--<mgt-pnp-person
-              view="fourLines"
-              person-query={"resource.userPrincipalName"}
-              person-card="hover"
-              show-presence="true">
-            </mgt-pnp-person>-->
-          </div>
-        `;
-      }
-    
-      /**
-       * Renders a bookmark entity
-       *
-       * @param result
-       */
-      private renderBookmark(result: SearchHit) {
-        return this.renderAnswer(result, SvgIcon.DoubleBookmark);
-      }
-    
-      /**
-       * Renders an acronym entity
-       *
-       * @param result
-       */
-      private renderAcronym(result: SearchHit) {
-        return this.renderAnswer(result, SvgIcon.BookOpen);
-      }
-    
-      /**
-       * Renders a qna entity
-       *
-       * @param result
-       */
-      private renderQnA(result: SearchHit) {
-        return this.renderAnswer(result, SvgIcon.BookQuestion);
-      }
-    
-      /**
-       * Renders an answer entity
-       *
-       * @param result
-       */
-      private renderAnswer(result: SearchHit, icon: SvgIcon) {
-        const resource = result.resource as SearchResource;
-        return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
-            <div class="h-7 w-7 text-textColor">
-              ${getSvg(icon)}
             </div>
-            <div>
-                <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
+        `;
+    }
+
+    /**
+     * Renders a person entity
+     *
+     * @param result
+     * @returns
+     */
+    private renderPerson(result: SearchHit) {
+        const resource = result.resource as SearchResource;
+        return html`
+            <div class="search-result">
+                <ubisoft-mgt-person
+                    view="fourLines"
+                    person-query=${resource.userPrincipalName}
+                    person-card="hover"
+                    show-presence="false">
+                </ubisoft-mgt-person>
+            </div>
+        `;
+    }
+
+    /**
+     * Renders a bookmark entity
+     *
+     * @param result
+     */
+    private renderBookmark(result: SearchHit) {
+        return this.renderAnswer(result, SvgIcon.DoubleBookmark);
+    }
+
+    /**
+     * Renders an acronym entity
+     *
+     * @param result
+     */
+    private renderAcronym(result: SearchHit) {
+        return this.renderAnswer(result, SvgIcon.BookOpen);
+    }
+
+    /**
+     * Renders a qna entity
+     *
+     * @param result
+     */
+    private renderQnA(result: SearchHit) {
+        return this.renderAnswer(result, SvgIcon.BookQuestion);
+    }
+
+    /**
+     * Renders an answer entity
+     *
+     * @param result
+     */
+    private renderAnswer(result: SearchHit, icon: SvgIcon) {
+        const resource = result.resource as SearchResource;
+        return html`
+            <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+            <div class="h-7 w-7 text-textColor">
+                ${getSvg(icon)}
+            </div>
+            <div class="dark:text-textColorDark">
+                <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
                     <a href="${this.getResourceUrl(resource)}?Web=1" target="_blank">${resource.displayName}</a>
                 </div>
-                <div class="mt-1 mb-1 ml-0 mr-0">${sanitizeSummary(resource.description)}</div>
+                <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4">${sanitizeSummary(resource.description)}</div>
             </div>
-          </div>
+            </div>
         `;
-      }
-    
-      /**
-       * Renders any entity
-       *
-       * @param result
-       */
-      private renderDefault(result: SearchHit) {
+    }
+
+    /**
+     * Renders any entity
+     *
+     * @param result
+     */
+    private renderDefault(result: SearchHit) {
         const resource = result.resource as SearchResource;
         const resourceUrl = this.getResourceUrl(resource);
         return html`
-          <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
+            <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
             <div class="h-7 w-7 text-textColor">
-              ${this.getResourceIcon(resource)}
+                ${this.getResourceIcon(resource)}
             </div>
-            <div>
-            <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
-                ${
-                  resourceUrl
-                    ? html`
-                      <a href="${resourceUrl}?Web=1" target="_blank">${this.getResourceName(resource)}</a>
-                    `
-                    : html`
-                      ${this.getResourceName(resource)}
-                    `
-                }
-              </div>
-              <div class="mt-1 mb-1 ml-0 mr-0" .innerHTML="${this.getResultSummary(result)}"></div>
+            <div class="dark:text-textColorDark">
+                <div class="font-semibold mt-1 mb-1 ml-0 mr-0 ">
+                    ${
+                        resourceUrl
+                        ? html`
+                            <a href="${resourceUrl}?Web=1" target="_blank">${this.getResourceName(resource)}</a>
+                        `
+                        : html`
+                            ${this.getResourceName(resource)}
+                        `
+                    }
+                </div>
+                <div class="mt-1 mb-1 ml-0 mr-0 line-clamp-4" .innerHTML="${this.getResultSummary(result)}">
+                </div>
             </div>
-          </div>          
+            </div>          
         `;
-      }
+    }
 
     //#endregion
 
@@ -660,6 +659,11 @@ export class SearchResultsComponent extends BaseComponent {
                 const newElement = this.templateService.processResultTypesFromHtml(this.data, element, this.getTheme());
                 element.replaceWith(newElement);
             }
+
+            // Convert inner text content to HTML
+            element.querySelectorAll("[data-html]").forEach(el => {
+                el.innerHTML = el.textContent;
+            });
 
             // Set the theme for user defined templates
             element.setAttribute("class", this.theme);
@@ -908,37 +912,36 @@ export class SearchResultsComponent extends BaseComponent {
 
         return [
             css`
-                :host {
 
-                    img:before {
-                        content: ' ';
-                        display: block;
-                        position: absolute;
-                        height: 93px;
-                        background-size: cover;
-                        width: 126px;
-                        background-image: url('data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEQzNTUxMTIyRTRFMTFFQUFCMEVGNDk1QjZEODkzQTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEQzNTUxMTMyRTRFMTFFQUFCMEVGNDk1QjZEODkzQTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRDM1NTExMDJFNEUxMUVBQUIwRUY0OTVCNkQ4OTNBMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRDM1NTExMTJFNEUxMUVBQUIwRUY0OTVCNkQ4OTNBMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHB8fHx8fHx8fHx8BBwcHDQwNGBAQGBoVERUaHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fH//AABEIAlgDIAMBEQACEQEDEQH/xAB1AAEBAQEBAQEBAAAAAAAAAAAAAQUDBgQCCAEBAAAAAAAAAAAAAAAAAAAAABABAAECAgUJBwQDAQEBAAAAAAECAwQFEZGxNBUhMUFR0RJyU3NhccEiMqKyoeFSM0ITI4GCJBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/oMAFAABQAAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAFAABQAAAUAAFAABQAAAUAAAAFAAABQAAAAUAAAAAFAAAAAAAAAAAAAAAAAAAAABkgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAKAAACgAAAoAAAAKAAAACgAAAAoAAAAAAAAAAAAAAAAAAAAAMkAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAFAABQAAAUAAAFABQAAAUAAFAAABQAAAUAAAFAAAABQAAAUAAAAAFAAAAAAAAAAAAAAAAAAAABkAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAAKAACgAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAACgAAAAoAAAAKAAAAAAAAAAAAAAAAAAAADIBQAAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAAUAAAFAABQAAAUAAAAFAAAABQAAAAUAAAAAAAAAAAAAAAAAAAGQACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAAACgAAAAAoAAAAAAAAAAAAAAAAAAMgAAFAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAAFAABQAAAUAAFAAAABQAAAUAAAFAAAAAABQAAAAAAAAAAAAAAAAAZAAAKAAACgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAACgAAAoAAKAAACgAAoAAAKAAAACgAAAoAAAKAAAAAACgAAAAAAAAAAAAAAAAyAAAAUAAFAAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAAFAABQAAAUAAAFAAAABQAAAUAAAAAFAAAAAAAAAAAAAAAABjgoAAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAAKAACgAAAoAAAKAAACgAAAoAAAAKAAAACgAAAAAAAAAAAAAAAAxwAUAAFAAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAAFAABQAAAUAAAFAAABQAAAUAAAAFAAAABQAAAAAAAAAAAAAAAY4AKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAAACgAAAAAAoAAAAAAAAAAAAAMcAAFAAABQAAUAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAFAAABQAAUAAAFAAABQAAAUAAAFAAAABQAAAAAUAAAAAAAAAAAAAGOAAACgAAAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAoAAAKAAACgAAoAAAAKAAACgAAAAoAAAAKAAAAAAAAAAAAADHAAABQAAAUAAAFAABQAAUAAAFAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAAFAABQAAAUAAAFAAABQAAAAAUAAAAFAAAAAAAAAAAABjAoAAAKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAAKAAACgAAAAAoAAAAAAAAAAAMYFAAAABQAAUAAAFAABQAAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFAAABQAAUAAAFAAAABQAAAAUAAAAAFAAAAAAAAAABjAAAoAAKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAAoAAKAAACgAAAAoAAAKAAACgAAAAAoAAAAAAAAAAMYAAFAAABQAAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAAABQAAUAAFAAABQAAAUAAAFA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CgAAoAAAKAACgAAAxwAAAAAAAAAAAAAUAAAAAFAAABQAAAAUAAAFAAABQAAAUAAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAAFAABQAAY4AAAAAAAAAAAAAKAAAAACgAAAAoAAAAKAAACgAAAoAAKAAACgAAAoAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAoAAKAAACgAAAoAMcAAAAAAAAAAAAAAFAAAAABQAAAAUAAAFAAAABQAAUAAAFAAABQAAUAAFAAABQAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAAABQAAUAGOAAAAAAAAAAAAAAACgAAAAoAAAAAKAAACgAAAoAAAKAAACgAAoAAAKAACgAAoAAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAoAAAKDHAAAAAAAAAAAAAAAABQAAAAUAAAAFAAAABQAAAUAAAFAABQAAAUAAFAAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAFAAABQAAUAAAGQAAAAAAAAAAAAAAAACgAAAAAoAAAAKAAACgAAAAoAAKAAACgAAAoAAKAACgAAAoAAKAAACgAoAAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAMgAAAAAAAAAAAAAAAAFAAAAAABQAAAUAAAAFAAAABQAAUAAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAAABQAZAAAAAAAAAAAAAAAAAAKAAAAAACgAAAoAAAAKAAACgAAAoAAKAAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAAACgAoAAAKAACgAAoAAAKAACgAyAAAAAAAAAAAAAAAAAAAUAAAAAFAAAABQAAAUAAAAFAAABQAAUAAAFAABQAAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFBkAAAAAAAAAAAAAAAAAAAAoAAAAAKAAAACgAAAoAAAKAAACgAAAoAAAKAACgAAoAAAKAACgAAoAAKAAACgAoAAAKAACgAAoAAAKAACgAAoAAKDIAAAAAAAAAAAAAAAAAAABQAAAAAUAAAAFAAAABQAAAUAAAFAAABQAAUAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAFAAABQAAZIAAAAAAAAAAAAAAAAAAAAKAAAAACgAAAAoAAAKAAAACgAAoAAAKAAACgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAAACgAAoAAKAADJAAAAAAAAAAAAAAAAAAAAABQAAAAAUAAAAFAAABQAAAAUAAFAAABQAAUAAAFAABQAAAUAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFAABQAf/9k=');
-                    }
+                img:before {
+                    content: ' ';
+                    display: block;
+                    position: absolute;
+                    height: 93px;
+                    background-size: cover;
+                    border-radius: 0.75rem;
+                    width: 126px;
+                    background-image: url('data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEQzNTUxMTIyRTRFMTFFQUFCMEVGNDk1QjZEODkzQTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEQzNTUxMTMyRTRFMTFFQUFCMEVGNDk1QjZEODkzQTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRDM1NTExMDJFNEUxMUVBQUIwRUY0OTVCNkQ4OTNBMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRDM1NTExMTJFNEUxMUVBQUIwRUY0OTVCNkQ4OTNBMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHB8fHx8fHx8fHx8BBwcHDQwNGBAQGBoVERUaHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fH//AABEIAlgDIAMBEQACEQEDEQH/xAB1AAEBAQEBAQEBAAAAAAAAAAAAAQUDBgQCCAEBAAAAAAAAAAAAAAAAAAAAABABAAECAgUJBwQDAQEBAAAAAAECAwQFEZGxNBUhMUFR0RJyU3NhccEiMqKyoeFSM0ITI4GCJBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/oMAFAABQAAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAFAABQAAAUAAFAABQAAAUAAAAFAAABQAAAAUAAAAAFAAAAAAAAAAAAAAAAAAAAABkgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAKAAACgAAAoAAAAKAAAACgAAAAoAAAAAAAAAAAAAAAAAAAAAMkAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAFAABQAAAUAAAFABQAAAUAAFAAABQAAAUAAAFAAAABQAAAUAAAAAFAAAAAAAAAAAAAAAAAAAABkAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAAKAACgAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAACgAAAAoAAAAKAAAAAAAAAAAAAAAAAAAADIBQAAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAAUAAAFAABQAAAUAAAAFAAAABQAAAAUAAAAAAAAAAAAAAAAAAAGQACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAAACgAAAAAoAAAAAAAAAAAAAAAAAAMgAAFAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAAFAABQAAAUAAFAAAABQAAAUAAAFAAAAAABQAAAAAAAAAAAAAAAAAZAAAKAAACgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAACgAAAoAAKAAACgAAoAAAKAAAACgAAAoAAAKAAAAAACgAAAAAAAAAAAAAAAAyAAAAUAAFAAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAAFAABQAAAUAAAFAAAABQAAAUAAAAAFAAAAAAAAAAAAAAAABjgoAAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAAKAACgAAAoAAAKAAACgAAAoAAAAKAAAACgAAAAAAAAAAAAAAAAxwAUAAFAAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAAFAABQAAAUAAAFAAABQAAAUAAAAFAAAABQAAAAAAAAAAAAAAAY4AKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAKAAAACgAAAAAAoAAAAAAAAAAAAAMcAAFAAABQAAUAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAFAAABQAAUAAAFAAABQAAAUAAAFAAAABQAAAAAUAAAAAAAAAAAAAGOAAACgAAAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAoAAAKAAACgAAoAAAAKAAACgAAAAoAAAAKAAAAAAAAAAAAADHAAABQAAAUAAAFAABQAAUAAAFAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAAFAABQAAAUAAAFAAABQAAAAAUAAAAFAAAAAAAAAAAABjAoAAAKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAAKAACgAAAoAAKAAACgAAAoAAAAKAAACgAAAAAoAAAAAAAAAAAMYFAAAABQAAUAAAFAABQAAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFAAABQAAUAAAFAAAABQAAAAUAAAAAFAAAAAAAAAABjAAAoAAKAAACgAAoAAAKAACgAAAoAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAKAACgAAAoAAKAAACgAAAAoAAAKAAACgAAAAAoAAAAAAAAAAMYAAFAAABQAAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAFAAABQAAUAAFAAABQAAUAAFAAABQAAAUAAAFA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CgAAoAAAKAACgAAAxwAAAAAAAAAAAAAUAAAAAFAAABQAAAAUAAAFAAABQAAAUAAAFAABQAAUAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAFAABQAAAUAAAFAABQAAY4AAAAAAAAAAAAAKAAAAACgAAAAoAAAAKAAACgAAAoAAKAAACgAAAoAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAoAAKAAACgAAAoAMcAAAAAAAAAAAAAAFAAAAABQAAAAUAAAFAAAABQAAUAAAFAAABQAAUAAFAAABQAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAAABQAAUAGOAAAAAAAAAAAAAAACgAAAAoAAAAAKAAACgAAAoAAAKAAACgAAoAAAKAACgAAoAAAKAACgAAoAAKAAACgAAoAAKAACgAAoAAAKAACgAAoAAAKDHAAAAAAAAAAAAAAAABQAAAAUAAAAFAAAABQAAAUAAAFAABQAAAUAAFAAABQAAUAAFAAABQAAUAAFAABQAAUAAFAAABQAAUAAFAAABQAAUAAAGQAAAAAAAAAAAAAAAACgAAAAAoAAAAKAAACgAAAAoAAKAAACgAAAoAAKAACgAAAoAAKAAACgAoAAAKAACgAAoAAKAACgAAAoAAKAACgAAAoAAMgAAAAAAAAAAAAAAAAFAAAAAABQAAAUAAAAFAAAABQAAUAAAFAAABQAAUAAFAABQAAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAAUAAFAAABQAZAAAAAAAAAAAAAAAAAAKAAAAAACgAAAoAAAAKAAACgAAAoAAKAAACgAAAoAAKAACgAAAoAAKAACgAAoAAKAAACgAoAAAKAACgAAoAAAKAACgAyAAAAAAAAAAAAAAAAAAAUAAAAAFAAAABQAAAUAAAAFAAABQAAUAAAFAABQAAAUAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFBkAAAAAAAAAAAAAAAAAAAAoAAAAAKAAAACgAAAoAAAKAAACgAAAoAAAKAACgAAoAAAKAACgAAoAAKAAACgAoAAAKAACgAAoAAAKAACgAAoAAKDIAAAAAAAAAAAAAAAAAAABQAAAAAUAAAAFAAAABQAAAUAAAFAAABQAAUAAAFAABQAAUAAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAFAAABQAAZIAAAAAAAAAAAAAAAAAAAAKAAAAACgAAAAoAAAKAAAACgAAoAAAKAAACgAAoAAAKAACgAAoAAKAACgAAoAAAKAACgAAoAAKAAACgAAoAAKAADJAAAAAAAAAAAAAAAAAAAAABQAAAAAUAAAAFAAABQAAAAUAAFAAABQAAUAAAFAABQAAAUAAFAABQAAUAAFAABQAAUAAAFAABQAAUAAAFAABQAf/9k=');
+                }
 
+                svg, svg > path {
+                    ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColor})`)};
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .dark {
                     svg, svg > path {
-                        ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColor})`)};
-                        height: 100%;
-                        width: 100%;
-                    }
-
-                    .dark {
-                        svg, svg > path {
-                            ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
-                        } 
-                    }
-                }                 
+                        ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
+                    } 
+                }             
             `,
             BaseComponent.themeStyles, // Allow component to use them CSS variables from design. The component is a first level component so it is OK to define them variables here
             BaseComponent.styles // Use base styles (i.e. Tailwind CSS classes)
         ];
     }
 
-    protected override get strings() {
+    protected override get strings(): { [x: string]: string; } {
         return strings;
     }
 
@@ -1177,6 +1180,7 @@ export class SearchResultsComponent extends BaseComponent {
                 this.tokenService.setTokenValue(BuiltinTokenNames.searchTerms, searchKeywords);
 
                 this.searchQuery.requests[0].query.queryString = searchKeywords;
+                this.searchQuery.requests[0].query.queryTemplate = this.tokenService.resolveTokens(this.queryTemplate);
 
                 this.resetFilters();
                 this.resetPagination();

@@ -185,7 +185,7 @@ describe("pnp-search-results", () => {
 
             assert.isNull(getSeeAllLink(el));
             el.seeAllLink = "http://fakesite.com";
-           el.requestUpdate();
+            el.requestUpdate();
             await elementUpdated(el);
             assert.isNotNull(getSeeAllLink(el));
             assert.equal(getSeeAllLink(el)?.href, "http://fakesite.com/");
@@ -200,7 +200,7 @@ describe("pnp-search-results", () => {
 
             assert.isNull(getShowCount(el));
             el.showCount = true;
-           el.requestUpdate();
+            el.requestUpdate();
             await elementUpdated(el);
             assert.isNotNull(getShowCount(el));
             assert.include(getShowCount(el)?.innerText, "5");
@@ -260,7 +260,7 @@ describe("pnp-search-results", () => {
            
         });
 
-       it ("should show debug mode bar when debug mode is enabled", async () => {
+        it ("should show debug mode bar when debug mode is enabled", async () => {
 
             const el: SearchResultsComponent = await fixture(html`
                 <pnp-search-results 
@@ -281,5 +281,29 @@ describe("pnp-search-results", () => {
             assert.isNotNull(getMonacoEditor(el));
         });
 
+        it("should convert raw text from data into html using data-html attribute", async () => {
+
+            const el: SearchResultsComponent = await fixture(html`
+                <pnp-search-results .defaultQueryText=${"*"}>
+                    <template data-type="items">
+                        <span id="text" class="font-bold">{{ rawHtml }}</span>
+                        <span id="html" data-html class="font-bold">{{ rawHtml }}</span>
+                    </template>
+                </pnp-search-results>
+            `);
+
+            await stubSearchResults(el);
+
+            el.templateContext = {
+                ...el.templateContext,
+                rawHtml: "<strong>raw text</strong>"
+            };
+
+            el.requestUpdate();
+            await elementUpdated(el);
+
+            assert.equal(el?.querySelector<HTMLElement>("[id='text']")?.innerText, "<strong>raw text</strong>");
+            assert.equal(el?.querySelector<HTMLElement>("[id='html']")?.innerText, "raw text");
+        });
     });
 });
