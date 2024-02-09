@@ -147,6 +147,8 @@ describe("pnp-search-results", () => {
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
+
+            return;
          
         });
 
@@ -172,6 +174,8 @@ describe("pnp-search-results", () => {
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),"#000000");
+
+            return;
 
         });
     });
