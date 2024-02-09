@@ -41,6 +41,15 @@ import { ComponentEventType } from "../../models/events/EventType";
 import { getSvg, SvgIcon } from "@microsoft/mgt-components/dist/es6/utils/SvgHelper";
 import { trimFileExtension, getNameFromUrl } from "@microsoft/mgt-components/dist/es6/utils/Utils";
 import { SearchHit } from "@microsoft/microsoft-graph-types";
+import { MgtFile } from "@microsoft/mgt-components/dist/es6/components/mgt-file/mgt-file";
+import { MgtPerson } from "@microsoft/mgt-components/dist/es6/components/mgt-person/mgt-person";
+
+// Re-export base MGT classes to avoid constructor conflicts if they are already defined in the host application
+export class MgtFileScopedElement extends MgtFile {
+}
+
+export class MgtPersonScopedElement extends MgtPerson {
+}
 
 export class SearchResultsComponent extends BaseComponent {
 
@@ -384,10 +393,10 @@ export class SearchResultsComponent extends BaseComponent {
         return html`
           <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult grid-auto-columns-1/2">
             <div class="h-7 w-7">
-              <mgt-pnp-file
+              <pnp-mgt-file
                 .fileDetails=${result.resource}
                 view="image">
-              </mgt-pnp-file>
+              </pnp-mgt-file>
             </div>
             <div class="dark:text-textColorDark">
               <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
@@ -459,11 +468,11 @@ export class SearchResultsComponent extends BaseComponent {
         return html`
             <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
             <div class="h-7 w-7">
-                <mgt-pnp-file
+                <pnp-mgt-file
                     .fileDetails="${result.resource}"
                     view="image"
                 >
-                </mgt-pnp-file>
+                </pnp-mgt-file>
             </div>
                 <div class="dark:text-textColorDark">
                     <div class="font-semibold mt-1 mb-1 ml-0 mr-0">
@@ -531,12 +540,12 @@ export class SearchResultsComponent extends BaseComponent {
         const resource = result.resource as SearchResource;
         return html`
             <div class="search-result">
-                <ubisoft-mgt-person
+                <pnp-mgt-person
                     view="fourLines"
                     person-query=${resource.userPrincipalName}
                     person-card="hover"
                     show-presence="false">
-                </ubisoft-mgt-person>
+                </pnp-mgt-person>
             </div>
         `;
     }
@@ -632,6 +641,8 @@ export class SearchResultsComponent extends BaseComponent {
             "pnp-pagination": PaginationComponent,
             "pnp-error-message": ErrorMessageComponent,
             "pnp-monaco-editor": MonacoEditorComponent,
+            "pnp-mgt-file": MgtFileScopedElement,
+            "pnp-mgt-person": MgtPersonScopedElement
         }; 
     }
 
@@ -680,17 +691,6 @@ export class SearchResultsComponent extends BaseComponent {
         this.getSearchSortBinding = this.getSearchSortBinding.bind(this);
 
         this.goToPage = this.goToPage.bind(this); 
-        
-        // Only import needed component here to reduce bundle size and avoid conflicts if any registered components
-        import(
-            /* webpackChunkName: "pnp-modern-search-core-mgt-file" */
-            "@microsoft/mgt-components/dist/es6/components/mgt-file/mgt-file"
-        );
-
-        import(
-            /* webpackChunkName: "pnp-modern-search-core-mgt-person" */
-            "@microsoft/mgt-components/dist/es6/components/mgt-person/mgt-person"
-        );
     }
 
     public override render() {
@@ -764,7 +764,7 @@ export class SearchResultsComponent extends BaseComponent {
         // To avoid circular dependency loop (this component waiting for others, waiting for this component...) we set the flag right away
         this.isInitialized = true;
 
-        this.dayJs = await this.dateHelper.dayJs(LocalizationHelper.strings?.language);
+        this.dayJs = await this.dateHelper.dayJs(LocalizationHelper.strings?.language as string);
 
         // Bind connected components
         await this.bindComponents([
@@ -851,7 +851,7 @@ export class SearchResultsComponent extends BaseComponent {
             await this.updateBinding(EventConstants.SEARCH_SORT_EVENT, this.searchSortComponentId, changedProperties.get("searchSortComponentId"));
         }
 
-        this.currentLanguage = LocalizationHelper.strings?.language;
+        this.currentLanguage = LocalizationHelper.strings?.language as string;
 
         super.updated(changedProperties);
     }
@@ -965,7 +965,7 @@ export class SearchResultsComponent extends BaseComponent {
                 this.isLoading = true;
                 const queryLanguage = LocalizationHelper.strings?.language;
                 
-                const results = await this.msSearchService.search(searchQuery, queryLanguage);
+                const results = await this.msSearchService.search(searchQuery, queryLanguage as string);
                 
                 // Enhance results
                 results.items = await this.searchResultsHelper.enhanceResults(results.items, this.selectedFields);
