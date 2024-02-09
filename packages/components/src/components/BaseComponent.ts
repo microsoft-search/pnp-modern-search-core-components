@@ -2,7 +2,7 @@
 import { EventHandler, LocalizationHelper, MgtTemplatedTaskComponent } from "@microsoft/mgt-element";
 import { css, CSSResultGroup, html, PropertyValueMap, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
-import { ErrorTypes, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
+import { ErrorTypes, EventConstants, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
 import { IComponentBinding } from "../models/common/IComponentBinding";
 import { IThemeDefinition } from "../models/common/IThemeDefinition";
 import { isEmpty, isEqual, isObjectLike } from "lodash-es";
@@ -229,16 +229,16 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    protected override updated(changedProperties: PropertyValueMap<any>): void {
+    protected override async updated(changedProperties: PropertyValueMap<any>): Promise<void> {
             
         // Needed for components not having FAST elements not available at connected callback
         this.setFASTColors();
 
         if (changedProperties.has("useMicrosoftGraphToolkit") && this.useMicrosoftGraphToolkit) {
 
-            this.loadMgt().then(() => {
-                this.requestUpdate();
-            });
+            await this.loadMgt();
+            this.requestUpdate();
+            this.fireCustomEvent(EventConstants.SEARCH_MGT_COMPONENTS_LOADED);
         }
 
         super.updated(changedProperties);
