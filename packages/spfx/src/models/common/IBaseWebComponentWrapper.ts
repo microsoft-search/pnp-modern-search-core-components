@@ -16,6 +16,11 @@ export interface IBaseWebComponentWrapperProps {
     enableDebugMode: boolean;
 
     /**
+     * Enable the Microsoft Graph Toolkit for templates
+     */
+    useMicrosoftGraphToolkit: boolean;
+
+    /**
      * The web HTML template content
      */
     templateContent?: string;

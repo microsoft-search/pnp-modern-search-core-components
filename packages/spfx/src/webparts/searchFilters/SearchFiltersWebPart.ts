@@ -160,6 +160,7 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
           searchVerticalsComponentId: this.properties.verticalsDataSourceReference,
           operator: this.properties.filterOperator,
           enableDebugMode: this.properties.enableDebugMode,
+          useMicrosoftGraphToolkit: this.properties.useMicrosoftGraphToolkit,
           templateContent: this.templateContentToDisplay,
           theme: this._themeVariant.isInverted ? "dark" : ""
         }
@@ -289,6 +290,13 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
         {
           displayGroupsAsAccordion: true,
           groups: [this.getThemePageGroup()]
+        },
+         // 'About' infos
+        {
+          displayGroupsAsAccordion: true,
+          groups: [
+              ...this.getPropertyPaneWebPartInfoGroups(),
+          ]
         }
       ]
     };
@@ -329,6 +337,8 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
   protected async loadPropertyPaneResources(): Promise<void> {
     this._propertyPaneSearchResultsFields = await this.getSearchResultsConnectionField();
     this._propertyPaneSearchVerticalsFields = await this.getVerticalsConnectionField();
+
+    await super.loadPropertyPaneResources();
   }
 
   private async getSearchResultsConnectionField(): Promise<IPropertyPaneField<IPropertyFieldMultiSelectProps>[]> {

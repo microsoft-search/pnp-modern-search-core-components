@@ -24,43 +24,39 @@ const envCheck = build.subTask('environmentCheck', (gulp, config, done) => {
               loader: 'babel-loader'
             }
           },
+          {
+            test: /\.js$/,
+            // only run on lit packages in the root node_module folder
+            include: /node_modules\/(\@lit)|(lit)/,
+            exclude: [
+              {
+                // Exclude this rule from everything.
+                test: __dirname,
+                // Add back the ES2021 Lit dependencies. Add anything else here that uses modern
+                // JavaScript that Webpack 4 doesn't understand.
+                exclude: ['@lit', 'lit-element', 'lit-html'].map((p) =>
+                  path.resolve(__dirname, 'node_modules/' + p)
+                ),
+              },
+            ],
+            use: {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  "@babel/plugin-transform-optional-chaining",
+                  "@babel/plugin-transform-nullish-coalescing-operator",
+                  "@babel/plugin-transform-logical-assignment-operators"
+                ]
+              }
+            }
+          }
         );
   
         if (!config.production) {
-          generatedConfiguration.module.rules.push(
-            {
-              test: /strings\..+\.d\.ts$/,
-              use: 
-                {
-                  loader: 'null-loader',
-                }
-              
-            },
-            {
-              test: /\.js$/,
-              exclude: (_) => {            
-                return /node_modules/.test(_) && !/(@pnp)/.test(_) && /strings\..+\.js$/.test(_);
-              },
-              enforce: 'pre',
-              use: ['source-map-loader'],
-            } 
-          );
-        } else {
-
-          generatedConfiguration.module.rules.push(
-            {
-              test: /strings\..+(\.d\.ts|\.map)$/,
-              use: 
-                {
-                  loader: 'null-loader',
-                }
-              
-            }
-          );
+          generatedConfiguration.devtool = 'eval-source-map';
         }
   
         return generatedConfiguration;
-  
     }
   });
 

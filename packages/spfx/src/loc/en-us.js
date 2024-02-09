@@ -55,8 +55,22 @@ define([], function() {
             TextColorFieldName: "Text color",
             EditComponentTemplates: "Edit component template(s)",
             EnableDebugMode: "Debug mode",
+            UseMicrosoftGraphToolkit: "Enable Microsoft Graph Toolkit",
             UseExternalTemplateFile: "Use external template file",
-            TemplateSettingsGroupName: "Template settings"
+            TemplateSettingsGroupName: "Template settings",
+            InformationPage: {
+                ImportExport: "Import/Export WebPart settings",
+                About: "About",
+                Authors: "Author(s)",
+                Version: "Version",
+                InstanceId: "Web Part instance ID",
+                Resources: {
+                    GroupName: "Resources",
+                    Documentation: "Read the documentation",
+                    PleaseReferToDocumentationMessage: "Please refer to the official documentation."
+                },
+                DeveloperSettingsWarning: "❗️❗️ This is a developer feature, make sure you know what are you doing ❗️❗️"
+            }
         },
         Controls: {
         },

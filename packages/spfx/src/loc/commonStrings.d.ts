@@ -54,8 +54,22 @@ declare interface ICommonStrings {
     TextColorFieldName: string;
     EditComponentTemplates: string;
     EnableDebugMode: string;
+    UseMicrosoftGraphToolkit: string;
     UseExternalTemplateFile: string;
     TemplateSettingsGroupName: string;
+    InformationPage: {
+      ImportExport: string;
+      Version: string;
+      InstanceId: string;
+      About: string;
+      Authors: string;
+      Resources: {
+        GroupName: string;
+        Documentation: string;
+        PleaseReferToDocumentationMessage: string;
+      },
+      DeveloperSettingsWarning: string;
+    }
   },
   Controls: {
   },

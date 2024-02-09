@@ -127,6 +127,7 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
             theme: this._themeVariant.isInverted ? "dark" : "",
             templateContent: this.templateContentToDisplay,
             enableDebugMode: this.properties.enableDebugMode,
+            useMicrosoftGraphToolkit: this.properties.useMicrosoftGraphToolkit,
             onVerticalSelected: (selectedVerticalKey) => {
               this.currentSelectedVerticalKey = selectedVerticalKey;
               this.context.dynamicDataSourceManager.notifySourceChanged();
@@ -311,6 +312,13 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
           {
             displayGroupsAsAccordion: true,
             groups: [this.getThemePageGroup()]
+          },
+           // 'About' infos
+          {
+            displayGroupsAsAccordion: true,
+            groups: [
+                ...this.getPropertyPaneWebPartInfoGroups(),
+            ]
           }
         ]
       };

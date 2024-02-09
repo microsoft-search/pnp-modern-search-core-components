@@ -41,7 +41,7 @@ import { styles as tailwindStyles } from "../styles/tailwind-styles-css";
 import { parseColorHexRGB,  } from "@microsoft/fast-colors";
 import { accentForegroundRest, neutralFillStealthRest as neutralFillStealthRestFluent } from "@fluentui/web-components";
 
-provideFASTDesignSystem().register(
+provideFASTDesignSystem(this).register(
     fastTab(),
     fastTabPanel(),
     fastTabs(),

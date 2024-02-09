@@ -33,6 +33,7 @@ export default class SearchVerticals extends React.Component<ISearchVerticalsPro
               id={this.props.id}
               verticals={this.props.verticalConfiguration}
               enableDebugMode={this.props.enableDebugMode ? true : null}
+              useMicrosoftGraphToolkit={this.props.useMicrosoftGraphToolkit ? true : null}
               theme={this.props.theme}              
             >
               <TemplateContent/>

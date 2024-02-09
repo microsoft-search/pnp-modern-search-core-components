@@ -26,6 +26,11 @@ export interface IBaseWebPartProps {
     enableDebugMode: boolean;
 
     /**
+     * Enable Microsoft Graph Toolkit components for templates
+     */
+    useMicrosoftGraphToolkit: boolean;
+
+    /**
      * The layout properties
      */
     layoutProperties: {

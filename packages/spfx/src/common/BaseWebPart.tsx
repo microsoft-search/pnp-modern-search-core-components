@@ -2,7 +2,7 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IBaseWebPartProps } from "../models/common/IBaseWebPartProps";
 import { ThemeProvider, IReadonlyTheme, ThemeChangedEventArgs } from '@microsoft/sp-component-base';
 import { isEqual } from '@microsoft/sp-lodash-subset';
-import { IPropertyPaneGroup, PropertyPaneToggle } from '@microsoft/sp-property-pane';
+import { IPropertyPaneGroup, PropertyPaneLabel, PropertyPaneLink, PropertyPaneToggle } from '@microsoft/sp-property-pane';
 import * as commonStrings from "CommonStrings";
 import { 
   SearchFiltersComponent, 
@@ -45,6 +45,7 @@ import IDynamicDataService from '../services/dynamicDataService/IDynamicDataServ
 import { DynamicDataService } from '../services/dynamicDataService/DynamicDataService';
 import IFileService from '../services/fileService/IFileService';
 import '../styles/dist/tailwind.css';
+import { PropertyPaneWebPartInformation } from '@pnp/spfx-property-controls';
 
 //#region Default colors
 
@@ -102,6 +103,9 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     protected _placeholderComponent: any = null;
+
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    protected _propertyPanePropertyEditor: any = null;
 
     /**
      * The Web Part properties
@@ -244,13 +248,65 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
       this.setThemeVariables();
     }
 
+    protected async loadPropertyPaneResources(): Promise<void> {
+
+
+      const { PropertyPanePropertyEditor } = await import(
+          /* webpackChunkName: 'pnp-modern-search-property-pane' */
+          '@pnp/spfx-property-controls/lib/PropertyPanePropertyEditor'
+      );
+      this._propertyPanePropertyEditor = PropertyPanePropertyEditor;
+    }
+
+    protected async onPropertyPaneConfigurationStart(): Promise<void> {
+      await this.loadPropertyPaneResources();
+    }
+
     /**
      * Returns common information groups for the property pane
      */
     protected getPropertyPaneWebPartInfoGroups(): IPropertyPaneGroup[] {
 
-      return [ 
-
+      return [
+        {
+            groupName: commonStrings.PropertyPane.InformationPage.About,
+            groupFields: [
+              PropertyPaneWebPartInformation({
+                description: `<span>${commonStrings.PropertyPane.InformationPage.Authors}:<ul style=list-style-type:none;padding:0><li><a href=https://www.linkedin.com/in/franckcornu/ target=_blank>Franck Cornu</a></ul></span>`,
+                key: 'authors'
+              }),
+              PropertyPaneLabel('', {
+                text: `${commonStrings.PropertyPane.InformationPage.Version}: ${this && this.manifest.version ? this.manifest.version : ''}`
+              }),   
+              PropertyPaneLabel('', {
+                text: `${commonStrings.PropertyPane.InformationPage.InstanceId}: ${this.instanceId}`
+              }),            
+            ]
+          },
+          {
+            groupName: commonStrings.PropertyPane.InformationPage.Resources.GroupName,
+            groupFields: [
+              PropertyPaneLink('',{
+                target: '_blank',
+                href: this.properties.documentationLink,
+                text: commonStrings.PropertyPane.InformationPage.Resources.Documentation
+              })
+            ]
+          },
+          {
+            groupName: commonStrings.PropertyPane.InformationPage.ImportExport,
+            groupFields: [
+              PropertyPaneWebPartInformation({
+                description: `<span style="color:red">${commonStrings.PropertyPane.InformationPage.DeveloperSettingsWarning}</span>`,
+                key: 'warning'
+              }),
+              this._propertyPanePropertyEditor({
+                webpart: this,
+                key: 'propertyEditor'
+              }),
+            ],
+            isCollapsed: false
+        }
       ];
     }
 
@@ -409,6 +465,9 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
           }),
           PropertyPaneToggle('enableDebugMode', {
               label: commonStrings.PropertyPane.EnableDebugMode
+          }),
+          PropertyPaneToggle('useMicrosoftGraphToolkit', {
+            label: commonStrings.PropertyPane.UseMicrosoftGraphToolkit
           })
       );
 
@@ -533,7 +592,7 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
 
           this._domPurify.setConfig({
               CUSTOM_ELEMENT_HANDLING: {
-                  tagNameCheck: /^pnp-/,
+                  tagNameCheck: /^pnp|mgt-/,
                   attributeNameCheck: () => true,
                   allowCustomizedBuiltInElements: true, 
               },

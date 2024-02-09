@@ -20,8 +20,8 @@ export class LanguageProvider {
                 const localizedResources = await import(
                     /* webpackChunkName: "pnp-modern-search-core-languages" */
                     /* webpackExports: ["strings"] */
-                    /* webpackMode: "lazy-once" */
-                    `../../loc/strings.${locale}`
+                    /* webpackMode: "lazy" */
+                    `../../loc/strings.${locale}.js`
                 );
 
                 await this.dateHelper.dayJs(locale);
@@ -32,6 +32,7 @@ export class LanguageProvider {
             
             } catch (error) {
 
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 LocalizationHelper.strings = strings as any;
                 await this.dateHelper.dayJs("en-us");
                 console.warn(`"${locale}" not found. Fallback to default.`);

@@ -155,6 +155,7 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     useBetaEndpoint={ this.properties.useBetaEndpoint}
                     selectedFields={ this.properties.selectedFields}
                     enableDebugMode={ this.properties.enableDebugMode}
+                    useMicrosoftGraphToolkit={ this.properties.useMicrosoftGraphToolkit}
                     showCount={ this.properties.showResultsCount}
                     enableResultTypes={ this.properties.enableResultTypes}
                     enableModification={ this.properties.queryAlterationOptions.enableModification}
@@ -260,6 +261,13 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
             {
                 displayGroupsAsAccordion: true,
                 groups: [this.getThemePageGroup()]
+            },
+            // 'About' infos
+            {
+                displayGroupsAsAccordion: true,
+                groups: [
+                    ...this.getPropertyPaneWebPartInfoGroups(),
+                ]
             }
           ]
         };
@@ -401,6 +409,8 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
 
     protected async loadPropertyPaneResources(): Promise<void> {
         this.propertyPaneFiltersConnectionField = await this.getVerticalsConnectionField();
+
+        await super.loadPropertyPaneResources();
     }
 
     /**

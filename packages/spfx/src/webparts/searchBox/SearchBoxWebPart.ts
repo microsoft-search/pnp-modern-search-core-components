@@ -96,6 +96,13 @@ export default class SearchBoxWebPart extends BaseWebPart<ISearchBoxWebPartProps
       {
         displayGroupsAsAccordion: true,
         groups: [this.getThemePageGroup()]
+      },
+      // 'About' infos
+      {
+        displayGroupsAsAccordion: true,
+        groups: [
+            ...this.getPropertyPaneWebPartInfoGroups(),
+        ]
       }
     ];
 
