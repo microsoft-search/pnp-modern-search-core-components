@@ -67,7 +67,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(
         {
-          title: "Ubisoft - Results test page",
+          title: "PnP - Results test page",
           filename: "index.html",
           template: "dev/index.html",
           alwaysWriteToDisk: true,

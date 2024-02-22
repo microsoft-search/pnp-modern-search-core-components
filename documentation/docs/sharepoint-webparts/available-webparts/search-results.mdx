@@ -16,7 +16,7 @@ This Web Part can be used **alone** or connected to **other Web Parts** to add d
 
 
 1. Edit your SharePoint modern page.
-2. Search for the 'PnP Modern Search Core - Search Results' Web Part and add it to your page:
+2. Search for the _'PnP Modern Search Core Components - Search Results'_ Web Part and add it to your page:
 
 <div className='center' style={{flexDirection: 'column'}}>   
     ![Search Results Webpart](./img/add_search_results_wp.png)
@@ -48,12 +48,12 @@ Entity types represent the type of data you want to retrieve. The following enti
     <div style={{width: '50%'}}>   
         | Entity type | Description
         | ----------- | -----------
-        | **List Items** | Used to retreive SharePoint list items. Note that files and folders are also returned as list items.
+        | **List Items** | Used to retrieve SharePoint list items. Note that files and folders are also returned as list items.
         | **List** | Search for lists. Note that document libraries are also returned as lists.
         | **Drive** | Document libraries.
         | **Drive Items** |  Files, folders, pages, and news.
         | **Sites** | Sites in SharePoint.
-        | **External Items** | External indexed sources (ex: `Profiles`, `Ubipedia`, `DXP`). When selecting this option, you must specify a valid connection ID (see below 👇).
+        | **External Items** | External indexed sources. When selecting this option, you must specify a valid connection ID.
         | **Teams messages** | Messages fron Microsoft Teams.
         | **Bookmarks** | Microsoft Search bookmarks defined at organization level.
         | **Acronyms** | Microsoft Search acronyms defined at organization level.
@@ -95,12 +95,12 @@ Theorically, all SharePoint web parts or extensions defined as a source on the p
 
 <Tabs>
   <TabItem value="searchbox" label="Example: Connect to a search box" default>
-    You can connect the _PnP Modern Search Core - Search Box_ as query text source for the search results Web Part. To do so:
+    You can connect the _PnP Modern Search Core Components - Search Box_ as query text source for the search results Web Part. To do so:
 
-    1. Add the '_PnP Modern Search Core - Search Box_' on the same page.
-    2. Open the '_PnP Modern Search Core - Search Results_' property pane settings.
-    3. In **Query Text** ➝ **Dynamic Value** ➝ **Connect to source**, choose _PnP Modern Search Core - Search Box_.
-    4. In **PnP Modern Search Core - Search Box's properties** choose your Search Box WebPart. 
+    1. Add the '_PnP Modern Search Core Components - Search Box_' on the same page.
+    2. Open the '_PnP Modern Search Core Components - Search Results_' property pane settings.
+    3. In **Query Text** ➝ **Dynamic Value** ➝ **Connect to source**, choose _PnP Modern Search Core Components - Search Box_.
+    4. In **PnP Modern Search Core Components - Search Box's properties** choose your Search Box WebPart. 
 
     <div className='center'> 
         ![Connect search box](./img/connect_to_searchbox.png)
@@ -117,7 +117,7 @@ To find the Web Part instance ID ➝ [here](./tips#tip-instanceid)
         ![Query String param](./img/query_string_param.png)
     </div>
 
-    2. Open the 'PnP Modern Search Core - Search Results' property pane settings.
+    2. Open the 'PnP Modern Search Core Components - Search Results' property pane settings.
     3. In **Query Text** ➝ **Dynamic Value** ➝ **Connect to source**, choose _Page environment_.
     4. In **Page environment's properties** choose your **Query string** ➝ **Query parameters** ➝ &lt;your_param_name&gt; 
     
@@ -235,32 +235,6 @@ Enable this option only if you want to rely on the managed experience instead of
     ![Default value](./img/enable_result_types.png)
 </div>
 
-
-:::info
-
-In the PnP Modern Search Core environment, only the following sources use result types:
-
-- **Profiles**
-- **Ubipedia**
-- **ServiceNow Knowledge Base**
-- **Wordpress DXP**
-
-**Ex: Ubipedia** 
-
-➝ without result types enabled
-
-<div className='center'> 
-    ![Without result type](./img/without_result_type.png)
-</div>
-
-➝ with resulty types enabled
-
-<div className='center'> 
-    ![With result type](./img/with_result_type.png)
-</div>
-
-:::
-
 :::warning Don't forget to define fields!
 Most of the time, result types expect specific fields to be included in the search response to work properly. If you are not sure what fields to use, contact an admin.
 ::: 
@@ -338,7 +312,7 @@ Icons and properties are automatically displayed according to [entity type](#ent
 The tiles template displays items in cards. Example with Anvil SharePoint site:
 
 <div className='center'>   
-    ![Cards](./img/anvil_cards.png)
+    ![Cards](./img/tiles_cards.png)
 </div>
 
 The following options are available:
@@ -379,7 +353,7 @@ The show count option display the total number of results returned by the query.
 
 You can connect the search results Web Part to a search verticals on the same page:
 
-1. Add a _'PnP Modern Search Core - Search Verticals'_ Web Part on the page and [configure some tabs](./search-verticals#configure-verticals).
+1. Add a _'PnP Modern Search Core Components - Search Verticals'_ Web Part on the page and [configure some tabs](./search-verticals#configure-verticals).
 
 <div className='center'>   
     ![Results display](./img/filters_verticals_webpart.png)
@@ -432,18 +406,18 @@ The following properties can be used in the template:
 
 <div style={{display: 'flex'}}>
 
-    <div style={{width: '70%', marginRight: 30}}>   
+    <div style={{width: '50%', marginRight: 30}}>   
         ```html
         <template data-type="items">
             <div data-for='item in items'>
-                <div>Title: {{ item.Title }}</div>
+                <div>Title: {{ item.title }}</div>
                 <div>Path: {{ item.path }}</div>
             </div>
         </template>
         ```
     </div>
 
-    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+    <div style={{width: '50%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
         ![Items template](./img/items_template_example.png)
     </div>
     

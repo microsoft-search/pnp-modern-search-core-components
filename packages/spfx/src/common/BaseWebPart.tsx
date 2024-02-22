@@ -272,7 +272,7 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
             groupName: commonStrings.PropertyPane.InformationPage.About,
             groupFields: [
               PropertyPaneWebPartInformation({
-                description: `<div class="flex justify-between"><span>${commonStrings.PropertyPane.InformationPage.Authors}:<ul style=list-style-type:none;padding:0 ><li><a href=https://www.linkedin.com/in/franckcornu/ target=_blank>Franck Cornu</a></ul></span><img class="w-[72px]" src=${require("../controls/WebPartPlaceholder/logo.svg")} alt="Ubisoft logo"/></div>`,
+                description: `<div class="flex justify-between"><span>${commonStrings.PropertyPane.InformationPage.Authors}:<ul style=list-style-type:none;padding:0 ><li><a href=https://www.linkedin.com/in/franckcornu/ target=_blank>Franck Cornu</a></ul></span><img class="w-[72px]" src=${require("../controls/WebPartPlaceholder/logo.svg")} alt="PnP logo"/></div>`,
                 key: 'authors'
               }),
               PropertyPaneLabel('', {

@@ -25,7 +25,7 @@ Tokens are case insensitive
 Tokens related to connected Web Parts in the Search Results. 
 
 :::info
-These tokens can be used in the 'PnP Modern Search Core Search Results' and 'PnP Modern Search Core Search Box' Web Parts.
+These tokens can be used in the 'PnP Modern Search Core Components Search Results' and 'PnP Modern Search Core Components Search Box' Web Parts.
 You can escape curly braces characters using `'\'` to avoid: ex: `DepartmentId:\{edbfd618-ef1d-4cc5-a214-95bf44ddf4ee\}`
 :::
 

@@ -18,12 +18,12 @@ The '_Search Filters_' Web Part allows to filter the results displayed in a conn
 Connection between search filters and search results is always a **two-ways** connection meaning both web parts need to be configured.
 :::
 
-1. Edit the page and add a ['_PnP Modern Search Core - Search Results_'](./search-results) and a _'PnP Modern Search Core - Search Filters'_ web parts.
+1. Edit the page and add a ['_PnP Modern Search Core Components - Search Results_'](./search-results) and a _'PnP Modern Search Core Components - Search Filters'_ web parts.
 
     <div className='center' style={{flexDirection: 'column'}}>
-        ![PnP Modern Search Core Search Filters WebPart](./img/search_filters_add_to_page.png)
+        ![PnP Modern Search Core Components Search Filters WebPart](./img/search_filters_add_to_page.png)
 
-        ![PnP Modern Search Core Search Filters WebPart default](./img/search_filters_default.png)
+        ![PnP Modern Search Core Components Search Filters WebPart default](./img/search_filters_default.png)
     </div>
 
 3. **In the filters web part**
@@ -50,7 +50,7 @@ Connection between search filters and search results is always a **two-ways** co
     </div>
 
     :::tip
-    You can change filters order in the filters bar using drag n'drop in the property pane.
+    You can change filters order in the filters bar using drag n' drop in the property pane.
     :::
 
 4. **In the search results web part**
@@ -77,7 +77,7 @@ Connection between search filters and search results is always a **two-ways** co
             |------------|-----------------|
             | **Filter Name** | The field name from the search schema (ex: `RefinableStringXXX`) <br/><br/> <Admonition type="warning">For a field to be used as filter, it has be [**Refinable**](https://learn.microsoft.com/en-us/microsoftsearch/manage-search-schema#refinable) in the search schema.</Admonition> | 
             | **Display name** | The name of the filter to display for users. You can specify a value per language according to your site language settings. <br/><br/> <Admonition type="info">If your site is configured to use multiple languages, the '**Add new translation**' button will be available. Otherwise, the default language is used by default and the button is greyed out.</Admonition>    
-            | **Template** | The template to use to display filter values. The builtin templates are: <ul><li>**Check box** ➝ use it for `Text` properties (ex: `RefinableStringXXX`) <p align="center">![Check box](./img/checkbox_template.png)</p></li><li>**Date range** ➝ use it for `Datetime` properties (ex: `RefinableDateXXX`) <p align="center">![Date range](./img/daterange_template.png)</p></li><li>**Slider** ➝ use it for `Integer` properties (ex: `RefinableIntXXX`)) <p align="center">![Slider](./img/slider_template.png)</p></li></ul>
+            | **Template** | The template to use to display filter values. The builtin templates are: <ul><li>**Check box** ➝ use it for `Text` properties (ex: `RefinableStringXXX`) <p align="center" class="w-96">![Check box](./img/checkbox_template.png)</p></li><li>**Date range** ➝ use it for `Datetime` properties (ex: `RefinableDateXXX`) <p align="center" class="w-96">![Date range](./img/daterange_template.png)</p></li></ul>
             | **Show count** | If applicable for the selected template, display counts for each filter values.
             | **Operator** | If multi values is selected, the operator to use between values (OR/AND).
             | **Mutli values** | If applicable for the selected template, allow selection of multiple values.
@@ -116,37 +116,13 @@ Connection between search filters and search results is always a **two-ways** co
 
     </TabItem>
 
-    <TabItem value="settings" label="Settings (Slider template)">
-    
-        Settings that only apply to slider template.
-
-        <div style={{display: 'flex'}}>
-
-            <div style={{width: '70%', marginRight: 30}}>   
-            | **Setting** | **Description** |
-            |------------|-----------------|
-            | **Minimum value** | The mininum value that can be selected on the slider. **Can be a negative value**.
-            | **Maximum value** | The maximum value that can be selected on the slider. Should be higher than the minimum value.
-            | **Default minimum value** | The default mininum value selected on the slider.
-            | **Default maximum value** | The default maximum value selected on the slider.
-            | **Markers** | Markers are arbitrary points to show on the slider line having a specific value and text. Use markers to build predefined intervals. <br/><br/> <ul><li>**Label**: the label to show in the marker.</li><li>**Value**: the value when selected.</li><li>**Size**: size of the text in pixels.</li></ul> <div style={{display: 'flex',flexDirection: 'column'}}>![Filter marker settings](./img/filters_marker_example2.png)![Filter marker result](./img/filters_marker_example.png)</div>
-            </div>
-
-            <div style={{width: '30%', justifyContent: 'center', alignItems: 'flex-start', display: 'flex'}}>   
-                ![Filter slider template settings](./img/filters_slider_settings.png)
-            </div>
-            
-        </div>
-
-    </TabItem>
-
 </Tabs>
 
 ## Control filter visibility with search verticals {#configure-verticals}
 
 Connection with search verticals allows you to configure visibility **for each individual filters**. This allows to have only one search filters web part on the page connected to multiple search results web parts.
 
-1. Edit the page and add a '_PnP Modern Search Core - Search Verticals'. Configure some verticals.
+1. Edit the page and add a '_PnP Modern Search Core Components - Search Verticals'_. Configure some verticals.
 
     <div className='center'>   
         ![Filter display](./img/filters_verticals_webpart.png)
@@ -159,7 +135,7 @@ Connection with search verticals allows you to configure visibility **for each i
 To find the Web Part instance ID ➝ [here](./tips#tip-instanceid)
 :::
 
-5. For each individual filter, a new confoguration tab **'Display'** is available. Select the tab where the current filter should be displayed:
+5. For each individual filter, a new configuration tab **'Display'** is available. Select the tab where the current filter should be displayed:
     
     <div className='center'>   
         ![Filter display](./img/filters_display_verticals.png)
@@ -203,7 +179,7 @@ The following properties can be used in the template:
         ```
     </div>
 
-    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+    <div style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
         ![Filter name template](./img/filter_name_template_example.png)
     </div>
     
@@ -256,42 +232,3 @@ The following properties can be used in the template:
 :::tip
 You can apply a template conditionally to a filter name using `data-if="filterName === 'FileType'"`. Use the **debug mode** to inspect variables that can be used in your templates.
 :::
-
-### `bubble`
-
-This template controls the rendering of bubbles content in the slider template.
-
-➝ Applies to filter templates: **Slider**
-
-<span style={{textDecoration: 'underline'}}>**Properties**</span>
-<br/>
-The following properties can be used in the template:
-
-| Property | Description |
-|----------|-------------|
-| `value`    | Current value of the marker in the slider.
-| `selectedMinValue`   | The minimum selected value on the slider.
-
-<div style={{display: 'flex'}}>
-
-    <div style={{width: '70%', marginRight: 30}}>   
-        ```html
-         <template data-type="bubble">
-
-            <div data-if="value < 0">
-                {{ value }} neg
-            </div>
-
-            <div data-if="value > 0">
-                {{ value }} pos
-            </div>
-
-        </template>
-        ```
-    </div>
-
-    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
-        ![Bubble slider template](./img/bubble_template_example.png)
-    </div>
-    
-</div>

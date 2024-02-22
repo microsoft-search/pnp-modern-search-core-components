@@ -4,7 +4,7 @@ define([], function() {
     General: {
       PlaceHolder: {
           EditLabel: "Edit",
-          IconText: "Search Verticals Web Part by Ubisoft",
+          IconText: "Search Verticals Web Part by PnP",
           Description: "Control results visbility by search verticals",
           ConfigureBtnLabel: "Get started"
       },

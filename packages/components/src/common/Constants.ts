@@ -27,7 +27,7 @@ export class EventConstants {
     /**
      * Event name when MGT components are loaded on-demand
      */
-    public static readonly SEARCH_MGT_COMPONENTS_LOADED = "Ubisoft:Components:Search:MgtComponentsLoaded";
+    public static readonly SEARCH_MGT_COMPONENTS_LOADED = "PnPModernSearchCoreComponents:Components:Search:MgtComponentsLoaded";
 }
 
 export enum ErrorTypes {

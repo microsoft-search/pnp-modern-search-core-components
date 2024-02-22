@@ -706,7 +706,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
     public async loadPropertyPaneResources(): Promise<void> {
 
         const { PropertyFieldNumber } = await import(
-            /* webpackChunkName: 'ubisoft-modern-search-core-property-pane' */
+            /* webpackChunkName: 'pnp-modern-search-core-property-pane' */
             '@pnp/spfx-property-controls/lib/PropertyFieldNumber'
         );
 

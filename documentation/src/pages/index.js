@@ -10,9 +10,11 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={`${clsx('hero hero--primary', styles.heroBanner)}`} style={{ 
-      backgroundImage: `url("${useBaseUrl('/img/home_bg.jpg')}")`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' 
-      }}>
+    <header className={`${clsx('hero hero--primary', styles.heroBanner)}`} 
+            style={{ 
+                backgroundImage: `url("${useBaseUrl('/img/home_bg.jpg')}")`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' 
+            }}
+      >
       <div className="container">
         <ThemedImage
             alt="PnP Logo"
