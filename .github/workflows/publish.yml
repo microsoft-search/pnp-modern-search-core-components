@@ -75,10 +75,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm install --force
+          npm install
 
       - name: Tests
-        run: pnpm run test
+        run: npm run test
 
 
   build_spfx:
