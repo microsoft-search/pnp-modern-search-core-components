@@ -3,6 +3,8 @@
 
 const gulp = require('gulp')
 const path = require('path');
+const fs = require("fs");
+const log = require('fancy-log');
 const replace = require("gulp-replace");
 const { src, dest } = require("gulp");
 const rename = require("gulp-rename");

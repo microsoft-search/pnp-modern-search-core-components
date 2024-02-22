@@ -38,8 +38,8 @@ jobs:
       - name: Set outputs
         id: setoutputs
         run: |
-          echo "majorMinorPatch=$GITVERSION_MAJORMINORPATCH" >> "$GITHUB_OUTPUT"
-          echo "semver=$GITVERSION_SEMVER" >> "$GITHUB_OUTPUT"
+          echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
+          echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
   tests:
     runs-on: ubuntu-latest
     defaults:
@@ -78,10 +78,8 @@ jobs:
           pnpm install 
           node ./node_modules/puppeteer/install.js
 
-
       - name: Tests
         run: pnpm run test
-
 
   build_spfx:
     runs-on: ubuntu-latest
