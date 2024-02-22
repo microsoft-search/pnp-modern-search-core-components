@@ -161,9 +161,8 @@ jobs:
           commit: ${{ github.ref_name }}
           
   build_components:
-
     runs-on: ubuntu-latest
-    needs: [version]
+    needs: [version,tests]
     defaults:
       run:
         working-directory: ./packages/components
