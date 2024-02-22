@@ -62,14 +62,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_SKIP_DOWNLOAD=true
+          export PUPPETEER_CACHE_DIR=~/.cache/puppeteer
           pnpm install
           
-      - name: Install Puppeteer
-        run: |
-          export PUPPETEER_CACHE_DIR=~/.cache/puppeteer
-          node ./node_modules/puppeteer/install.js
-
       - name: Tests
         run: pnpm run test
 
