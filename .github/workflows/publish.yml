@@ -75,10 +75,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install
+          pnpm install 
+          node ./node_modules/puppeteer/install.js
+
 
       - name: Tests
-        run: npm run test
+        run: pnpm run test
 
 
   build_spfx:
