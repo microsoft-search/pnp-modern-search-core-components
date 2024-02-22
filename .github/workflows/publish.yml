@@ -67,7 +67,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          node .node_modules/puppeteer/install.js
+          node ./node_modules/puppeteer/install.js
 
 
       - name: Tests
