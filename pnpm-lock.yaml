@@ -156,9 +156,6 @@ importers:
       '@web/test-runner':
         specifier: 0.18.0
         version: 0.18.0(typescript@5.3.3)
-      '@web/test-runner-playwright':
-        specifier: 0.11.0
-        version: 0.11.0
       '@web/test-runner-puppeteer':
         specifier: 0.15.0
         version: 0.15.0(typescript@5.3.3)
@@ -222,9 +219,6 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
-      playwright:
-        specifier: ^1.36.2
-        version: 1.41.2
       postcss:
         specifier: 8.4.25
         version: 8.4.25
@@ -11402,19 +11396,6 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       '@web/test-runner-core': 0.13.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    dev: true
-
-  /@web/test-runner-playwright@0.11.0:
-    resolution: {integrity: sha512-s+f43DSAcssKYVOD9SuzueUcctJdHzq1by45gAnSCKa9FQcaTbuYe8CzmxA21g+NcL5+ayo4z+MA9PO4H+PssQ==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@web/test-runner-core': 0.13.1
-      '@web/test-runner-coverage-v8': 0.8.0
-      playwright: 1.41.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -24464,22 +24445,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 3.0.0
-    dev: true
-
-  /playwright-core@1.41.2:
-    resolution: {integrity: sha512-VaTvwCA4Y8kxEe+kfm2+uUUw5Lubf38RxF7FpBxLPmGe5sdNkSg5e3ChEigaGrX7qdqT3pt2m/98LiyvU2x6CA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: true
-
-  /playwright@1.41.2:
-    resolution: {integrity: sha512-v0bOa6H2GJChDL8pAeLa/LZC4feoAMbSQm1/jF/ySsWWoaNItvrMP7GEkvEEFyCTUYKMxjQKaTSg5up7nR6/8A==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      playwright-core: 1.41.2
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /please-upgrade-node@3.2.0:
