@@ -41,7 +41,7 @@ jobs:
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
   tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./packages/components
