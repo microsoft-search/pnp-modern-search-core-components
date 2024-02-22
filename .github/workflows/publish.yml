@@ -62,7 +62,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_SKIP_CHROME_DOWNLOAD=true
+          export PUPPETEER_SKIP_DOWNLOAD=true
           pnpm install
           
       - name: Install dependencies
