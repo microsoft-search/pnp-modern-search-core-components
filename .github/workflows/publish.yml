@@ -62,8 +62,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export PUPPETEER_SKIP_CHROME_DOWNLOAD=true
           pnpm install
           
+      - name: Install dependencies
+        run: |
+          node .node_modules/puppeteer/install.js
+
+
       - name: Tests
         run: |
           pnpm run test
@@ -229,6 +235,7 @@ jobs:
     needs: [version,build_components]
     env:
       VERSION: ${{ needs.version.outputs.semver }}
+    if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
     steps:
       - uses: actions/setup-node@v3
         with:
