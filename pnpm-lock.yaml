@@ -159,9 +159,6 @@ importers:
       '@web/test-runner-playwright':
         specifier: 0.11.0
         version: 0.11.0
-      '@web/test-runner-puppeteer':
-        specifier: 0.15.0
-        version: 0.15.0(typescript@5.3.3)
       ajv:
         specifier: 8.12.0
         version: 8.12.0
@@ -11415,21 +11412,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@web/test-runner-puppeteer@0.15.0(typescript@5.3.3):
-    resolution: {integrity: sha512-l7h/jiyJ59iZ4hCX1wAo9dk3KH6TmBY4lbrtVgwnw5Ev4+hEqnf0uZGwcEYQVWtvs9KYM52IhMYnDmwwv4csYQ==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@web/test-runner-chrome': 0.15.0(typescript@5.3.3)
-      '@web/test-runner-core': 0.13.1
-      puppeteer: 20.0.0(typescript@5.3.3)
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - supports-color
-      - typescript
-      - utf-8-validate
-    dev: true
-
   /@web/test-runner@0.18.0(typescript@5.3.3):
     resolution: {integrity: sha512-aAlQrdSqwCie1mxuSK5kM0RYDJZL4Q0Hd5LeXn1on3OtHLtgztL4dZzzNSuAWablR2/Vuve3ChwDDxmYSTqXRg==}
     engines: {node: '>=18.0.0'}
@@ -14624,16 +14606,6 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.2
-    dev: true
-
-  /cosmiconfig@8.1.3:
-    resolution: {integrity: sha512-/UkO2JKI18b5jVMJUp0lvKFMpa/Gye+ZgZjKD+DGEN9y7NRcf/nK1A0sp67ONmKtnDCNMS44E6jrk0Yc3bDuUw==}
-    engines: {node: '>=14'}
-    dependencies:
-      import-fresh: 3.3.0
-      js-yaml: 4.1.0
-      parse-json: 5.2.0
-      path-type: 4.0.0
     dev: true
 
   /cosmiconfig@8.2.0:
@@ -25937,25 +25909,6 @@ packages:
       - bufferutil
       - encoding
       - supports-color
-      - utf-8-validate
-    dev: true
-
-  /puppeteer@20.0.0(typescript@5.3.3):
-    resolution: {integrity: sha512-oVqHsbZFbZzEkRoNR2dZKhUG5fHAQ+vWTRLJ6vrKY5+amsz3bRF3BCTqidbDa6TG+bZ5Y4P+FVv6SUNzxsTvLA==}
-    deprecated: < 21.5.0 is no longer supported
-    requiresBuild: true
-    dependencies:
-      '@puppeteer/browsers': 1.0.0(typescript@5.3.3)
-      cosmiconfig: 8.1.3
-      https-proxy-agent: 5.0.1
-      progress: 2.0.3
-      proxy-from-env: 1.1.0
-      puppeteer-core: 20.0.0(typescript@5.3.3)
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - supports-color
-      - typescript
       - utf-8-validate
     dev: true
 
