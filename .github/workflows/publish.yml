@@ -68,7 +68,7 @@ jobs:
       - name: Tests
         run: |
           PUPPETEER_CACHE_DIR=$(pwd) node node_modules/puppeteer/install.js
-          pnpm run test       
+          PUPPETEER_CACHE_DIR=$(pwd) pnpm run test       
 
   build_spfx:
     runs-on: ubuntu-latest
