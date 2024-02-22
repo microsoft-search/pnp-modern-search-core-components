@@ -141,8 +141,6 @@
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "7.8.3",
     "prettier": "2.8.3",
-    "puppeteer": "19.7.4",
-    "puppeteer-core": "19.7.4",
     "playwright": "^1.36.2",
     "@web/test-runner-playwright": "0.11.0",
     "react": "18.2.0",
