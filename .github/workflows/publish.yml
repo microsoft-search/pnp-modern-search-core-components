@@ -67,7 +67,7 @@ jobs:
           
       - name: Install Puppeteer + Test
         run: |
-          node .\node_modules\puppeteer\install.js
+          node ./node_modules/puppeteer/install.js
           pnpm run test          
 
   build_spfx:
