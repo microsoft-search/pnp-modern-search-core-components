@@ -8,6 +8,10 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  organizationName: "Microsoft",
+  projectName: "pnp-modern-search-core-components",
+  deploymentBranch: "gh-pages",
+  trailingSlash: false,
   title: 'PnP Modern Search Core Components',
   tagline: 'One search to rule them all.',
   favicon: 'img/favicon.png',
