@@ -61,7 +61,10 @@ jobs:
           run_install: false
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          sudo npm install puppeteer --unsafe-perm=true --allow-root
+          export PUPPETEER_SKIP_DOWNLOAD=true
+          pnpm install
           
       - name: Tests
         run: pnpm run test          
