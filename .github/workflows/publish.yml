@@ -103,7 +103,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          export PUPPETEER_SKIP_DOWNLOAD=true
+          pnpm install
 
       - name: Build
         run: |
@@ -195,7 +197,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          export PUPPETEER_SKIP_DOWNLOAD=true
+          pnpm install
 
       - name: Version package
         run: pnpm version $VERSION --no-git-tag-version
