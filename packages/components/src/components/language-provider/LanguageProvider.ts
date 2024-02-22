@@ -25,7 +25,6 @@ export class LanguageProvider {
                 );
 
                 await this.dateHelper.dayJs(locale);
-                s
                 
                 if (localizedResources) {
                     LocalizationHelper.strings = localizedResources.strings;
