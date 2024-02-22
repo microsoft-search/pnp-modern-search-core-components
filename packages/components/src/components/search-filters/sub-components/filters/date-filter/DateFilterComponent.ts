@@ -140,7 +140,7 @@ export class DateFilterComponent extends BaseFilterComponent {
 
     public override async connectedCallback(): Promise<void> {
 
-        this.dayJs = await this.dateHelper.dayJs(LocalizationHelper.strings?.language);
+        this.dayJs = await this.dateHelper.dayJs(LocalizationHelper.strings?.language as string);
 
         super.connectedCallback();
     }

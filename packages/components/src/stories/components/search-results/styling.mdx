@@ -5,90 +5,101 @@ import * as SearchResultsStylingStories from './styling.stories';
 
 <Meta of={SearchResultsStylingStories} name="Usage - Styling"/>
 
-## [Provide custom templates](?path=/docs/components-search-search-results--custom-items-template-story)
+## [Customize templates](?path=/docs/components-search-search-results--usage-styling#customize-templates)
 
-The search results component supports different templates to allow you to customize the experience according to your requirements.
-Because components are built over the [Microsoft Graph Toolkit](https://learn.microsoft.com/en-us/graph/toolkit/overview) library, you can use the same templating techniques as described in the official [documentation](https://learn.microsoft.com/en-ca/graph/toolkit/customize-components/templates).
+> To know how to author templates, refer to [the general guidelines](?path=/docs/introduction-authoring-templates--docs).
 
-To use a custom template, simply use the `<template>` directive inside the content of the component:
+The search results web part provides the following templates to be overriden:
 
-<Source
-  language='html'
-  dark
-  format={false}
-  code={dedent`
-    <pnp-search-results 
-      query-text="*"
-      entity-types="listItem"
-      fields="title,created,path"
-      page-size="5"
-    >
-        <template data-type="items">
-            <div data-for='item in items'>
-                <!-- Template content here using {{item.<prop>}} binding syntax -->
-            </div>
-        </template>
-    </pnp-search-results>
-  `}
-/>
+### `items`
 
-Where valid `data-type` attribute values are:
-- **items** to customize results display.
-- **shimmers** to customize display when results are loading
+This template controls the rendering of each results item:
 
-> By default the binding syntax for components is `{{<expr>}}` and you can use regular Javascript here.
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
 
-### Template: result items
+| Property | Description |
+|----------|-------------|
+| `items`   | Array of items returned by search results. For convenience, all properties are flatten automatically (ex: instead of `items.resource.fields.myProperty`, you can use directly `items.myProperty`). <br/><br/> Field properties are **case sensitive** (ex: `item.Path` is different from `item.path`)
+| `totalCount` | The count of items returned. 
+| `filters` | The available filters provided by the data source according to the filters configuration provided from the data context (if applicable).
+| `resultTemplates` | Result templates available for items provided by the data source.
+| `rawResponse` | The raw response payload received from the Microsoft Search Graph API.
+| `rawRequest` | The raw request payload sent to Microsoft Search Graph API.
 
-This template is used **after results are loaded**:
+<div style={{display: 'flex'}}>
 
-<Source
-  language='html'
-  dark
-  format={false}
-  code={dedent`
-    <pnp-search-results ...>
-        <template data-type="items">
-            <div data-for='item in items'>
-                <div class="pb-8">
-                    <div class="flex space-x-2 mb-2">
-                        <div class="font-bold">{{item.resource.fields.title}}</div>
-                        <div class="h-6">By {{item.resource.fields.createdBy}}</div>
-                    </div>
+    <div style={{width: '70%', marginRight: 30}}>   
+       <Source
+        language='html'
+        dark
+        format={false}
+        code={dedent`
+            <template data-type="items">
+                <div data-for='item in items'>
+                    <div>Title: {{ item.Title }}</div>
+                    <div>Path: {{ item.path }}</div>
                 </div>
-            </div>
-        </template>
-    </pnp-search-results>
-  `}
-/>
+            </template>
+        `}/>
+    </div>
 
-The available properties are the ones from the [Microsoft Search Graph API response](https://learn.microsoft.com/en-us/graph/api/resources/searchhit?view=graph-rest-1.0).
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Items template](./items_template_example.png)
+    </div>
+    
+</div>
 
-> For convenience, items field are also flatten meaning you can use `item.<fieldName>` instead of `item.resource.fields.<fieldName>` or `item.resource.properties.<fieldName>`.
+### `shimmers`
 
-### Template: shimmers
+This template controls the rendering of shimmers **before** results are fetched and displayed.
 
-This template is used **before results are loaded**. By default the search component does not display any shimmers.
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
 
-<Source
-  language='html'
-  dark
-  format={false}
-  code={dedent`
-    <pnp-search-results ...>
-        <template data-type="shimmers">
-            <div data-for='i in items'>
-                <div class="animate-shimmer pb-8">
-                    <div class="flex space-x-2 mb-2 ">
-                        <div class="w-6 h-6 rounded bg-slate-200"></div>
-                        <div class="w-96 h-6 rounded bg-slate-200"></div>
+| Property | Description |
+|----------|-------------|
+| `items`  | Array of **empty items** sized according the configured number of items per page.
+
+<div style={{display: 'flex'}}>
+
+    <div style={{width: '70%', marginRight: 30}}>   
+        <Source
+            language='html'
+            dark
+            format={false}
+            code={dedent`
+                <template data-type="shimmers">
+                    <div data-for="i in items">
+
+                        <div class="animate-shimmer pb-8">
+                            <div class="flex space-x-2 mb-2">
+                                <div class="w-6 h-6 rounded bg-slate-200"></div>
+                                <div class="w-96 h-6 rounded bg-slate-200"></div>
+                            </div>
+                            <div class="flex space-x-2 mb-2">
+                                <div class="w-16 h-3 rounded bg-slate-200"></div>
+                                <div class="w-16 h-3 rounded bg-slate-200"></div>
+                                <div class="w-16 h-3 rounded bg-slate-200"></div>
+                            </div>
+                            <div class="flex flex-col mb-4 space-y-2">
+                                <div class="w-full h-3 rounded bg-slate-200"></div>
+                                <div class="w-96 h-3 rounded bg-slate-200"></div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </div>
-        </template>
-    </pnp-search-results>
-  `}
-/>
+                </template>
+            `}/>
+    </div>
+
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Shimmers template](./shimmers_template_example.png)
+    </div>
+    
+</div>
 
 > **Use cuystom styles for templates**
 >

@@ -22,7 +22,7 @@ import { ComponentType } from '../../common/ComponentType';
 import { ISearchVerticalSourceData } from '../../models/dynamicData/ISearchVerticalSourceData';
 import { DisplayMode } from '@microsoft/sp-core-library';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
-import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
+import WebPartPlaceholder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
 import { LocalizedStringHelper } from '@pnp/modern-search-core/dist/es6/helpers/LocalizedStringHelper';
 import { PropertyPaneFormDataCollection } from '../../propertyPane/PropertyPaneFormDataCollection/PropertyPaneFormDataCollection';
 import { ILayoutDefinition, LayoutType } from '../../models/common/ILayoutDefinition';
@@ -127,6 +127,7 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
             theme: this._themeVariant.isInverted ? "dark" : "",
             templateContent: this.templateContentToDisplay,
             enableDebugMode: this.properties.enableDebugMode,
+            useMicrosoftGraphToolkit: this.properties.useMicrosoftGraphToolkit,
             onVerticalSelected: (selectedVerticalKey) => {
               this.currentSelectedVerticalKey = selectedVerticalKey;
               this.context.dynamicDataSourceManager.notifySourceChanged();
@@ -143,12 +144,15 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
         const placeholder: React.ReactElement<IPlaceholderProps> = React.createElement(
             this._placeholderComponent,
             {
-                iconName: "",
-                iconText: webPartStrings.General.PlaceHolder.IconText,
-                description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
-                buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
-                onConfigure: () => { this.context.propertyPane.open(); }
-            }
+              iconName: "",
+              iconText: webPartStrings.General.PlaceHolder.IconText,
+              description: () => React.createElement(WebPartPlaceholder, { 
+               description: webPartStrings.General.PlaceHolder.Description,
+               documentationLink: this.properties.documentationLink
+             } , null),
+              buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
+              onConfigure: () => { this.context.propertyPane.open(); }
+          }
         );
   
         renderRootElement = placeholder;
@@ -189,7 +193,7 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
               type: ConfigurationFieldType.LocalizedField,
               props: {
                   serviceScope: this.context.serviceScope,
-                  label: "Vertical name",
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.VerticalName,
                   onGetErrorMessage: getErrorMessage,
                   required: true,
               } as Partial<ILocalizedFieldProps>,
@@ -198,7 +202,7 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
             {
               type: ConfigurationFieldType.TextField,
               props: {
-                  label: "Vertical key",
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.VerticalKey,
                   required: true,
                   onGetErrorMessage: getErrorMessage,
               } as Partial<ITextFieldProps>,
@@ -207,21 +211,21 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
             {
               type: ConfigurationFieldType.TextField,
               props: {
-                  label: "Vertical value",
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.VerticalValue,
               } as Partial<ITextFieldProps>,
               targetProperty: "tabValue",
             },
             {
               type: ConfigurationFieldType.Toggle,
               props: {
-                  label: "Is link",
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.IsLink,
               } as Partial<IToggleProps>,
               targetProperty: "isLink"
             },
             {
               type: ConfigurationFieldType.TextField,
               props: {
-                  label: "Link url",
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.LinkUrl,
               } as Partial<ITextFieldProps>,
               targetProperty: "linkUrl",
               isVisible: (dataObject: IDataVerticalConfiguration) => {
@@ -231,8 +235,10 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
             {
               type: ConfigurationFieldType.ChoiceGroup,
               props: {
-                  label: "Open behavior",
-                  options: [{key: PageOpenBehavior.NewTab, text: "New tab"},{key: PageOpenBehavior.Self, text: PageOpenBehavior.Self}]
+                  label: webPartStrings.PropertyPane.VerticalConfigurationPane.OpenBehavior,
+                  options: [
+                    {key: PageOpenBehavior.NewTab, text: webPartStrings.PropertyPane.VerticalConfigurationPane.NewTabOption},
+                    {key: PageOpenBehavior.Self, text: webPartStrings.PropertyPane.VerticalConfigurationPane.SelfTabOption,}]
               } as Partial<IChoiceGroupProps>,
               isVisible: (dataObject: IDataVerticalConfiguration) => {
                 return dataObject.isLink;
@@ -257,7 +263,7 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
                             renderRowTitle={(vertical: IDataVerticalConfiguration) => { return LocalizedStringHelper.getDefaultValue(vertical.tabName) }}
                             onFormSave={(formData) => { onUpdate(field, formData)}}
                             dataObject={defaultValue}
-                            renderPanelTitle={() => "Add new filter"}
+                            renderPanelTitle={() => webPartStrings.PropertyPane.VerticalConfigurationPane.Title}
                             onFormDismissed={(configuration: IDataVerticalConfiguration) => {
                                 if (isEqual(configuration, newVerticalConfiguration)) {
                                     // Remove row as no item has been saved
@@ -277,10 +283,10 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
                 groupName: webPartStrings.PropertyPane.SettingsPage.VerticalSettingsGroupName,
                 groupFields: [
                   new PropertyPaneFormDataCollection<IDataVerticalConfiguration>('verticalConfiguration', {
-                    label: "Verticals",
+                    label: webPartStrings.PropertyPane.VerticalConfigurationPane.VerticalsLabel,
                     itemRepeaterProps: {
                         innerRef: this._itemRepeaterRef,
-                        addButtonLabel: "Add new vertical",    
+                        addButtonLabel:  webPartStrings.PropertyPane.VerticalConfigurationPane.Title,    
                         enableDragDrop: true
                     },
                     items: this.properties.verticalConfiguration,
@@ -311,6 +317,13 @@ export default class SearchVerticalsWebPart extends BaseWebPart<ISearchVerticals
           {
             displayGroupsAsAccordion: true,
             groups: [this.getThemePageGroup()]
+          },
+           // 'About' infos
+          {
+            displayGroupsAsAccordion: true,
+            groups: [
+                ...this.getPropertyPaneWebPartInfoGroups(),
+            ]
           }
         ]
       };

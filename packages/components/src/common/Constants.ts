@@ -23,6 +23,11 @@ export class EventConstants {
      * Event name when sort field is updated
      */
     public static readonly SEARCH_SORT_EVENT = "PnPModernSearchCoreComponents:Search:Sort";
+
+    /**
+     * Event name when MGT components are loaded on-demand
+     */
+    public static readonly SEARCH_MGT_COMPONENTS_LOADED = "PnPModernSearchCoreComponents:Components:Search:MgtComponentsLoaded";
 }
 
 export enum ErrorTypes {

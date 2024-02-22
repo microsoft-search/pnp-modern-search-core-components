@@ -10,12 +10,10 @@ import { ISearchFiltersProps } from './components/ISearchFiltersProps';
 import { BaseWebPart } from '../../common/BaseWebPart';
 import { IDynamicDataCallables, IDynamicDataPropertyDefinition } from '@microsoft/sp-dynamic-data';
 import { ComponentType } from '../../common/ComponentType';
-import { FilterSortDirection, FilterSortType } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilterConfiguration';
-import { BuiltinFilterTemplates } from '@pnp/modern-search-core/dist/es6/models/common/BuiltinTemplate';
 import { FilterConditionOperator } from '@pnp/modern-search-core/dist/es6/models/common/IDataFilter';
 import { DynamicProperty } from '@microsoft/sp-component-base';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
-import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
+import WebPartPlaceholder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
 import { IComboBoxOption } from 'office-ui-fabric-react';
 import { IPropertyFieldMultiSelectProps, PropertyFieldMultiSelect } from '@pnp/spfx-property-controls/lib/PropertyFieldMultiSelect';
 import { ISearchFiltersWebPartProps } from './ISearchFiltersWebPartProps';
@@ -160,6 +158,7 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
           searchVerticalsComponentId: this.properties.verticalsDataSourceReference,
           operator: this.properties.filterOperator,
           enableDebugMode: this.properties.enableDebugMode,
+          useMicrosoftGraphToolkit: this.properties.useMicrosoftGraphToolkit,
           templateContent: this.templateContentToDisplay,
           theme: this._themeVariant.isInverted ? "dark" : ""
         }
@@ -174,12 +173,15 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
         const placeholder: React.ReactElement<IPlaceholderProps> = React.createElement(
             this._placeholderComponent,
             {
-                iconName: "",
-                iconText: webPartStrings.General.PlaceHolder.IconText,
-                description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
-                buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
-                onConfigure: () => { this.context.propertyPane.open(); }
-            }
+              iconName: "",
+              iconText: webPartStrings.General.PlaceHolder.IconText,
+              description: () => React.createElement(WebPartPlaceholder, { 
+                description: webPartStrings.General.PlaceHolder.Description,
+                documentationLink: this.properties.documentationLink
+              } , null),
+              buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
+              onConfigure: () => { this.context.propertyPane.open(); }
+          }
         );
   
         renderRootElement = placeholder;
@@ -196,38 +198,7 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
   private initializeProperties(): void {
 
     if (!this.properties.filtersConfiguration) {
-      this.properties.filtersConfiguration = [
-        {
-          "filterName":"FileType",
-          "displayName":{
-             "fr-fr":"Type de fichier",
-             "default":"File Type"
-          },
-          "template": BuiltinFilterTemplates.CheckBox,
-          "showCount":true,
-          "operator": FilterConditionOperator.AND,
-          "isMulti": false,
-          "sortBy": FilterSortType.ByCount,
-          "sortDirection":FilterSortDirection.Descending,
-          "maxBuckets":10000,
-          "sortIdx":12,
-          "aggregations": [
-            {
-               "aggregationName": {
-                  "fr-fr":"Document Word",
-                  "default":"Word document"
-               },
-               "matchingValues":[
-                  "docx",
-                  "doc",
-                  "docm"
-               ],
-               "aggregationValue":"or(\"docx\",\"doc\",\"docm\")",
-               "aggregationValueIconUrl":"http://localhost:8080/assets/icons/word.svg"
-            }
-          ]
-        }
-      ];
+      this.properties.filtersConfiguration = [];
     }
 
     this.properties.filterOperator = this.properties.filterOperator ? this.properties.filterOperator : FilterConditionOperator.OR;
@@ -289,6 +260,13 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
         {
           displayGroupsAsAccordion: true,
           groups: [this.getThemePageGroup()]
+        },
+         // 'About' infos
+        {
+          displayGroupsAsAccordion: true,
+          groups: [
+              ...this.getPropertyPaneWebPartInfoGroups(),
+          ]
         }
       ]
     };
@@ -329,6 +307,8 @@ export default class SearchFiltersWebPart extends BaseWebPart<ISearchFiltersWebP
   protected async loadPropertyPaneResources(): Promise<void> {
     this._propertyPaneSearchResultsFields = await this.getSearchResultsConnectionField();
     this._propertyPaneSearchVerticalsFields = await this.getVerticalsConnectionField();
+
+    await super.loadPropertyPaneResources();
   }
 
   private async getSearchResultsConnectionField(): Promise<IPropertyPaneField<IPropertyFieldMultiSelectProps>[]> {

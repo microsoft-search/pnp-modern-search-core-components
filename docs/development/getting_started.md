@@ -13,10 +13,18 @@
 - [Node.js]() v16.19.1 or higher
 
 
-### Create Azure AD application
+### Create Entra ID application
 
+To consume Microsoft Search data through Graph API, you will need first to create an Entra ID application with one or more following scopes depending the [entity types you use](https://learn.microsoft.com/en-us/graph/api/resources/search-api-overview?view=graph-rest-1.0#scope-search-based-on-entity-types). For example:
 
-
+- `Acronym.Read.All`
+- `Bookmark.Read.All`
+- `ExternalItem.Read.All`
+- `Files.Read.All`
+- `People.Read.All`
+- `QnA.Read.All`
+- `Site.Read.All`
+- `User.Read`
 
 ### Get the solution locally
 

@@ -245,7 +245,7 @@ export class PaginationComponent extends BaseComponent {
         this.initPagination();
     }
 
-    protected override updated(changedProperties: PropertyValueMap<this>): void {
+    protected override updated(changedProperties: PropertyValues<this>): void {
         if (changedProperties.has("itemsCountPerPage") ||
             changedProperties.has("numberOfPagesToDisplay")) {
             this.initPagination();

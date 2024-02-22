@@ -1,11 +1,14 @@
-import { CSSResultGroup, PropertyValues, html } from "lit";
+import { CSSResultGroup, LitElement, PropertyValues, html } from "lit";
 import { property } from "lit/decorators.js";
 import { BaseComponent } from "../BaseComponent";
 import { IDataSourceData } from "../../models/common/IDataSourceData";
 import loader from "@monaco-editor/loader";
 import { type editor } from "monaco-editor";
 
-export class MonacoEditorComponent extends BaseComponent {
+export class MonacoEditorComponent extends LitElement {
+
+    @property({type: String, attribute: "theme", reflect: true})
+    theme;
 
     @property()
     value: IDataSourceData;

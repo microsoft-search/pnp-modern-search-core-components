@@ -5,7 +5,10 @@ declare interface IMicrosoftSearchDataSourceStrings {
     PropertyPane: {
         QuerySettingsGroup: {
             GroupName: string;
-            QueryMode: string;
+            QueryMode: {
+                BasicMode: string;
+                AdvancedMode: string;
+            },
             SearchQueryTextStaticValue: string;
             SearchQueryTextDynamicValue: string;
             SearchQueryTextFieldLabel: string;
@@ -21,6 +24,7 @@ declare interface IMicrosoftSearchDataSourceStrings {
             SearchContentSourcesFieldLabel: string;
             SearchContentSourcesAddNewBtnLabel: string;
             SearchContentSourcesPlaceholderLabel: string;
+            FieldTextErrorMessage: string;
         },
         AdvancedSettingsGroup: {
             GroupName: string;
@@ -32,6 +36,13 @@ declare interface IMicrosoftSearchDataSourceStrings {
             SearchEnableModificationFieldLabel: string;
             SearchFiltersFieldsFieldLabel: string;
             SearchFiltersUseFiltersFieldLabel: string;
+            SortFieldLabel: string;
+            SortDirectionLabel: string;
+            IsDefaultSort: string;
+            IsUserSort: string;
+            SortDisplayName:  string;
+            SortPropertiesCategory: string;
+            AddNewSortPropertyLabel: string;
         }
         PagingSettingsGroup: {
             GroupName: string;

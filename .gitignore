@@ -9,3 +9,4 @@ components/.storybook/**/env.ts
 app/
 .pnpm-store/
 .npmrc
+site/

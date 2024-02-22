@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-links', 
+    '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     {
@@ -25,10 +25,25 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['../src/stories/assets','../src/stories/public'],
-  webpackFinal:  (config, options) => { 
+  staticDirs: ['../src/stories/assets'],
+  webpackFinal:  (config, options) => {
     options.cache.set = (key: string, value: any, ttl?: number) => { return Promise.resolve({path: ""}) };
+    
     config?.module?.rules?.push(
+      {
+        test: /\.ts?$/,
+        use: [                           
+          {
+            loader: "ts-loader",
+            options: {
+              configFile: "tsconfig.storybook.json",
+            }
+          }          
+        ],
+        exclude: [
+          /node_modules/
+        ]
+      },
       {
         test: /\.ts?$/,
         use: [                           
@@ -40,10 +55,13 @@ const config: StorybookConfig = {
           /node_modules/,
           /tailwind-styles-css\.ts/
         ]
-      }
+      } 
     ); 
 
     return config;
+  },
+  typescript: {
+    skipCompiler: true //Disable babel compiler. When enabled, it causes issue with Lit v3 support
   }
 };
 export default config;

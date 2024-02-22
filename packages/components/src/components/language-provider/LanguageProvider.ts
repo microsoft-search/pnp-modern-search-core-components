@@ -18,7 +18,7 @@ export class LanguageProvider {
 
                 // Load locale file dynamically
                 const localizedResources = await import(
-                    /* webpackChunkName: "pnp-modern-search-core-languages" */
+                    /* webpackChunkName: "pnp-modern-search-core-strings" */
                     /* webpackExports: ["strings"] */
                     /* webpackMode: "lazy-once" */
                     `../../loc/strings.${locale}`
@@ -32,6 +32,7 @@ export class LanguageProvider {
             
             } catch (error) {
 
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 LocalizationHelper.strings = strings as any;
                 await this.dateHelper.dayJs("en-us");
                 console.warn(`"${locale}" not found. Fallback to default.`);

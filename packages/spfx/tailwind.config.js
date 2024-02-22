@@ -8,6 +8,9 @@ module.exports = {
       './src/**/*.{html,ts,tsx}',
     ]
   },
+  corePlugins: {
+    preflight: false, // Will conflict with base SPFx styles otherwise (ex: buttons background-color)
+  },
   darkMode: 'class',
   theme: {
       extend: {

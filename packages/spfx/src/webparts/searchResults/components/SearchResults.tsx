@@ -52,6 +52,7 @@ export default class SearchResults extends React.Component<ISearchResultsProps, 
                 useBetaEndpoint={this.props.useBetaEndpoint ? true : null}
                 enableResultTypes={this.props.enableResultTypes ? true : null}
                 enableDebugMode={this.props.enableDebugMode ? true : null}
+                useMicrosoftGraphToolkit={this.props.useMicrosoftGraphToolkit ? true : null}
                 enableModification={this.props.enableModification ? true : null}
                 enableSuggestion={this.props.enableSuggestion ? true : null}
                 showCount={this.props.showCount ? true : null}

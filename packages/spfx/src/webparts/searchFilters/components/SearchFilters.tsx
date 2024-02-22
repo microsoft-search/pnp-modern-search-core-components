@@ -28,6 +28,7 @@ export default class SearchFilters extends React.Component<ISearchFiltersProps, 
               filterConfiguration={this.props.filtersConfiguration}
               operator={this.props.operator}
               enableDebugMode={this.props.enableDebugMode ? true : null}
+              useMicrosoftGraphToolkit={this.props.useMicrosoftGraphToolkit ? true : null}
               searchResultsComponentIds={this.props.searchResultsComponentIds}
               searchVerticalsComponentId={this.props.searchVerticalsComponentId}
               theme={this.props.theme}

@@ -1,0 +1,61 @@
+{ /* styling.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import * as SearchVerticalsStories from './verticals.stories';
+import dedent from 'ts-dedent';
+
+<Meta of={SearchVerticalsStories} name="Usage - Styling"/>
+
+## [Customize templates](?path=/docs/components-search-search-verticals--usage-styling#customize-templates)
+
+> To know how to author templates, refer to [the general guidelines](?path=/docs/introduction-authoring-templates--docs).
+
+The search verticals web part provides the following templates to be overriden:
+
+### `verticals`
+
+This template controls the rendering of each vertical:
+
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
+
+| Property | Description |
+|----------|-------------|
+| `verticals`   | Array of verticals configured in the webpart. <br/> <ul><li>`key`: unique key for the vertical</li><li>`displayName`: the tab resolved display name when tabName is a localized string</li><li>`tabName`: the vertical tab name</li><li>`tabValue`: the vertical tab value that will be sent to connected components</li><li>`isLink`: the vertical tab value that will be sent to connected components</li><li>`linkUrl`: the vertical tab value that will be sent to connected components</li><li>`openBehavior`: The link open behavior (`self` or `newTab`)</li><li>`linkUrl`: the vertical tab value that will be sent to connected components</li></ul>
+| `selectedVerticalKey` | The current selected vertical key.
+
+<div style={{display: 'flex'}}>
+
+    <div style={{width: '70%', marginRight: 30}}>   
+        <Source
+        language='html'
+        dark
+        format={false}
+        code={dedent`
+        <template data-type="verticals">
+            <div class="flex flex-row space-x-2" >
+                <div 
+                    data-for="vertical in verticals" 
+                    data-props="{{@click: onTemplateVerticalSelected}}"
+                    class="border-solid border-2 w-40 h-20 rounded flex justify-end flex-col">
+                    
+                        <div class="text-white bg-black/60 p-2 font-bold">
+                            {{vertical.displayName}}
+                        </div>
+
+                        <div data-if="vertical.key === selectedVerticalKey">
+                            Selected
+                        </div>
+                </div>        
+            </div>        
+        </template>
+        `}/>
+    </div>
+
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Verticals template](./verticals_template_example.png)
+    </div>
+    
+</div>
+
+> To handle click event on a vertical use the following expression: `data-props="{{@click: onTemplateVerticalSelected}}"`

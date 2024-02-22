@@ -7,7 +7,10 @@ define([], function() {
         PropertyPane: {
             QuerySettingsGroup: {
                 GroupName: "Query settings",
-                QueryMode: "Mode",
+                QueryMode: {
+                    BasicMode: "Basic mode (coming soon...)",
+                    AdvancedMode: "Advanced mode"
+                },
                 SearchQueryTextStaticValue: "Static value",
                 SearchQueryTextDynamicValue: "Dynamic value",
                 SearchQueryTextFieldLabel: "Query text",
@@ -22,7 +25,8 @@ define([], function() {
                 SearchQueryQueryTemplateApplyBtnText: "Apply",
                 SearchContentSourcesFieldLabel: "Content sources",
                 SearchContentSourcesAddNewBtnLabel: "Add new connection id",
-                SearchContentSourcesPlaceholderLabel: "Enter connection(s) id(s)..."
+                SearchContentSourcesPlaceholderLabel: "Enter connection(s) id(s)...",
+                FieldTextErrorMessage: "Field must have a value"
             },
             AdvancedSettingsGroup: {
                 GroupName: "AdvancedSettings",
@@ -33,7 +37,14 @@ define([], function() {
                 SearchEnableSuggestionFieldLabel: "Enable suggestions",
                 SearchEnableModificationFieldLabel: "Enable modifications",
                 SearchFiltersFieldsFieldLabel: "Get filters configuration from this Web Part",
-                SearchFiltersUseFiltersFieldLabel: "Use filters/sort"
+                SearchFiltersUseFiltersFieldLabel: "Use filters/sort",
+                SortFieldLabel: "Sort field",
+                SortDirectionLabel: "Sort direction",
+                IsDefaultSort: "Is default sort",
+                IsUserSort: "Is user sort",
+                SortDisplayName:  "Display name",
+                SortPropertiesCategory: "Sort properties",
+                AddNewSortPropertyLabel: "Add new sort property"
             },
             PagingSettingsGroup: {
                 GroupName: "Paging settings",

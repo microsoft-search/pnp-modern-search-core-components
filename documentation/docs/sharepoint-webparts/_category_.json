@@ -1,0 +1,8 @@
+{
+  "label": "SharePoint Web Parts",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "SharePoint WebParts usage."
+  }
+}

@@ -1,5 +1,3 @@
-import { customElementHelper } from "@microsoft/mgt-element/dist/es6/components/customElementHelper";
-
 export { SearchResultsComponent } from "../components/search-results/SearchResultsComponent";
 export { SearchInputComponent }  from "../components/search-input/SearchInputComponent";
 export { SearchVerticalsComponent } from "../components/search-verticals/SearchVerticalsComponent";
@@ -14,5 +12,3 @@ export * from "@microsoft/mgt-element/dist/es6/utils/TemplateHelper";
 export * from "@microsoft/mgt-element/dist/es6/providers/IProvider";
 export * from "@microsoft/mgt-element/dist/es6/providers/Providers";
 export * from "@microsoft/mgt-element/dist/es6/utils/LocalizationHelper";
-
-customElementHelper.withDisambiguation("pnp");

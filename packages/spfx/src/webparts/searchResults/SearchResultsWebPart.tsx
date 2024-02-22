@@ -18,7 +18,7 @@ import IDataSource from '../../models/common/IDataSource';
 import { ServiceScopeHelper } from '../../helpers/ServiceScopeHelper';
 import { SharePointTokenService } from '../../services/tokenService/SharePointTokenService';
 import { ISharePointTokenService } from '../../services/tokenService/ISharePointTokenService';
-import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
+import WebPartPlaceholder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
 import { DynamicProperty } from '@microsoft/sp-component-base';
 import { isEmpty } from '@microsoft/sp-lodash-subset';
@@ -155,6 +155,7 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     useBetaEndpoint={ this.properties.useBetaEndpoint}
                     selectedFields={ this.properties.selectedFields}
                     enableDebugMode={ this.properties.enableDebugMode}
+                    useMicrosoftGraphToolkit={ this.properties.useMicrosoftGraphToolkit}
                     showCount={ this.properties.showResultsCount}
                     enableResultTypes={ this.properties.enableResultTypes}
                     enableModification={ this.properties.queryAlterationOptions.enableModification}
@@ -168,7 +169,7 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     templateContent={ this.templateContentToDisplay}
                     templateContext={ this.getTemplateContext()}
                     theme={ this._themeVariant.isInverted ? "dark" : ""}
-                    templateSlots={ this.properties.layoutProperties.slots}
+                    templateSlots={ this.properties.layoutProperties.slots ? this.properties.layoutProperties.slots : []}
                     onResultsFetched={ (data) => {
                         this.availableFields = data.availableFields;
                         this.context.propertyPane.refresh();
@@ -195,7 +196,10 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     {
                         iconName: "",
                         iconText: webPartStrings.General.PlaceHolder.IconText,
-                        description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
+                        description: () => React.createElement(WebPartPlaceholder, { 
+                            description: webPartStrings.General.PlaceHolder.Description,
+                            documentationLink: this.properties.documentationLink
+                        } , null),
                         buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
                         onConfigure: () => { this.context.propertyPane.open(); }
                     }
@@ -260,6 +264,13 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
             {
                 displayGroupsAsAccordion: true,
                 groups: [this.getThemePageGroup()]
+            },
+            // 'About' infos
+            {
+                displayGroupsAsAccordion: true,
+                groups: [
+                    ...this.getPropertyPaneWebPartInfoGroups(),
+                ]
             }
           ]
         };
@@ -401,6 +412,8 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
 
     protected async loadPropertyPaneResources(): Promise<void> {
         this.propertyPaneFiltersConnectionField = await this.getVerticalsConnectionField();
+
+        await super.loadPropertyPaneResources();
     }
 
     /**

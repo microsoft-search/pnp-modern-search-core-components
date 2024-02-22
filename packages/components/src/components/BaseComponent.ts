@@ -1,13 +1,14 @@
 
-import { EventHandler, MgtTemplatedComponent, LocalizationHelper } from "@microsoft/mgt-element";
-import { css, CSSResultGroup, html, PropertyValueMap, unsafeCSS } from "lit";
+import { EventHandler, LocalizationHelper, MgtTemplatedTaskComponent } from "@microsoft/mgt-element";
+import { css, CSSResultGroup, html, PropertyValueMap, PropertyValues, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
-import { ErrorTypes, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
+import { ErrorTypes, EventConstants, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
 import { IComponentBinding } from "../models/common/IComponentBinding";
 import { IThemeDefinition } from "../models/common/IThemeDefinition";
 import { isEmpty, isEqual, isObjectLike } from "lodash-es";
 import { ILocalizedString } from "../models/common/ILocalizedString";
 import { ScopedElementsMixin } from "@open-wc/scoped-elements";
+import { sanitizeSummary } from "../helpers/SearchResultsHelper";
 import "@open-wc/dedupe-mixin";
 import { 
     SwatchRGB, 
@@ -40,7 +41,7 @@ import { styles as tailwindStyles } from "../styles/tailwind-styles-css";
 import { parseColorHexRGB,  } from "@microsoft/fast-colors";
 import { accentForegroundRest, neutralFillStealthRest as neutralFillStealthRestFluent } from "@fluentui/web-components";
 
-provideFASTDesignSystem().register(
+provideFASTDesignSystem(this).register(
     fastTab(),
     fastTabPanel(),
     fastTabs(),
@@ -59,7 +60,7 @@ provideFASTDesignSystem().register(
     fastProgressRing()
 );
 
-export class MgtTemplatedComponentBase extends MgtTemplatedComponent {
+export class MgtTemplatedComponentBase extends MgtTemplatedTaskComponent  { 
 }
 
 export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComponentBase) {
@@ -74,11 +75,20 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
     enableDebugMode = false;
 
     /**
+     * Enable the debug to explore data from context
+     */
+    @property({type: Boolean, attribute: "use-mgt", reflect: true})
+    useMicrosoftGraphToolkit = false;
+
+    /**
      * Flag indicating if data have been rendered at least once
      */
     @state()
     renderedOnce = false;
 
+    /**
+     * Flag indicating if debug data should be displayed
+     */
     @state()
     showDebugData = false;
 
@@ -158,7 +168,8 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         // Register helper functions to be used in templates (data-props)
         this.templateContext = {
-            ...this.templateContext
+            ...this.templateContext,
+            sanitizeSummary: sanitizeSummary
         };
 
         // Set the theme automatically if a parent has the "dark" CSS class or theme
@@ -176,6 +187,26 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
         return;
     }
 
+    /**
+     * Register Microsoft Graph Toolkit Components on the page
+     */
+    protected async loadMgt(): Promise<void> {
+
+        const  { registerMgtComponents } = await import(
+            /* webpackChunkName: "pnp-mgt" */
+            /* webpackMode: "lazy" */
+            "@microsoft/mgt"
+        ); 
+
+        registerMgtComponents();
+    }
+
+    // Type fixing to be able to use 'nothing' lit symbol
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    protected override render(): any {
+        return super.render();
+    }
+
     protected renderDebugMode() {
 
         return  html`
@@ -190,7 +221,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     protected renderDebugData(data: any) {
-        return html`<pnp-monaco-editor MonacoEditorComponent, class="relative h-[65vh] w-full block" .value=${data}></pnp-monaco-editor>`;
+        return html`<pnp-monaco-editor class="relative h-[65vh] w-full block" .value=${data}></pnp-monaco-editor>`;
     }
 
     private toggleDebugData() {
@@ -198,10 +229,18 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    protected override updated(changedProperties: PropertyValueMap<any>): void {
+    protected override updated(changedProperties: PropertyValues<this>): void {
             
         // Needed for components not having FAST elements not available at connected callback
         this.setFASTColors();
+
+        if (changedProperties.has("useMicrosoftGraphToolkit") && this.useMicrosoftGraphToolkit) {
+
+            this.loadMgt().then(() => {
+                this.requestUpdate();
+                this.fireCustomEvent(EventConstants.SEARCH_MGT_COMPONENTS_LOADED);
+            });
+        }
 
         super.updated(changedProperties);
     }
@@ -269,7 +308,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         if (isObjectLike(string)) {
             
-            const localizedValue = string[LocalizationHelper.strings?.language];
+            const localizedValue = string[LocalizationHelper.strings?.language as string];
             
             if (!localizedValue) {
                 const defaultLabel = (string as ILocalizedString).default;
