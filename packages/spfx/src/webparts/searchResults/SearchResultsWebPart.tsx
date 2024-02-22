@@ -169,7 +169,7 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     templateContent={ this.templateContentToDisplay}
                     templateContext={ this.getTemplateContext()}
                     theme={ this._themeVariant.isInverted ? "dark" : ""}
-                    templateSlots={ this.properties.layoutProperties.slots}
+                    templateSlots={ this.properties.layoutProperties.slots ? this.properties.layoutProperties.slots : []}
                     onResultsFetched={ (data) => {
                         this.availableFields = data.availableFields;
                         this.context.propertyPane.refresh();
