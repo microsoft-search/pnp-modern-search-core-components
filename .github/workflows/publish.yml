@@ -62,8 +62,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_CACHE_DIR=~/.cache/puppeteer
-          pnpm install
+          yarn install
           
       - name: Tests
         run: pnpm run test
