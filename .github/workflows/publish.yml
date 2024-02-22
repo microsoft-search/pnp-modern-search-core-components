@@ -64,10 +64,11 @@ jobs:
         run: |
           export PUPPETEER_SKIP_DOWNLOAD=true
           pnpm install
-          PUPPETEER_CACHE_DIR=$(pwd) node node_modules/puppeteer/install.js
           
       - name: Tests
-        run: pnpm run test       
+        run: |
+          PUPPETEER_CACHE_DIR=$(pwd) node node_modules/puppeteer/install.js
+          pnpm run test       
 
   build_spfx:
     runs-on: ubuntu-latest
