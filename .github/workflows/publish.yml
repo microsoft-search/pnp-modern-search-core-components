@@ -62,12 +62,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_CACHE_DIR=$GITHUB_WORKSPACE/.cache/pupeeter
           pnpm install
           
       - name: Tests
         run: |
-          export PUPPETEER_CACHE_DIR=$GITHUB_WORKSPACE/.cache/pupeeter  
           pnpm run test
 
   build_spfx:
