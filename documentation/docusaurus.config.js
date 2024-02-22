@@ -20,7 +20,7 @@ const config = {
   url: 'https://microsoft-search.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/pnp-modern-search-core-components/',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
