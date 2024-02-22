@@ -62,16 +62,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          $env:PUPPETEER_SKIP_DOWNLOAD=$true
+          export PUPPETEER_SKIP_DOWNLOAD=true
           pnpm install
           
-      - name: Install Puppeteer
+      - name: Install Puppeteer + Test
         run: |
           node .\node_modules\puppeteer\install.js
-
-      - name: Tests
-        run: |
-          pnpm run test
+          pnpm run test          
 
   build_spfx:
     runs-on: ubuntu-latest
