@@ -62,11 +62,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_SKIP_DOWNLOAD=true
+          $env:PUPPETEER_SKIP_DOWNLOAD=$true
           pnpm install
           
       - name: Install Puppeteer
         run: |
+          $env:PUPPETEER_SKIP_DOWNLOAD=$false
           node .\node_modules\puppeteer\install.js
 
       - name: Tests
