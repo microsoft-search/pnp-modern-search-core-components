@@ -62,6 +62,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export PUPPETEER_SKIP_DOWNLOAD=true
           pnpm install 
           node ./node_modules/puppeteer/install.js
 
