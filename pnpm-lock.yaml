@@ -156,9 +156,9 @@ importers:
       '@web/test-runner':
         specifier: 0.18.0
         version: 0.18.0(typescript@5.3.3)
-      '@web/test-runner-playwright':
-        specifier: 0.11.0
-        version: 0.11.0
+      '@web/test-runner-puppeteer':
+        specifier: 0.15.0
+        version: 0.15.0(typescript@5.3.3)
       ajv:
         specifier: 8.12.0
         version: 8.12.0
@@ -219,9 +219,6 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
-      playwright:
-        specifier: ^1.36.2
-        version: 1.36.2
       postcss:
         specifier: 8.4.25
         version: 8.4.25
@@ -240,6 +237,12 @@ importers:
       prettier:
         specifier: 2.8.3
         version: 2.8.3
+      puppeteer:
+        specifier: 20.0.0
+        version: 20.0.0(typescript@5.3.3)
+      puppeteer-core:
+        specifier: 20.0.0
+        version: 20.0.0(typescript@5.3.3)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -11399,16 +11402,18 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@web/test-runner-playwright@0.11.0:
-    resolution: {integrity: sha512-s+f43DSAcssKYVOD9SuzueUcctJdHzq1by45gAnSCKa9FQcaTbuYe8CzmxA21g+NcL5+ayo4z+MA9PO4H+PssQ==}
+  /@web/test-runner-puppeteer@0.15.0(typescript@5.3.3):
+    resolution: {integrity: sha512-l7h/jiyJ59iZ4hCX1wAo9dk3KH6TmBY4lbrtVgwnw5Ev4+hEqnf0uZGwcEYQVWtvs9KYM52IhMYnDmwwv4csYQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
+      '@web/test-runner-chrome': 0.15.0(typescript@5.3.3)
       '@web/test-runner-core': 0.13.1
-      '@web/test-runner-coverage-v8': 0.8.0
-      playwright: 1.36.2
+      puppeteer: 20.0.0(typescript@5.3.3)
     transitivePeerDependencies:
       - bufferutil
+      - encoding
       - supports-color
+      - typescript
       - utf-8-validate
     dev: true
 
@@ -14606,6 +14611,16 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.2
+    dev: true
+
+  /cosmiconfig@8.1.3:
+    resolution: {integrity: sha512-/UkO2JKI18b5jVMJUp0lvKFMpa/Gye+ZgZjKD+DGEN9y7NRcf/nK1A0sp67ONmKtnDCNMS44E6jrk0Yc3bDuUw==}
+    engines: {node: '>=14'}
+    dependencies:
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+      path-type: 4.0.0
     dev: true
 
   /cosmiconfig@8.2.0:
@@ -24432,21 +24447,6 @@ packages:
       find-up: 3.0.0
     dev: true
 
-  /playwright-core@1.36.2:
-    resolution: {integrity: sha512-sQYZt31dwkqxOrP7xy2ggDfEzUxM1lodjhsQ3NMMv5uGTRDsLxU0e4xf4wwMkF2gplIxf17QMBCodSFgm6bFVQ==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: true
-
-  /playwright@1.36.2:
-    resolution: {integrity: sha512-4Fmlq3KWsl85Bl4InJw1NC21aeQV0iSZuFvTDcy1F8zVmXmgQRe89GxF8zMSRt/KIS+2tUolak7EXVl9aC+JdA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      playwright-core: 1.36.2
-    dev: true
-
   /please-upgrade-node@3.2.0:
     resolution: {integrity: sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg==}
     dependencies:
@@ -25909,6 +25909,25 @@ packages:
       - bufferutil
       - encoding
       - supports-color
+      - utf-8-validate
+    dev: true
+
+  /puppeteer@20.0.0(typescript@5.3.3):
+    resolution: {integrity: sha512-oVqHsbZFbZzEkRoNR2dZKhUG5fHAQ+vWTRLJ6vrKY5+amsz3bRF3BCTqidbDa6TG+bZ5Y4P+FVv6SUNzxsTvLA==}
+    deprecated: < 21.5.0 is no longer supported
+    requiresBuild: true
+    dependencies:
+      '@puppeteer/browsers': 1.0.0(typescript@5.3.3)
+      cosmiconfig: 8.1.3
+      https-proxy-agent: 5.0.1
+      progress: 2.0.3
+      proxy-from-env: 1.1.0
+      puppeteer-core: 20.0.0(typescript@5.3.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - typescript
       - utf-8-validate
     dev: true
 
