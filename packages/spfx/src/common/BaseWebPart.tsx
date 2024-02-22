@@ -268,11 +268,11 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
     protected getPropertyPaneWebPartInfoGroups(): IPropertyPaneGroup[] {
 
       return [
-        {
+          {
             groupName: commonStrings.PropertyPane.InformationPage.About,
             groupFields: [
               PropertyPaneWebPartInformation({
-                description: `<span>${commonStrings.PropertyPane.InformationPage.Authors}:<ul style=list-style-type:none;padding:0><li><a href=https://www.linkedin.com/in/franckcornu/ target=_blank>Franck Cornu</a></ul></span>`,
+                description: `<div class="flex justify-between"><span>${commonStrings.PropertyPane.InformationPage.Authors}:<ul style=list-style-type:none;padding:0 ><li><a href=https://www.linkedin.com/in/franckcornu/ target=_blank>Franck Cornu</a></ul></span><img class="w-[72px]" src=${require("../controls/WebPartPlaceholder/logo.svg")} alt="Ubisoft logo"/></div>`,
                 key: 'authors'
               }),
               PropertyPaneLabel('', {
@@ -290,6 +290,11 @@ export abstract class BaseWebPart<T extends IBaseWebPartProps> extends BaseClien
                 target: '_blank',
                 href: this.properties.documentationLink,
                 text: commonStrings.PropertyPane.InformationPage.Resources.Documentation
+              }),
+              PropertyPaneLink('',{
+                target: '_blank',
+                href: this.properties.issueLink,
+                text: commonStrings.PropertyPane.InformationPage.Resources.IssueLink
               })
             ]
           },

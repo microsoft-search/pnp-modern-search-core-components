@@ -12,8 +12,7 @@ define([], function() {
         },
         PropertyPane: {
             LayoutPage: {
-                AvailableLayoutsGroupName: "Available layouts",
-                LayoutTemplateOptionsGroupName: "Layout options",
+                LayoutTemplateOptionsGroupName: "Templates options",
                 CommonLayoutOptionsGroupName: "General options",
                 UseSearchVerticalsField: "Use verticals",
                 SearchVerticalsConnectToComponentField: "Connect to this component",

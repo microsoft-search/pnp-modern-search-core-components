@@ -53,7 +53,7 @@ export class PropertyPaneCodeEditorHost extends React.Component<IPropertyPaneCod
                     <Panel
                         isOpen={this.state.isOpen}
                         onDismiss={this.togglePanel}
-                        isLightDismiss={true}
+                        isLightDismiss={false}
                         type={PanelType.large}
                         isFooterAtBottom={true}
                         styles={{

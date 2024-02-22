@@ -1,4 +1,5 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
 
 <Meta title="Introduction / Authentication " />
 
@@ -8,22 +9,21 @@ To get it work, some components need the current user to be logged in against Az
 The PnP Modern Search core components bundle include the Microsoft Graph Toolkit library `4.0.0` so it means you can use any components from it, like [authentication providers](https://learn.microsoft.com/en-us/graph/toolkit/providers/providers). 
 Example:
 
-```html
-<mgt-file>
-```
+<Source language='html' dark format={false} code={dedent`<mgt-file>`}/>
+
 Provider component needs to be added to your page so other components that require authentication can work. Here is an example with the MSAL2 provider:
 
 Example:
 
-```html
+<Source language='html' dark format={false} code={dedent`
 <mgt-msal2-provider 
     client-id="<your_client_id>"
     authority="https://login.microsoftonline.com/<your_tenant_id>"
 >
 </mgt-msal2-provider>
-```
+`}/>
 
-Remember you have to configure API permissions on your Azure AD application depending the [entity types you use](https://learn.microsoft.com/en-us/graph/api/resources/search-api-overview?view=graph-rest-1.0#scope-search-based-on-entity-types). For example:
+Remember you have to configure API permissions on your Entra ID application depending the [entity types you use](https://learn.microsoft.com/en-us/graph/api/resources/search-api-overview?view=graph-rest-1.0#scope-search-based-on-entity-types). For example:
 - `Acronym.Read.All`
 - `Bookmark.Read.All`
 - `ExternalItem.Read.All`

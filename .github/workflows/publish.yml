@@ -125,6 +125,7 @@ jobs:
         working-directory: ./packages/spfx
         run: |
           gulp update-version --value $MAJORMINORPATCH
+          gulp update-docs-url --hosturl "https://github.com/microsoft-search/pnp-modern-search-core-components"
           pnpm run tailwindcss
           gulp bundle --ship
           gulp package-solution --ship

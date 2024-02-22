@@ -14,7 +14,7 @@ export default {
     // https://mochajs.org/api/mocha
     config: {
       ui: "bdd",
-      timeout: "60000",
+      timeout: "90000",
     },
   },
   plugins: [

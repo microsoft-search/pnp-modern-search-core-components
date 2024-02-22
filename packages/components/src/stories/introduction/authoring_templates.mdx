@@ -1,0 +1,169 @@
+
+import { Meta, Source } from '@storybook/blocks';
+import dedent from 'ts-dedent';
+
+<Meta title="Introduction / Authoring templates" />
+
+### [Available customizations](?path=/docs/introduction-authoring-templates--docs#available-customizations)
+
+export const styleTagSnippet = `<template data-type="items">
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+
+    <div class="red">My text is red</div>
+</template>
+`;
+
+export const databindingSnippet = `<template data-type="items">
+    <div>Total count is: {{totalCount}}</div>
+</template>
+`;
+
+export const loopSnippet = `<template data-type="items">
+    <div data-for="item in items">
+        <div>Title: {{ item.title }}</div>
+    </div>
+</template>
+`;
+
+export const customWebComponentsSnippet = `<template data-type="items">
+    <div data-for="item in items">
+
+        <!-- PnP component -->
+        <pnp-adaptive-card 
+            url="<url_of_the_adaptive_card>" 
+            context="{{ mergeContext(item) }}">
+        </pnp-adaptive-card>
+    </div>
+
+    <!-- MGT component -->
+    <mgt-file-list></mgt-file-list>
+</template>
+`;
+
+export const conditionalRenderingSnippet = `<template data-type="filter-value">
+    <div data-if="filterName === 'FileType'">
+        {{ name.toUpperCase() }}
+    </div>
+    <div data-else>
+        {{ name }}
+    </div>
+</template>`;
+
+export const dataHtmlSnippet = `<template data-type="items">
+    <div data-for="item in items">
+        <div>Title: {{ item.title }}</div>
+        <div data-html>Summary: {{ item.summary }}</div>
+    </div>
+</template>
+`;
+
+Here are the possible customizations you can make in templates:
+
+| Customization                                     |         | Example |
+|---------------------------------------------------|---------| --------|        
+| Define you own web component templates            | ❌(defined by the internal components) |
+| Add `<style>` tags                                | ✔️| <Source language='html' dark format={false} code={dedent`${styleTagSnippet}`}/> CSS classes are global to the page. Make sure you use unique names to avoid conflicts.
+| Add `<script>` tags                               | ❌(for security reasons)
+| Use data binding                                  | ✔️(using `{{ }}`) | <Source language='html' dark format={false} code={dedent`${databindingSnippet}`}/>
+| Change binding syntax                             | ❌(default is awlays `{{ }}`)
+| [Use conditional rendering](https://learn.microsoft.com/en-us/graph/toolkit/customize-components/templates#conditional-rendering) | ✔️ | <Source language='html' dark format={false} code={dedent`${conditionalRenderingSnippet}`}/>
+| [Use loops](https://learn.microsoft.com/en-us/graph/toolkit/customize-components/templates#looping) | ✔️ |  <Source language='html' dark format={false} code={dedent`${loopSnippet}`}/>
+| Use [`{{this}}`](https://learn.microsoft.com/en-us/graph/toolkit/customize-components/templates#this) | ✔️ | 
+| Use [data context helper properties](https://learn.microsoft.com/en-us/graph/toolkit/customize-components/templates#data-context-helper-properties) | ✔️ | 
+| Use custom web components | ✔️Only components starting with `pnp-` or `mgt-`  | <Source language='html' dark format={false} code={dedent`${customWebComponentsSnippet}`}/>
+| Convert text from properties to HTML              | ✔️ (using `data-html` attribute). | <Source language='html' dark format={false} code={dedent`${dataHtmlSnippet}`}/>➝ Without `data-html` <br/><br/> <div style={{width: 513}}>![Without data-html](./without_data_html.png)</div> <br/> ➝ With `data-html` <br/><br/><div style={{width: 513}}>![Without data-html](./with_data_html.png)</div>
+
+### Enable debug mode
+
+The debug mode allows to inspect underlying data returned by the Web Part. It is also useful to see available properties you can use in your templates.
+Debug mode can be enabled by adding the `enable-debug` option in components attributes:
+
+<Source language='html' dark format={false} code={dedent`
+    <pnp-search-results
+        ...
+        enable-debug
+    >
+        ...
+    </pnp-search-results>
+`}/>
+
+<div className='center' style={{flexDirection: 'column'}}>   
+    ![Debug context](./debug_context.png)
+</div>
+
+### Enable Microsoft Graph toolkit
+
+The Microsoft Graph toolkit can be activated by adding the `use-mgt` option in components attributes:
+
+<Source language='html' dark format={false} code={dedent`
+    <pnp-search-results
+        ...
+        use-mgt
+    >
+        ...
+    </pnp-search-results>
+`}/>
+
+<div className='center' style={{flexDirection: 'column'}}>   
+
+    <div style={{display: 'flex'}}>
+
+        <div style={{width: '70%', marginRight: 30}}>   
+             <Source language='html' dark format={false} code={dedent`
+                <template data-type="items">
+                    <mgt-file-list></mgt-file-list>
+                </template>
+            `}/>
+        </div>
+
+        <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+            ![MGT File List](./mgt_example.png)
+        </div>
+    </div>
+</div>
+
+> When Microsoft Graph Toolkit is enabled, it uses the [provider](https://learn.microsoft.com/en-us/graph/toolkit/providers/providers) already configured in the page.
+
+> Use toolkit component with caution especially when used in loops as performances could significantly decrease.
+
+## Advanced concepts
+
+### Use adaptive cards in templates
+
+It is possible to use. However, because adaptive cards rely have their own templating mechanism based on a data context to display the information, you need to use the special helper `mergeContext` to pass the Web Part context to the adaptive card.
+
+> The `mergeContext` helper mergers the item data and Web Part context (slots, layout properties) into a single JSON object so it can be used in adaptive cards.
+
+➝ <span style={{textDecoration: 'underline'}}>Example</span>
+
+**Adaptive card**
+
+<Source language='json' dark format={false} code={dedent`
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.3",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "\${title}" // 'title' from item.title property in the search result
+                }
+            ]
+        }
+    ]
+}
+`}/>
+
+**Usage in templates**
+
+<Source language='html' dark format={false} code={dedent`
+    <pnp-adaptive-card url="<url_of_the_adaptive_card>" context="{{ mergeContext(item) }}">
+    </pnp-adaptive-card>
+`}/>

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 'use strict';
 
-const gulp = require('gulp');
+const gulp = require('gulp')
 const path = require('path');
-const log = require('fancy-log');
-const fs = require('fs');
-
+const replace = require("gulp-replace");
+const { src, dest } = require("gulp");
+const rename = require("gulp-rename");
 const build = require('@microsoft/sp-build-web');
 build.addSuppression(`Warning - [sass] The local CSS class 'ms-Grid' is not camelCase and will not be type-safe.`);
 
@@ -53,7 +53,36 @@ const envCheck = build.subTask('environmentCheck', (gulp, config, done) => {
         );
   
         if (!config.production) {
-          generatedConfiguration.devtool = 'eval-source-map';
+          generatedConfiguration.module.rules.push(
+            {
+              test: /strings\..+\.d\.ts$/,
+              use: 
+                {
+                  loader: 'null-loader',
+                }
+              
+            },
+            {
+              test: /\.js$/,
+              exclude: (_) => {            
+                return /node_modules/.test(_) && !/(@pnp)/.test(_) && /strings\..+\.js$/.test(_);
+              },
+              enforce: 'pre',
+              use: ['source-map-loader'],
+            } 
+          );
+        } else {
+
+          generatedConfiguration.module.rules.push(
+            {
+              test: /strings\..+(\.d\.ts|\.map)$/,
+              use: 
+                {
+                  loader: 'null-loader',
+                }
+              
+            }
+          );
         }
   
         return generatedConfiguration;
@@ -166,6 +195,25 @@ gulp.task('update-package-name', async () => {
   } else {
       log.error(`Error: wrong parameters`);
   }
+});
+
+// Local project tasks
+gulp.task('update-docs-url', async () => {
+
+  const hostUrlArg = process.argv.indexOf("--hosturl");
+  const hostUrl = process.argv[hostUrlArg+1];
+
+  return src("src/webparts/**/*.template.json")
+      .pipe(replace("{{DOCUMENTATION_HOST_URL}}", hostUrl))
+      .pipe(rename((path) => {
+
+          return {
+              dirname: "src/webparts/" + path.dirname,
+              basename: path.basename.replace(".template",""),
+              extname: ".json"
+          };
+      }))
+      .pipe(dest("./"))
 });
 
 build.initialize(require('gulp'));

@@ -290,12 +290,12 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                 options: [
                     {
                         key: QueryMode.Basic,
-                        text: "Basic mode (coming soon...)",
+                        text: sourceStrings.PropertyPane.QuerySettingsGroup.QueryMode.BasicMode,
                         disabled: true
                     },
                     {
                         key: QueryMode.Advanced,
-                        text: "Advanced mode"
+                        text: sourceStrings.PropertyPane.QuerySettingsGroup.QueryMode.AdvancedMode,
                     }
                 ]
             })
@@ -349,7 +349,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
         }
 
         const getErrorMessage = (value: string): string => {
-            return !isEmpty(value) ? '' : `Field must have a value`;
+            return !isEmpty(value) ? '' : sourceStrings.PropertyPane.QuerySettingsGroup.FieldTextErrorMessage ;
         };
         
 
@@ -407,10 +407,10 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
             PropertyPaneToggle('useBetaEndpoint', {
                 label: sourceStrings.PropertyPane.AdvancedSettingsGroup.SearchUseBetaEndpointFieldLabel
             }),
-            PropertyPaneToggle('queryAlterationOptions.enableSuggestion', {
+            /*PropertyPaneToggle('queryAlterationOptions.enableSuggestion', {
                 label: sourceStrings.PropertyPane.AdvancedSettingsGroup.SearchEnableSuggestionFieldLabel,
                 checked: this.properties.queryAlterationOptions.enableSuggestion
-            }),
+            }),*/
             PropertyPaneToggle('queryAlterationOptions.enableModification', {
                 label: sourceStrings.PropertyPane.AdvancedSettingsGroup.SearchEnableModificationFieldLabel,
                 checked: this.properties.queryAlterationOptions.enableModification
@@ -534,7 +534,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
     private getSearchSortConfigurationField(): IPropertyPaneField<unknown> {
 
         const getErrorMessage = (value: string): string => {
-            return !isEmpty(value) ? '' : `Field must have a value`;
+            return !isEmpty(value) ? '' :  sourceStrings.PropertyPane.QuerySettingsGroup.FieldTextErrorMessage;
         };
           
         const newSortFieldConfiguration: ISortFieldConfiguration = {
@@ -552,7 +552,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                 {
                     type: ConfigurationFieldType.TextField,
                     props: {
-                        label: "Sort field",
+                        label:  sourceStrings.PropertyPane.AdvancedSettingsGroup.SortFieldLabel,
                         required: true,
                         onGetErrorMessage: getErrorMessage,
                     } as Partial<ITextFieldProps>,
@@ -561,7 +561,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                 {
                     type: ConfigurationFieldType.ChoiceGroup,
                     props: {
-                        label: "Sort direction",
+                        label: sourceStrings.PropertyPane.AdvancedSettingsGroup.SortDirectionLabel,
                         options: [{key: SortFieldDirection.Ascending, text: "Ascending"},{key: SortFieldDirection.Descending, text: "Descending"}]
                     } as Partial<IChoiceGroupProps>,
                     targetProperty: "sortDirection" 
@@ -569,14 +569,14 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                 {
                     type: ConfigurationFieldType.Toggle,
                     props: {
-                        label: "Is default sort",
+                        label: sourceStrings.PropertyPane.AdvancedSettingsGroup.IsDefaultSort,
                     } as Partial<IToggleProps>,
                     targetProperty: "isDefaultSort"
                 },
                                 {
                     type: ConfigurationFieldType.Toggle,
                     props: {
-                        label: "Is user sort",
+                        label: sourceStrings.PropertyPane.AdvancedSettingsGroup.IsUserSort,
                     } as Partial<IToggleProps>,
                     targetProperty: "isUserSort"
                 },
@@ -584,7 +584,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                     type: ConfigurationFieldType.LocalizedField,
                     props: {
                         serviceScope: this.context.serviceScope,
-                        label: "Display name",
+                        label: sourceStrings.PropertyPane.AdvancedSettingsGroup.SortDisplayName,
                         onGetErrorMessage: getErrorMessage,
                         required: true,
                     } as Partial<ILocalizedFieldProps>,
@@ -611,7 +611,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
                             renderRowTitle={(sortField: ISortFieldConfiguration) => { return sortField.sortField }}
                             onFormSave={(formData) => { onUpdate(field, formData)}}
                             dataObject={defaultValue}
-                            renderPanelTitle={() => "Add new sort property"}
+                            renderPanelTitle={() => sourceStrings.PropertyPane.AdvancedSettingsGroup.AddNewSortPropertyLabel}
                             onFormDismissed={(configuration: ISortFieldConfiguration) => {
                                 if (isEqual(configuration, newSortFieldConfiguration)) {
                                     // Remove row as no item has been saved
@@ -624,10 +624,10 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
         ];
 
         return new PropertyPaneFormDataCollection<ISortFieldConfiguration>('sortFieldsConfiguration', {
-            label: "Sort properties",
+            label:  sourceStrings.PropertyPane.AdvancedSettingsGroup.SortPropertiesCategory,
             itemRepeaterProps: {
                 innerRef: this._itemRepeaterRef,
-                addButtonLabel: "Add new sort property",    
+                addButtonLabel: sourceStrings.PropertyPane.AdvancedSettingsGroup.AddNewSortPropertyLabel,    
                 enableDragDrop: true
             },
             items: this.properties.sortFieldsConfiguration,
@@ -659,7 +659,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
         
         this.properties.queryMode = this.properties.queryMode !== undefined ? this.properties.queryMode : QueryMode.Advanced;
 
-        this.properties.entityTypes = this.properties.entityTypes !== undefined ? this.properties.entityTypes : [EntityType.DriveItem];
+        this.properties.entityTypes = this.properties.entityTypes !== undefined ? this.properties.entityTypes : [EntityType.ListItem];
         this.properties.contentSources = this.properties.contentSources !== undefined ? this.properties.contentSources : []; 
     
         this.properties.selectedFields = this.properties.selectedFields !== undefined ? this.properties.selectedFields : [
@@ -706,7 +706,7 @@ export class MicrosoftSearchDataSource extends BaseDataSource<IMicrosoftSearchDa
     public async loadPropertyPaneResources(): Promise<void> {
 
         const { PropertyFieldNumber } = await import(
-            /* webpackChunkName: 'pnp-modern-search-core-property-pane' */
+            /* webpackChunkName: 'ubisoft-modern-search-core-property-pane' */
             '@pnp/spfx-property-controls/lib/PropertyFieldNumber'
         );
 

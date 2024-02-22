@@ -2,6 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import { PACKAGE_VERSION } from "../../../src/utils/version";
 import pnpLogo from "../assets/pnp.png";
 import ubisoftLogo from "../assets/ubisoft_stacked_logo_black.png";
+import dedent from 'ts-dedent';
 
 <Meta title="Introduction / Getting started" />
 
@@ -56,13 +57,18 @@ The [`@pnp/modern-search-core`](https://www.npmjs.com/package/@pnp/modern-search
 #### Defined
 Most of the time, you'll just need to use the pre-defined custom element registration.
 
-```typescript
-import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
-...
-<pnp-search-results
-    id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+<Source
+    language='typescript'
+    dark
+    format={false}
+    code={dedent`
+        import "@pnp/modern-search-core/dist/es6/exports/define/pnp-search-results";
+        ...
+        <pnp-search-results
+            id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+        />
+    `}
 />
-```
 
 #### Scoped
 When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts
@@ -70,41 +76,54 @@ When used in a microfrontend, you'll probably need to use scoped elements to avo
 **Manually defined element**
 
 ```typescript
-import { SearchResultsComponent} from "@pnp/modern-search-core";
 
-// Define your component manually with SearchResultsComponent
-if (!customElements.get("myapp-search-results")) {
-    customElements.define("myapp-search-results", SearchResultsComponent)
-}
-...
-<myapp-search-results />
 ```
+
+<Source
+    language='typescript'
+    dark
+    format={false}
+    code={dedent`
+
+        import { SearchResultsComponent} from "@pnp/modern-search-core";
+
+        // Define your component manually with SearchResultsComponent
+        if (!customElements.get("myapp-search-results")) {
+            customElements.define("myapp-search-results", SearchResultsComponent)
+        }
+        ...
+        <myapp-search-results />
+        `
+}/>
 
 **[Scoped element mixin](https://open-wc.org/docs/development/scoped-elements/) in your own web component** 
 
-```typescript
+<Source
+    language='typescript'
+    dark
+    format={false}
+    code={dedent`
 
-//
-import { SearchResultsComponent} from "@pnp/modern-search-core";
-import { ScopedElementsMixin } from "@open-wc/scoped-elements";
+        import { SearchResultsComponent} from "@pnp/modern-search-core";
+        import { ScopedElementsMixin } from "@open-wc/scoped-elements";
 
-export class MyComponent extends ScopedElementsMixin(LitElement) {
+        export class MyComponent extends ScopedElementsMixin(LitElement) {
 
-    ...
+            ...
 
-    static get scopedElements() { 
-        return {
-            "myapp-search-results": SearchResultsComponent
-        }; 
-    }
-    ...
+            static get scopedElements() { 
+                return {
+                    "myapp-search-results": SearchResultsComponent
+                }; 
+            }
+            ...
 
-    public render() {
-        ...
+            public render() {
+                ...
 
-        return html`<myapp-search-results />`;
-    }
-    ...
-}
-
-```
+                return html\`<myapp-search-results />\`;
+            }
+            ...
+        }
+        `
+}/>

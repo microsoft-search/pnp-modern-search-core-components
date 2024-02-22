@@ -45,7 +45,23 @@ const webpackConfig = {
             ]
           }
         }
-      }
+      },
+      {
+        test: /strings\..+\.d\.ts$/,
+        use: 
+          {
+            loader: 'null-loader',
+          }
+        
+      },
+      {
+        test: /\.js$/,
+        exclude: (_) => {            
+          return /node_modules/.test(_) && !/(@pnp)/.test(_) && /strings\..+\.js$/.test(_);
+        },
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      } 
     ]
 
   },

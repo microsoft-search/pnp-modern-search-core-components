@@ -18,7 +18,7 @@ import IDataSource from '../../models/common/IDataSource';
 import { ServiceScopeHelper } from '../../helpers/ServiceScopeHelper';
 import { SharePointTokenService } from '../../services/tokenService/SharePointTokenService';
 import { ISharePointTokenService } from '../../services/tokenService/ISharePointTokenService';
-import PlaceHolder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
+import WebPartPlaceholder from '../../controls/WebPartPlaceholder/WebPartPlaceholder';
 import { IPlaceholderProps } from '@pnp/spfx-controls-react';
 import { DynamicProperty } from '@microsoft/sp-component-base';
 import { isEmpty } from '@microsoft/sp-lodash-subset';
@@ -196,7 +196,10 @@ export default class SearchResultsWebPart extends BaseWebPart<ISearchResultsWebP
                     {
                         iconName: "",
                         iconText: webPartStrings.General.PlaceHolder.IconText,
-                        description: () => React.createElement(PlaceHolder, { description: webPartStrings.General.PlaceHolder.Description } , null),
+                        description: () => React.createElement(WebPartPlaceholder, { 
+                            description: webPartStrings.General.PlaceHolder.Description,
+                            documentationLink: this.properties.documentationLink
+                        } , null),
                         buttonLabel: webPartStrings.General.PlaceHolder.ConfigureBtnLabel,
                         onConfigure: () => { this.context.propertyPane.open(); }
                     }

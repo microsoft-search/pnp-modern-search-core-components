@@ -66,9 +66,68 @@ declare interface ICommonStrings {
       Resources: {
         GroupName: string;
         Documentation: string;
+        IssueLink: string;
         PleaseReferToDocumentationMessage: string;
       },
       DeveloperSettingsWarning: string;
+    },
+    PropertyPaneFiltersConfiguration: {
+      TextFieldErrorMessage: string;
+      AggregationsErrorMessage: string;
+      FilterNameLabel: string;
+      DisplayNameLabel: string;
+      TemplateLabel: string;
+      CheckboxLabel: string;
+      DateLabel: string;
+      SliderLabel: string;
+      ShowCountLabel: string;
+      OperatorLabel: string;
+      IsMultiValue: string;
+      SortByLabel: string;
+      ByCountLabel: string;
+      ByNameLabel: string;
+      SortDirectionLabel: string;
+      AscendingLabel: string;
+      DescendingLabel: string;
+      NumberOfValuesLabel: string;
+      Aggregations: {
+          TabTitle: string;
+          AddBtnLabel: string;
+          RemoveBtnLabel: string;
+          MatchingValuesLabel: string;
+          RegularExpressionLabel: string;
+          AddNewValueBtnLabel: string;
+          AggregationValueLabel: string;
+          IconUrlLabel: string;
+      },
+      SliderSettings: {
+          TabTitle: string;
+          MinValueLabel: string;
+          MinValueDescription: string;
+          MaxValueLabel: string;
+          MaxValueDescription: string;
+          DefaultMinLabel: string;
+          DefaultMinDescription: string;
+          DefaultMaxLabel: string;
+          DefaultMaxDescription: string;
+          Markers: {
+              MarkersTitle: string;
+              AddBtnLabel: string;
+              RemoveBtnLabel: string;
+              MarkerLabelLabel: string;
+              MarkerLabelDescription: string;
+              MarkerValueLabel: string;
+              MarkerValueDescription: string;
+              SizeLabel: string;
+              SizeDescription: string;
+          }
+      },
+      DisplaySettings: {
+          TabTitle: string;
+          SelectTabLabel: string;
+          PlaceholderLabel: string;
+      },
+      AddNewFilterBtnLabel: string;
     }
   },
   Controls: {

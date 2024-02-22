@@ -57,7 +57,7 @@ define([], function() {
             EnableDebugMode: "Debug mode",
             UseMicrosoftGraphToolkit: "Enable Microsoft Graph Toolkit",
             UseExternalTemplateFile: "Use external template file",
-            TemplateSettingsGroupName: "Template settings",
+            TemplateSettingsGroupName: "Template(s) customization",
             InformationPage: {
                 ImportExport: "Import/Export WebPart settings",
                 About: "About",
@@ -66,10 +66,71 @@ define([], function() {
                 InstanceId: "Web Part instance ID",
                 Resources: {
                     GroupName: "Resources",
-                    Documentation: "Read the documentation",
+                    Documentation: "📖 Read the documentation",
+                    IssueLink: "🐞 Raise an issue",
                     PleaseReferToDocumentationMessage: "Please refer to the official documentation."
                 },
                 DeveloperSettingsWarning: "❗️❗️ This is a developer feature, make sure you know what are you doing ❗️❗️"
+            },
+            PropertyPaneFiltersConfiguration: {
+                TextFieldErrorMessage: "Field must have a value",
+                AggregationsErrorMessage: "All aggregations must have a name",
+                FilterNameLabel: "Filter name",
+                DisplayNameLabel: "Display name",
+                TemplateLabel: "Template",
+                CheckboxLabel: "Checkbox",
+                DateLabel: "Date",
+                SliderLabel: "Label",
+                ShowCountLabel: "Show count",
+                OperatorLabel: "Operator",
+                IsMultiValue: "Is multi value",
+                SortByLabel: "Sort by",
+                ByCountLabel: "By count",
+                ByNameLabel: "By name",
+                SortDirectionLabel: "Sort direction",
+                AscendingLabel: "Ascending",
+                DescendingLabel: "Descending",
+                NumberOfValuesLabel: "Number of values",
+                Aggregations: {
+                    TabTitle: "Aggregations",
+                    AddBtnLabel: "Add new aggreagation",
+                    RemoveBtnLabel: "Remove aggregation",
+                    MatchingValuesLabel: "Matching values",
+                    RegularExpressionLabel: "Regular expression",
+                    AddNewValueBtnLabel: "Add new value",
+                    AggregationValueLabel: "Aggregation value",
+                    IconUrlLabel: "Icon URL"
+                },
+                SliderSettings: {
+                    TabTitle: "Settings",
+                    MinValueLabel: "Minimum value",
+                    MinValueDescription: "The mininum value that can be selected on the slider",
+                    MaxValueLabel: "Maximum value",
+                    MaxValueDescription: "The maximum value that can be selected on the slider",
+                    DefaultMinLabel: "Default minimum value",
+                    DefaultMinDescription: "The default mininum value selected on the slider",
+                    DefaultMaxLabel: "Default maximum value",
+                    DefaultMaxDescription: "The default maximum value selected on the slider",
+                    Markers: {
+                        MarkersTitle: "Markers",
+                        AddBtnLabel: "Add new marker",
+                        RemoveBtnLabel: "Remove marker",
+                        MarkerLabelLabel: "Label",
+                        MarkerLabelDescription: "Label to display on the marker. Can be null.",
+                        MarkerValueLabel: "Value",
+                        MarkerValueDescription: "Value of the marker. Should falls between min and max values",
+                        SizeLabel: "Size",
+                        SizeDescription: "Label size in px"
+                    }
+                },
+                DisplaySettings: {
+                    TabTitle: "Display",
+                    SelectTabLabel: "Show this filter on selected tabs",
+                    PlaceholderLabel: "Select a tab..."
+                },
+                AddNewFilterBtnLabel: "Add new filter"
+                
+
             }
         },
         Controls: {

@@ -18,10 +18,10 @@ export class LanguageProvider {
 
                 // Load locale file dynamically
                 const localizedResources = await import(
-                    /* webpackChunkName: "pnp-modern-search-core-languages" */
+                    /* webpackChunkName: "pnp-modern-search-core-strings" */
                     /* webpackExports: ["strings"] */
-                    /* webpackMode: "lazy" */
-                    `../../loc/strings.${locale}.js`
+                    /* webpackMode: "lazy-once" */
+                    `../../loc/strings.${locale}`
                 );
 
                 await this.dateHelper.dayJs(locale);

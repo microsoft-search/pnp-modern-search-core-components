@@ -124,7 +124,7 @@ export class SearchVerticalsComponent extends BaseComponent {
 
         // Register custom template events
         this.templateContext = {
-            ...super.templateContext,
+            ...this.templateContext,
             onTemplateVerticalSelected: this.onTemplateVerticalSelected
         };
 

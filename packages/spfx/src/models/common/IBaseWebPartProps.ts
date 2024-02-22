@@ -56,6 +56,11 @@ export interface IBaseWebPartProps {
     documentationLink: string;
 
     /**
+     * The GitLab issue link
+     */
+    issueLink: string;
+
+    /**
      * The Web Part title
      */
     title: string;

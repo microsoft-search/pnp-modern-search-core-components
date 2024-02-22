@@ -11,6 +11,18 @@ declare interface ISearchVerticalsWebPartStrings {
   PropertyPane: {
     SettingsPage: {
       VerticalSettingsGroupName: string;
+    },
+    VerticalConfigurationPane: {
+      VerticalsLabel: string;
+      Title: string;
+      VerticalName: string;
+      VerticalKey: string;
+      VerticalValue: string;
+      IsLink: string;
+      LinkUrl: string;
+      OpenBehavior: string;
+      NewTabOption: string;
+      SelfTabOption: string;
     }
   }
 }
