@@ -67,7 +67,6 @@ jobs:
           
       - name: Install Puppeteer
         run: |
-          $env:PUPPETEER_SKIP_DOWNLOAD=$false
           node .\node_modules\puppeteer\install.js
 
       - name: Tests
