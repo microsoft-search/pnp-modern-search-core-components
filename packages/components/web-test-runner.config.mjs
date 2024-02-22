@@ -1,4 +1,4 @@
-import { playwrightLauncher } from "@web/test-runner-playwright";
+import { puppeteerLauncher } from "@web/test-runner-puppeteer";
 import { esbuildPlugin } from "@web/dev-server-esbuild";
 import { fileURLToPath } from "url";
 
@@ -9,7 +9,7 @@ export default {
   testsFinishTimeout: 240000,
   concurrentBrowsers: 3,
   concurrency: 10,
-  browsers: [playwrightLauncher({product: "chromium"})],
+  browsers: [puppeteerLauncher({ concurrency: 3 })],
   testFramework: {
     // https://mochajs.org/api/mocha
     config: {
