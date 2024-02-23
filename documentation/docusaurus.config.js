@@ -155,6 +155,13 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['json']
       },
+      algolia: {
+        appId: 'N614BYY1TP',
+        apiKey: 'ec60cf80acf7edf7499e9e6e9396670d',
+        indexName: 'microsoft-searchio',
+        contextualSearch: true,
+        searchPagePath: 'search'
+      }
     }),
     plugins: [
       async function myPlugin(context, options) {
@@ -168,7 +175,7 @@ const config = {
           },
         };
       },
-    ],
+    ]
 };
 
 export default config;
