@@ -15,12 +15,12 @@ const config = {
   title: 'PnP Modern Search Core Components',
   tagline: 'One search to rule them all.',
   favicon: 'img/favicon.png',
-
+   staticDirectories: ['static'],
   // Set the production url of your site here
   url: 'https://microsoft-search.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/pnp-modern-search-core-components/',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -155,6 +155,13 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['json']
       },
+      algolia: {
+        appId: 'N614BYY1TP',
+        apiKey: 'ec60cf80acf7edf7499e9e6e9396670d',
+        indexName: 'microsoft-searchio',
+        contextualSearch: true,
+        searchPagePath: 'search'
+      }
     }),
     plugins: [
       async function myPlugin(context, options) {
@@ -168,7 +175,7 @@ const config = {
           },
         };
       },
-    ],
+    ]
 };
 
 export default config;

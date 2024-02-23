@@ -50,8 +50,8 @@ jobs:
         - name: Set outputs
           id: setoutputs
           run: |
-            echo "majorMinorPatch=$GITVERSION_MAJORMINORPATCH" >> "$GITHUB_OUTPUT"
-            echo "semver=$GITVERSION_SEMVER" >> "$GITHUB_OUTPUT"
+            echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
+            echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
 
   deploy-storybook:
       runs-on: ubuntu-latest
@@ -128,10 +128,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Build website
         run: yarn build
 
@@ -140,6 +139,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Build output to publish to the `gh-pages` branch:
-          publish_dir: ./build
+          publish_dir: ./documentation/build
           
       
