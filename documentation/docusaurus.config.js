@@ -15,7 +15,7 @@ const config = {
   title: 'PnP Modern Search Core Components',
   tagline: 'One search to rule them all.',
   favicon: 'img/favicon.png',
-
+   staticDirectories: ['static'],
   // Set the production url of your site here
   url: 'https://microsoft-search.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
