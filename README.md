@@ -37,10 +37,10 @@ The following components are included in the bundle:
 
 ##  How I get started?
 
-To get started, simply follow the [guide](https://microsoft-search.github.io/pnp-modern-search-core-components/development/getting_started/)!
+To get started, simply follow the [guide](https://microsoft-search.github.io/pnp-modern-search-core-components/docs/intro)!
 
 ## Playground
 
 You can also get an overview of components using the [playground](https://azpnpmodernsearchcoresto.z9.web.core.windows.net/latest/index.html?path=/docs/introduction-getting-started--docs)
 
-Thank you to all [Ubisoft members who participate to this project](https://microsoft-search.github.io/pnp-modern-search-core-components/thanks/)!
+Thank you to all [Ubisoft members who participate to this project](https://microsoft-search.github.io/pnp-modern-search-core-components/docs/thanks)!
