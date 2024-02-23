@@ -4,7 +4,7 @@ define([], function() {
             PlaceHolder: {
                 EditLabel: "Edit",
                 IconText: "Search Filters Web Part by PnP",
-                Description: "Displays search results from Microsoft Search",
+                Description: "Displays search filters from connected search results Web Parts on the page",
                 ConfigureBtnLabel: "Get started"
             },
             WebPartDefaultTitle: "Search Filters Web Part",

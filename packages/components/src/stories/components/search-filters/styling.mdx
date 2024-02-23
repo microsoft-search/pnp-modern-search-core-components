@@ -1,0 +1,141 @@
+{ /* styling.mdx */}
+import { Meta, Source } from '@storybook/blocks';
+import * as SearchFiltersStories from './filters.stories';
+import dedent from 'ts-dedent';
+
+<Meta of={SearchFiltersStories} name="Usage - Styling"/>
+
+## [Customize templates](?path=/docs/components-search-search-filters--usage-styling#customize-templates)
+
+> To know how to author templates, refer to [the general guidelines](?path=/docs/introduction-authoring-templates--docs).
+
+The search filters web part provides the following templates to be overriden:
+
+### `filter-name`
+
+This template controls the rendering of the filter name:
+
+➝ Applies to filter templates: **Checkbox**, **Date**
+
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
+
+| Property | Description |
+|----------|-------------|
+| `name`   | The filter display name (localized).
+| `filterName` | The filter field name. 
+| `submittedValues` | Array of submitted values.
+
+<div style={{display: 'flex'}}>
+
+    <div style={{width: '70%', marginRight: 30}}>   
+        <Source
+        language='html'
+        dark
+        format={false}
+        code={dedent`
+            <template data-type="filter-name">
+                {{ name.toUpperCase() }}
+            </template>
+        `}/>
+    </div>
+
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Filter name template](./filter_name_template_example.png)
+    </div>
+    
+</div>
+
+### `filter-value`
+
+This template controls the rendering of each individual filter values.
+
+➝ Applies to filter templates: **Checkbox**, **Date**
+
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
+
+| Property | Description |
+|----------|-------------|
+| `key`    | An unique identifier for that filter value.
+| `name`   | The filter value display name.
+| `value`  | Internal value to use when the value is selected.
+| `operator`  | The comparison operator to use with this value.
+| `value`  | Internal value to use when the value is selected
+| `count`  | The number of results with this value.
+| `keywords`  | The current search keywords associated to the search.
+| `filterName` | The filter field name where the value belongs. 
+
+<div style={{display: 'flex'}}>
+
+    <div style={{width: '70%', marginRight: 30}}>   
+        <Source
+        language='html'
+        dark
+        format={false}
+        code={dedent`
+            <template data-type="filter-value">
+
+                <div data-highlight="" data-if="filterName === 'FileType'">
+                    {{ name.toUpperCase() }}
+                </div>
+                <div data-else="">
+                    {{ name }}
+                </div>
+                
+            </template>
+        `}/>
+    </div>
+
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Filter value  template](./filter_value_template_example.png)
+    </div>
+    
+</div>
+
+> You can apply a template conditionally to a filter name using `data-if="filterName === 'FileType'"`. Use the **debug mode** to inspect variables that can be used in your templates.
+
+### `bubble`
+
+This template controls the rendering of bubbles content in the slider template.
+
+➝ Applies to filter templates: **Slider**
+
+<span style={{textDecoration: 'underline'}}>**Properties**</span>
+<br/>
+The following properties can be used in the template:
+
+| Property | Description |
+|----------|-------------|
+| `value`    | Current value of the marker in the slider.
+| `selectedMinValue`   | The minimum selected value on the slider.
+
+<div style={{display: 'flex'}}>
+
+    <div style={{width: '70%', marginRight: 30}}>   
+        <Source
+        language='html'
+        dark
+        format={false}
+        code={dedent`
+            <template data-type="bubble">
+
+                <div data-if="value < 0">
+                    {{ value }} neg
+                </div>
+
+                <div data-if="value > 0">
+                    {{ value }} pos
+                </div>
+
+            </template>
+        `}/>
+    </div>
+
+    <div style={{width: '30%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+        ![Bubble slider template](./bubble_template_example.png)
+    </div>
+    
+</div>

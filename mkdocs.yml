@@ -2,7 +2,7 @@
 # Project info
 site_name: PnP Modern Search - Core Components
 repo_name: PnP Modern Search - Core Components
-repo_url: ""
+repo_url: "https://github.com/microsoft-search/pnp-modern-search-core-components"
 use_directory_urls: true
 
 # Navigation

@@ -45,14 +45,14 @@ module.exports = {
   },
   output: {
     chunkFilename: "[name].bundle.js",
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist/bundle"),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
     publicPath: "auto", // Ensure the bundle chunks will be resovled correctly if served from a CDN
     clean: true
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist/bundle'),
+      directory: path.join(__dirname, 'dist'),
       watch: true,
     },
     compress: true,
@@ -67,7 +67,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(
         {
-          title: "PnP Modern Search Core Components - Dev page",
+          title: "PnP - Results test page",
           filename: "index.html",
           template: "dev/index.html",
           alwaysWriteToDisk: true,

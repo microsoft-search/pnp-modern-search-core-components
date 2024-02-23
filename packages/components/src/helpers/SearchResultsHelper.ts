@@ -253,6 +253,7 @@ export class SearchResultsHelper {
 
         if (data.items.length > 0) {
 
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             let mergedItem: any = {};
 
             // Consolidate all available properties from all items 

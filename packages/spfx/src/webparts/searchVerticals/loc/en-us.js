@@ -13,6 +13,18 @@ define([], function() {
     PropertyPane: {
       SettingsPage: {
         VerticalSettingsGroupName: "Settings"
+      },
+      VerticalConfigurationPane: {
+        VerticalsLabel: "Verticals",
+        Title: "Add new vertical",
+        VerticalName: "Vertical name",
+        VerticalKey: "Vertical key",
+        VerticalValue: "Vertical value",
+        IsLink: "Is link",
+        LinkUrl: "Link URL",
+        OpenBehavior: "Open behavior",
+        NewTabOption: "New tab",
+        SelfTabOption: "Self tab"
       }
     }
   }

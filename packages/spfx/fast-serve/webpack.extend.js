@@ -4,6 +4,8 @@
 * This file will not be overwritten by the subsequent spfx-fast-serve calls.
 */
 
+const path = require('path');
+
 // you can add your project related webpack configuration here, it will be merged using webpack-merge module
 // i.e. plugins: [new webpack.Plugin()]
 const webpackConfig = {
@@ -19,6 +21,32 @@ const webpackConfig = {
         }
       },
       {
+        test: /\.js$/,
+        // only run on lit packages in the root node_module folder
+        include: /node_modules\/(\@lit)|(lit)/,
+        exclude: [
+          {
+            // Exclude this rule from everything.
+            test: __dirname,
+            // Add back the ES2021 Lit dependencies. Add anything else here that uses modern
+            // JavaScript that Webpack 4 doesn't understand.
+            exclude: ['@lit', 'lit-element', 'lit-html'].map((p) =>
+              path.resolve(__dirname, 'node_modules/' + p)
+            ),
+          },
+        ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              "@babel/plugin-transform-optional-chaining",
+              "@babel/plugin-transform-nullish-coalescing-operator",
+              "@babel/plugin-transform-logical-assignment-operators"
+            ]
+          }
+        }
+      },
+      {
         test: /strings\..+\.d\.ts$/,
         use: 
           {
@@ -29,11 +57,11 @@ const webpackConfig = {
       {
         test: /\.js$/,
         exclude: (_) => {            
-          return /node_modules/.test(_) && !/(@pnp)/.test(_) && /strings\..+\.js\.map$/.test(_);
+          return /node_modules/.test(_) && !/(@pnp)/.test(_) && /strings\..+\.js$/.test(_);
         },
         enforce: 'pre',
         use: ['source-map-loader'],
-      }
+      } 
     ]
 
   },

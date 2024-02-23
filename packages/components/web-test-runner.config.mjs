@@ -1,6 +1,9 @@
 import { puppeteerLauncher } from "@web/test-runner-puppeteer";
+import puppeteer from "puppeteer";
 import { esbuildPlugin } from "@web/dev-server-esbuild";
 import { fileURLToPath } from "url";
+
+console.log("puppeteer executablePath is :" + puppeteer.executablePath());
 
 // https://modern-web.dev/docs/test-runner/cli-and-configuration/
 export default {
@@ -9,12 +12,14 @@ export default {
   testsFinishTimeout: 240000,
   concurrentBrowsers: 3,
   concurrency: 10,
-  browsers: [puppeteerLauncher({ concurrency: 3 })],
+  browsers: [puppeteerLauncher({ concurrency: 3, launchOptions: {
+    executablePath: puppeteer.executablePath()
+  }  })],
   testFramework: {
     // https://mochajs.org/api/mocha
     config: {
       ui: "bdd",
-      timeout: "60000",
+      timeout: "90000",
     },
   },
   plugins: [

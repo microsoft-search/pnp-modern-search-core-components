@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 'use strict';
 
-const gulp = require('gulp');
+const gulp = require('gulp')
 const path = require('path');
+const fs = require("fs");
 const log = require('fancy-log');
-const fs = require('fs');
-
+const replace = require("gulp-replace");
+const { src, dest } = require("gulp");
+const rename = require("gulp-rename");
 const build = require('@microsoft/sp-build-web');
 build.addSuppression(`Warning - [sass] The local CSS class 'ms-Grid' is not camelCase and will not be type-safe.`);
 
@@ -24,6 +26,32 @@ const envCheck = build.subTask('environmentCheck', (gulp, config, done) => {
               loader: 'babel-loader'
             }
           },
+          {
+            test: /\.js$/,
+            // only run on lit packages in the root node_module folder
+            include: /node_modules\/(\@lit)|(lit)/,
+            exclude: [
+              {
+                // Exclude this rule from everything.
+                test: __dirname,
+                // Add back the ES2021 Lit dependencies. Add anything else here that uses modern
+                // JavaScript that Webpack 4 doesn't understand.
+                exclude: ['@lit', 'lit-element', 'lit-html'].map((p) =>
+                  path.resolve(__dirname, 'node_modules/' + p)
+                ),
+              },
+            ],
+            use: {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  "@babel/plugin-transform-optional-chaining",
+                  "@babel/plugin-transform-nullish-coalescing-operator",
+                  "@babel/plugin-transform-logical-assignment-operators"
+                ]
+              }
+            }
+          }
         );
   
         if (!config.production) {
@@ -60,7 +88,6 @@ const envCheck = build.subTask('environmentCheck', (gulp, config, done) => {
         }
   
         return generatedConfiguration;
-  
     }
   });
 
@@ -170,6 +197,25 @@ gulp.task('update-package-name', async () => {
   } else {
       log.error(`Error: wrong parameters`);
   }
+});
+
+// Local project tasks
+gulp.task('update-docs-url', async () => {
+
+  const hostUrlArg = process.argv.indexOf("--hosturl");
+  const hostUrl = process.argv[hostUrlArg+1];
+
+  return src("src/webparts/**/*.template.json")
+      .pipe(replace("{{DOCUMENTATION_HOST_URL}}", hostUrl))
+      .pipe(rename((path) => {
+
+          return {
+              dirname: "src/webparts/" + path.dirname,
+              basename: path.basename.replace(".template",""),
+              extname: ".json"
+          };
+      }))
+      .pipe(dest("./"))
 });
 
 build.initialize(require('gulp'));

@@ -22,11 +22,12 @@ import { IconPlacement, IItemRepeaterSharedProps } from '../../controls/ItemRepe
 import { ItemRepeater } from '../../controls/ItemRepeater/ItemRepeater';
 import { ILocalizedFieldProps } from '../../controls/LocalizedTextField/ILocalizedFieldProps';
 import { BaseComponentContext } from '@microsoft/sp-component-base';
+import * as commonStrings from "CommonStrings";
 
 //#region Fields validation
 
 const getErrorMessage = (value: string): string => {
-    return !isEmpty(value) ? '' : `Field must have a value`;
+    return !isEmpty(value) ? '' : commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.TextFieldErrorMessage;
 };
 
 // Check if translation has a default value
@@ -36,7 +37,7 @@ const localizedStringGetErrorMessage = (value: string | ILocalizedString): strin
 
 // Check if all aggregations have a name
 const aggregationsGetErrorMessage = (values: IDataFilterAggregation[]): string => {
-    return values.some(value => isEmpty(value.aggregationName)) ? `All aggregations must have a name` : '';
+    return values.some(value => isEmpty(value.aggregationName)) ? commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.AggregationsErrorMessage : '';
 };
 
 //#endregion
@@ -79,7 +80,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
             sortDirection: FilterSortDirection.Ascending,
             sortIdx: this.properties.defaultValue.length,
             template: BuiltinFilterTemplates.CheckBox,
-            aggregations: []
+            aggregations: [],
         };
 
         this.filterTabsConfiguration = [
@@ -89,7 +90,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.TextField,
                         props: {
-                            label: "Filter name",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.FilterNameLabel,
                             required: true,
                             onGetErrorMessage: getErrorMessage,
                             validateOnLoad: true
@@ -99,7 +100,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.LocalizedField,
                         props: {
-                            label: "Display name",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DisplayNameLabel,
                             onGetErrorMessage: localizedStringGetErrorMessage,
                             required: true,
                             serviceScope: this.properties.serviceScope
@@ -109,16 +110,16 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.ChoiceGroup,
                         props: {
-                            label: "Template",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.TemplateLabel,
                             options: [
                                 {
                                     key: BuiltinFilterTemplates.CheckBox,
-                                    text: "Checkbox",
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.CheckboxLabel,
                                     iconProps: { iconName: 'CheckboxComposite' }
                                 },
                                 {
                                     key: BuiltinFilterTemplates.Date,
-                                    text: "Date",
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DateLabel,
                                     iconProps: { iconName: 'DateTime' }
                                 }
                             ]
@@ -128,14 +129,14 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.Toggle,
                         props: {
-                            label: "Show count",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.ShowCountLabel,
                         } as Partial<IToggleProps>,
                         targetProperty: "showCount"
                     },
                     {
                         type: ConfigurationFieldType.ChoiceGroup,
                         props: {
-                            label: "Operator",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.OperatorLabel,
                             options: [
                                 {
                                     key: FilterConditionOperator.AND,
@@ -152,22 +153,22 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.Toggle,
                         props: {
-                            label: "Is multi value",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.IsMultiValue,
                         } as Partial<IToggleProps>,
                         targetProperty: "isMulti"
                     },
                     {
                         type: ConfigurationFieldType.ChoiceGroup,
                         props: {
-                            label: "Sort by",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.SortByLabel,
                             options: [
                                 {
                                     key: FilterSortType.ByCount,
-                                    text: "By count"
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.ByCountLabel
                                 },
                                 {
                                     key: FilterSortType.ByName,
-                                    text: "By name"
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.ByNameLabel
                                 }
                             ]
                         } as Partial<IChoiceGroupOptionProps>,
@@ -176,15 +177,15 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.ChoiceGroup,
                         props: {
-                            label: "Sort direction",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.SortDirectionLabel,
                             options: [
                                 {
                                     key: FilterSortDirection.Ascending,
-                                    text: "Ascending"
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.AscendingLabel
                                 },
                                 {
                                     key: FilterSortDirection.Descending,
-                                    text: "Descending"
+                                    text: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DescendingLabel
                                 }
                             ]
                         } as Partial<IChoiceGroupOptionProps>,
@@ -193,7 +194,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                     {
                         type: ConfigurationFieldType.Slider,
                         props: {
-                            label: "Number of values",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.NumberOfValuesLabel,
                             max: 500,
                             min: 10
                         } as Partial<ISliderProps>,
@@ -202,18 +203,18 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                 ]
             },
             {
-                name: "Aggregations",
+                name: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.TabTitle,
                 fields: [
                     {
                         type: ConfigurationFieldType.RepeatedItem,
                         targetProperty: "aggregations",
                         props: {
                             validateOnLoad: true,
-                            label: "Aggregations",
+                            label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.TabTitle,
                             onGetErrorMessage: aggregationsGetErrorMessage,
                             itemRepeaterProps: {
-                                addButtonLabel: "Add new aggregation",
-                                removeButtonLabel:"Remove aggregation",
+                                addButtonLabel: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.AddBtnLabel,
+                                removeButtonLabel: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.RemoveBtnLabel,
                                 removeButtonPlacement: IconPlacement.Bottom,
                                 separator: true
                             } as IItemRepeaterSharedProps<IDataFilterAggregation>,
@@ -231,7 +232,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                     type: ConfigurationFieldType.RepeatedItem,
                                     targetProperty: "matchingValues",
                                     props: {
-                                        label: "Matching values",
+                                        label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.MatchingValuesLabel,
                                         formConfiguration: [
                                             {
                                                 type: ConfigurationFieldType.TextField,
@@ -240,7 +241,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                                     onRenderDescription: (props: ITextFieldProps): JSX.Element => {
                                                         if (/^\/.+\/$/gi.test(props.defaultValue)) {
                                                             return  <MessageBar messageBarType={MessageBarType.warning} isMultiline={false} styles={{ root: { marginTop: 5 }}}>
-                                                                        Regular expression
+                                                                        {commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.RegularExpressionLabel}
                                                                     </MessageBar>
                                                         }
 
@@ -251,7 +252,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                         ],
                                         newRowDefaultObject: () => "",
                                         itemRepeaterProps: {
-                                            addButtonLabel: "Add new value"
+                                            addButtonLabel: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.AddNewValueBtnLabel
                                         }
                                     } as Partial<IFormDataCollectionProps<string>>
                                 },
@@ -259,97 +260,14 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                     type: ConfigurationFieldType.TextField,
                                     targetProperty: "aggregationValue",
                                     props: {
-                                        label: "Aggregation value"
+                                        label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.AggregationValueLabel
                                     } as Partial<ITextFieldProps>
                                 },
                                 {
                                     type: ConfigurationFieldType.TextField,
                                     targetProperty: "aggregationValueIconUrl",
                                     props: {
-                                        label: "Icon Url"
-                                    } as Partial<ITextFieldProps>
-                                }
-                            ],
-                            newRowDefaultObject: () => { return {
-                                aggregationName: "",
-                                aggregationValue: "",
-                                matchingValues: [],
-                                aggregationValueIconUrl: ""
-                            }}
-                        } as Partial<IFormDataCollectionProps<IDataFilterAggregation>>
-                    }
-                ]
-            } ,
-            {
-                name: "Settings",
-                fields: [
-                    {
-                        type: ConfigurationFieldType.TextField,
-                        targetProperty: "min",
-                        props: {        
-                            label: "Minimum value",
-                            description: "The mininum value that can be selected on the slider"
-                        } as Partial<ITextFieldProps>
-                    },
-                    {
-                        type: ConfigurationFieldType.TextField,
-                        targetProperty: "max",
-                        props: {        
-                            label: "Maximum value",
-                            description: "The maximum value that can be selected on the slider"
-                        } as Partial<ITextFieldProps>
-                    },
-                    {
-                        type: ConfigurationFieldType.TextField,
-                        targetProperty: "defaultMin",
-                        props: {        
-                            label: "Default minimum value",
-                            description: "The default mininum value selected on the slider"
-                        } as Partial<ITextFieldProps>
-                    },
-                    {
-                        type: ConfigurationFieldType.TextField,
-                        targetProperty: "defaultMax",
-                        props: {        
-                            label: "Default maximum value",
-                            description: "The default maximum value selected on the slider"
-                        } as Partial<ITextFieldProps>
-                    },
-                    {
-                        type: ConfigurationFieldType.RepeatedItem,
-                        targetProperty: "customMarkers",
-                        props: {
-                            validateOnLoad: true,
-                            label: "Markers",
-                            itemRepeaterProps: {
-                                addButtonLabel: "Add new marker",
-                                removeButtonLabel:"Remove marker",
-                                removeButtonPlacement: IconPlacement.Bottom,
-                                separator: true
-                            } as IItemRepeaterSharedProps<IDataFilterAggregation>,
-                            formConfiguration: [
-                                {
-                                    type: ConfigurationFieldType.TextField,
-                                    targetProperty: "label",
-                                    props: {        
-                                        label: "Label",
-                                        description: "Label to display on the marker. Can be null"
-                                    } as Partial<ITextFieldProps>
-                                },
-                                {
-                                    type: ConfigurationFieldType.TextField,
-                                    targetProperty: "value",
-                                    props: {        
-                                        label: "Value",
-                                        description: "Value of the marker. Should falls between min and max values"
-                                    } as Partial<ITextFieldProps>
-                                },
-                                {
-                                    type: ConfigurationFieldType.TextField,
-                                    targetProperty: "size",
-                                    props: {        
-                                        label: "Size",
-                                        description: "Label size in px"
+                                        label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.Aggregations.IconUrlLabel
                                     } as Partial<ITextFieldProps>
                                 }
                             ],
@@ -369,15 +287,15 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
         if (this.properties.verticalsConfiguration) {
             this.filterTabsConfiguration.push(
                 {
-                    name: "Display",
+                    name: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DisplaySettings.TabTitle,
                     fields: [
                         {
                             type: ConfigurationFieldType.Dropdown,
                             targetProperty: "verticalKeys",
                             props: {
                                 multiSelect: true,
-                                placeholder: "Select a tab...",
-                                label: "Show this filter on selected tabs",
+                                placeholder: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DisplaySettings.PlaceholderLabel,
+                                label: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.DisplaySettings.SelectTabLabel,
                                 options: this.properties.verticalsConfiguration.map((v) => { 
                                     return {
                                         key: v.key,
@@ -405,7 +323,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
                                 renderRowTitle={(filter: IDataFilterConfiguration) => { return LocalizedStringHelper.getDefaultValue(filter.displayName) }}
                                 onFormSave={(formData) => { onUpdate(field, formData)}}
                                 dataObject={defaultValue}
-                                renderPanelTitle={() => "Add new filter"}
+                                renderPanelTitle={() => commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.AddNewFilterBtnLabel }
                                 onFormDismissed={(configuration: IDataFilterConfiguration) => {
                                         
                                     if (isEqual(configuration, this.newFilterBaseConfiguration)) {
@@ -439,7 +357,7 @@ export class PropertyPaneFiltersConfiguration implements IPropertyPaneField<IPro
         const element = <FormDataCollection<IDataFilterConfiguration> 
                             formConfiguration={this.mainFormFields}
                             itemRepeaterProps={{
-                                addButtonLabel:"Add new filter",
+                                addButtonLabel: commonStrings.PropertyPane.PropertyPaneFiltersConfiguration.AddNewFilterBtnLabel,
                                 enableDragDrop: true,
                                 innerRef: this._itemRepeaterRef
                             }} 

@@ -10,7 +10,6 @@ declare interface ISearchResultsWebPartStrings {
   },
   PropertyPane: {
     LayoutPage: {
-      AvailableLayoutsGroupName: string;
       LayoutTemplateOptionsGroupName: string;
       CommonLayoutOptionsGroupName: string;
       UseSearchVerticalsField: string;

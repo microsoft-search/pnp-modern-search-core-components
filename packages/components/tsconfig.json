@@ -1,39 +1,6 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "declaration": true,
-    "sourceMap": true,
-    "inlineSources": false,
-    "outDir": "./dist/es6",
     "rootDir": "src",
-    "baseUrl": ".",
-    "strict": false,
-    "strictNullChecks": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false,
-    "noImplicitThis": true,
-    "noImplicitAny": false,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitOverride": true,
-    "skipLibCheck": true,
-    "useDefineForClassFields": false,
-    "plugins": [
-      {
-        "name": "ts-lit-plugin",
-        "strict": false
-      }
-    ],
-    "noEmitOnError": true,
-    "esModuleInterop": true,
-    "importHelpers": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "lib","src/**/tests","src/**/stories"]
+  }
 }

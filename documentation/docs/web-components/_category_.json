@@ -1,0 +1,8 @@
+{
+  "label": "Search Web Components",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Search web components usage."
+  }
+}

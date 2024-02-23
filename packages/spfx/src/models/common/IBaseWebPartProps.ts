@@ -26,6 +26,11 @@ export interface IBaseWebPartProps {
     enableDebugMode: boolean;
 
     /**
+     * Enable Microsoft Graph Toolkit components for templates
+     */
+    useMicrosoftGraphToolkit: boolean;
+
+    /**
      * The layout properties
      */
     layoutProperties: {
@@ -49,6 +54,11 @@ export interface IBaseWebPartProps {
      * The link URL to the solution documenation
      */
     documentationLink: string;
+
+    /**
+     * The GitLab issue link
+     */
+    issueLink: string;
 
     /**
      * The Web Part title

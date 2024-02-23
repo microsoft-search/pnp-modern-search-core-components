@@ -1,4 +1,4 @@
-import { html, TemplateResult, PropertyValues, PropertyValueMap } from "lit";
+import { html, TemplateResult, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { IDataFilterResult, IDataFilterResultValue, IDataFilterValue } from "../../../../models/common/IDataFilter";
 import { FilterSortDirection, FilterSortType, IDataFilterConfiguration } from "../../../../models/common/IDataFilterConfiguration";
@@ -166,7 +166,7 @@ export abstract class BaseFilterComponent extends BaseComponent {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    protected override updated(changedProperties: PropertyValueMap<any>): void {
+    protected override updated(changedProperties: PropertyValues<this>): void {
 
         if (this.getTheme().isDarkMode) {
             fillColor.setValueFor(this.renderRoot.querySelector("fast-menu"), SwatchRGB.from(parseColorHexRGB(getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.primaryBackgroundColorDark))));

@@ -147,6 +147,8 @@ describe("pnp-search-results", () => {
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
+
+            return;
          
         });
 
@@ -172,6 +174,8 @@ describe("pnp-search-results", () => {
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),"#000000");
+
+            return;
 
         });
     });
@@ -304,6 +308,29 @@ describe("pnp-search-results", () => {
 
             assert.equal(el?.querySelector<HTMLElement>("[id='text']")?.innerText, "<strong>raw text</strong>");
             assert.equal(el?.querySelector<HTMLElement>("[id='html']")?.innerText, "raw text");
+        });
+
+        it("should allow usage of MGT components in templates", async () => {
+
+            const el: SearchResultsComponent = await fixture(html`
+                <pnp-search-results .defaultQueryText=${"*"}>
+                    <template data-type="items">
+                        <mgt-file-list></mgt-file-list>
+                    </template>
+                </pnp-search-results>
+            `);
+
+            const listener = oneEvent(el, EventConstants.SEARCH_MGT_COMPONENTS_LOADED);
+
+            await stubSearchResults(el);
+
+            assert.isUndefined(customElements.get("mgt-file-list"));
+            el.useMicrosoftGraphToolkit = true;
+
+            await listener;
+
+            assert.isDefined(customElements.get("mgt-file-list"));
+
         });
     });
 });
