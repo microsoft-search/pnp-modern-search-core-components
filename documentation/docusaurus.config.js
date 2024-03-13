@@ -157,9 +157,9 @@ const config = {
       },
       algolia: {
         appId: 'N614BYY1TP',
-        apiKey: '95cd4ec4acde55d9a0d096378519fdf3',
+        apiKey: 'ec60cf80acf7edf7499e9e6e9396670d',
         indexName: 'microsoft-searchio',
-        contextualSearch: true,
+        contextualSearch: false,
         searchPagePath: 'search'
       }
     }),
