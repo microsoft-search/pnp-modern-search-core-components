@@ -1,0 +1,37 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+    "id": "6aa5f17d-c6f5-4853-8017-86ad27f396f1",
+    "alias": "PnPModernSearchCoreResultsWebPart",
+    "componentType": "WebPart",
+    "version": "1.0.0",
+    "manifestVersion": 2,
+    "requiresCustomScript": false,
+    "supportedHosts": [
+        "SharePointWebPart",
+        "TeamsPersonalApp",
+        "TeamsTab",
+        "SharePointFullPage"
+    ],
+    "supportsThemeVariants": true,
+    "preconfiguredEntries": [
+        {
+            "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+            "group": {
+                "default": "Advanced"
+            },
+            "title": {
+                "default": "PnP Modern Search Core Components - Search Results",
+                "fr-fr": "PnP Modern Search Core Components - Résultats de recherche"
+            },
+            "description": {
+                "default": "Displays results from Microsoft Search using customizable templates",
+                "fr-fr": "Affiche des données de multiples source de données au format JSON selon des modèles d'affichage personnalisables."
+            },
+            "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDAnIGhlaWdodD0nMjgnIHZpZXdCb3g9JzAgMCA0MCAyOCcgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTEuNjk5OCA5LjdIMTYuNTk5OFYxN0gxMS42OTk4VjkuN1pNMzUuOTk5OCAyLjRWMjYuN0MzNS45OTk4IDI2LjkgMzUuODk5OCAyNy4xIDM1Ljc5OTggMjcuM0MzNS42OTk4IDI3LjUgMzUuNTk5OCAyNy42IDM1LjM5OTggMjcuN0MzNS4xOTk4IDI3LjkgMzQuOTk5OCAyOCAzNC43OTk4IDI4QzM0LjU5OTggMjggMzQuMzk5OCAyOCAzNC4xOTk4IDI3LjlMMjkuODk5OCAyNS43TDI1LjU5OTggMjcuOUMyNS4zOTk4IDI3LjkgMjUuMTk5OCAyOCAyNC45OTk4IDI4QzI0Ljc5OTggMjggMjQuNTk5OCAyOCAyNC40OTk4IDI3LjlMMjAuMTk5OCAyNS43TDE1Ljg5OTggMjcuOUMxNS42OTk4IDI4IDE1LjQ5OTggMjggMTUuMzk5OCAyOEMxNS4xOTk4IDI4IDE0Ljk5OTggMjggMTQuODk5OCAyNy45TDEwLjU5OTggMjUuN0w2LjI5OTggMjcuOUM1Ljg5OTggMjggNS42OTk4IDI4IDUuNDk5OCAyOEM1LjI5OTggMjggNS4wOTk4IDI3LjkgNC44OTk4IDI3LjhDNC42OTk4IDI3LjcgNC41OTk4IDI3LjUgNC40OTk4IDI3LjRDNC4zOTk4IDI3LjIgNC4yOTk4IDI3IDQuMjk5OCAyNi44VjIuNEM0LjI5OTggMS44IDQuNTk5OCAxLjEgNC45OTk4IDAuN0M1LjQ5OTggMC4zIDYuMDk5OCAwIDYuNzk5OCAwSDMzLjU5OThDMzQuMTk5OCAwIDM0Ljg5OTggMC4zIDM1LjI5OTggMC43QzM1LjY5OTggMS4yIDM1Ljk5OTggMS44IDM1Ljk5OTggMi40Wk0xOC45OTk4IDguNUMxOC45OTk4IDguMiAxOC44OTk4IDcuOSAxOC41OTk4IDcuNkMxOC4zOTk4IDcuNCAxOC4wOTk4IDcuMiAxNy42OTk4IDcuMkgxMC4zOTk4QzEwLjA5OTggNy4yIDkuNzk5OCA3LjMgOS40OTk4IDcuNkM5LjI5OTggNy45IDkuMTk5OCA4LjIgOS4xOTk4IDguNVYxOC4yQzkuMTk5OCAxOC41IDkuMjk5OCAxOC44IDkuNTk5OCAxOS4xQzkuNzk5OCAxOS4zIDEwLjA5OTggMTkuNSAxMC40OTk4IDE5LjVIMTcuNzk5OEMxOC4wOTk4IDE5LjUgMTguMzk5OCAxOS40IDE4LjY5OTggMTkuMUMxOC44OTk4IDE4LjkgMTkuMDk5OCAxOC42IDE5LjA5OTggMTguMlY4LjVIMTguOTk5OFpNMzEuMDk5OCAxNS44QzMxLjA5OTggMTUuNSAzMC45OTk4IDE1LjIgMzAuNjk5OCAxNC45QzMwLjQ5OTggMTQuNyAzMC4xOTk4IDE0LjUgMjkuNzk5OCAxNC41SDIyLjQ5OThDMjIuMTk5OCAxNC41IDIxLjg5OTggMTQuNiAyMS41OTk4IDE0LjlDMjEuMzk5OCAxNS4xIDIxLjE5OTggMTUuNCAyMS4xOTk4IDE1LjhDMjEuMTk5OCAxNi4xIDIxLjI5OTggMTYuNCAyMS41OTk4IDE2LjdDMjEuNzk5OCAxNi45IDIyLjA5OTggMTcuMSAyMi40OTk4IDE3LjFIMjkuNzk5OEMzMC4wOTk4IDE3LjEgMzAuMzk5OCAxNyAzMC42OTk4IDE2LjdDMzAuOTk5OCAxNi41IDMxLjA5OTggMTYuMSAzMS4wOTk4IDE1LjhaTTMxLjA5OTggMTFDMzEuMDk5OCAxMC43IDMwLjk5OTggMTAuNCAzMC42OTk4IDEwLjFDMzAuNDk5OCA5LjkgMzAuMTk5OCA5LjcgMjkuNzk5OCA5LjdIMjIuNDk5OEMyMi4xOTk4IDkuNyAyMS44OTk4IDkuOCAyMS41OTk4IDEwLjFDMjEuMzk5OCAxMC4zIDIxLjE5OTggMTAuNiAyMS4xOTk4IDExQzIxLjE5OTggMTEuMyAyMS4yOTk4IDExLjYgMjEuNTk5OCAxMS45QzIxLjc5OTggMTIuMSAyMi4wOTk4IDEyLjMgMjIuNDk5OCAxMi4zSDI5Ljc5OThDMzAuMDk5OCAxMi4zIDMwLjM5OTggMTIuMiAzMC42OTk4IDExLjlDMzAuOTk5OCAxMS42IDMxLjA5OTggMTEuMyAzMS4wOTk4IDExWicgZmlsbD0nIzAwNzhkNCcvPjwvc3ZnPg==",
+            "properties": {
+                "issueLink": "https://github.com/microsoft-search/pnp-modern-search-core-components/issues/new",
+                "documentationLink": "{{DOCUMENTATION_HOST_URL}}/docs/sharepoint-webparts/available-webparts/search-results"
+            }
+        }
+    ]
+}

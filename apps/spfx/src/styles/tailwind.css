@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Issue https://stackoverflow.com/questions/72207205/incomplete-css-grid-leaving-first-item-blank-instead-of-last */ 
+.CanvasComponent.LCS .grid:after, .CanvasComponent.LCS .grid:before  {
+    @apply content-none !important;
+}

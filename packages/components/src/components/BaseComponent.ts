@@ -165,7 +165,6 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         super.connectedCallback();
 
-
         // Register helper functions to be used in templates (data-props)
         this.templateContext = {
             ...this.templateContext,
@@ -174,12 +173,25 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         // Set the theme automatically if a parent has the "dark" CSS class or theme
         // This avoid to set explicitly the 'theme' property for each component
-        if (this.parentElement) {
-            const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
-            if (parentInDarkMode) {
-                this.theme = "dark";
+        const setDarkModeClass = () => {
+            if (this.parentElement) {
+                const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
+                if (parentInDarkMode) {
+                    this.theme = "dark";
+                    this.requestUpdate();
+                }
             }
-        }
+        };
+
+        setDarkModeClass();
+
+        const darkModeobserver = new MutationObserver(() => {
+            setDarkModeClass();
+        });
+
+        darkModeobserver.observe(
+            document.body, {attributes: true, childList: true, subtree: true }
+        );
 
         // Indicates component has finished its initalization sequence and default values if nay can be read
         this.isInitialized = true;

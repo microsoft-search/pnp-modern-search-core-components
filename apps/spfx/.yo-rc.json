@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": false,
+    "nodeVersion": "16.20.1",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.9.1"
+    },
+    "version": "1.17.3",
+    "libraryName": "pnp-search-core--components",
+    "libraryId": "9aad2c6c-dd90-4fae-9e62-8aeae8969c9a",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "PnPModernSearchCoreComponents",
+    "solutionShortDescription": "PnP Modern Search - Web Components",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

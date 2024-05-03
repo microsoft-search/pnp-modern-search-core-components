@@ -1,0 +1,59 @@
+{
+    "name": "@pnp/modern-search-core-teams-app",
+    "version": "0.1.0",
+    "engines": {
+        "node": "16 || 18"
+    },
+    "private": true,
+    "main": "./dist/server.js",
+    "dependencies": {
+        "@tailwindcss/container-queries": "0.1.1",
+        "@tailwindcss/forms": "0.5.3",
+        "@tailwindcss/line-clamp": "0.4.4",
+        "@pnp/modern-search-core": "workspace:*",
+        "autoprefixer": "10.4.16",
+        "dotenv": "16.4.5",
+        "send": "^0.18.0",
+        "tailwindcss": "3.2.4",
+        "express": "4.19.2",
+        "compression": "1.7.4",
+        "@microsoft/teams-js": "2.22.0",
+        "@microsoft/teamsfx": "2.3.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/send": "^0.17.1",
+        "env-cmd": "^10.1.0",
+        "mkdirp": "3.0.1",
+        "nodemon": "^2.0.21",
+        "npm-run-all": "^4.1.5",
+        "shx": "^0.3.4",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.1.2",
+        "ts-loader": "9.4.4",
+        "tslib": "2.5.0",
+        "webpack": "5.88.1",
+        "webpack-merge": "^5.8.0",
+        "html-webpack-plugin": "5.6.0",
+        "nodemon-webpack-plugin": "4.8.2",
+        "copy-webpack-plugin": "12.0.2",
+        "null-loader": "4.0.1",
+        "json-loader": "0.5.7"
+    },
+    "scripts": {
+        "serve": "env-cmd --silent -f .localConfigs npm run start",
+        "start": "npm-run-all -p  webpack:app:watch webpack:server:watch tailwindcss:watch",
+
+        "build": "npm-run-all tailwindcss webpack:server webpack:app",
+
+        "webpack:app":  "webpack --config ./webpack/app/webpack.prod.js",
+        "webpack:app:watch":  "webpack watch --config ./webpack/app/webpack.dev.js",
+
+        "webpack:server": "webpack --config ./webpack/server/webpack.prod.js",
+        "webpack:server:watch": "webpack watch --config ./webpack/server/webpack.dev.js",
+
+        "tailwindcss": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/dist/app.css --minify --postcss ./src/styles/postcss.config.js",
+        "tailwindcss:watch": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/dist/app.css --watch --minify --postcss ./src/styles/postcss.config.js"
+    },
+    "homepage": "."
+}
