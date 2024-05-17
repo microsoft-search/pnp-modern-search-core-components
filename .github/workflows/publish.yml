@@ -265,9 +265,9 @@ jobs:
             fi
           fi
 
-  deploy_teams:    
+  build_teams:    
     runs-on: ubuntu-latest
-    needs: [version,tests_components]
+    needs: [version,build_components]
     defaults:
       run:
         working-directory: ./packages/apps/teams
