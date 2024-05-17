@@ -312,9 +312,9 @@ jobs:
 
       - name: Run PowerShell deployment
         shell: pwsh
-        working-directory: ./deploy
+        working-directory: /
         run: |
-          ./deploy-teams.ps1 -Env CI -Version "$env:VERSION"
+          ./deploy/deploy-teams.ps1 -Env CI -Version "$env:VERSION"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
