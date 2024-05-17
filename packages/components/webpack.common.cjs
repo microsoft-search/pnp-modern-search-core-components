@@ -23,18 +23,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.ts?$/,
-        use: [                           
-          {
-            loader: "postcss-loader"
-          }          
-        ],
-        exclude: [
-          /node_modules/,
-          /tailwind-styles-css\.ts/
-        ]
-      },
-      {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       }

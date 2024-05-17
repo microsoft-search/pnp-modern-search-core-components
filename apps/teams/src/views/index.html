@@ -80,8 +80,10 @@
 
                 <!-- All: All results -->
                 <pnp-search-results id="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"
-                                    entity-types="driveItem"
-                                    query-text="*"                                
+                                    entity-types="listItem,externalItem"
+                                    query-text="*"
+                                    enable-result-types
+                                    connections="*"                                
                                     query-template='{searchTerms} -ParentLink:PreservationHoldLibrary (FileType:doc OR FileType:docx OR FileType:docm OR FileType:dot OR FileType:dotx OR FileType:dotm OR FileType:txt OR FileType:rtf OR FileType:aspx OR FileType:xls OR FileType:xlsx OR FileType:xlsm OR FileType:xlsb OR FileType:xlx OR FileType:xlt OR FileType:xltx OR FileType:xltm OR FileType:xml OR FileType:csv OR FileType:ppt OR FileType:pptx OR FileType:pptm OR FileType:pps OR FileType:ppsm OR FileType:ppsx OR FileType:pot OR FileType:potx OR FileType:potm OR FileType:pdf OR FileType:zip OR FileType:vsd OR FileType:vsdx OR FileType:vsdm OR FileType:html OR FileType:7z OR FileType:rar OR FileType:one OR FileType:mp4 OR FileType:avi OR FileType:flv OR FileType:wmv)'
                                     fields="name,title,weburl,created,createdBy,filetype,lastModifiedTime,lastModifiedDateTime,lastModifiedBy,modifiedBy,path,hitHighlightedProperties,hitHighlightedSummary,SPSiteURL,SiteTitle,defaultEncodingURL,parentLink,serverRedirectedURL,filename,previewUrl,thumbnailUrl,NormSiteID,NormUniqueID,NormListID"                                          
                                     show-paging

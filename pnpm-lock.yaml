@@ -237,9 +237,6 @@ importers:
       '@tailwindcss/line-clamp':
         specifier: 0.4.4
         version: 0.4.4(tailwindcss@3.2.4)
-      '@webcomponents/scoped-custom-element-registry':
-        specifier: 0.0.9
-        version: 0.0.9
       autoprefixer:
         specifier: 10.4.16
         version: 10.4.16(postcss@8.4.31)

@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
-  tests:
+  tests_components:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -162,7 +162,7 @@ jobs:
           
   build_components:
     runs-on: ubuntu-latest
-    needs: [version,tests]
+    needs: [version,tests_components]
     defaults:
       run:
         working-directory: ./packages/components
@@ -171,7 +171,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Checkout
@@ -265,6 +265,65 @@ jobs:
             fi
           fi
 
-          
+  deploy_teams:    
+    runs-on: ubuntu-latest
+    needs: [version,tests_components]
+    defaults:
+      run:
+        working-directory: ./packages/apps/teams
+    env:
+      VERSION: ${{ needs.version.outputs.semver }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Run PowerShell deployment
+        shell: pwsh
+        run: |
+          ../../deploy/deploy-teams.ps1 -Env CI -Version "$env:VERSION"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: appPackage
+          path: |
+            ${{ github.workspace }}/apps/teams/appPackage/build/*.zip
+            !${{ github.workspace }}/**/node_modules
+            !${{ github.workspace }}/**/src
+            !${{ github.workspace }}/**/env
+            !${{ github.workspace }}/**/infra
+            !${{ github.workspace }}/**/.pnpm-store
+            !${{ github.workspace }}/**/.vscode
+            !${{ github.workspace }}/**/.storybook
+            !${{ github.workspace }}/**/template
+            !${{ github.workspace }}/**/webpack
          

@@ -1,6 +1,6 @@
 
 import { EventHandler, LocalizationHelper, MgtTemplatedTaskComponent } from "@microsoft/mgt-element";
-import { css, CSSResultGroup, html, PropertyValueMap, PropertyValues, unsafeCSS } from "lit";
+import { css, CSSResultGroup, html, LitElement, PropertyValueMap, PropertyValues, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
 import { ErrorTypes, EventConstants, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
 import { IComponentBinding } from "../models/common/IComponentBinding";
@@ -144,7 +144,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
                        ${unsafeCSS(`${ThemeInternalCSSVariables.textColor}: var(${ThemePublicCSSVariables.textColor}, ${ThemeDefaultCSSVariablesValues.defaultTextColor})`)};
                        ${unsafeCSS(`${ThemeInternalCSSVariables.textLight}: ${ThemeDefaultCSSVariablesValues.defaultTextLight}`)};
                        ${unsafeCSS(`${ThemeInternalCSSVariables.primaryBackgroundColorDark}: var(${ThemePublicCSSVariables.primaryBackgroundColorDark}, ${ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark})`)};
-                       ${unsafeCSS(`${ThemeInternalCSSVariables.textColorDark}: var(${ThemePublicCSSVariables.textColorDark}, ${ThemeDefaultCSSVariablesValues.textColorDark})`)};
+                       ${unsafeCSS(`${ThemeInternalCSSVariables.textColorDark}: var(${ThemePublicCSSVariables.textColorDark}, ${ThemeDefaultCSSVariablesValues.textColorDark})`)};                 
                     } 
                 `
         ] as CSSResultGroup;
