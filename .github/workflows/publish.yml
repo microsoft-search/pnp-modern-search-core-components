@@ -270,7 +270,7 @@ jobs:
     needs: [version,build_components]
     defaults:
       run:
-        working-directory: ./packages/apps/teams
+        working-directory: ./apps/teams
     env:
       VERSION: ${{ needs.version.outputs.semver }}
     steps:
