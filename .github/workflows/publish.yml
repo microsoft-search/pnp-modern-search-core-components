@@ -306,6 +306,10 @@ jobs:
         run: |
           pnpm install
 
+      - name: Install TeamsFx CLI
+        run: |
+          npm install -g @microsoft/teamsfx-cli@2.0.1
+
       - name: Run PowerShell deployment
         shell: pwsh
         working-directory: ./deploy
