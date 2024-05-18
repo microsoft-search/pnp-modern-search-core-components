@@ -312,7 +312,7 @@ jobs:
 
       - name: Run PowerShell deployment
         shell: pwsh
-        working-directory: /
+        working-directory: ./
         run: |
           ./deploy/deploy-teams.ps1 -Env CI -Version "$env:VERSION"
 
