@@ -23,7 +23,7 @@ Param (
     [Parameter(Mandatory = $True)]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('LOCAL','CI')]
-    [string]$Environment,
+    [string]$Env,
     
     [Parameter(Mandatory = $False)]
     [string]$Version = "1.0.0"
@@ -36,7 +36,7 @@ $ErrorActionPreference = "Stop"
 Write-Verbose "`tInitializing variables..."
 
 # Load correct variables according to the targeted environnement
-switch ($Environment) {
+switch ($Env) {
     'CI' {
         . $PSScriptRoot/variables.ci.ps1
         Write-Verbose "Variables from CI have been loaded..."

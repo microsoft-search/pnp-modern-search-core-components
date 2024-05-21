@@ -21,7 +21,7 @@ import { BuiltinFilterTemplates } from "../../models/common/BuiltinTemplate";
 import { DateHelper } from "../../helpers/DateHelper";
 import { PaginationComponent } from "./sub-components/pagination/PaginationComponent";
 import { SearchInputComponent } from "../search-input/SearchInputComponent";
-import { sanitizeSummary, SearchResponseEnhancedFields, SearchResultsHelper, WellKnownSearchProperties } from "../../helpers/SearchResultsHelper";
+import { sanitizeSummary, SearchResponseEnhancedFields, SearchResultsHelper } from "../../helpers/SearchResultsHelper";
 import { ISearchVerticalEventData } from "../../models/events/ISearchVerticalEventData";
 import { SearchVerticalsComponent } from "../search-verticals/SearchVerticalsComponent";
 import { repeat } from "lit/directives/repeat.js";
