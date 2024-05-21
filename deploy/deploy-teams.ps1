@@ -51,6 +51,8 @@ switch ($Env) {
 # More info about TeamsFx CI/CD deployment: 
 # https://github.com/OfficeDev/TeamsFx/blob/main/docs/cicd_insider/others-script-cd-template.sh
 
+Write-Verbose $env:GITHUB_ENV
+
 $appFolderPath = Join-Path -Path $PSScriptRoot -ChildPath "..\apps\teams"
 
 Write-Verbose "[TeamsFx] Set path to '$appFolderPath'..."

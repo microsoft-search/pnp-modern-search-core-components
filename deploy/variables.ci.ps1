@@ -25,11 +25,15 @@ $global:ENV_EnvName = $env:ENV_EnvName
 
 
 # Export variables as .env files so it can be consumed by other jobs
-Write-Verbose "Exporting CI variables"
+Write-Verbose "Exporting CI variables as artifact"
 
 Get-Variable -Scope Global | Where-Object { $_.Name.StartsWith("ENV_") } | ForEach-Object {
     $name=  $_.Name
     $value = $_.Value
+    
     Write-Verbose "Exporting $name"
-    "$name=$value" >> $env:GITHUB_ENV
+
+    Add-Content -Path $env:GITHUB_ENV -Value "$name=$value" -Encoding utf8
+
+    Write-Host $env:GITHUB_ENV
 }
