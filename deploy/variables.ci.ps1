@@ -2,6 +2,8 @@
 # Variables script for CI deployment
 # -----------------------------------------
 
+dir env:
+
 # -----------------------------[Deployment credentials] ------------------------------------
 $global:ENV_AzDeployAppId = $env:ENV_AzDeployAppId
 $global:ENV_AzDeployAppCertificateValue = $env:ENV_AzDeployAppCertificateValue
@@ -22,18 +24,3 @@ $global:ENV_M365AccountPassword = $env:ENV_M365AccountPassword
 $global:ENV_M365TenantId = $env:ENV_M365TenantId
 
 $global:ENV_EnvName = $env:ENV_EnvName
-
-
-# Export variables as .env files so it can be consumed by other jobs
-Write-Verbose "Exporting CI variables as artifact"
-
-Get-Variable -Scope Global | Where-Object { $_.Name.StartsWith("ENV_") } | ForEach-Object {
-    $name=  $_.Name
-    $value = $_.Value
-    
-    Write-Verbose "Exporting $name"
-
-    Add-Content -Path $env:GITHUB_ENV -Value "$name=$value" -Encoding utf8
-
-    Write-Host $env:GITHUB_ENV
-}

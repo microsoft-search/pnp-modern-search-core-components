@@ -310,12 +310,6 @@ jobs:
         run: |
           npm install -g @microsoft/teamsfx-cli@2.0.1
 
-      - name: Load variables
-        shell: pwsh
-        working-directory: ./
-        run: |
-          ./deploy/variables.ci.ps1 -Verbose
-
       - name: Run PowerShell deployment
         shell: pwsh
         working-directory: ./
