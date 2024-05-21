@@ -72,7 +72,7 @@ $env:ENV_MSSearchAppClientId = $ENV_MSSearchAppClientId
 $env:ENV_MSSearchAppScopes = $ENV_MSSearchAppScopes
 
 # > Connect to the Azure environment
-Write-Verbose "[TeamsFx] Login to Azure..."
+Write-Verbose "[TeamsFx] Login to Azure with AppId $($ENV_AzDeployAppId)..."
 teamsfx account login azure --service-principal --username $ENV_AzDeployAppId --password $ENV_AzDeployAppSecret --tenant $ENV_AzDeployTenantId
 
 # > Generate TeamsFx .env file for that environment according to the loaded environment variables
