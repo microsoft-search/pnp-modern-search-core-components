@@ -951,6 +951,22 @@ export class SearchResultsComponent extends BaseComponent {
                     } 
                 }    
             `,
+            css`
+             :host {
+ 
+                 svg, svg > path {
+                    ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColor})`)};
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .dark {
+                    svg, svg > path {
+                        ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
+                    } 
+                }    
+             }                 
+            `,
             BaseComponent.themeStyles, // Allow component to use them CSS variables from design. The component is a first level component so it is OK to define them variables here
             BaseComponent.styles // Use base styles (i.e. Tailwind CSS classes)
         ];
