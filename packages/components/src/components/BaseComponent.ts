@@ -224,7 +224,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
         return  html`
                 <div data-ref="debug-mode-bar" class="mb-2 rounded shadow-filtersShadow flex text-sm text-primary justify-between p-2">
                     <a @click=${this.toggleDebugData} href="#" data-ref="debug-mode-bar-button">   
-                        <div class="flex items-center space-x-1">
+                        <div class="flex items-center space-x-1 font-primary">
                             <span>${this.showDebugData ? "Hide debug data" : "Show debug data"}</span>
                         </div>
                     </a>
