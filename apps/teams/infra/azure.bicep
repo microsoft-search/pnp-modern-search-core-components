@@ -5,7 +5,7 @@ param resourceBaseName string
 
 param webAppSku string
 
-param serverfarmsName string ='${resourceBaseName}appplan'
+param serverfarmsName string ='${resourceBaseName}plan'
 param webAppName string = '${resourceBaseName}webapp'
 param location string = resourceGroup().location
 
