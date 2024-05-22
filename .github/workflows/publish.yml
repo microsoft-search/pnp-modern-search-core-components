@@ -273,17 +273,17 @@ jobs:
         working-directory: ./apps/teams
     env:
       VERSION: ${{ needs.version.outputs.semver }}
-      ENV_AzDeployAppId: ${{ secrets.ENV_AZDEPLOYAPPID }}
+      ENV_AzDeployAppId: ${{ vars.ENV_AZDEPLOYAPPID }}
       ENV_AzDeployAppSecret: ${{ secrets.ENV_AZDEPLOYAPPSECRET }}
-      ENV_AzDeployTenantId: ${{ secrets.ENV_AZDEPLOYTENANTID }}
-      ENV_AzDeploySubcriptionId: ${{ secrets.ENV_AZDEPLOYSUBCRIPTIONID }}
+      ENV_AzDeployTenantId: ${{ vars.ENV_AZDEPLOYTENANTID }}
+      ENV_AzDeploySubcriptionId: ${{ vars.ENV_AZDEPLOYSUBCRIPTIONID }}
       ENV_AzResourceGroupName: ${{ secrets.ENV_AZRESOURCEGROUPNAME }}
-      ENV_MSSearchAppClientId: ${{ secrets.ENV_MSSEARCHAPPCLIENTID }}
-      ENV_MSSearchAppScopes: ${{ secrets.ENV_MSSEARCHAPPSCOPES }}
+      ENV_MSSearchAppClientId: ${{ vars.ENV_MSSEARCHAPPCLIENTID }}
+      ENV_MSSearchAppScopes: ${{ vars.ENV_MSSEARCHAPPSCOPES }}
       ENV_M365AccountName: ${{ secrets.ENV_M365ACCOUNTNAME }}
       ENV_M365AccountPassword: ${{ secrets.ENV_M365ACCOUNTPASSWORD }}
-      ENV_M365TenantId: ${{ secrets.ENV_M365TENANTID }}
-      ENV_EnvName: ${{ secrets.ENV_ENVNAME }}
+      ENV_M365TenantId: ${{ vars.ENV_M365TENANTID }}
+      ENV_EnvName: ${{ vars.ENV_ENVNAME }}
     steps:
       - uses: actions/setup-node@v3
         with:
