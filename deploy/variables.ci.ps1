@@ -2,10 +2,9 @@
 # Variables script for CI deployment
 # -----------------------------------------
 
-dir env:
-
 # -----------------------------[Deployment credentials] ------------------------------------
 $global:ENV_AzDeployAppId = $env:ENV_AzDeployAppId
+$global:ENV_AzDeployAppSecret = $env:ENV_AzDeployAppSecret
 $global:ENV_AzDeployAppCertificateValue = $env:ENV_AzDeployAppCertificateValue
 $global:ENV_AzDeployTenantId = $env:ENV_AzDeployTenantId
 $global:ENV_AzDeploySubcriptionId = $env:ENV_AzDeploySubcriptionId
