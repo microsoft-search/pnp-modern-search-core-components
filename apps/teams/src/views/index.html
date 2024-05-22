@@ -79,46 +79,49 @@
                 </pnp-search-results>
 
                 <!-- All: All results -->
-                <pnp-search-results id="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"
-                                    entity-types="listItem,externalItem"
-                                    query-text="*"
-                                    enable-result-types
-                                    connections="*"                                
-                                    query-template='{searchTerms} -ParentLink:PreservationHoldLibrary (FileType:doc OR FileType:docx OR FileType:docm OR FileType:dot OR FileType:dotx OR FileType:dotm OR FileType:txt OR FileType:rtf OR FileType:aspx OR FileType:xls OR FileType:xlsx OR FileType:xlsm OR FileType:xlsb OR FileType:xlx OR FileType:xlt OR FileType:xltx OR FileType:xltm OR FileType:xml OR FileType:csv OR FileType:ppt OR FileType:pptx OR FileType:pptm OR FileType:pps OR FileType:ppsm OR FileType:ppsx OR FileType:pot OR FileType:potx OR FileType:potm OR FileType:pdf OR FileType:zip OR FileType:vsd OR FileType:vsdx OR FileType:vsdm OR FileType:html OR FileType:7z OR FileType:rar OR FileType:one OR FileType:mp4 OR FileType:avi OR FileType:flv OR FileType:wmv)'
-                                    fields="name,title,weburl,created,createdBy,filetype,lastModifiedTime,lastModifiedDateTime,lastModifiedBy,modifiedBy,path,hitHighlightedProperties,hitHighlightedSummary,SPSiteURL,SiteTitle,defaultEncodingURL,parentLink,serverRedirectedURL,filename,previewUrl,thumbnailUrl,NormSiteID,NormUniqueID,NormListID"                                          
-                                    show-paging
-                                    enable-suggestion
-                                    sort-properties='[{"sortField":"Created","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Créé le","default":"Created"}}]'
-                                    page-size="10"
-                                    pages-number="4"
-                                    search-filters-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
-                                    search-sort-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
-                                    search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
-                                    search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
-                                    verticals-keys="all">
+                            <!-- All: All results -->
+            <pnp-search-results id="b359f3dc-6b6a-4575-90ed-e5942bcbb8a6"
+                            entity-types="listItem,externalItem"
+                            query-text="*"
+                            enable-debug
+                            enable-result-types
+                            use-mgt
+                            connections="*"
+                            query-template='{searchTerms} -ParentLink:PreservationHoldLibrary (FileType:doc OR FileType:docx OR FileType:docm OR FileType:dot OR FileType:dotx OR FileType:dotm OR FileType:txt OR FileType:rtf OR FileType:aspx OR FileType:xls OR FileType:xlsx OR FileType:xlsm OR FileType:xlsb OR FileType:xlx OR FileType:xlt OR FileType:xltx OR FileType:xltm OR FileType:xml OR FileType:csv OR FileType:ppt OR FileType:pptx OR FileType:pptm OR FileType:pps OR FileType:ppsm OR FileType:ppsx OR FileType:pot OR FileType:potx OR FileType:potm OR FileType:pdf OR FileType:zip OR FileType:vsd OR FileType:vsdx OR FileType:vsdm OR FileType:html OR FileType:7z OR FileType:rar OR FileType:one OR FileType:mp4 OR FileType:avi OR FileType:flv OR FileType:wmv)'
+                            fields="name,title,weburl,created,createdBy,filetype,lastModifiedTime,lastModifiedDateTime,lastModifiedBy,modifiedBy,path,hitHighlightedProperties,hitHighlightedSummary,SPSiteURL,SiteTitle,defaultEncodingURL,parentLink,serverRedirectedURL,filename,previewUrl,thumbnailUrl,NormSiteID,NormUniqueID,NormListID,DriveId"                                          
+                            show-paging
+                            enable-suggestion
+                            sort-properties='[{"sortField":"Created","sortDirection":"desc","isDefaultSort":false,"isUserSort":true,"sortFieldDisplayName":{"fr-fr":"Créé le","default":"Created"}}]'
+                            page-size="10"
+                            pages-number="4"
+                            search-filters-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                            search-sort-id="99d3e914-2c8e-4f42-897e-53bb4d960e94"
+                            search-verticals-id="0fa619a7-442a-4255-8fca-f3ce36a01518"
+                            search-input-id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+                            verticals-keys="all">
 
                 <template data-type="shimmers">
 
-                    <!-- Displayed only on first load -->
-                    <div data-for='i in items'>
+                <!-- Displayed only on first load -->
+                <div data-for='i in items'>
 
-                        <div class="animate-shimmer pb-8">
-                            <div class="flex space-x-2 mb-2 ">
-                                <div class="w-6 h-6 rounded bg-slate-200"></div>
-                                <div class="w-96 h-6 rounded bg-slate-200"></div>
-                            </div>
-                            <div class="flex space-x-2 mb-2">
-                                <div class="w-16 h-3 rounded bg-slate-200"></div>
-                                <div class="w-16 h-3 rounded bg-slate-200"></div>
-                                <div class="w-16 h-3 rounded bg-slate-200"></div>
-                            </div>
-                            <div class="flex flex-col mb-4 space-y-2 ">
-                                <div class="w-full h-3 rounded bg-slate-200"></div>
-                                <div class="w-96 h-3 rounded bg-slate-200"></div>
-                            </div>
-                        </div>
-
+                <div class="animate-shimmer pb-8">
+                    <div class="flex space-x-2 mb-2 ">
+                        <div class="w-6 h-6 rounded bg-slate-200"></div>
+                        <div class="w-96 h-6 rounded bg-slate-200"></div>
                     </div>
+                    <div class="flex space-x-2 mb-2">
+                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                        <div class="w-16 h-3 rounded bg-slate-200"></div>
+                    </div>
+                    <div class="flex flex-col mb-4 space-y-2 ">
+                        <div class="w-full h-3 rounded bg-slate-200"></div>
+                        <div class="w-96 h-3 rounded bg-slate-200"></div>
+                    </div>
+                </div>
+
+                </div>
                 </template>
 
                 </pnp-search-results>
