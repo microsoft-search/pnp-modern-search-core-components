@@ -7,6 +7,7 @@ deploy/tests/*.xml
 storybook-static/
 components/.storybook/**/env.ts
 app/
+
 .pnpm-store/
 .npmrc
 site/

@@ -317,6 +317,13 @@ jobs:
         run: |
           pnpm install
 
+      - name: Build components#
+        shell: pwsh
+        working-directory: ./packages/components
+        run: |
+          pnpm version $VERSION --no-git-tag-version
+          pnpm run build
+
       - name: Install TeamsFx CLI
         run: |
           npm install -g @microsoft/teamsfx-cli@2.0.1
