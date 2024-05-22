@@ -276,7 +276,7 @@ jobs:
       ENV_AzDeployAppId: ${{ secrets.ENV_AZDEPLOYAPPID }}
       ENV_AzDeployAppSecret: ${{ secrets.ENV_AZDEPLOYAPPSECRET }}
       ENV_AzDeployTenantId: ${{ secrets.ENV_AZDEPLOYTENANTID }}
-      ENV_AzDeploySubcriptionId: ${{ secrets.ENENV_AZDEPLOYSUBCRIPTIONIDV_AZDEPLOYAPPID }}
+      ENV_AzDeploySubcriptionId: ${{ secrets.ENV_AZDEPLOYSUBCRIPTIONID }}
       ENV_AzResourceGroupName: ${{ secrets.ENV_AZRESOURCEGROUPNAME }}
       ENV_MSSearchAppClientId: ${{ secrets.ENV_MSSEARCHAPPCLIENTID }}
       ENV_MSSearchAppScopes: ${{ secrets.ENV_MSSEARCHAPPSCOPES }}
