@@ -273,6 +273,7 @@ jobs:
         working-directory: ./apps/teams
     env:
       VERSION: ${{ needs.version.outputs.semver }}
+      MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
       ENV_AzDeployAppId: ${{ vars.ENV_AZDEPLOYAPPID }}
       ENV_AzDeployAppSecret: ${{ secrets.ENV_AZDEPLOYAPPSECRET }}
       ENV_AzDeployTenantId: ${{ vars.ENV_AZDEPLOYTENANTID }}
@@ -332,12 +333,12 @@ jobs:
         shell: pwsh
         working-directory: ./
         run: |
-          ./deploy/deploy-teams.ps1 -Env CI -Version "$env:VERSION" -Verbose
+          ./deploy/deploy-teams.ps1 -Env CI -Version "$env:MAJORMINORPATCH" -Verbose
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: appPackage
+          name: Teams App Package
           path: |
             ${{ github.workspace }}/apps/teams/appPackage/build/*.zip
             !${{ github.workspace }}/**/node_modules
