@@ -280,7 +280,7 @@ jobs:
       ENV_AzResourceGroupName: ${{ secrets.ENV_AZRESOURCEGROUPNAME }}
       ENV_MSSearchAppClientId: ${{ vars.ENV_MSSEARCHAPPCLIENTID }}
       ENV_MSSearchAppScopes: ${{ vars.ENV_MSSEARCHAPPSCOPES }}
-      ENV_M365AccountName: ${{ secrets.ENV_M365ACCOUNTNAME }}
+      ENV_M365AccountName: ${{ vars.ENV_M365ACCOUNTNAME }}
       ENV_M365AccountPassword: ${{ secrets.ENV_M365ACCOUNTPASSWORD }}
       ENV_M365TenantId: ${{ vars.ENV_M365TENANTID }}
       ENV_EnvName: ${{ vars.ENV_ENVNAME }}
