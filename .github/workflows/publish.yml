@@ -341,6 +341,7 @@ jobs:
           name: Teams App Package
           path: |
             ${{ github.workspace }}/apps/teams/appPackage/build/*.zip
+            ${{ github.workspace }}/apps/teams/build/*.json
             !${{ github.workspace }}/**/node_modules
             !${{ github.workspace }}/**/src
             !${{ github.workspace }}/**/env
