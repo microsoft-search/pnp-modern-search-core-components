@@ -106,6 +106,6 @@ teamsfx deploy --env $ENV_EnvName
 Pop-Location
 
 if ($LASTEXITCODE) {
-    throw "Error during TeamsFx deployment. Details $(Get-Error))"
+    throw "Error during TeamsFx deployment. Details $(Get-Error)"
 }
 
