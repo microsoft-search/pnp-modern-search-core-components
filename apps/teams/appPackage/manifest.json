@@ -3,7 +3,6 @@
   "manifestVersion": "1.16",
   "version": "1.0.0",
   "id": "${{TEAMS_APP_ID}}",
-  "packageName": "com.microsoft.teams.extension",
   "developer": {
     "name": "Franck Cornu",
     "websiteUrl": "https://microsoft-search.github.io/pnp-modern-search-core-components/",
@@ -15,7 +14,7 @@
     "outline": "outline.png"
   },
   "name": {
-    "short": "PnP Modern Search for Teams",
+    "short": "PnP Modern Search Components",
     "full": "PnP Modern Search Core Components for Teams (demo)"
   },
   "description": {
