@@ -7,7 +7,7 @@
     "dist/*"
   ],
   "engines": {
-    "node": ">=16.13.0 <17.0.0"
+    "node": "16 || 18"
   },
   "types": "dist/es6/exports/index.d.ts",
   "module": "dist/es6/exports/index.js",
@@ -65,17 +65,18 @@
     "Cornu, Franck <franck.cornu@outlook.com>"
   ],
   "dependencies": {
-    "@azure/msal-browser": "2.33.0",
+    "@azure/msal-browser": "2.38.4",
     "@fluentui/web-components": "^2.5.12",
     "@microsoft/fast-colors": "5.3.1",
     "@microsoft/fast-components": "2.30.6",
     "@microsoft/fast-element": "1.12.0",
     "@microsoft/fast-foundation": "2.49.4",
-    "@microsoft/mgt": "4.0.1",
-    "@microsoft/mgt-components": "4.0.1",
-    "@microsoft/mgt-element": "4.0.1",
-    "@microsoft/mgt-msal2-provider": "4.0.1",
-    "@microsoft/mgt-sharepoint-provider": "4.0.1",
+    "@microsoft/mgt": "4.2.1",
+    "@microsoft/mgt-components": "4.2.1",
+    "@microsoft/mgt-element": "4.2.1",
+    "@microsoft/mgt-msal2-provider": "4.2.1",
+    "@microsoft/mgt-teamsfx-provider": "4.2.1",
+    "@microsoft/mgt-sharepoint-provider": "4.2.1",
     "@microsoft/microsoft-graph-client": "3.0.2",
     "@microsoft/microsoft-graph-types": "2.5.0",
     "@monaco-editor/loader": "1.3.3",
@@ -89,7 +90,8 @@
     "jspath": "0.4.0",
     "lit": "^3.0.0",
     "lodash-es": "4.17.21",
-    "markdown-it": "13.0.1"
+    "markdown-it": "13.0.1",
+    "playwright": "1.43.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.8.3",

@@ -1,0 +1,14 @@
+<template data-type="filter-value">
+
+    <div data-if="filterName === 'FileType'" data-highlight>
+        {{ name.toUpperCase() }}
+    </div>
+    <div data-else>
+        {{ name }}
+    </div>
+    
+</template>
+
+<template data-type="filter-name">
+    {{ name.toUpperCase() }}
+</template>

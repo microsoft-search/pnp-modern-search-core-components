@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
-  tests:
+  tests_components:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -162,7 +162,7 @@ jobs:
           
   build_components:
     runs-on: ubuntu-latest
-    needs: [version,tests]
+    needs: [version]
     defaults:
       run:
         working-directory: ./packages/components
@@ -171,7 +171,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Checkout
@@ -265,6 +265,90 @@ jobs:
             fi
           fi
 
-          
+  build_teams:    
+    runs-on: ubuntu-latest
+    needs: [version,build_components]
+    defaults:
+      run:
+        working-directory: ./apps/teams
+    env:
+      VERSION: ${{ needs.version.outputs.semver }}
+      MAJORMINORPATCH: ${{ needs.version.outputs.majorMinorPatch }}
+      ENV_AzDeployAppId: ${{ vars.ENV_AZDEPLOYAPPID }}
+      ENV_AzDeployAppSecret: ${{ secrets.ENV_AZDEPLOYAPPSECRET }}
+      ENV_AzDeployTenantId: ${{ vars.ENV_AZDEPLOYTENANTID }}
+      ENV_AzDeploySubcriptionId: ${{ vars.ENV_AZDEPLOYSUBCRIPTIONID }}
+      ENV_AzResourceGroupName: ${{ secrets.ENV_AZRESOURCEGROUPNAME }}
+      ENV_MSSearchAppClientId: ${{ vars.ENV_MSSEARCHAPPCLIENTID }}
+      ENV_MSSearchAppScopes: ${{ vars.ENV_MSSEARCHAPPSCOPES }}
+      ENV_M365AccountName: ${{ vars.ENV_M365ACCOUNTNAME }}
+      ENV_M365AccountPassword: ${{ secrets.ENV_M365ACCOUNTPASSWORD }}
+      ENV_M365TenantId: ${{ vars.ENV_M365TENANTID }}
+      ENV_EnvName: ${{ vars.ENV_ENVNAME }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build components#
+        shell: pwsh
+        working-directory: ./packages/components
+        run: |
+          pnpm version $VERSION --no-git-tag-version
+          pnpm run build
+
+      - name: Install TeamsFx CLI
+        run: |
+          npm install -g @microsoft/teamsfx-cli@2.0.1
+
+      - name: Run PowerShell deployment
+        shell: pwsh
+        working-directory: ./
+        run: |
+          ./deploy/deploy-teams.ps1 -Env CI -Version "$env:MAJORMINORPATCH" -Verbose
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Teams App Package
+          path: |
+            ${{ github.workspace }}/apps/teams/appPackage/build/*.zip
+            ${{ github.workspace }}/apps/teams/build/*.json
+            !${{ github.workspace }}/**/node_modules
+            !${{ github.workspace }}/**/src
+            !${{ github.workspace }}/**/env
+            !${{ github.workspace }}/**/infra
+            !${{ github.workspace }}/**/.pnpm-store
+            !${{ github.workspace }}/**/.vscode
+            !${{ github.workspace }}/**/.storybook
+            !${{ github.workspace }}/**/template
+            !${{ github.workspace }}/**/webpack
          

@@ -8,6 +8,7 @@ export { VideoPlayerComponent } from "../components/video-player/VideoPlayerComp
 
 // Needed to work with SPFx as we can't use the default mgt-spfx package
 export * from "@microsoft/mgt-sharepoint-provider";
+export * from "@microsoft/mgt-teamsfx-provider";
 export * from "@microsoft/mgt-element/dist/es6/utils/TemplateHelper";
 export * from "@microsoft/mgt-element/dist/es6/providers/IProvider";
 export * from "@microsoft/mgt-element/dist/es6/providers/Providers";

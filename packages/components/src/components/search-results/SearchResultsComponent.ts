@@ -40,7 +40,7 @@ import { IComponentBinding } from "../../models/common/IComponentBinding";
 import { ComponentEventType } from "../../models/events/EventType";
 import { getSvg, SvgIcon } from "@microsoft/mgt-components/dist/es6/utils/SvgHelper";
 import { trimFileExtension, getNameFromUrl } from "@microsoft/mgt-components/dist/es6/utils/Utils";
-import { SearchHit } from "@microsoft/microsoft-graph-types";
+import { ListItem, SearchHit } from "@microsoft/microsoft-graph-types";
 import { MgtFile } from "@microsoft/mgt-components/dist/es6/components/mgt-file/mgt-file";
 import { MgtPerson } from "@microsoft/mgt-components/dist/es6/components/mgt-person/mgt-person";
 
@@ -493,11 +493,26 @@ export class SearchResultsComponent extends BaseComponent {
      * @returns
      */
     private renderListItem(result: SearchHit) {
-        const resource = result.resource as SearchResource;
+        const resource = result.resource as ListItem;
+        let renderIcon = getSvg(SvgIcon.FileOuter);
+
+        if (resource.webUrl?.endsWith(".aspx")) {
+            renderIcon = getSvg(SvgIcon.News);
+        } else if (resource?.fields["driveId"] && resource?.fields["normUniqueID"]) {
+            renderIcon = html`
+                <pnp-mgt-file
+                    drive-id="${resource?.fields["driveId"]}"
+                    item-id="${resource?.fields["normUniqueID"]}"
+                    view="image"
+                >
+                </pnp-mgt-file>
+            `;
+        }        
+
         return html`
             <div class="mt-4 mb-4 ml-1 mr-1 grid gap-2 grid-cols-searchResult">
                 <div class="h-7 w-7 text-textColor">
-                    ${resource.webUrl?.endsWith(".aspx") ? getSvg(SvgIcon.News) : getSvg(SvgIcon.FileOuter)}
+                    ${renderIcon}
                 </div>
             <div>
             <div class="font-semibold mt-1 mb-1 ml-0 mr-0 dark:text-textColorDark">
@@ -912,7 +927,6 @@ export class SearchResultsComponent extends BaseComponent {
 
         return [
             css`
-
                 img:before {
                     content: ' ';
                     display: block;
@@ -925,7 +939,7 @@ export class SearchResultsComponent extends BaseComponent {
                 }
 
                 // Apply only in SharePoint canvas
-                .ControlZone  svg, svg > path {
+                .ControlZone svg, svg > path {
                     ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColor})`)};
                     height: 100%;
                     width: 100%;
@@ -935,7 +949,23 @@ export class SearchResultsComponent extends BaseComponent {
                     svg, svg > path {
                         ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
                     } 
-                }             
+                }    
+            `,
+            css`
+             :host {
+ 
+                 svg, svg > path {
+                    ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColor})`)};
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .dark {
+                    svg, svg > path {
+                        ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
+                    } 
+                }    
+             }                 
             `,
             BaseComponent.themeStyles, // Allow component to use them CSS variables from design. The component is a first level component so it is OK to define them variables here
             BaseComponent.styles // Use base styles (i.e. Tailwind CSS classes)
