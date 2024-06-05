@@ -1,26 +1,34 @@
 <template data-type="items">
-        <div class="@container">
-            <div class="text-textColor font-primary grid grid-cols-{{context.layoutProperties.smCardNumberPerRow}} @md:grid-cols-{{context.layoutProperties.mdCardNumberPerRow}} @lg:grid-cols-{{context.layoutProperties.lgCardNumberPerRow}} @xl:grid-cols-{{context.layoutProperties.xlCardNumberPerRow}} @2xl:grid-cols-{{context.layoutProperties.xxlCardNumberPerRow}} auto-cols-auto gap-4">
-                <div data-for='item in items' class="rounded-sm bg-white shadow-lg p-4 space-y-2 flex flex-col">
-                    <div class="flex justify-between items-center font-bold min-h-[37px]">
-                        <div data-if='slot("Main_Category",item)' class="bg-[#DCE2E5] rounded-3xl p-2 min-w-[80px] text-center" >{{ slot("Main_Category",item) }}</div>
-                        <div data-if='slot("Secondary_Category",item)'>{{ slot("Secondary_Category",item) }}</div>
-                    </div>
-                    <div data-if='slot("Thumbnail_Url",item)' class="flex justify-center items-start">
-                        <div class="relative mb-3 flex w-full">
-                            <img class="rounded-xl w-full object-cover min-h-[192px] max-h-[192px]" src='{{slot("Thumbnail_Url",item)}}'/>
-                            <div data-if='slot("Image_Tag",item)' class="text-center rounded-3xl font-bold bg-primary text-white min-w-[80px] p-2 absolute bottom-[-12px] right-0">{{slot("Image_Tag",item)}}</div>
-                        </div>
-                    </div>
-                        <div class="font-bold line-clamp-2 h-full">
-                            <a href='{{ slot("Path",item) }}' target="_blank">{{ slot("Title",item) }}</a>
-                        </div>                        
-                        <div data-if='slot("Subtitle",item)' class="">{{ slot("Subtitle",item) }}</div>
-                        <div data-if='slot("Summary",item)' class="p-2 h-full">
-                            <p data-html class="line-clamp-4">{{ slot("Summary",item) }}</p>
-                        </div>
-                        <div data-if='slot("Tags",item)' class="break-words">{{ slot("Tags",item) }}</div>
-                </div>                
-            </div>
+    <div class="@container">
+        <div class="font-primary grid grid-cols-{{context.layoutProperties.smCardNumberPerRow}} @md:grid-cols-{{context.layoutProperties.mdCardNumberPerRow}} @lg:grid-cols-{{context.layoutProperties.lgCardNumberPerRow}} @xl:grid-cols-{{context.layoutProperties.xlCardNumberPerRow}} @2xl:grid-cols-{{context.layoutProperties.xxlCardNumberPerRow}} auto-cols-auto gap-4">
+            <div data-for='item in items'>
+                <a href='{{ slot("Path",item) }}' data-interception="off" target="_blank" class="no-underline text-textColor ">
+                    <div class="rounded-lg bg-white shadow-lg p-4 space-y-2 flex flex-col hover:shadow-xl hover:scale-[1.05] ease-in duration-200">
+                            <div class="flex justify-end items-center font-bold min-h-[37px]">
+                                <div data-if='slot("Main_Category",item)' class="bg-[#DCE2E5] rounded-3xl p-2 min-w-[80px] text-center capitalize mr-auto" >{{ slot("Main_Category",item).toLowerCase() }}</div>
+                                <div data-if='slot("Secondary_Category",item)' class="capitalize ml-auto">{{ slot("Secondary_Category",item).toLowerCase() }}</div>
+                            </div>
+                            <div data-if='slot("Thumbnail_Url",item)' class="flex justify-center items-start">
+                                <div class="relative mb-3 flex w-full">
+                                    <img class="rounded-xl w-full object-cover min-h-[192px] max-h-[192px]" src='{{slot("Thumbnail_Url",item)}}'/>
+                                    <div data-if='slot("Image_Tag",item)' class="text-center rounded-3xl font-bold bg-primary text-white min-w-[80px] p-2 absolute bottom-[-12px] right-0 flex flex-row max-w-[75%] justify-center [&>*:not(:last-child)]:after:content-['•']">
+                                        <div data-for="imageTag in slot('Image_Tag',item).split(';')" class="capitalize p-[2px] flex items-center space-x-1">
+                                            {{ imageTag }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="font-bold line-clamp-2 h-full text-base min-h-[48px] capitalize">{{ slot("Title",item) }}</div>
+                            <div data-if='slot("Subtitle",item)' class="">{{ slot("Subtitle",item) }}</div>
+                            <div data-if='slot("Summary",item)' class="bg-black text-white rounded-xl p-2 h-full">
+                                <p data-html class="line-clamp-4">{{ sanitizeSummary(slot("Summary",item)) }}</p>
+                            </div>
+                            <div data-if='slot("Tags",item)' data-for="tag in slot('Tags',item).split(';')" class="flex flex-wrap flex-col">
+                                <div class="capitalize"></div>{{ tag }}
+                            </div>
+                    </div>  
+                </a>    
+            </div>                
         </div>
+    </div>
 </template>
