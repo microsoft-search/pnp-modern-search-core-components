@@ -2,6 +2,7 @@ import { registerMgtMockProvider, registerMgtMsal2Provider, registerMgtProxyProv
 
 import "../exports/define/pnp-adaptive-card";
 import "../exports/define/pnp-language-provider";
+import "../exports/define/pnp-theme-provider";
 import "../exports/define/pnp-search-filters";
 import "../exports/define/pnp-search-infos";
 import "../exports/define/pnp-search-input";

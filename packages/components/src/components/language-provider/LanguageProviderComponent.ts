@@ -39,6 +39,12 @@ export class LanguageProviderComponent extends BaseComponent {
                     height: 100%;
                     width: 100%;
                 }
+
+                .dark {
+                    svg, svg > path {
+                        ${unsafeCSS(`fill: var(${ThemeInternalCSSVariables.textColorDark})`)};
+                    } 
+                }     
             }                 
             `,
             BaseComponent.themeStyles, // Allow component to use them CSS variables from design. The component is a first level component so it is OK to define theme variables here

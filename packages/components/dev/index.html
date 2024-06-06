@@ -2,8 +2,7 @@
 
 <html>
   <head>
-    <script src="https://cdn.tailwindcss.com"></script>
-   
+    <link rel="stylesheet" href="index.css">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,7 +39,7 @@
       </style>
 
   </head>
-  <body>
+  <body class="dark:bg-primaryBackgroundColorDark">
 
     <!-- To turn on dark mode
         <body style="background-color: #3b3b3b;" class="dark">
@@ -49,22 +48,21 @@
     <mgt-msal2-provider 
         client-id="899d9e47-100b-4c31-99b0-478a0dd313c3"
         authority="https://login.microsoftonline.com/organizations"
-        prompt="consent"
+        prompt="select_account"
         login-type="popup"
         scopes="Bookmark.Read.All,ExternalItem.Read.All,Files.Read,Sites.Read.All"
 
     ></mgt-msal2-provider>
    
-    <mgt-file view="image"></mgt-file>
-    <div class="border-b-light500 border-b bg-[#F3F5F6] px-2.5">
+    <div class="border-b-light500 border-b bg-[#F3F5F6] dark:bg-primaryBackgroundColorDark px-2.5">
 
         <div class="max-w-7xl ml-auto mr-auto flex justify-between pt-2 items-center">
             <div class="flex space-x-2 items-center">
                 <img src="http://localhost:8080/assets/logo.svg" class="w-8"/>
-                <span class="font-bold">PnP Modern Search - Core Components</span>
+                <span class="font-primary dark:text-white">PnP Modern Search - Core Components</span>
             </div>
-
-            <div><mgt-login></mgt-login></div>
+            <mgt-login login-view="compact" class="dark:text-white"></mgt-login>
+           
             
         </div>
 
@@ -78,8 +76,13 @@
                 >
                 </pnp-search-input>
     
-                <pnp-language-provider id="pnpLanguage" locale="en-us" show-picker>
-                </pnp-language-provider>
+                <div class="flex">
+
+                    <pnp-language-provider id="pnpLanguage" locale="en-us" show-picker>
+                    </pnp-language-provider>
+
+                    <pnp-theme-provider></pnp-theme-provider>
+                </div>                         
         </div>
 
     </div>

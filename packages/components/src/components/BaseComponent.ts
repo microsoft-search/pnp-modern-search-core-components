@@ -1,6 +1,6 @@
 
 import { EventHandler, LocalizationHelper, MgtTemplatedTaskComponent } from "@microsoft/mgt-element";
-import { css, CSSResultGroup, html, LitElement, PropertyValueMap, PropertyValues, unsafeCSS } from "lit";
+import { css, CSSResultGroup, html, PropertyValueMap, PropertyValues, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
 import { ErrorTypes, EventConstants, ThemeDefaultCSSVariablesValues, ThemeInternalCSSVariables, ThemePublicCSSVariables } from "../common/Constants";
 import { IComponentBinding } from "../models/common/IComponentBinding";
@@ -36,6 +36,8 @@ import {
     fillColor,
     fastDivider,
     fastProgressRing,
+    neutralForegroundRest,
+    neutralFillInputRest,
 } from "@microsoft/fast-components";
 import { styles as tailwindStyles } from "../styles/tailwind-styles-css";
 import { parseColorHexRGB,  } from "@microsoft/fast-colors";
@@ -171,15 +173,18 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
             sanitizeSummary: sanitizeSummary
         };
 
-        // Set the theme automatically if a parent has the "dark" CSS class or theme
+         // Set the theme automatically if a parent has the "dark" CSS class or theme
         // This avoid to set explicitly the 'theme' property for each component
         const setDarkModeClass = () => {
             if (this.parentElement) {
                 const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
                 if (parentInDarkMode) {
                     this.theme = "dark";
-                    this.requestUpdate();
+                } else {
+                    this.theme = "light";
                 }
+
+                this.requestUpdate();
             }
         };
 
@@ -339,15 +344,24 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         if (theme.isDarkMode) {
             const primaryBackgroundColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.primaryBackgroundColorDark);
-            
+            const textColorDark = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.textColorDark);
+
             baseLayerLuminance.setValueFor(this,StandardLuminance.DarkMode);
             neutralFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(primaryBackgroundColor) ? parseColorHexRGB(primaryBackgroundColor) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark)));
             neutralFillStealthRest.setValueFor(this, neutralFillRest);
+            neutralFillInputRest.setValueFor(this, neutralFillRest);
+            neutralForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(textColorDark) ? parseColorHexRGB(textColorDark) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.textColorDark)));
             neutralFillStealthRestFluent.setValueFor(this, neutralFillRest);
         } else {
-            baseLayerLuminance.setValueFor(this,StandardLuminance.LightMode);
+
+            const textColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.textColor);
+
+            baseLayerLuminance.setValueFor(this, StandardLuminance.LightMode);
+            neutralFillRest.setValueFor(this, fillColor);
+            neutralFillInputRest.setValueFor(this, neutralFillRest);
             neutralFillStealthRest.setValueFor(this, fillColor);
             neutralFillStealthRestFluent.setValueFor(this, fillColor);
+            neutralForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(textColor) ? parseColorHexRGB(textColor) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.defaultTextColor)));
         }
 
         const primaryColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.colorPrimary);
