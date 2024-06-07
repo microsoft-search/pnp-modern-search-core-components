@@ -102,7 +102,7 @@ describe("pnp-search-results", () => {
         });
     });
 
-    describe("theming", () => {
+    describe("theming", async () => {
 
         it("should support dark mode by setting the theme property to 'dark' explicitly", async () => {
 
@@ -185,13 +185,10 @@ describe("pnp-search-results", () => {
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),"#000000");
-
-            return;
-
         });
     });
 
-    describe("styling", () => {
+    describe("styling", async () => {
 
         it("should display title, count and/or 'see all' link when specified", async () => {
             
