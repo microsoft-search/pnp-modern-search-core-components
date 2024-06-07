@@ -68,7 +68,7 @@ jobs:
       - name: Tests
         run: |
           node node_modules/puppeteer/install.js
-          pnpm run test       
+          pnpm run test:prod       
 
   build_spfx:
     runs-on: ubuntu-latest

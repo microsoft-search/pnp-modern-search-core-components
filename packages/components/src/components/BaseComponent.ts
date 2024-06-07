@@ -176,14 +176,14 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
          // Set the theme automatically if a parent has the "dark" CSS class or theme
         // This avoid to set explicitly the 'theme' property for each component
         const setDarkModeClass = () => {
-            if (this.parentElement) {
+            // Check if theme property was set explicitly on the component
+            if (this.parentElement && !this.theme) {
                 const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
-                if (parentInDarkMode) {
+                if (parentInDarkMode ) {
                     this.theme = "dark";
                 } else {
-                    this.theme = "light";
+                    this.theme = null;
                 }
-
                 this.requestUpdate();
             }
         };
