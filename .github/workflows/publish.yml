@@ -128,14 +128,14 @@ jobs:
           name: pnp-modern-search-core-spfx
           path: ${{ github.workspace }}/**/*.sppkg
 
-  release_spfx:
+  release:
     runs-on: ubuntu-latest
     environment: production
     if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
     needs: [version,build_spfx]
     defaults:
       run:
-        working-directory: ./packages/spfx
+        working-directory: ./apps
     steps:
       
       - uses: actions/checkout@v3
@@ -145,12 +145,16 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: pnp-modern-search-core-spfx
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: pnp-modern-search-core-teams
     
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
-          name: PnP Modern Search Core WebParts - ${{ needs.version.outputs.semver }}
-          artifacts: ${{ github.workspace }}/**/*.sppkg
+          name: PnP Modern Search Core Components - ${{ needs.version.outputs.semver }}
+          artifacts: ${{ github.workspace }}/**/*.sppkg,${{ github.workspace }}/**/teams/*.zip
           bodyFile: ".github/workflows/release-template.md"
           draft: true
           generateReleaseNotes: true
@@ -338,17 +342,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Teams App Package
+          name: pnp-modern-search-core-teams
           path: |
             ${{ github.workspace }}/apps/teams/appPackage/build/*.zip
             ${{ github.workspace }}/apps/teams/build/*.json
-            !${{ github.workspace }}/**/node_modules
-            !${{ github.workspace }}/**/src
-            !${{ github.workspace }}/**/env
-            !${{ github.workspace }}/**/infra
-            !${{ github.workspace }}/**/.pnpm-store
-            !${{ github.workspace }}/**/.vscode
-            !${{ github.workspace }}/**/.storybook
-            !${{ github.workspace }}/**/template
-            !${{ github.workspace }}/**/webpack
          
