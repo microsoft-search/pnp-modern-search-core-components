@@ -1,9 +1,9 @@
 name: Deploy documentation
 env:
-    ENV_AzDeployAppId: ${{ secrets.ENV_AzDeployAppId }}
+    ENV_AzDeployAppId: ${{ vars.ENV_AzDeployAppId }}
     ENV_AzDeployAppCertificateValue: ${{ secrets.ENV_AzDeployAppCertificateValue }}
-    ENV_AzDeployTenantId: ${{ secrets.ENV_AzDeployTenantId }}
-    ENV_AzDeploySubcriptionId: ${{ secrets.ENV_AzDeploySubcriptionId }}
+    ENV_AzDeployTenantId: ${{ vars.ENV_AzDeployTenantId }}
+    ENV_AzDeploySubcriptionId: ${{ vars.ENV_AzDeploySubcriptionId }}
     ENV_AzResourceGroupName: ${{ secrets.ENV_AzResourceGroupName }}
     ENV_AzStorageAccountName: ${{ secrets.ENV_AzStorageAccountName }}
     ENV_AzBlobContainerName: ${{ secrets.ENV_AzBlobContainerName }}
@@ -58,6 +58,7 @@ jobs:
       needs: version
       env:
         VERSION: ${{ needs.version.outputs.semver }}
+        
       steps:
 
           - name: Checkout
