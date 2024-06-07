@@ -166,7 +166,7 @@ jobs:
           
   build_components:
     runs-on: ubuntu-latest
-    needs: [version]
+    needs: [version,tests_components]
     defaults:
       run:
         working-directory: ./packages/components
