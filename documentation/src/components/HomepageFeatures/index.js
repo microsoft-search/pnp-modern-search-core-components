@@ -99,7 +99,7 @@ export function UseCaseSection() {
 
 const PeopleList = [
   {
-    thumbnailUrl: "https://media.licdn.com/dms/image/C4D03AQF9n9amF1kFpg/profile-displayphoto-shrink_200_200/0/1642124030687?e=1714003200&v=beta&t=Xy7LJeVKC_NzbLREIUCtANJ-YCJMAE9LZW7lmaN4P_g",
+    thumbnailUrl: "https://www.franckcornu.com/images/author_hu9b02e0e5fa61fa4710f0e85bb0f4dbed_853600_1110x0_resize_q90_h2_box_3.webp",
     profileUrl: "https://www.linkedin.com/in/franckcornu/",
     name: 'Franck Cornu',
     role: 'Maintainer',
