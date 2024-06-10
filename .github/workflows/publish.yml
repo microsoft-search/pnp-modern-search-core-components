@@ -133,9 +133,6 @@ jobs:
     environment: production
     if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
     needs: [version,build_spfx,build_teams]
-    defaults:
-      run:
-        working-directory: ./apps
     steps:
       
       - uses: actions/checkout@v3
