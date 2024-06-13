@@ -1,4 +1,4 @@
-import { css, html } from "lit";
+import { PropertyValues, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 import { FileFormat } from "../../services/templateService/ITemplateService";
 import { TemplateService } from "../../services/templateService/TemplateService";
@@ -120,6 +120,15 @@ export class AdaptiveCardComponent extends BaseComponent {
         io.observe(this);       
  
         super.connectedCallback();
+    }
+
+    protected override updated(changedProperties: PropertyValues<this>): void {
+    
+        if (this.hasPropertyUpdated(changedProperties, "theme")) {
+
+            // Re-render the adaptive with the new theme through adaptive card host configuration (as we can't use CSS variables in an adaptive card).
+            this._processAdaptiveCard();
+        }
     }
 
     private async _processAdaptiveCard() {

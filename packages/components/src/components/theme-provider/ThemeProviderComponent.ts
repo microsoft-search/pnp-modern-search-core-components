@@ -1,4 +1,3 @@
-import { Switch } from "@microsoft/fast-foundation";
 import { LitElement, PropertyValues, html } from "lit";
 import { property, state } from "lit/decorators.js";
 import { BaseComponent } from "../BaseComponent";
@@ -11,14 +10,25 @@ export class ThemeProviderComponent extends LitElement {
     @property({type: String, attribute: "theme-default", reflect: true})
     defaultTheme: string;
 
+    /**
+     * The selector to use to apply theme classes
+     */ 
+    @property({type: String, attribute: "selector"})
+    selector: string;
+
+    @property({type: String, attribute: "background-color-dark"})
+    backgroundColorDark: string;
+
+    @property({type: String, attribute: "background-color-light"})
+    backgroundColorLight: string;
 
     @state()
-    checked = false;
+    isDark = false;
 
     protected override render(): unknown {
         
         const renderToggle =  html`
-                <fast-switch @change=${this._onThemeChange} checked=${this.checked}>
+                <fast-switch @change=${() => this._onThemeChange(!this.isDark)} checked=${this.isDark}>
                     <span slot="checked-message" class="dark:text-white">Dark</span>
                     <span slot="unchecked-message" class="dark:text-white">Light</span>
                 </fast-switch>
@@ -38,19 +48,29 @@ export class ThemeProviderComponent extends LitElement {
     protected override firstUpdated(changedProperties: PropertyValues<this>): void {
 
         const defaultTheme = this.defaultTheme ? this.defaultTheme : "light";
+        const element: HTMLElement = this.selector ? document.querySelector(this.selector) : document.documentElement;
 
         switch (localStorage.theme) {
             case "dark":
-                document.documentElement.classList.add("dark"); 
+                element.classList.add("dark");
+
+                if (this.backgroundColorDark) {
+                    element.style.backgroundColor = this.backgroundColorDark;
+                }
+
                 localStorage.theme = "dark";
-                this.checked = true;
+                this.isDark = true;
 
                 break;
 
             case "light":
-                document.documentElement.classList.remove("dark");
+                element.classList.remove("dark");
+                if (this.backgroundColorLight) {
+                    element.style.backgroundColor = this.backgroundColorLight;
+                }
+
                 localStorage.theme = "light";
-                this.checked = false;
+                this.isDark = false;
 
                 break;
 
@@ -61,17 +81,26 @@ export class ThemeProviderComponent extends LitElement {
         super.firstUpdated(changedProperties);
     }
 
-    private _onThemeChange(e: Event) {
-        const checked = (e.target as Switch).checked;
+    private _onThemeChange(isDark: boolean) {
 
-        if (checked) { 
-            document.documentElement.classList.add("dark"); 
+        const element: HTMLElement = this.selector ? document.querySelector(this.selector) : document.documentElement;
+
+        if (isDark) { 
+            element.classList.add("dark");
+            if (this.backgroundColorDark) {
+                element.style.backgroundColor = this.backgroundColorDark;
+            }
+
             localStorage.theme = "dark";
-            this.checked = true;
+            this.isDark = true;
         } else {
-            document.documentElement.classList.remove("dark");
+            element.classList.remove("dark");
+            if (this.backgroundColorLight) {
+                element.style.backgroundColor = this.backgroundColorLight;
+            }
+            
             localStorage.theme = "light";
-            this.checked = false;
+            this.isDark = false;
         }
     }
     

@@ -7,7 +7,7 @@ module.exports = {
       "./dev/**/*.html"
     ]
   },
-  darkMode: "class",
+  darkMode: "selector",
   theme: {
     extend: {
         gridTemplateColumns: {

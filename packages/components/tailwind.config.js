@@ -11,7 +11,7 @@ module.exports = {
       ts: tailwindTransform
     }
   },
-  darkMode: "class",
+  darkMode: "selector",
   theme: {
     extend: {
         gridTemplateColumns: {
