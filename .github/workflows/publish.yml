@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
+          echo "fullsemver=$GitVersion_FullSemVer" >> "$GITHUB_OUTPUT"
   tests_components:
     runs-on: ubuntu-latest
     defaults:
@@ -168,7 +169,7 @@ jobs:
       run:
         working-directory: ./packages/components
     env:
-      VERSION: ${{ needs.version.outputs.semver }}
+      VERSION: ${{ needs.version.outputs.fullsemver }}
     steps:
       - uses: actions/setup-node@v3
         with:
