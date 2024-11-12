@@ -14,12 +14,14 @@ jobs:
     outputs: 
         majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
         semver: ${{ steps.setoutputs.outputs.semver }}
+        fullsemver: ${{ steps.setoutputs.outputs.fullsemver }}
+        buildmetadata: ${{ steps.setoutputs.outputs.buildmetadata }}
     
     steps:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,6 +43,8 @@ jobs:
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
           echo "fullsemver=$GitVersion_FullSemVer" >> "$GITHUB_OUTPUT"
+          echo "buildmetadata=$GitVersion_BuildMetaData" >> "$GITHUB_OUTPUT"
+          
   tests_components:
     runs-on: ubuntu-latest
     defaults:
@@ -59,7 +63,7 @@ jobs:
           
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         run: |
@@ -85,7 +89,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - uses: pnpm/action-setup@v2
         with:
@@ -169,7 +173,7 @@ jobs:
       run:
         working-directory: ./packages/components
     env:
-      VERSION: ${{ needs.version.outputs.fullsemver }}
+      VERSION: ${{ format('{0}-{1}',needs.version.outputs.semver, needs.version.outputs.buildmetadata) }}
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -236,7 +240,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: get-npm-version

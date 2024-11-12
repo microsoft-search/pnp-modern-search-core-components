@@ -1,6 +1,6 @@
 {
   "name": "@pnp/modern-search-core",
-  "version": "0.0.0",
+  "version": "1.1.0-beta.1-11",
   "description": "PnP Modern Search - Core Components",
   "main": "dist/es6/exports/index.js",
   "files": [
@@ -15,7 +15,7 @@
     "lint": "eslint \"**/*.ts\"",
     "tailwindcss": "tailwindcss --postcss -i ./src/styles/tailwind-styles.module.ts -o ./src/styles/tailwind-styles-css.ts --minify",
     "tailwindcss:watch": "tailwindcss --postcss -i ./src/styles/tailwind-styles.module.ts -o ./src/styles/tailwind-styles-css.ts --watch --minify",
-    "tailwindcss:dev:watch" : "tailwindcss --config ./tailwind-dev.config.js -i ./dev/tailwind.css -o ./dev/index.css --watch --minify",
+    "tailwindcss:dev:watch": "tailwindcss --config ./tailwind-dev.config.js -i ./dev/tailwind.css -o ./dev/index.css --watch --minify",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
     "custom-elements": "custom-elements-manifest analyze",
