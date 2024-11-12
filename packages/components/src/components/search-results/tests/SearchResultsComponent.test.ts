@@ -116,16 +116,12 @@ describe("pnp-search-results", () => {
                 `);
 
             await stubSearchResults(el);
-            el.requestUpdate();
-            await elementUpdated(el);
 
             assert.isNotNull(getRootDarkModeClass(el));
       
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
-            
-            return;
         });
 
         it("should support dark mode by using a top CSS class named 'dark'", async () => {
@@ -145,17 +141,11 @@ describe("pnp-search-results", () => {
 
             await stubSearchResults(el);
 
-            el.requestUpdate();
-            await elementUpdated(el);
-
             assert.isNotNull(getRootDarkModeClass(el));
 
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
-            assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
-
-            return;
-         
+            assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);         
         });
 
         it("should support settings custom values via CSS variables", async () => {
@@ -173,8 +163,6 @@ describe("pnp-search-results", () => {
             const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
 
             await stubSearchResults(el);
-            el.requestUpdate();
-            await elementUpdated(el);
 
             el.style.setProperty("--pnpsearch-colorBackgroundDarkPrimary","#000");
 
