@@ -78,7 +78,7 @@ export class DateFilterComponent extends BaseFilterComponent {
                             intervals.map(filterValue => {
                                 return html`
                                         <fast-menu-item
-                                            class="dark:text-textColorDark dark:hover:text-textColor mb-2 mt-2"
+                                            class="dark:text-textColorDark dark:hover:text-textColor mb-2 mt-2 hover:bg-gray-100 bg-transparent"
                                             @click=${(e) => {
                                                 // Use a mouse down event to not trigger the parent blur() event and close the panel before selecting a value
                                                 e.preventDefault();

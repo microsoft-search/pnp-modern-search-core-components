@@ -682,7 +682,7 @@ export class SearchResultsComponent extends BaseComponent {
             if (this.enableResultTypes) {
           
                 // Process result types and replace part of HTML with item id
-                const newElement = this.templateService.processResultTypesFromHtml(this.data, element, this.getTheme());
+                const newElement = this.templateService.processResultTypesFromHtml(this.data, element);
                 element.replaceWith(newElement);
             }
 
@@ -818,7 +818,7 @@ export class SearchResultsComponent extends BaseComponent {
 
         // Process result types on default Lit template of this component
         if (this.enableResultTypes && !this.hasTemplate("items")) {
-            this.templateService.processResultTypesFromHtml(this.data, this.renderRoot as HTMLElement, this.getTheme());
+            this.templateService.processResultTypesFromHtml(this.data, this.renderRoot as HTMLElement);
         }
         
         // Property updates that should trigger a new search

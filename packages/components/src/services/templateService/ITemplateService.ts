@@ -12,10 +12,9 @@ export interface ITemplateService {
      * Update the HTML element with corresponding result types for items (i.e. node with id attribute equals to "hitId")
      * @param data the data source data containing the items
      * @param templateContent the template content as HTML
-     * @param theme the theme to apply
      * @returns the updated HTML element with result types
      */
-    processResultTypesFromHtml(data: IDataSourceData, templateContent: HTMLElement, theme?: IThemeDefinition): HTMLElement;
+    processResultTypesFromHtml(data: IDataSourceData, templateContent: HTMLElement): HTMLElement;
     
     /**
      * Process the adaptive card with data from the context

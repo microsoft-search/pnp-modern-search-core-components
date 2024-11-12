@@ -8,7 +8,7 @@ import parse, {  } from 'html-react-parser';
 import { isEqual } from '@microsoft/sp-lodash-subset';
 import { Guid } from '@microsoft/sp-core-library';
 
-const SearchVerticalsWebComponent = wrapWc<SearchVerticalsComponent>('pnp-search-verticals');
+const SearchVerticalsWebComponent = wrapWc<Partial<SearchVerticalsComponent>>('pnp-search-verticals');
 
 export default class SearchVerticals extends React.Component<ISearchVerticalsProps, {}> {
   

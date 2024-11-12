@@ -3,7 +3,7 @@ import { ISearchBoxProps } from './ISearchBoxProps';
 import { wrapWc } from 'wc-react';
 import { SearchInputComponent } from '@pnp/modern-search-core';
 
-const SearchInputWebComponent = wrapWc<SearchInputComponent>('pnp-search-input');
+const SearchInputWebComponent = wrapWc<Partial<SearchInputComponent>>('pnp-search-input');
 
 export class SearchBox extends React.Component<ISearchBoxProps, {}> {
 

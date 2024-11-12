@@ -10,7 +10,7 @@ import parse from 'html-react-parser';
 import { SlotType } from '../../../models/common/ILayoutSlot';
 import { EventConstants } from '@pnp/modern-search-core/dist/es6/common/Constants';
 
-const SearchResultsWebComponent = wrapWc<SearchResultsComponent>('pnp-search-results');
+const SearchResultsWebComponent = wrapWc<Partial<SearchResultsComponent>>('pnp-search-results');
 
 export default class SearchResults extends React.Component<ISearchResultsProps, ISearchResultsState> {
 
