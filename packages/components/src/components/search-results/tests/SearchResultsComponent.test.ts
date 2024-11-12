@@ -116,6 +116,8 @@ describe("pnp-search-results", () => {
                 `);
 
             await stubSearchResults(el);
+            el.requestUpdate();
+            await elementUpdated(el);
 
             assert.isNotNull(getRootDarkModeClass(el));
       
@@ -123,6 +125,7 @@ describe("pnp-search-results", () => {
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
             
+            return;
         });
 
         it("should support dark mode by using a top CSS class named 'dark'", async () => {
