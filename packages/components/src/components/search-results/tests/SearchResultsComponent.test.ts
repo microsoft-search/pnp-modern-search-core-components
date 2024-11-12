@@ -104,26 +104,21 @@ describe("pnp-search-results", () => {
 
     describe("theming", async () => {
 
-        it("should support dark mode by setting the theme property to 'dark' explicitly", async () => {
+        it("should support dark mode by setting the CSS 'dark' class explicitly", async () => {
 
             const el: SearchResultsComponent = await fixture(
                 html`
                     <pnp-search-results 
                         .defaultQueryText=${"*"}
-                        .theme=${"dark"}
+                        class="dark"
                     >
                     </pnp-search-results>
                 `);
 
             await stubSearchResults(el);
 
-            el.requestUpdate();
-            await elementUpdated(el);
-
-
-            const elWithDarkRootClass = getRootDarkModeClass(el);
-            assert.isNotNull(elWithDarkRootClass);
-
+            assert.isNotNull(getRootDarkModeClass(el));
+      
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
