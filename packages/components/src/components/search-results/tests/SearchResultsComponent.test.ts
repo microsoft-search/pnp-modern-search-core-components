@@ -85,7 +85,7 @@ describe("pnp-search-results", () => {
         await Providers?.globalProvider?.logout();
     });
 
-    describe("common", async () => {
+    describe("common", () => {
 
         it("should be defined", () => {
             const el = document.createElement("pnp-search-results");
@@ -102,7 +102,7 @@ describe("pnp-search-results", () => {
         });
     });
 
-    describe("theming", async () => {
+    describe("theming", () => {
 
         it("should support dark mode by setting the CSS 'dark' class explicitly", async () => {
 
@@ -186,7 +186,7 @@ describe("pnp-search-results", () => {
         });
     });
 
-    describe("styling", async () => {
+    describe("styling", () => {
 
         it("should display title, count and/or 'see all' link when specified", async () => {
             
