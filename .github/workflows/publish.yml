@@ -114,7 +114,7 @@ jobs:
           npx lerna run build --scope @pnp/modern-search-core
 
       - name: Build + bundle SPFx
-        working-directory: ./packages/spfx
+        working-directory: ./apps/spfx
         run: |
           gulp update-docs-url --hosturl "https://github.com/microsoft-search/pnp-modern-search-core-components"
           gulp update-version --value $MAJORMINORPATCH
