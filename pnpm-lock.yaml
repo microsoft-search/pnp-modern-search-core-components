@@ -335,23 +335,23 @@ importers:
         specifier: 2.49.4
         version: 2.49.4
       '@microsoft/mgt':
-        specifier: 4.3.0
-        version: 4.3.0(@azure/msal-browser@2.38.4)
+        specifier: 4.2.1
+        version: 4.2.1(@azure/msal-browser@2.38.4)
       '@microsoft/mgt-components':
-        specifier: 4.3.0
-        version: 4.3.0(@azure/msal-browser@2.38.4)
+        specifier: 4.2.1
+        version: 4.2.1(@azure/msal-browser@2.38.4)
       '@microsoft/mgt-element':
-        specifier: 4.3.0
-        version: 4.3.0(@azure/msal-browser@2.38.4)
+        specifier: 4.2.1
+        version: 4.2.1(@azure/msal-browser@2.38.4)
       '@microsoft/mgt-msal2-provider':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: 4.2.1
+        version: 4.2.1
       '@microsoft/mgt-sharepoint-provider':
-        specifier: 4.3.0
-        version: 4.3.0(@azure/msal-browser@2.38.4)
+        specifier: 4.2.1
+        version: 4.2.1(@azure/msal-browser@2.38.4)
       '@microsoft/mgt-teamsfx-provider':
-        specifier: 4.3.0
-        version: 4.3.0(@azure/msal-browser@2.38.4)
+        specifier: 4.2.1
+        version: 4.2.1(@azure/msal-browser@2.38.4)
       '@microsoft/microsoft-graph-client':
         specifier: 3.0.2
         version: 3.0.2(@azure/msal-browser@2.38.4)
@@ -2393,8 +2393,8 @@ packages:
   '@microsoft/mgt-components@2.6.1':
     resolution: {integrity: sha512-2Qa7sH/tM2fwHYldp0nCSm1iFI5/rFf4JvSH91WdMk6XRdqH1Kfz9Jv+lmxLa9YuagSB/UDl1u1pJ27UE8LZEg==}
 
-  '@microsoft/mgt-components@4.3.0':
-    resolution: {integrity: sha512-wrD1EBU5MaBcCvvEtgAvwoNbqgyx8/aqWicY62UZk1q41S96YiK3j0S7bSrC06OrlyVkKpfVROAWb0E1iednUQ==}
+  '@microsoft/mgt-components@4.2.1':
+    resolution: {integrity: sha512-r4lVL6PcYdfqDbrfyXyXaBHetkXz5ttEqfxjrdwH1r+i/s7O8j49w64HryiD8VVoFsjd8KRdlEgp/pWozWv+GA==}
 
   '@microsoft/mgt-element@2.10.1':
     resolution: {integrity: sha512-xRyuCOahxxpWuGPrpycwfFchcGowyC7DjV8bPbjtazh6HegKE6JjGWd+X5HwIN5Wf9JduL32zoWoX/GwfSkIgg==}
@@ -2402,17 +2402,17 @@ packages:
   '@microsoft/mgt-element@2.6.1':
     resolution: {integrity: sha512-AT8JoJMOCJfNCB+1PnvIkde+ph9e/5E6Vtu5wPW59X4hbFFBUk8pyC0KOyes0JrXBpbf/lpeSBfnmRUq8enJ2w==}
 
-  '@microsoft/mgt-element@4.3.0':
-    resolution: {integrity: sha512-S+NPke4jDKuGXqZOHKRd0byUVXACEtbfFRJ/5/hVauP/BIiC8eOTugX3LkiYiqjhLuGY2U7aLJIjmrvrPJHLEg==}
+  '@microsoft/mgt-element@4.2.1':
+    resolution: {integrity: sha512-W/x293hvmvKtxfik949Tpb1OMJVzsQWR0+UQRJ/UMf2dDF9znuVM1famzOYXG4fR0yAFbEQSb4D03iUsFh5lSA==}
 
-  '@microsoft/mgt-mock-provider@4.3.0':
-    resolution: {integrity: sha512-pLrg/VOVLEtrQCC9UUZMf5I61f3rTbjLCKDnOHgUb8wLDXNsuZllOqkn5wvptXYzy9MCGLNDqS4TjyfV/gsv3Q==}
+  '@microsoft/mgt-mock-provider@4.2.1':
+    resolution: {integrity: sha512-RV/2q7ZXhmG78Q0bAHF8BI1yjWl+kiIw7LwFffa3gwqQwjz1IYqtdhoDllOHG4tXT7JATNn9eEkY05qvlZ0/6Q==}
 
-  '@microsoft/mgt-msal2-provider@4.3.0':
-    resolution: {integrity: sha512-IMapUx8Qeca4jEx/1FUz1o2IHnIRRIhEWjEDGBm/ESeMrIdKdlnAnJ8raRAHZosgmbYBLUlVNdj+2rZdtKJbMQ==}
+  '@microsoft/mgt-msal2-provider@4.2.1':
+    resolution: {integrity: sha512-S3wOiomrFneNGVdiBVgMB5lS5V1ZISRl3cTqSSKsQQk9B5kj5/FeeMRFtiPb3UEMmo0NKVB4XIj/YiG69f5gPA==}
 
-  '@microsoft/mgt-proxy-provider@4.3.0':
-    resolution: {integrity: sha512-a0IJxfRUWDbkycLebccn3hH3p9/yoPsTIl0wxQ7flO+BkLnggKa/0aSMLxpRhXIduP7GD/LcQSGb6kQcGq9HdA==}
+  '@microsoft/mgt-proxy-provider@4.2.1':
+    resolution: {integrity: sha512-tCJwJg+JBX7Y3XipqJ1bCWzkatp6jSGajJoYNCMZUbfSYpBciDv4jT1W5gmrBacsf+//t5XEOJ3bil0DwRekTw==}
 
   '@microsoft/mgt-react@2.10.1':
     resolution: {integrity: sha512-9RqICfYH25K6zOXE8kiVMhWJ19GUSF7kjvA+A6WK6qjkqSEwe6eeJz2YvBzIjKJGDuxAHP9gGbJ4aFY+ZGLI4A==}
@@ -2420,17 +2420,17 @@ packages:
   '@microsoft/mgt-sharepoint-provider@2.6.1':
     resolution: {integrity: sha512-bgIbVzQQEex+TFyLZyE0QoxxK7IFkAgqXwxz/pSz7GYq8tog6ywjRpVtlTjf08Cmoi4rXWJHi68+nY7ZWoUL7A==}
 
-  '@microsoft/mgt-sharepoint-provider@4.3.0':
-    resolution: {integrity: sha512-0Oghay1rXMYwZl8Q62kCNAO9UGQ8EXfkQJNAmCRQkyHwOKw/VnFoWx9StZeNSM4H713EMLGqM3ohb2LXOioDmg==}
+  '@microsoft/mgt-sharepoint-provider@4.2.1':
+    resolution: {integrity: sha512-g51tuU7yNoY4FyoKxUUYMyKt85RZSFQ8TfsbrAqi7pn6XCPokj0O+5f7J2PHKzCvYkDALdqOG/8po+3pK+wDog==}
 
   '@microsoft/mgt-spfx@2.6.1':
     resolution: {integrity: sha512-lTlC2Ms943q9kFG9WgYWR+I2enkSOXEBJ04JWwIP1WEP8/aZWNbqxaFk4C6hdKIqEVNYppL7SDPz3XFiL+vnvw==}
 
-  '@microsoft/mgt-teamsfx-provider@4.3.0':
-    resolution: {integrity: sha512-pcznJmOCStwkzZj104cl6Bo3YCG0etSTGW+VYF/9c86ROr4dkXsBoG3dSnNVGATYDldtaRruwT/Oaz/ig9xk8Q==}
+  '@microsoft/mgt-teamsfx-provider@4.2.1':
+    resolution: {integrity: sha512-5RbIZ61CTnNcDd7ZEy4yrA2cLwB70qdOwpP+rPuLZubChUF1cIq8h8kwpq4gC8LbBbDTACzVNSI/gqYLFlvifA==}
 
-  '@microsoft/mgt@4.3.0':
-    resolution: {integrity: sha512-7G8oMh1MzcA2QXXs6Qi4rbndXzJL9c1d+/s7w3gH1nqxNUpYaDf+KidW6/BHPyeqAAc+xGgMuFdCgmB5z3EemA==}
+  '@microsoft/mgt@4.2.1':
+    resolution: {integrity: sha512-K/iCWF7uyoSdv0U6M+jeLOJnzpQkLQlJmfOwyN5lx/z7HyVl5tLcLhY7oWw/PjxOZleyGBupiSQYdFKIku/ngA==}
 
   '@microsoft/microsoft-graph-client@1.1.0':
     resolution: {integrity: sha512-sDgchKZz1l3QJVNdkE1P1KpwTjupNt1mS9h1T0CiP+ayMN7IeFKfElB8IYtxFplNalZTmEq+iqoQFqUVpVMLfQ==}
@@ -2480,8 +2480,8 @@ packages:
   '@microsoft/microsoft-graph-types-beta@0.16.0-preview':
     resolution: {integrity: sha512-73d1b8pv8YnKx+oiQtMZDSey4ohmx/cfM/vFiAa5ZyLSj4nr9y/7wIT5jTIO+tkdniyBsfN/QQeDiRwyutcxAQ==}
 
-  '@microsoft/microsoft-graph-types-beta@0.43.0-preview':
-    resolution: {integrity: sha512-HngQCu0Mt4r+nqdBNx3OqUgFwkgw1XI1y2SOTGTJmeUBbIKZdTJbEH7X81uNGQDllEcSGtUOmLNv54yD35pORg==}
+  '@microsoft/microsoft-graph-types-beta@0.29.0-preview':
+    resolution: {integrity: sha512-83PCHDH7GxW8KM1J+MM6FPbaahIuj7VIgnY4UbMGQkkq2fBaHeKOmgjVbohvLVeIOOCTLmorPh6JtXH0VtFurA==}
 
   '@microsoft/microsoft-graph-types@2.40.0':
     resolution: {integrity: sha512-1fcPVrB/NkbNcGNfCy+Cgnvwxt6/sbIEEFgZHFBJ670zYLegENYJF8qMo7x3LqBjWX2/Eneq5BVVRCLTmlJN+g==}
@@ -16026,7 +16026,7 @@ snapshots:
   '@azure/core-client@1.7.3':
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-rest-pipeline': 1.11.0
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.3.2
@@ -16058,9 +16058,9 @@ snapshots:
   '@azure/core-http@2.3.2(encoding@0.1.13)':
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-tracing': 1.0.0-preview.13
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.11.0
       '@azure/logger': 1.0.4
       '@types/node-fetch': 2.6.4
       '@types/tunnel': 0.0.3
@@ -16078,7 +16078,7 @@ snapshots:
   '@azure/core-http@3.0.4(encoding@0.1.13)':
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-tracing': 1.0.0-preview.13
       '@azure/core-util': 1.3.2
       '@azure/logger': 1.0.4
@@ -16097,7 +16097,7 @@ snapshots:
   '@azure/core-lro@2.5.3':
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.11.0
       '@azure/logger': 1.0.4
       tslib: 2.5.0
 
@@ -16108,7 +16108,7 @@ snapshots:
   '@azure/core-rest-pipeline@1.11.0':
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.3.2
       '@azure/logger': 1.0.4
@@ -16194,7 +16194,7 @@ snapshots:
   '@azure/keyvault-common@2.0.0':
     dependencies:
       '@azure/abort-controller': 2.1.2
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-client': 1.7.3
       '@azure/core-rest-pipeline': 1.11.0
       '@azure/core-tracing': 1.0.1
@@ -16207,7 +16207,7 @@ snapshots:
   '@azure/keyvault-keys@4.9.0':
     dependencies:
       '@azure/abort-controller': 2.1.2
-      '@azure/core-auth': 1.4.0
+      '@azure/core-auth': 1.9.0
       '@azure/core-client': 1.7.3
       '@azure/core-http-compat': 2.1.2
       '@azure/core-lro': 2.5.3
@@ -18547,14 +18547,14 @@ snapshots:
       '@microsoft/microsoft-graph-types-beta': 0.16.0-preview
       office-ui-fabric-core: 11.0.0
 
-  '@microsoft/mgt-components@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-components@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
       '@fluentui/web-components': 2.6.1
       '@lit/task': 1.0.0
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/microsoft-graph-client': 3.0.7(@azure/identity@2.1.0)(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/microsoft-graph-client': 3.0.2(@azure/msal-browser@2.38.4)
       '@microsoft/microsoft-graph-types': 2.40.0
-      '@microsoft/microsoft-graph-types-beta': 0.43.0-preview
+      '@microsoft/microsoft-graph-types-beta': 0.29.0-preview
       lit: 3.2.1
       office-ui-fabric-core: 11.1.0
     transitivePeerDependencies:
@@ -18575,10 +18575,10 @@ snapshots:
       idb: 6.0.0
       lit-element: 2.5.1
 
-  '@microsoft/mgt-element@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-element@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
       '@lit/task': 1.0.0
-      '@microsoft/microsoft-graph-client': 3.0.7(@azure/identity@2.1.0)(@azure/msal-browser@2.38.4)
+      '@microsoft/microsoft-graph-client': 3.0.2(@azure/msal-browser@2.38.4)
       idb: 8.0.0
       lit: 3.2.1
     transitivePeerDependencies:
@@ -18587,29 +18587,29 @@ snapshots:
       - buffer
       - stream-browserify
 
-  '@microsoft/mgt-mock-provider@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-mock-provider@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - '@azure/msal-browser'
       - buffer
       - stream-browserify
 
-  '@microsoft/mgt-msal2-provider@4.3.0':
+  '@microsoft/mgt-msal2-provider@4.2.1':
     dependencies:
       '@azure/msal-browser': 2.38.4
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/microsoft-graph-client': 3.0.7(@azure/identity@2.1.0)(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/microsoft-graph-client': 3.0.2(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - buffer
       - stream-browserify
 
-  '@microsoft/mgt-proxy-provider@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-proxy-provider@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/microsoft-graph-client': 3.0.7(@azure/identity@2.1.0)(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/microsoft-graph-client': 3.0.2(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - '@azure/msal-browser'
@@ -18628,9 +18628,9 @@ snapshots:
     dependencies:
       '@microsoft/mgt-element': 2.6.1
 
-  '@microsoft/mgt-sharepoint-provider@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-sharepoint-provider@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - '@azure/msal-browser'
@@ -18645,24 +18645,24 @@ snapshots:
       '@microsoft/sp-core-library': 1.15.0
       tslib: 2.3.1
 
-  '@microsoft/mgt-teamsfx-provider@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt-teamsfx-provider@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
       '@azure/core-auth': 1.9.0
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - '@azure/msal-browser'
       - buffer
       - stream-browserify
 
-  '@microsoft/mgt@4.3.0(@azure/msal-browser@2.38.4)':
+  '@microsoft/mgt@4.2.1(@azure/msal-browser@2.38.4)':
     dependencies:
-      '@microsoft/mgt-components': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/mgt-element': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/mgt-mock-provider': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/mgt-msal2-provider': 4.3.0
-      '@microsoft/mgt-proxy-provider': 4.3.0(@azure/msal-browser@2.38.4)
-      '@microsoft/mgt-sharepoint-provider': 4.3.0(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-components': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-element': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-mock-provider': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-msal2-provider': 4.2.1
+      '@microsoft/mgt-proxy-provider': 4.2.1(@azure/msal-browser@2.38.4)
+      '@microsoft/mgt-sharepoint-provider': 4.2.1(@azure/msal-browser@2.38.4)
     transitivePeerDependencies:
       - '@azure/identity'
       - '@azure/msal-browser'
@@ -18705,7 +18705,7 @@ snapshots:
 
   '@microsoft/microsoft-graph-types-beta@0.16.0-preview': {}
 
-  '@microsoft/microsoft-graph-types-beta@0.43.0-preview': {}
+  '@microsoft/microsoft-graph-types-beta@0.29.0-preview': {}
 
   '@microsoft/microsoft-graph-types@2.40.0': {}
 
@@ -29800,7 +29800,10 @@ snapshots:
       pretty-format: 25.5.0
       throat: 5.0.0
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   jest-leak-detector@25.5.0:
     dependencies:
