@@ -159,10 +159,14 @@ export class SearchInputComponent extends BaseComponent {
       }
     }
 
-    public override connectedCallback(): Promise<void> {
-
+    protected override loadState(): Promise<void> {
       this.handleQueryStringChange();
       this.initializeDefaultValue();
+
+      return super.loadState();
+    }
+
+    public override connectedCallback(): Promise<void> {
     
       return super.connectedCallback();
     }

@@ -800,9 +800,6 @@ export class SearchResultsComponent extends BaseComponent {
         // Set default sort properties according to configuration
         this.initSortProperties();
 
-        // Build the search query
-        this.buildSearchQuery();
-
         // Set tokens
         this.tokenService.setTokenValue(BuiltinTokenNames.searchTerms, this.getDefaultQueryText());
 
@@ -913,6 +910,9 @@ export class SearchResultsComponent extends BaseComponent {
      */
     public override async loadState(): Promise<void> {
                
+        // Build the search query
+        this.buildSearchQuery();
+
         if (this.shouldRender && this.getDefaultQueryText()) {
             await this._search(this.searchQuery);
         } else {
