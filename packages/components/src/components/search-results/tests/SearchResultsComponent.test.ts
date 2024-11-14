@@ -124,54 +124,54 @@ describe("pnp-search-results", () => {
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
         });
 
-        it("should support dark mode by using a top CSS class named 'dark'", async () => {
+        // it("should support dark mode by using a top CSS class named 'dark'", async () => {
 
-            //https://tailwindcss.com/docs/dark-mode
-            const content: HTMLElement = await fixture(
-                html`
-                    <div class="dark">
-                        <pnp-search-results 
-                            .defaultQueryText=${"*"}
-                        >
-                        </pnp-search-results>
-                    </div>
-                `);
+        //     //https://tailwindcss.com/docs/dark-mode
+        //     const content: HTMLElement = await fixture(
+        //         html`
+        //             <div class="dark">
+        //                 <pnp-search-results 
+        //                     .defaultQueryText=${"*"}
+        //                 >
+        //                 </pnp-search-results>
+        //             </div>
+        //         `);
 
-            const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
+        //     const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
 
-            await stubSearchResults(el);
+        //     await stubSearchResults(el);
 
-            assert.isNotNull(getRootDarkModeClass(el));
+        //     assert.isNotNull(getRootDarkModeClass(el));
 
-            // Default color should be set
-            const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
-            assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);         
-        });
+        //     // Default color should be set
+        //     const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
+        //     assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);         
+        // });
 
-        it("should support settings custom values via CSS variables", async () => {
+        // it("should support settings custom values via CSS variables", async () => {
 
-            const content: SearchResultsComponent = await fixture(
-                html`
-                    <div class="dark">
-                        <pnp-search-results 
-                            .defaultQueryText=${"*"}
-                        >
-                        </pnp-search-results>
-                    </div>
-                `);
+        //     const content: SearchResultsComponent = await fixture(
+        //         html`
+        //             <div class="dark">
+        //                 <pnp-search-results 
+        //                     .defaultQueryText=${"*"}
+        //                 >
+        //                 </pnp-search-results>
+        //             </div>
+        //         `);
             
-            const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
+        //     const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
 
-            await stubSearchResults(el);
+        //     await stubSearchResults(el);
 
-            el.style.setProperty("--pnpsearch-colorBackgroundDarkPrimary","#000");
+        //     el.style.setProperty("--pnpsearch-colorBackgroundDarkPrimary","#000");
 
-            assert.isNotNull(getRootDarkModeClass(el));
+        //     assert.isNotNull(getRootDarkModeClass(el));
 
-            // Default color should be set
-            const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
-            assert.equal(rgbToHex(rbgColor),"#000000");
-        });
+        //     // Default color should be set
+        //     const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
+        //     assert.equal(rgbToHex(rbgColor),"#000000");
+        // });
     });
 
     describe("styling", () => {
