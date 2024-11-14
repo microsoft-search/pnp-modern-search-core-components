@@ -46,7 +46,7 @@ jobs:
           echo "buildmetadata=$GitVersion_BuildMetaData" >> "$GITHUB_OUTPUT"
           
   tests_components:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: ./packages/components
@@ -67,7 +67,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export PUPPETEER_SKIP_DOWNLOAD=true
+          SET PUPPETEER_SKIP_DOWNLOAD='true'
           pnpm install
           
       - name: Tests
