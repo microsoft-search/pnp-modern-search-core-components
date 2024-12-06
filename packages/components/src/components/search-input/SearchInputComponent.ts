@@ -200,9 +200,10 @@ export class SearchInputComponent extends BaseComponent {
       
           if (newKeywords && !isEmpty(decodeURIComponent(newKeywords).trim())) {
             this.searchKeywords = decodeURIComponent(newKeywords).trim();
-          }
 
-          this.submitSearch();
+            // Only submit the search when a keyword is present
+            this.submitSearch();
+          }
         };
       }
     }
