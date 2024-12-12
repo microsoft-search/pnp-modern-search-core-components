@@ -4,6 +4,8 @@
 # Production
 /build
 /dist
+variables.local.ps1
+.env
 
 # Generated files
 .docusaurus
