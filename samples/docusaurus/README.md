@@ -8,6 +8,8 @@ This sample solution demonstrates the integration of the PnP Modern Search Core 
 - Deploy Docusaurus static site in an Azure App Service.
 - Handle authentication with EasyAuth on Azure App Service.
 
+!["Search results"](./static/img/results.png)
+
 ## Prerequisites - Tooling
 
 The following prerequisites need to be installed first on your machine to work locally:
@@ -72,7 +74,7 @@ From the `./samples/docusaurus`, run the following commands:
 
 It will serve the documentation at `http://localhost:3000`.
 
-### Deploy the documentaation
+### Deploy the documentation
 
 The documentation is hosted in a Azure App Service. You can deploy the documentation direcly from your machine using the following steps (the App Service must exist):
 
