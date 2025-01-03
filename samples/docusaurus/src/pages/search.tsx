@@ -90,6 +90,4 @@ export default function Searchpage(): JSX.Element {
                     </BrowserOnly> 
                 </main>
             </Layout> 
-
-
 }

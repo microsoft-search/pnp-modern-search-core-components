@@ -49,9 +49,27 @@ export default function Root({children}) {
                 }
             };
 
+            const refreshAccessToken = async () => {
+
+                // Easy auth scenario
+                try {
+                    const response = await fetch('/.auth/refresh');  
+                    const payload = await response.json();  
+                    return payload && payload[0];
+                } catch (error) {
+                    console.error('Error while getting access token', error);
+                    return null;
+                }
+            };
+
             const getAccessToken = async () => {
 
                 const authInfo = await getAuthInfo();
+                if (new Date(authInfo.expires_on) >= new Date()){
+                    const refreshToken = await refreshAccessToken();
+
+                    return refreshToken;
+                }
                 return authInfo?.access_token;
             };
 
