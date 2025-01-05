@@ -10,6 +10,7 @@ const { src, dest } = require("gulp");
 const rename = require("gulp-rename");
 const build = require('@microsoft/sp-build-web');
 build.addSuppression(`Warning - [sass] The local CSS class 'ms-Grid' is not camelCase and will not be type-safe.`);
+build.addSuppression(/Failed to parse source map/);
 
 const envCheck = build.subTask('environmentCheck', (gulp, config, done) => {
 

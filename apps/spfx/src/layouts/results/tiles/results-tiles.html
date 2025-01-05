@@ -20,7 +20,7 @@
                             </div>
                             <div class="font-bold line-clamp-2 h-full text-base min-h-[48px] capitalize">{{ slot("Title",item) }}</div>
                             <div data-if='slot("Subtitle",item)' class="">{{ slot("Subtitle",item) }}</div>
-                            <div data-if='slot("Summary",item)' class="bg-black text-white rounded-xl p-2 h-full">
+                            <div data-if='slot("Summary",item)' class="text-white rounded-xl p-2 h-full">
                                 <p data-html class="line-clamp-4">{{ sanitizeSummary(slot("Summary",item)) }}</p>
                             </div>
                             <div data-if='slot("Tags",item)' data-for="tag in slot('Tags',item).split(';')" class="flex flex-wrap flex-col">

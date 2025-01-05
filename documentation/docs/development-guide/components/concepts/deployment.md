@@ -1,6 +1,6 @@
 # Deployment
 
-As of today, components Javascript bundle is accessible via the URL `https://www.unpkg.com/@pnp/modern-search-core@<version_number>/dist/bundle/main.js`
+As of today, components Javascript bundle is accessible via the URL `https://www.unpkg.com/@pnp/modern-search-core@<version_number>/dist/bundle/bundle.js`
 
 However, you can choose to host them and consume them from your own environment (ex: Azure Blob Storage). We provide a deployment script to help you to deploy this solution to your Azure environment.
 

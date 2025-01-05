@@ -78,9 +78,9 @@ jobs:
               Install-Module Az.Resources -RequiredVersion 5.4.0 -Force
               Install-Module Az.Storage -RequiredVersion 5.2.0 -Force
 
-          - uses: pnpm/action-setup@v2
+          - uses: pnpm/action-setup@v4
             with:
-              version: 8
+              version: 9
               run_install: false
 
           - name: Get pnpm store directory

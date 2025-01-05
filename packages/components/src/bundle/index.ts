@@ -9,6 +9,7 @@ import "../exports/define/pnp-search-input";
 import "../exports/define/pnp-search-results";
 import "../exports/define/pnp-search-verticals";
 import "../exports/define/pnp-video-player";
+import "../exports/define/pnp-label";
 
 // Register MGT providers on the page
 registerMgtMsal2Provider();

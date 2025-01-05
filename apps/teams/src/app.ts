@@ -1,6 +1,6 @@
 import { app as msTeams } from "@microsoft/teams-js";
-import  "@pnp/modern-search-core/dist/es6/bundle";
-import { IProviderAccount, Providers, TeamsFxProvider } from "../../../packages/components/dist/es6/exports";
+import "@pnp/modern-search-core/dist/es6/bundle";
+import { IProviderAccount, LanguageProvider, Providers, TeamsFxProvider } from "../../../packages/components/dist/es6/exports";
 import { TeamsUserCredential } from "@microsoft/teamsfx";
 
 
@@ -28,41 +28,72 @@ export class TeamsProvider extends TeamsFxProvider {
 
 const appInitialize = async () => {
     
-    if (!msTeams.isInitialized()) {
-        await msTeams.initialize();
-    } 
+  // Retrieve parameters from URL (see manifest.json->contentSourceUrl for the query string parameters)
+  const searchParams = new URLSearchParams(window.location.search);
+  const locale = searchParams.get("locale")
+    ? searchParams.get("locale")
+    : localStorage.getItem("locale");
+  const theme = searchParams.get("theme")
+    ? searchParams.get("theme")
+    : localStorage.getItem("theme");
+  const userInfo: msTeams.UserInfo = {
+    id: searchParams.get("user_id")
+      ? searchParams.get("user_id")
+      : localStorage.getItem("user_id"),
+    userPrincipalName: searchParams.get("user_upn")
+      ? searchParams.get("user_upn")
+      : localStorage.getItem("user_upn"),
+    tenant: {
+      id: searchParams.get("tenant")
+        ? searchParams.get("tenant")
+        : localStorage.getItem("tenant"),
+    },
+  };
 
-    const { app, user } = await msTeams.getContext();
+  // Set configuration values in local storage for search page
+  localStorage.setItem("locale", locale);
+  localStorage.setItem("theme", theme);
+  localStorage.setItem("user_id", userInfo.id);
+  localStorage.setItem("user_upn", userInfo.userPrincipalName);
+  localStorage.setItem("tenant", userInfo.tenant.id);
 
-    // Dark theme support
-    if (app?.theme === "dark" || app?.theme === "contrast") {
-        // Automatically add the "dark" CSS class to trigger dark mode on components (via Tailwind CSS)
-        document.body.classList.add("dark");
+  // Language support
+  const languageProvider = new LanguageProvider();
+  languageProvider.setLanguage(locale);
 
-        document.body.style.setProperty("--pnpsearch-iconColor", "#FFF")
-    } else {
-        document.body.style.setProperty("--pnpsearch-iconColor", "#000")
-    }
-    
-    // Language support 
-    document.getElementById("pnpLanguage").setAttribute("locale", app?.locale);
-    
-    // Comes from the Webpack Environment Plugin
-    const graphScopes = JSON.parse(process.env.ENV_MSSearchAppScopes);
-    const clientId = process.env.ENV_MSSearchAppClientId;
+  // Dark theme support
+  if (theme === "dark" || theme === "contrast") {
+    // Automatically add the "dark" CSS class to trigger dark mode on components (via Tailwind CSS)
+    document.body.classList.add("dark");
 
-    const authConfig = {
-        clientId: clientId,
-        initiateLoginEndpoint: "auth-start.html"
-    };
-    
-    const teamsUserCredential = new TeamsUserCredential(authConfig);
-    
-    const provider = new TeamsProvider(user, teamsUserCredential, graphScopes);
-    Providers.globalProvider = provider;
+    document.body.style.setProperty("--ubi365-iconColor", "#FFF");
+    document.body.style.setProperty("--ubi365-iconTextColor", "#000");
+  } else {
+    document.body.style.setProperty("--ubi365-iconColor", "#000");
+    document.body.style.setProperty("--ubi365-iconTextColor", "#FFF");
+  }
 
-    
-    await provider.login()
+  // Comes from the Webpack Environment Plugin
+  const graphScopes = JSON.parse(process.env.ENV_MSSearchAppScopes);
+  const clientId = process.env.ENV_MSSearchAppClientId;
+
+  const authConfig = {
+    clientId: clientId,
+    initiateLoginEndpoint: "auth-start.html",
+  };
+
+  const teamsUserCredential = new TeamsUserCredential(authConfig);
+
+  const provider = new TeamsProvider(
+    userInfo,
+    teamsUserCredential,
+    graphScopes
+  );
+
+
+  Providers.globalProvider = provider;
+
+  await provider.login();
 };
 
 appInitialize();

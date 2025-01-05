@@ -39,7 +39,7 @@ const previewUrl = "https://contoso.sharepoint.com/sites/FakeSite/Shared%20Docum
 const thumbnailUrl = "https://contoso.sharepoint.com/sites/FakeSite/Shared%20Documents/Videos/FakeVideo.png";
 //#endregion
 
-describe("pnp-video-player", async () => {
+describe("pnp-video-player", () => {
 
     beforeEach(() => {
         Providers.globalProvider = TestsHelper.getTestProvider();
@@ -49,7 +49,7 @@ describe("pnp-video-player", async () => {
         await Providers?.globalProvider?.logout();
     });
 
-    describe("common", async () => {
+    describe("common", () => {
 
         it("should be defined", async () => {
             const el = document.createElement("pnp-video-player");
@@ -57,7 +57,7 @@ describe("pnp-video-player", async () => {
         });
     });
 
-    describe("lazy loading", async () => {
+    describe("lazy loading", () => {
 
         it("should only display the iframe when the play button is clicked when lazy loading is enabled", async () => {
             
@@ -107,7 +107,7 @@ describe("pnp-video-player", async () => {
         });
     });
 
-    describe("no video fetching", async () => {
+    describe("no video fetching", () => {
 
 
         it("should not fetch video details if preview url and or thumbnail url are set", async () => {

@@ -28,11 +28,9 @@
     {
       "entityId": "index0",
       "name": "Search",
-      "contentUrl": "${{TAB_ENDPOINT}}/tab",
-      "websiteUrl": "${{TAB_ENDPOINT}}/tab",
-      "scopes": [
-        "personal"
-      ]
+      "contentUrl": "${{TAB_ENDPOINT}}/tab?user_id={user.id}&user_upn={user.userPrincipalName}&tenant={user.tenant.id}&locale={app.locale}&theme={app.theme}",
+      "websiteUrl": "${{TAB_ENDPOINT}}/tab?user_id={user.id}&user_upn={user.userPrincipalName}&tenant={user.tenant.id}&locale={app.locale}&theme={app.theme}",
+      "scopes": ["personal"]
     }
   ],
   "showLoadingIndicator": false,

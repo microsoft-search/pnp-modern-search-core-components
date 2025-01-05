@@ -17,9 +17,9 @@ const getVerticalByName = (name: string, component: SearchVerticalsComponent) =>
 const getVerticalByKey = (key: string, component: SearchVerticalsComponent) => component?.shadowRoot?.querySelector<HTMLElement>(`fast-tab[data-key='${key}']`);
 //#endregion
 
-describe("pnp-search-verticals", async () => {
+describe("pnp-search-verticals", () => {
 
-  describe("common", async () => {
+  describe("common", () => {
 
     beforeEach(async () => {
 
@@ -117,7 +117,7 @@ describe("pnp-search-verticals", async () => {
     assert.equal(el?.selectedVerticalKey, "tab2");
   });
 
-  describe("default query string parameter", async () => {
+  describe("default query string parameter", () => {
 
 
     before(() => {

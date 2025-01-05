@@ -159,10 +159,14 @@ export class SearchInputComponent extends BaseComponent {
       }
     }
 
-    public override connectedCallback(): Promise<void> {
-
+    protected override loadState(): Promise<void> {
       this.handleQueryStringChange();
       this.initializeDefaultValue();
+
+      return super.loadState();
+    }
+
+    public override connectedCallback(): Promise<void> {
     
       return super.connectedCallback();
     }
@@ -196,9 +200,10 @@ export class SearchInputComponent extends BaseComponent {
       
           if (newKeywords && !isEmpty(decodeURIComponent(newKeywords).trim())) {
             this.searchKeywords = decodeURIComponent(newKeywords).trim();
-          }
 
-          this.submitSearch();
+            // Only submit the search when a keyword is present
+            this.submitSearch();
+          }
         };
       }
     }

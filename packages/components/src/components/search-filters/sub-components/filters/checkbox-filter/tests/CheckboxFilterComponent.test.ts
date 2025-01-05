@@ -165,7 +165,7 @@ describe("pnp-checkbox-filter ", () => {
 
     });
 
-    describe("single value", async () => {
+    describe("single value", () => {
 
       before(async () => {
         baseCheckboxFilter.filterConfiguration.isMulti = false;
@@ -180,7 +180,7 @@ describe("pnp-checkbox-filter ", () => {
       
     });
 
-    describe("multi values", async () => {
+    describe("multi values", () => {
 
       before(async () => {
         baseCheckboxFilter.filterConfiguration.isMulti = true;

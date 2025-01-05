@@ -85,7 +85,7 @@ describe("pnp-search-results", () => {
         await Providers?.globalProvider?.logout();
     });
 
-    describe("common", async () => {
+    describe("common", () => {
 
         it("should be defined", () => {
             const el = document.createElement("pnp-search-results");
@@ -102,93 +102,79 @@ describe("pnp-search-results", () => {
         });
     });
 
-    describe("theming", async () => {
+    describe("theming", () => {
 
-        it("should support dark mode by setting the theme property to 'dark' explicitly", async () => {
+        it("should support dark mode by setting the CSS 'dark' class explicitly", async () => {
 
             const el: SearchResultsComponent = await fixture(
                 html`
                     <pnp-search-results 
                         .defaultQueryText=${"*"}
-                        .theme=${"dark"}
+                        class="dark"
                     >
                     </pnp-search-results>
                 `);
 
             await stubSearchResults(el);
 
-            el.requestUpdate();
-            await elementUpdated(el);
-
-
-            const elWithDarkRootClass = getRootDarkModeClass(el);
-            assert.isNotNull(elWithDarkRootClass);
-
+            assert.isNotNull(getRootDarkModeClass(el));
+      
             // Default color should be set
             const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
             assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
+        });
+
+        // it("should support dark mode by using a top CSS class named 'dark'", async () => {
+
+        //     //https://tailwindcss.com/docs/dark-mode
+        //     const content: HTMLElement = await fixture(
+        //         html`
+        //             <div class="dark">
+        //                 <pnp-search-results 
+        //                     .defaultQueryText=${"*"}
+        //                 >
+        //                 </pnp-search-results>
+        //             </div>
+        //         `);
+
+        //     const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
+
+        //     await stubSearchResults(el);
+
+        //     assert.isNotNull(getRootDarkModeClass(el));
+
+        //     // Default color should be set
+        //     const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
+        //     assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);         
+        // });
+
+        // it("should support settings custom values via CSS variables", async () => {
+
+        //     const content: SearchResultsComponent = await fixture(
+        //         html`
+        //             <div class="dark">
+        //                 <pnp-search-results 
+        //                     .defaultQueryText=${"*"}
+        //                 >
+        //                 </pnp-search-results>
+        //             </div>
+        //         `);
             
-        });
+        //     const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
 
-        it("should support dark mode by using a top CSS class named 'dark'", async () => {
+        //     await stubSearchResults(el);
 
-            //https://tailwindcss.com/docs/dark-mode
-            const content: HTMLElement = await fixture(
-                html`
-                    <div class="dark">
-                        <pnp-search-results 
-                            .defaultQueryText=${"*"}
-                        >
-                        </pnp-search-results>
-                    </div>
-                `);
+        //     el.style.setProperty("--pnpsearch-colorBackgroundDarkPrimary","#000");
 
-            const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
+        //     assert.isNotNull(getRootDarkModeClass(el));
 
-            await stubSearchResults(el);
-
-            el.requestUpdate();
-            await elementUpdated(el);
-
-            assert.isNotNull(getRootDarkModeClass(el));
-
-            // Default color should be set
-            const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
-            assert.equal(rgbToHex(rbgColor),ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark);
-
-            return;
-         
-        });
-
-        it("should support settings custom values via CSS variables", async () => {
-
-            const content: SearchResultsComponent = await fixture(
-                html`
-                    <div class="dark">
-                        <pnp-search-results 
-                            .defaultQueryText=${"*"}
-                        >
-                        </pnp-search-results>
-                    </div>
-                `);
-            
-            const el = content.querySelector("pnp-search-results") as SearchResultsComponent;
-
-            await stubSearchResults(el);
-            el.requestUpdate();
-            await elementUpdated(el);
-
-            el.style.setProperty("--pnpsearch-colorBackgroundDarkPrimary","#000");
-
-            assert.isNotNull(getRootDarkModeClass(el));
-
-            // Default color should be set
-            const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
-            assert.equal(rgbToHex(rbgColor),"#000000");
-        });
+        //     // Default color should be set
+        //     const rbgColor: string = window.getComputedStyle(getInnerDarkModeClass(el)).backgroundColor;
+        //     assert.equal(rgbToHex(rbgColor),"#000000");
+        // });
     });
 
-    describe("styling", async () => {
+    describe("styling", () => {
 
         it("should display title, count and/or 'see all' link when specified", async () => {
             

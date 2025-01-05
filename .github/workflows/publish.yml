@@ -14,12 +14,14 @@ jobs:
     outputs: 
         majorMinorPatch: ${{ steps.setoutputs.outputs.majorMinorPatch }}
         semver: ${{ steps.setoutputs.outputs.semver }}
+        fullsemver: ${{ steps.setoutputs.outputs.fullsemver }}
+        buildmetadata: ${{ steps.setoutputs.outputs.buildmetadata }}
     
     steps:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -40,6 +42,9 @@ jobs:
         run: |
           echo "majorMinorPatch=$GitVersion_MajorMinorPatch" >> "$GITHUB_OUTPUT"
           echo "semver=$GitVersion_SemVer" >> "$GITHUB_OUTPUT"
+          echo "fullsemver=$GitVersion_FullSemVer" >> "$GITHUB_OUTPUT"
+          echo "buildmetadata=$GitVersion_BuildMetaData" >> "$GITHUB_OUTPUT"
+          
   tests_components:
     runs-on: ubuntu-latest
     defaults:
@@ -51,14 +56,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
           
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         run: |
@@ -84,11 +89,11 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
@@ -114,7 +119,7 @@ jobs:
           npx lerna run build --scope @pnp/modern-search-core
 
       - name: Build + bundle SPFx
-        working-directory: ./packages/spfx
+        working-directory: ./apps/spfx
         run: |
           gulp update-docs-url --hosturl "https://github.com/microsoft-search/pnp-modern-search-core-components"
           gulp update-version --value $MAJORMINORPATCH
@@ -132,10 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     if: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release') || github.event.inputs.create_release }}
-    needs: [version,build_spfx]
-    defaults:
-      run:
-        working-directory: ./apps
+    needs: [version,build_spfx,build_teams]
     steps:
       
       - uses: actions/checkout@v3
@@ -154,7 +156,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: PnP Modern Search Core Components - ${{ needs.version.outputs.semver }}
-          artifacts: ${{ github.workspace }}/**/*.sppkg,${{ github.workspace }}/**/teams/*.zip
+          artifacts: ${{ github.workspace }}/**/*.sppkg,${{ github.workspace }}/apps/teams/appPackage/build/*.zip
           bodyFile: ".github/workflows/release-template.md"
           draft: true
           generateReleaseNotes: true
@@ -171,7 +173,7 @@ jobs:
       run:
         working-directory: ./packages/components
     env:
-      VERSION: ${{ needs.version.outputs.semver }}
+      VERSION: ${{ format('{0}-{1}',needs.version.outputs.semver, needs.version.outputs.buildmetadata) }}
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -183,9 +185,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
@@ -238,7 +240,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: get-npm-version
@@ -300,9 +302,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
