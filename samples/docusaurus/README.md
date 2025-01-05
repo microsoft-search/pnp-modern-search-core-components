@@ -10,7 +10,7 @@ This sample solution demonstrates the integration of the PnP Modern Search Core 
 
 !["Search results"](./static/img/results.png)
 
-> A detailled blog post about this solution is alos available here: [https://franckcornu.com/post/integrate-components-with-docusaurus/](https://franckcornu.com/post/integrate-components-with-docusaurus/)  
+> A detailled blog post about this solution is also available here: [https://franckcornu.com/post/integrate-components-with-docusaurus/](https://franckcornu.com/post/integrate-components-with-docusaurus/)  
 
 ## Prerequisites - Tooling
 

@@ -40,6 +40,22 @@ Include the following script in your HTML page:
 > Components are registered automatically on the page when the package is imported.
 > Use [versions numbers](https://www.npmjs.com/package/@pnp/modern-search-core?activeTab=versions) from `npm`.
 
+Then, you can use components diretly in your HTML page, for instance:
+
+<Source
+    language='html'
+    dark
+    format={false}
+    code={dedent`
+
+        <pnp-search-input
+            id="edfdea93-23c9-4ba6-94d9-a848a1384104"
+            ...
+        >
+        </pnp-search-input>
+    `
+}/>
+
 ### Via npm package
 
 The npm package [`@pnp/modern-search-core`](https://www.npmjs.com/package/@pnp/modern-search-core) is available in npm to be used in you application
@@ -54,7 +70,8 @@ The [`@pnp/modern-search-core`](https://www.npmjs.com/package/@pnp/modern-search
 
 ### Usage
 
-#### Defined
+#### As Lit elements
+
 Most of the time, you'll just need to use the pre-defined custom element registration.
 
 <Source
@@ -70,14 +87,9 @@ Most of the time, you'll just need to use the pre-defined custom element registr
     `}
 />
 
-#### Scoped
-When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts
+When used in a microfrontend, you'll probably need to use scoped elements to avoid any registration conflicts with other components on the page:
 
-**Manually defined element**
-
-```typescript
-
-```
+➝ Manually defined element
 
 <Source
     language='typescript'
@@ -96,7 +108,7 @@ When used in a microfrontend, you'll probably need to use scoped elements to avo
         `
 }/>
 
-**[Scoped element mixin](https://open-wc.org/docs/development/scoped-elements/) in your own web component** 
+➝ [Scoped element mixin](https://open-wc.org/docs/development/scoped-elements/) in your own web component 
 
 <Source
     language='typescript'
@@ -125,5 +137,34 @@ When used in a microfrontend, you'll probably need to use scoped elements to avo
             }
             ...
         }
+        `
+}/>
+
+
+### As React components
+
+Components can be consumed directly as React component using the ['wc-react'](https://www.npmjs.com/package/wc-react) library like this:
+
+<Source
+    language='typescript'
+    dark
+    format={false}
+    code={dedent`
+
+        import { wrapWc } from 'wc-react';
+        import { SearchInputComponent } from '@pnp/modern-search-core';
+
+        const SearchInputWebComponent = wrapWc<Partial<SearchInputComponent>>('pnp-search-input');
+        
+        return  <SearchInputWebComponent 
+                    id='f566fb98-4010-485b-a44b-b53c16852cd6'
+                    inputPlaceholder='Enter a keyword...'
+                    searchInNewPage={true}
+                    pageUrl={"https://mysite/search"}
+                    queryPathBehavior={QueryPathBehavior.QueryParameter}
+                    queryStringParameter='k'
+                    defaultQueryStringParameter='k'
+                    openBehavior={PageOpenBehavior.Self}
+                />;
         `
 }/>

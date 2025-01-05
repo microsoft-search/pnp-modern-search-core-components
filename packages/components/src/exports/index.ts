@@ -5,6 +5,7 @@ export { SearchFiltersComponent } from "../components/search-filters/SearchFilte
 export { LanguageProvider } from "../components/language-provider/LanguageProvider";
 export { AdaptiveCardComponent } from "../components/adaptive-card/AdaptiveCardComponent";
 export { VideoPlayerComponent } from "../components/video-player/VideoPlayerComponent";
+export { LabelComponent } from "../components/label/LabelComponent";
 
 // Needed to work with SPFx as we can't use the default mgt-spfx package
 export * from "@microsoft/mgt-sharepoint-provider";
