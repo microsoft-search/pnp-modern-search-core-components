@@ -1,9 +1,9 @@
 name: Deploy documentation
 env:
-    ENV_AzDeployAppId: ${{ secrets.ENV_AzDeployAppId }}
+    ENV_AzDeployAppId: ${{ vars.ENV_AzDeployAppId }}
     ENV_AzDeployAppCertificateValue: ${{ secrets.ENV_AzDeployAppCertificateValue }}
-    ENV_AzDeployTenantId: ${{ secrets.ENV_AzDeployTenantId }}
-    ENV_AzDeploySubcriptionId: ${{ secrets.ENV_AzDeploySubcriptionId }}
+    ENV_AzDeployTenantId: ${{ vars.ENV_AzDeployTenantId }}
+    ENV_AzDeploySubcriptionId: ${{ vars.ENV_AzDeploySubcriptionId }}
     ENV_AzResourceGroupName: ${{ secrets.ENV_AzResourceGroupName }}
     ENV_AzStorageAccountName: ${{ secrets.ENV_AzStorageAccountName }}
     ENV_AzBlobContainerName: ${{ secrets.ENV_AzBlobContainerName }}
@@ -58,6 +58,7 @@ jobs:
       needs: version
       env:
         VERSION: ${{ needs.version.outputs.semver }}
+        
       steps:
 
           - name: Checkout
@@ -77,9 +78,9 @@ jobs:
               Install-Module Az.Resources -RequiredVersion 5.4.0 -Force
               Install-Module Az.Storage -RequiredVersion 5.2.0 -Force
 
-          - uses: pnpm/action-setup@v2
+          - uses: pnpm/action-setup@v4
             with:
-              version: 8
+              version: 9
               run_install: false
 
           - name: Get pnpm store directory

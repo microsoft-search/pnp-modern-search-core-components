@@ -13,6 +13,10 @@ export default {
   concurrentBrowsers: 3,
   concurrency: 10,
   browsers: [puppeteerLauncher({ concurrency: 3, launchOptions: {
+    args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+    ],
     executablePath: puppeteer.executablePath()
   }  })],
   testFramework: {

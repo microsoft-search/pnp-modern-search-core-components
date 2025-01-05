@@ -46,9 +46,11 @@ export enum ComponentElements {
     SearchVerticalsComponent = "pnp-search-verticals",
     AdaptiveCardComponent = "pnp-adaptive-card",
     LanguageProviderComponent = "pnp-language-provider",
+    ThemeProviderComponent = "pnp-theme-provider",
     SearchInfosComponent = "pnp-search-infos",
     ErrorMessageComponent = "pnp-error-message",
-    VideoPlayerComponent = "pnp-video-player"
+    VideoPlayerComponent = "pnp-video-player",
+    LabelComponent = "pnp-label"
 }
 
 /**

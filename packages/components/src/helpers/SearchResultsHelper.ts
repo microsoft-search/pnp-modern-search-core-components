@@ -26,7 +26,8 @@ export enum WellKnownSearchProperties {
     Summary = "summary",
     NormListID = "normlistid",
     NormUniqueID = "normuniqueid",
-    NormSiteID = "normsiteid"
+    NormSiteID = "normsiteid",
+    DriveId = "driveId"
 }
 
 export const sanitizeSummary = (summary: string) => {

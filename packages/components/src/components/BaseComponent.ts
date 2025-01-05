@@ -36,6 +36,8 @@ import {
     fillColor,
     fastDivider,
     fastProgressRing,
+    neutralForegroundRest,
+    neutralFillInputRest,
 } from "@microsoft/fast-components";
 import { styles as tailwindStyles } from "../styles/tailwind-styles-css";
 import { parseColorHexRGB,  } from "@microsoft/fast-colors";
@@ -144,7 +146,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
                        ${unsafeCSS(`${ThemeInternalCSSVariables.textColor}: var(${ThemePublicCSSVariables.textColor}, ${ThemeDefaultCSSVariablesValues.defaultTextColor})`)};
                        ${unsafeCSS(`${ThemeInternalCSSVariables.textLight}: ${ThemeDefaultCSSVariablesValues.defaultTextLight}`)};
                        ${unsafeCSS(`${ThemeInternalCSSVariables.primaryBackgroundColorDark}: var(${ThemePublicCSSVariables.primaryBackgroundColorDark}, ${ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark})`)};
-                       ${unsafeCSS(`${ThemeInternalCSSVariables.textColorDark}: var(${ThemePublicCSSVariables.textColorDark}, ${ThemeDefaultCSSVariablesValues.textColorDark})`)};
+                       ${unsafeCSS(`${ThemeInternalCSSVariables.textColorDark}: var(${ThemePublicCSSVariables.textColorDark}, ${ThemeDefaultCSSVariablesValues.textColorDark})`)};                 
                     } 
                 `
         ] as CSSResultGroup;
@@ -165,21 +167,40 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         super.connectedCallback();
 
-
         // Register helper functions to be used in templates (data-props)
         this.templateContext = {
             ...this.templateContext,
             sanitizeSummary: sanitizeSummary
         };
 
+        // Check if dark theme was set explicitly on the component
+        this.theme = this.classList.contains("dark") ? "dark" : null;
+
         // Set the theme automatically if a parent has the "dark" CSS class or theme
         // This avoid to set explicitly the 'theme' property for each component
-        if (this.parentElement) {
-            const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
-            if (parentInDarkMode) {
-                this.theme = "dark";
+        const setDarkModeClass = () => {
+        
+            if (this.parentElement && !this.classList.contains("dark")) {
+                const parentInDarkMode = this.parentElement.closest("[class~=dark],[theme~=dark]");
+                if (parentInDarkMode) {
+                    this.theme = "dark";
+                } else {
+                    this.theme = null;
+                }
+    
+            this.requestUpdate();
             }
-        }
+        };
+
+        setDarkModeClass();
+
+        const darkModeobserver = new MutationObserver(() => {
+            setDarkModeClass();
+        });
+
+        darkModeobserver.observe(
+            document.body, {attributes: true, childList: true, subtree: true }
+        );
 
         // Indicates component has finished its initalization sequence and default values if nay can be read
         this.isInitialized = true;
@@ -212,7 +233,7 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
         return  html`
                 <div data-ref="debug-mode-bar" class="mb-2 rounded shadow-filtersShadow flex text-sm text-primary justify-between p-2">
                     <a @click=${this.toggleDebugData} href="#" data-ref="debug-mode-bar-button">   
-                        <div class="flex items-center space-x-1">
+                        <div class="flex items-center space-x-1 font-primary">
                             <span>${this.showDebugData ? "Hide debug data" : "Show debug data"}</span>
                         </div>
                     </a>
@@ -327,15 +348,24 @@ export abstract class BaseComponent extends ScopedElementsMixin(MgtTemplatedComp
 
         if (theme.isDarkMode) {
             const primaryBackgroundColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.primaryBackgroundColorDark);
-            
+            const textColorDark = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.textColorDark);
+
             baseLayerLuminance.setValueFor(this,StandardLuminance.DarkMode);
             neutralFillRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(primaryBackgroundColor) ? parseColorHexRGB(primaryBackgroundColor) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.primaryBackgroundColorDark)));
             neutralFillStealthRest.setValueFor(this, neutralFillRest);
+            neutralFillInputRest.setValueFor(this, neutralFillRest);
+            neutralForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(textColorDark) ? parseColorHexRGB(textColorDark) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.textColorDark)));
             neutralFillStealthRestFluent.setValueFor(this, neutralFillRest);
         } else {
-            baseLayerLuminance.setValueFor(this,StandardLuminance.LightMode);
+
+            const textColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.textColor);
+
+            baseLayerLuminance.setValueFor(this, StandardLuminance.LightMode);
+            neutralFillRest.setValueFor(this, fillColor);
+            neutralFillInputRest.setValueFor(this, neutralFillRest);
             neutralFillStealthRest.setValueFor(this, fillColor);
             neutralFillStealthRestFluent.setValueFor(this, fillColor);
+            neutralForegroundRest.setValueFor(this, SwatchRGB.from(parseColorHexRGB(textColor) ? parseColorHexRGB(textColor) : parseColorHexRGB(ThemeDefaultCSSVariablesValues.defaultTextColor)));
         }
 
         const primaryColor = getComputedStyle(this).getPropertyValue(ThemeInternalCSSVariables.colorPrimary);

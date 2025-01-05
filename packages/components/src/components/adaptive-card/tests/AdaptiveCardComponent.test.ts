@@ -5,7 +5,7 @@ import { AdaptiveCardComponent } from "../AdaptiveCardComponent";
 
 describe("pnp-adaptive-card ", async () => {
 
-    describe("common", async () => {
+    describe("common", () => {
 
         it("should be defined", () => {
             const el = document.createElement("pnp-adaptive-card");

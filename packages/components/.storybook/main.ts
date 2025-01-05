@@ -43,19 +43,7 @@ const config: StorybookConfig = {
         exclude: [
           /node_modules/
         ]
-      },
-      {
-        test: /\.ts?$/,
-        use: [                           
-          {
-            loader: "postcss-loader"
-          }          
-        ],
-        exclude: [
-          /node_modules/,
-          /tailwind-styles-css\.ts/
-        ]
-      } 
+      }
     ); 
 
     return config;

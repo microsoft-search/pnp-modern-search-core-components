@@ -1,0 +1,8 @@
+{
+  "label": "Teams application",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Demo Teams application showcasing the integration of components."
+  }
+}

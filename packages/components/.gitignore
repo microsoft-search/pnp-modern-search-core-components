@@ -1,5 +1,6 @@
 *-css.ts
 pnpm-lock.yaml
+.pnpm-store 
 
 # Dependency directories
 node_modules

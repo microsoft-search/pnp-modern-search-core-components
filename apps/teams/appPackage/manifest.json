@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "Franck Cornu",
+    "websiteUrl": "https://microsoft-search.github.io/pnp-modern-search-core-components/",
+    "privacyUrl": "https://microsoft-search.github.io/pnp-modern-search-core-components/",
+    "termsOfUseUrl": "https://microsoft-search.github.io/pnp-modern-search-core-components/"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "PnP Modern Search Components",
+    "full": "PnP Modern Search Core Components for Teams (demo)"
+  },
+  "description": {
+    "short": "Search for content directly from Teams",
+    "full": "This application provides the Microsoft Search capabilities directly from Teams leveraging the PnP Modern Search Core components."
+  },
+  "accentColor": "#F3F5F6",
+  "bots": [],
+  "composeExtensions": [],
+  "staticTabs": [
+    {
+      "entityId": "index0",
+      "name": "Search",
+      "contentUrl": "${{TAB_ENDPOINT}}/tab?user_id={user.id}&user_upn={user.userPrincipalName}&tenant={user.tenant.id}&locale={app.locale}&theme={app.theme}",
+      "websiteUrl": "${{TAB_ENDPOINT}}/tab?user_id={user.id}&user_upn={user.userPrincipalName}&tenant={user.tenant.id}&locale={app.locale}&theme={app.theme}",
+      "scopes": ["personal"]
+    }
+  ],
+  "showLoadingIndicator": false,
+  "isFullScreen": false,
+  "validDomains": [
+    "${{TAB_DOMAIN}}"
+  ],
+  "webApplicationInfo": {
+    "id": "${{AAD_APP_CLIENT_ID}}",
+    "resource": "api://${{TAB_DOMAIN}}/${{AAD_APP_CLIENT_ID}}"
+  }
+}
