@@ -156,7 +156,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: PnP Modern Search Core Components - ${{ needs.version.outputs.semver }}
-          artifacts: ${{ github.workspace }}/**/*.sppkg,${{ github.workspace }}/apps/teams/appPackage/build/*.zip
+          artifacts: ${{ github.workspace }}/**/*.sppkg,${{ github.workspace }}/**/appPackage/build/*.zip
           bodyFile: ".github/workflows/release-template.md"
           draft: true
           generateReleaseNotes: true
