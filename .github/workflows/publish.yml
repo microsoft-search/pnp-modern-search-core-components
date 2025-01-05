@@ -173,7 +173,7 @@ jobs:
       run:
         working-directory: ./packages/components
     env:
-      VERSION: ${{ format('{0}-{1}',needs.version.outputs.semver, needs.version.outputs.buildmetadata) }}
+      VERSION: ${{ github.ref_name == 'main' && needs.version.outputs.semver || format('{0}-{1}',needs.version.outputs.semver, needs.version.outputs.buildmetadata) }}
     steps:
       - uses: actions/setup-node@v3
         with:
