@@ -90,9 +90,9 @@
     "dayjs": "^1.11.7",
     "jspath": "0.4.0",
     "lit": "^3.0.0",
-    "lodash-es": "4.17.21",
-    "markdown-it": "13.0.1",
-    "playwright": "1.43.1"
+    "lodash-es": "4.17.23",
+    "markdown-it": "14.1.1",
+    "playwright": "1.55.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.8.3",
@@ -118,7 +118,7 @@
     "@web/dev-server-legacy": "2.0.1",
     "@web/test-runner": "0.18.0",
     "@web/test-runner-puppeteer": "0.15.0",
-    "ajv": "8.12.0",
+    "ajv": "8.18.0",
     "autoprefixer": "10.4.13",
     "chai": "^4.2.0",
     "compression-webpack-plugin": "^10.0.0",
@@ -158,10 +158,10 @@
     "ts-loader": "9.4.4",
     "tslib": "2.5.0",
     "typescript": "5.3.3",
-    "webpack": "5.88.1",
+    "webpack": "5.104.1",
     "webpack-bundle-analyzer": "^4.8.0",
     "webpack-cli": "5.0.1",
-    "webpack-dev-server": "4.11.1",
+    "webpack-dev-server": "5.2.1",
     "webpack-merge": "^5.8.0"
   },
   "customElements": "custom-elements.json",
