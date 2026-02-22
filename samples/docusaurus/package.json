@@ -36,7 +36,7 @@
     "copy-webpack-plugin": "12.0.2",
     "null-loader": "4.0.1",
     "source-map-loader": "1.1.3",
-    "webpack": "5.88.1",
+    "webpack": "5.104.1",
     "ts-loader": "9.4.4",
     "webpack-cli": "^5.1.4",
     "rimraf": "6.0.1",
